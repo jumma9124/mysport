@@ -63,24 +63,22 @@ const VolleyballCard = () => {
           <span className="text-sm text-gray-400">V-리그</span>
         </div>
 
-        {/* 순위 - 중앙 정렬 */}
-        <div className="flex justify-center mb-4">
-          <div className="text-8xl font-bold text-white">{data.currentRank}위</div>
-        </div>
+        {/* 순위 */}
+        <div className="text-5xl font-bold text-white mb-4">{data.currentRank}위</div>
 
-        {/* 전적 정보 - 가로 한 줄 */}
-        <div className="flex items-center justify-between mb-6">
-          <span className="text-sm text-white">전적 / 승률 / 세트득실률</span>
-          <span className="text-base text-white">
+        {/* 전적 정보 */}
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>전적 / 승률 / 세트득실률</span>
+          <span className="text-sm text-white">
             {data.record.wins}승 {data.record.losses}패
-            <span className="mx-2 text-gray-500">/</span>
+            <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
             승률 {data.record.winRate.toFixed(3)}
-            <span className="mx-2 text-gray-500">/</span>
+            <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
             {data.record.setRate.toFixed(3)}
           </span>
         </div>
 
-        {/* 하단 여백 - 전적과 경기 정보 사이 */}
+        {/* 하단 여백 */}
         <div className="flex-1"></div>
 
         {/* 최근 경기 */}
