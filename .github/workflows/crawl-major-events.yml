@@ -36,3 +36,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add public/data/major-events.json
           git diff --staged --quiet || (git commit -m "chore: update major events data [skip ci]" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
