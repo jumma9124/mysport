@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import BaseballDetail from './pages/BaseballDetail';
 import VolleyballDetail from './pages/VolleyballDetail';
