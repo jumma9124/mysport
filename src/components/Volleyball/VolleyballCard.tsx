@@ -22,7 +22,7 @@ const VolleyballCard = () => {
   if (loading || !data) {
     return (
       <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
-        background: 'rgba(255, 255, 255, 0.1)',
+        background: 'rgb(32, 34, 52)',
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
@@ -40,7 +40,7 @@ const VolleyballCard = () => {
   return (
     <Link to="/volleyball" className="block h-full">
       <div className="transition-colors cursor-pointer h-full flex flex-col overflow-auto" style={{
-        background: 'rgba(255, 255, 255, 0.1)',
+        background: 'rgb(32, 34, 52)',
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
