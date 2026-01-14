@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VolleyballData } from '@/types';
 import { fetchVolleyballData } from '@/utils/dataUpdater';
-import { getDaysUntilSeasonStart, getSeasonStatus } from '@/utils/seasonManager';
+import { getSeasonStatus } from '@/utils/seasonManager';
 
 const VolleyballCard = () => {
   const [data, setData] = useState<VolleyballData | null>(null);
@@ -28,7 +28,6 @@ const VolleyballCard = () => {
     );
   }
 
-  const daysUntilStart = getDaysUntilSeasonStart('volleyball');
   const isInSeason = getSeasonStatus('volleyball') === 'in-season';
   const borderColor = isInSeason ? 'border-orange-500' : 'border-gray-700';
 
