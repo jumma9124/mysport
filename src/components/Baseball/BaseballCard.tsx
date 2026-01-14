@@ -82,6 +82,9 @@ const BaseballCard = () => {
           </div>
         </div>
 
+        {/* 하단 영역을 flex-1로 설정하여 공간 채우기 */}
+        <div className="flex-1"></div>
+
         {/* 마지막 시리즈 */}
         {isOffSeason && (
           <div className="border-t border-gray-700 pt-4">

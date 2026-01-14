@@ -113,6 +113,9 @@ const InternationalSportsCard = () => {
           <span className="text-sm text-gray-400">다가오는 대회</span>
         </div>
 
+        {/* 하단 영역을 flex-1로 설정하여 공간 채우기 */}
+        <div className="flex-1"></div>
+
         {/* 이벤트 리스트 */}
         <div className="space-y-4">
           {events.length > 0 ? (

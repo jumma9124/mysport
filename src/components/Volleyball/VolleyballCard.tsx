@@ -72,6 +72,9 @@ const VolleyballCard = () => {
           </div>
         </div>
 
+        {/* 하단 영역을 flex-1로 설정하여 공간 채우기 */}
+        <div className="flex-1"></div>
+
         {/* 최근 경기 */}
         <div className="border-t border-gray-700 pt-4 mb-4">
           <h4 className="text-sm text-white mb-2">최근 경기</h4>
@@ -86,7 +89,7 @@ const VolleyballCard = () => {
               </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-400">로딩 중...</div>
+            <div className="text-sm text-gray-400">데이터 없음</div>
           )}
         </div>
 
@@ -99,7 +102,7 @@ const VolleyballCard = () => {
               <span className="text-xs text-gray-400">{data.upcomingMatch.date}</span>
             </div>
           ) : (
-            <div className="text-sm text-gray-400">로딩 중...</div>
+            <div className="text-sm text-gray-400">데이터 없음</div>
           )}
         </div>
       </div>
