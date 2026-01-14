@@ -10,9 +10,12 @@ const MainPage = () => {
       area2={<BaseballCard />}
       area3={<InternationalSportsCard />}
       area4={
-        <div className="rounded-lg p-6 h-full flex flex-col" style={{
+        <div className="h-full flex flex-col overflow-auto" style={{
           background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'blur(10px)',
+          borderRadius: '15px',
+          padding: '20px',
+          border: '1px solid rgba(255, 255, 255, 0.2)'
         }}>
           {/* 빈 영역 */}
         </div>

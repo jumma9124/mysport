@@ -23,9 +23,12 @@ const BaseballCard = () => {
 
   if (loading || !data) {
     return (
-      <div className="rounded-lg p-6 animate-pulse h-full flex flex-col" style={{
+      <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
         background: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(10px)'
+        backdropFilter: 'blur(10px)',
+        borderRadius: '15px',
+        padding: '20px',
+        border: '1px solid rgba(255, 255, 255, 0.2)'
       }}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
@@ -38,9 +41,12 @@ const BaseballCard = () => {
 
   return (
     <Link to="/baseball" className="block h-full">
-      <div className="rounded-lg p-6 transition-colors cursor-pointer h-full flex flex-col" style={{
+      <div className="transition-colors cursor-pointer h-full flex flex-col overflow-auto" style={{
         background: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(10px)'
+        backdropFilter: 'blur(10px)',
+        borderRadius: '15px',
+        padding: '20px',
+        border: '1px solid rgba(255, 255, 255, 0.2)'
       }}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-4">
