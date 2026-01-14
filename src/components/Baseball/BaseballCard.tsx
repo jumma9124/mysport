@@ -71,18 +71,22 @@ const BaseballCard = () => {
         </div>
 
         {/* 순위 - 중앙 정렬 */}
-        <div className="flex flex-col items-center justify-center mb-6">
-          <div className="text-6xl font-bold text-white mb-4">{data.currentRank}위</div>
+        <div className="flex justify-center mb-6">
+          <div className="text-6xl font-bold text-white">{data.currentRank}위</div>
         </div>
 
-        {/* 전적 정보 - 왼쪽 정렬 */}
-        <div className="mb-4">
-          <div className="text-sm text-white mb-1">
-            전적 / 승률
-            {isOffSeason && <span className="text-gray-400 ml-2">시즌 종료</span>}
-          </div>
-          <div className="text-base text-white">
-            {data.record.wins}승 {data.record.losses}패 {data.record.draws}무 / 승률 {(data.record.winRate * 100).toFixed(1)}
+        {/* 전적 정보 - 한 줄로 표시 */}
+        <div className="mb-6">
+          <div className="flex flex-col gap-1">
+            <span className="text-sm text-white">
+              전적 / 승률
+              {isOffSeason && <span className="text-gray-400 ml-2">시즌 종료</span>}
+            </span>
+            <span className="text-base text-white">
+              {data.record.wins}승 {data.record.losses}패 {data.record.draws}무
+              <span className="mx-2 text-gray-500">/</span>
+              승률 {(data.record.winRate * 100).toFixed(1)}
+            </span>
           </div>
         </div>
 
