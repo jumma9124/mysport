@@ -68,18 +68,16 @@ const VolleyballCard = () => {
           <div className="text-6xl font-bold text-white">{data.currentRank}위</div>
         </div>
 
-        {/* 전적 정보 - 한 줄로 표시 */}
-        <div className="mb-6">
-          <div className="flex flex-col gap-1">
-            <span className="text-sm text-white">전적 / 승률 / 세트득실률</span>
-            <span className="text-base text-white">
-              {data.record.wins}승 {data.record.losses}패
-              <span className="mx-2 text-gray-500">/</span>
-              승률 {data.record.winRate.toFixed(3)}
-              <span className="mx-2 text-gray-500">/</span>
-              {data.record.setRate.toFixed(3)}
-            </span>
-          </div>
+        {/* 전적 정보 - 가로 한 줄 */}
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-sm text-white">전적 / 승률 / 세트득실률</span>
+          <span className="text-base text-white">
+            {data.record.wins}승 {data.record.losses}패
+            <span className="mx-2 text-gray-500">/</span>
+            승률 {data.record.winRate.toFixed(3)}
+            <span className="mx-2 text-gray-500">/</span>
+            {data.record.setRate.toFixed(3)}
+          </span>
         </div>
 
         {/* 하단 영역을 flex-1로 설정하여 공간 채우기 */}
