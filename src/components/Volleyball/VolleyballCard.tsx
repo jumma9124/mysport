@@ -63,13 +63,10 @@ const VolleyballCard = () => {
           <span className="text-sm text-gray-400">V-리그</span>
         </div>
 
-        {/* 순위 - 중앙 정렬, 더 큰 크기 */}
-        <div className="flex justify-center mb-8">
+        {/* 순위 - 중앙 정렬 */}
+        <div className="flex justify-center mb-4">
           <div className="text-8xl font-bold text-white">{data.currentRank}위</div>
         </div>
-
-        {/* 중간 여백 */}
-        <div className="flex-1"></div>
 
         {/* 전적 정보 - 가로 한 줄 */}
         <div className="flex items-center justify-between mb-6">
@@ -83,7 +80,7 @@ const VolleyballCard = () => {
           </span>
         </div>
 
-        {/* 하단 여백 */}
+        {/* 하단 여백 - 전적과 경기 정보 사이 */}
         <div className="flex-1"></div>
 
         {/* 최근 경기 */}
