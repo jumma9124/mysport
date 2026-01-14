@@ -6,6 +6,9 @@ on:
     - cron: '0 0 1 1 *'
   workflow_dispatch:  # 수동 실행 가능
 
+permissions:
+  contents: write
+
 jobs:
   crawl:
     runs-on: ubuntu-latest
@@ -34,7 +37,16 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/data/major-events.json
-          git diff --staged --quiet || (git commit -m "chore: update major events data [skip ci]" && git push)
+          # 파일이 존재하는 경우에만 add 시도
+          if [ -f public/data/major-events.json ]; then
+            git add public/data/major-events.json
+          fi
+          # 변경사항이 있을 때만 커밋 및 푸시
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update major events data [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

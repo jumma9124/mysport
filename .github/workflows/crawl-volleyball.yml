@@ -4,10 +4,13 @@ on:
   schedule:
     # 시즌 중 (10월~4월): 매일 10시, 22시 KST
     - cron: '0 1,13 * 10-12,1-4 *'  # UTC 기준 (KST -9시간)
-    - cron: '0 1,13 * 10-12,1-4 *'
     # 비시즌 (5월~9월): 매주 월요일 10시 KST
-    - cron: '0 1 * 5-9 * 1'  # UTC 기준 월요일 01:00 (KST 10:00)
+    - cron: '0 1 * 5-9 *'  # UTC 기준 (KST -9시간)
+    - cron: '0 1 * * 1'  # 매주 월요일 01:00 UTC (KST 10:00)
   workflow_dispatch:  # 수동 실행 가능
+
+permissions:
+  contents: write
 
 jobs:
   crawl:
@@ -37,7 +40,19 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/data/volleyball-detail.json public/data/sports.json
-          git diff --staged --quiet || (git commit -m "chore: update volleyball data [skip ci]" && git push)
+          # 파일이 존재하는 경우에만 add 시도
+          if [ -f public/data/volleyball-detail.json ]; then
+            git add public/data/volleyball-detail.json
+          fi
+          if [ -f public/data/sports.json ]; then
+            git add public/data/sports.json
+          fi
+          # 변경사항이 있을 때만 커밋 및 푸시
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update volleyball data [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
