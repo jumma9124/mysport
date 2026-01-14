@@ -97,7 +97,7 @@ const InternationalSportsCard = () => {
         border: '1px solid rgba(255, 255, 255, 0.2)'
       }}>
         {/* 헤더 */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
             <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
               background: 'rgba(76, 175, 80, 0.2)',
@@ -120,13 +120,13 @@ const InternationalSportsCard = () => {
         <div className="space-y-4">
           {events.length > 0 ? (
             events.map((event, index) => (
-              <div key={index} className="flex items-center space-x-3">
+              <div key={index} className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
                   {getEventIcon(event.icon)}
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm text-white font-medium">{event.name}</div>
-                  <div className="text-xs text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
+                  <div className="text-base text-white font-medium">{event.name}</div>
+                  <div className="text-sm text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
                 </div>
               </div>
             ))

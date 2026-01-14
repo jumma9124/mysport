@@ -47,7 +47,7 @@ const VolleyballCard = () => {
         border: borderColor
       }}>
         {/* 헤더 */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
             <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
               background: 'rgba(76, 175, 80, 0.2)',
@@ -63,12 +63,14 @@ const VolleyballCard = () => {
           <span className="text-sm text-gray-400">V-리그</span>
         </div>
 
-        {/* 순위 */}
-        <div className="mb-4">
-          <div className="text-4xl font-bold text-white mb-2">{data.currentRank}위</div>
-          <div className="text-sm text-white">전적 / 승률 / 세트득실률</div>
-          <div className="text-sm text-gray-300 mt-1">
-            {data.record.wins}승 {data.record.losses}패 / 승률 {data.record.winRate.toFixed(3)} / {data.record.setRate.toFixed(3)}
+        {/* 순위 - 중앙 정렬 */}
+        <div className="flex flex-col items-center justify-center mb-6">
+          <div className="text-6xl font-bold text-white mb-4">{data.currentRank}위</div>
+          <div className="text-center">
+            <div className="text-sm text-white mb-1">전적 / 승률 / 세트득실률</div>
+            <div className="text-base text-gray-300">
+              {data.record.wins}승 {data.record.losses}패 / 승률 {data.record.winRate.toFixed(3)} / {data.record.setRate.toFixed(3)}
+            </div>
           </div>
         </div>
 
