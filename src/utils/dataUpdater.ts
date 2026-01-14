@@ -1,6 +1,12 @@
 import { BaseballData, VolleyballData, InternationalSportsData } from '@/types';
 import { getSeasonStatus } from './seasonManager';
 
+// 기본 URL 경로 설정
+const getBasePath = () => {
+  // 프로덕션 환경에서는 /mysport/, 개발 환경에서는 /
+  return window.location.pathname.includes('/mysport/') ? '/mysport/' : '/';
+};
+
 // 폴백 데이터
 const getDefaultBaseballData = (): BaseballData => ({
   team: '한화 이글스',
@@ -42,13 +48,13 @@ const getDefaultInternationalSportsData = (): InternationalSportsData => ({
 export const fetchBaseballData = async (): Promise<BaseballData> => {
   try {
     // sports.json에서 기본 정보 로드
-    const sportsResponse = await fetch('/data/sports.json');
+    const sportsResponse = await fetch(`${getBasePath()}data/sports.json`);
     if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
     const sportsData = await sportsResponse.json();
     const baseballData = sportsData.baseball;
 
     // baseball-detail.json에서 상세 정보 로드
-    const detailResponse = await fetch('/data/baseball-detail.json');
+    const detailResponse = await fetch(`${getBasePath()}data/baseball-detail.json`);
     if (!detailResponse.ok) throw new Error('Failed to fetch baseball-detail.json');
     const detailData = await detailResponse.json();
 
@@ -73,13 +79,13 @@ export const fetchBaseballData = async (): Promise<BaseballData> => {
 export const fetchVolleyballData = async (): Promise<VolleyballData> => {
   try {
     // sports.json에서 기본 정보 로드
-    const sportsResponse = await fetch('/data/sports.json');
+    const sportsResponse = await fetch(`${getBasePath()}data/sports.json`);
     if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
     const sportsData = await sportsResponse.json();
     const volleyballData = sportsData.volleyball;
 
     // volleyball-detail.json에서 상세 정보 로드
-    const detailResponse = await fetch('/data/volleyball-detail.json');
+    const detailResponse = await fetch(`${getBasePath()}data/volleyball-detail.json`);
     if (!detailResponse.ok) throw new Error('Failed to fetch volleyball-detail.json');
     const detailData = await detailResponse.json();
 
@@ -101,7 +107,7 @@ export const fetchVolleyballData = async (): Promise<VolleyballData> => {
 // JSON 파일에서 국제스포츠 데이터 로드
 export const fetchInternationalSportsData = async (): Promise<InternationalSportsData> => {
   try {
-    const response = await fetch('/data/major-events.json');
+    const response = await fetch(`${getBasePath()}data/major-events.json`);
     if (!response.ok) throw new Error('Failed to fetch major-events.json');
     const events = await response.json();
 
