@@ -21,7 +21,7 @@ const VolleyballCard = () => {
 
   if (loading || !data) {
     return (
-      <div className="bg-gray-900 rounded-lg p-6 animate-pulse">
+      <div className="bg-gray-900 rounded-lg p-6 animate-pulse h-full flex flex-col">
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
       </div>
@@ -32,8 +32,8 @@ const VolleyballCard = () => {
   const borderColor = isInSeason ? 'border-orange-500' : 'border-gray-700';
 
   return (
-    <Link to="/volleyball" className="block">
-      <div className={`bg-gray-900 rounded-lg p-6 hover:bg-gray-800 transition-colors cursor-pointer border ${borderColor}`}>
+    <Link to="/volleyball" className="block h-full">
+      <div className={`bg-gray-900 rounded-lg p-6 hover:bg-gray-800 transition-colors cursor-pointer border ${borderColor} h-full flex flex-col`}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">

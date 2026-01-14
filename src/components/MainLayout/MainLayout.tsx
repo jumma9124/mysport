@@ -23,7 +23,7 @@ const MainLayout = ({ area1, area2, area3, area4 }: MainLayoutProps) => {
 
   return (
     <div className="min-h-screen bg-black p-4 md:p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* 헤더 */}
         <header className="mb-6 flex items-center justify-between">
           <h1 className="text-3xl font-bold text-white">MY SPORT</h1>
@@ -32,25 +32,25 @@ const MainLayout = ({ area1, area2, area3, area4 }: MainLayoutProps) => {
           </div>
         </header>
 
-        {/* 모바일: 세로 배치, 데스크톱: 그리드 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {/* 영역 1 - 상단 좌측 (모바일: 상단) */}
-          <div className="md:col-span-1">
+        {/* 2×2 그리드 레이아웃 - 동일한 크기의 4개 영역 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 auto-rows-fr">
+          {/* 영역 1 - 상단 좌측 */}
+          <div className="min-h-[400px]">
             {area1}
           </div>
-          
-          {/* 영역 2 - 상단 우측 (모바일: 두번째) */}
-          <div className="md:col-span-1">
+
+          {/* 영역 2 - 상단 우측 */}
+          <div className="min-h-[400px]">
             {area2}
           </div>
-          
-          {/* 영역 3 - 하단 좌측 (모바일: 세번째) */}
-          <div className="md:col-span-1">
+
+          {/* 영역 3 - 하단 좌측 */}
+          <div className="min-h-[400px]">
             {area3}
           </div>
-          
-          {/* 영역 4 - 하단 우측 (모바일: 네번째) - 고정 */}
-          <div className="md:col-span-1">
+
+          {/* 영역 4 - 하단 우측 */}
+          <div className="min-h-[400px]">
             {area4}
           </div>
         </div>
