@@ -1,0 +1,80 @@
+{
+  "leagueStandings": [
+    {
+      "name": "KIA 타이거즈",
+      "wins": 87,
+      "losses": 57,
+      "draws": 0,
+      "winRate": 0.604,
+      "rank": 1
+    },
+    {
+      "name": "한화 이글스",
+      "wins": 83,
+      "losses": 57,
+      "draws": 4,
+      "winRate": 0.593,
+      "rank": 2
+    },
+    {
+      "name": "KT 위즈",
+      "wins": 79,
+      "losses": 65,
+      "draws": 0,
+      "winRate": 0.549,
+      "rank": 3
+    },
+    {
+      "name": "LG 트윈스",
+      "wins": 76,
+      "losses": 68,
+      "draws": 0,
+      "winRate": 0.528,
+      "rank": 4
+    },
+    {
+      "name": "SSG 랜더스",
+      "wins": 73,
+      "losses": 71,
+      "draws": 0,
+      "winRate": 0.507,
+      "rank": 5
+    }
+  ],
+  "pitchers": [],
+  "batters": [],
+  "headToHead": [],
+  "lastSeries": {
+    "opponent": "LG 트윈스",
+    "date": "2025-10-25",
+    "result": "loss",
+    "score": "1승 4패",
+    "games": [
+      {
+        "date": "2025-10-21",
+        "result": "loss",
+        "score": "2-5"
+      },
+      {
+        "date": "2025-10-22",
+        "result": "loss",
+        "score": "1-3"
+      },
+      {
+        "date": "2025-10-23",
+        "result": "win",
+        "score": "4-2"
+      },
+      {
+        "date": "2025-10-24",
+        "result": "loss",
+        "score": "1-4"
+      },
+      {
+        "date": "2025-10-25",
+        "result": "loss",
+        "score": "0-2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { InternationalSportsData } from '@/types';
+import { fetchInternationalSportsData } from '@/utils/dataUpdater';
+
+interface Event {
+  name: string;
+  date: string;
+  icon: string;
+  daysLeft?: number;
+}
+
+const InternationalSportsCard = () => {
+  const [data, setData] = useState<InternationalSportsData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      const result = await fetchInternationalSportsData();
+      setData(result);
+      
+      // major-events.json에서 이벤트 데이터 로드
+      if (result.data?.events) {
+        const eventsWithDays = result.data.events.map((event: Event) => {
+          const eventDate = new Date(event.date);
+          const now = new Date();
+          const diffTime = eventDate.getTime() - now.getTime();
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          
+          return {
+            ...event,
+            daysLeft: diffDays > 0 ? diffDays : 0,
+          };
+        });
+        setEvents(eventsWithDays);
+      }
+      
+      setLoading(false);
+    };
+
+    loadData();
+  }, []);
+
+  if (loading || !data) {
+    return (
+      <div className="bg-gray-900 rounded-lg p-6 animate-pulse">
+        <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
+        <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+      </div>
+    );
+  }
+
+  const getEventIcon = (iconType: string) => {
+    switch (iconType) {
+      case 'snow':
+        return (
+          <div className="w-8 h-8 rounded bg-gradient-to-br from-green-400 to-orange-400 flex items-center justify-center">
+            <span className="text-white text-xs">⛷</span>
+          </div>
+        );
+      case 'baseball':
+        return (
+          <div className="w-8 h-8 rounded bg-blue-500 flex items-center justify-center">
+            <span className="text-white text-xs">⚾</span>
+          </div>
+        );
+      case 'soccer':
+        return (
+          <div className="w-8 h-8 rounded bg-green-500 flex items-center justify-center">
+            <span className="text-white text-xs">⚽</span>
+          </div>
+        );
+      default:
+        return (
+          <div className="w-8 h-8 rounded bg-gray-700 flex items-center justify-center">
+            <span className="text-gray-400 text-xs">●</span>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <Link to="/international" className="block">
+      <div className="bg-gray-900 rounded-lg p-6 hover:bg-gray-800 transition-colors cursor-pointer">
+        {/* 헤더 */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <h2 className="text-xl font-bold text-white">주요 스포츠 이벤트</h2>
+          </div>
+          <span className="text-sm text-gray-400">다가오는 대회</span>
+        </div>
+
+        {/* 이벤트 리스트 */}
+        <div className="space-y-4">
+          {events.length > 0 ? (
+            events.map((event, index) => (
+              <div key={index} className="flex items-center space-x-3">
+                <div className="flex-shrink-0">
+                  {getEventIcon(event.icon)}
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm text-white font-medium">{event.name}</div>
+                  <div className="text-xs text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-sm text-gray-400">로딩 중...</div>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export default InternationalSportsCard;

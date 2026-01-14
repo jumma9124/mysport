@@ -1,0 +1,22 @@
+{
+  "volleyball": {
+    "team": "현대캐피탈 스카이워커스",
+    "currentRank": 2,
+    "record": {
+      "wins": 12,
+      "losses": 7,
+      "winRate": 0.632,
+      "setRate": 1.517
+    }
+  },
+  "baseball": {
+    "team": "한화 이글스",
+    "currentRank": 2,
+    "record": {
+      "wins": 83,
+      "losses": 57,
+      "draws": 4,
+      "winRate": 0.593
+    }
+  }
+}

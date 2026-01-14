@@ -1,0 +1,117 @@
+import { BaseballData, VolleyballData, InternationalSportsData } from '@/types';
+import { getSeasonStatus } from './seasonManager';
+
+// 폴백 데이터
+const getDefaultBaseballData = (): BaseballData => ({
+  team: '한화 이글스',
+  seasonStatus: getSeasonStatus('baseball'),
+  currentRank: 5,
+  record: {
+    wins: 70,
+    losses: 74,
+    draws: 0,
+    winRate: 0.486,
+  },
+  leagueStandings: [],
+  pitchers: [],
+  batters: [],
+  headToHead: [],
+});
+
+const getDefaultVolleyballData = (): VolleyballData => ({
+  team: '현대캐피탈 스카이워커스',
+  seasonStatus: getSeasonStatus('volleyball'),
+  currentRank: 3,
+  record: {
+    wins: 20,
+    losses: 10,
+    winRate: 0.667,
+    setRate: 1.25,
+  },
+  leagueStandings: [],
+  recentMatches: [],
+});
+
+const getDefaultInternationalSportsData = (): InternationalSportsData => ({
+  name: '주요 스포츠 이벤트',
+  seasonStatus: getSeasonStatus('international'),
+  data: {},
+});
+
+// JSON 파일에서 야구 데이터 로드
+export const fetchBaseballData = async (): Promise<BaseballData> => {
+  try {
+    // sports.json에서 기본 정보 로드
+    const sportsResponse = await fetch('/data/sports.json');
+    if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
+    const sportsData = await sportsResponse.json();
+    const baseballData = sportsData.baseball;
+
+    // baseball-detail.json에서 상세 정보 로드
+    const detailResponse = await fetch('/data/baseball-detail.json');
+    if (!detailResponse.ok) throw new Error('Failed to fetch baseball-detail.json');
+    const detailData = await detailResponse.json();
+
+    return {
+      ...baseballData,
+      leagueStandings: detailData.leagueStandings || [],
+      pitchers: detailData.pitchers || [],
+      batters: detailData.batters || [],
+      headToHead: detailData.headToHead || [],
+      lastSeries: detailData.lastSeries,
+      currentSeries: detailData.currentSeries,
+      seasonStatus: getSeasonStatus('baseball'),
+      seasonStartDate: detailData.seasonStartDate,
+    };
+  } catch (error) {
+    console.error('Failed to fetch baseball data:', error);
+    return getDefaultBaseballData();
+  }
+};
+
+// JSON 파일에서 배구 데이터 로드
+export const fetchVolleyballData = async (): Promise<VolleyballData> => {
+  try {
+    // sports.json에서 기본 정보 로드
+    const sportsResponse = await fetch('/data/sports.json');
+    if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
+    const sportsData = await sportsResponse.json();
+    const volleyballData = sportsData.volleyball;
+
+    // volleyball-detail.json에서 상세 정보 로드
+    const detailResponse = await fetch('/data/volleyball-detail.json');
+    if (!detailResponse.ok) throw new Error('Failed to fetch volleyball-detail.json');
+    const detailData = await detailResponse.json();
+
+    return {
+      ...volleyballData,
+      leagueStandings: detailData.leagueStandings || [],
+      recentMatches: detailData.recentMatches || [],
+      upcomingMatch: detailData.upcomingMatch,
+      attackers: detailData.attackers,
+      seasonStatus: getSeasonStatus('volleyball'),
+      seasonStartDate: detailData.seasonStartDate,
+    };
+  } catch (error) {
+    console.error('Failed to fetch volleyball data:', error);
+    return getDefaultVolleyballData();
+  }
+};
+
+// JSON 파일에서 국제스포츠 데이터 로드
+export const fetchInternationalSportsData = async (): Promise<InternationalSportsData> => {
+  try {
+    const response = await fetch('/data/major-events.json');
+    if (!response.ok) throw new Error('Failed to fetch major-events.json');
+    const events = await response.json();
+
+    return {
+      name: '주요 스포츠 이벤트',
+      seasonStatus: getSeasonStatus('international'),
+      data: { events },
+    };
+  } catch (error) {
+    console.error('Failed to fetch international sports data:', error);
+    return getDefaultInternationalSportsData();
+  }
+};

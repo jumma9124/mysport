@@ -1,0 +1,62 @@
+{
+  "leagueStandings": [
+    {
+      "name": "OK저축은행",
+      "wins": 15,
+      "losses": 4,
+      "setWins": 47,
+      "setLosses": 18,
+      "setRate": 2.611,
+      "rank": 1
+    },
+    {
+      "name": "현대캐피탈 스카이워커스",
+      "wins": 12,
+      "losses": 7,
+      "setWins": 42,
+      "setLosses": 28,
+      "setRate": 1.5,
+      "rank": 2
+    },
+    {
+      "name": "삼성화재",
+      "wins": 11,
+      "losses": 8,
+      "setWins": 38,
+      "setLosses": 32,
+      "setRate": 1.188,
+      "rank": 3
+    }
+  ],
+  "recentMatches": [
+    {
+      "date": "26.01.09",
+      "opponent": "OK저축은행",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "0-3",
+      "sets": [
+        {
+          "setNumber": 1,
+          "ourScore": 18,
+          "opponentScore": 25
+        },
+        {
+          "setNumber": 2,
+          "ourScore": 22,
+          "opponentScore": 25
+        },
+        {
+          "setNumber": 3,
+          "ourScore": 19,
+          "opponentScore": 25
+        }
+      ]
+    }
+  ],
+  "upcomingMatch": {
+    "date": "26.01.14",
+    "opponent": "삼성화재",
+    "venue": "천안유관순체육관"
+  }
+}
