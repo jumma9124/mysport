@@ -1,0 +1,41 @@
+name: Crawl Volleyball Data
+
+on:
+  schedule:
+    # 시즌 중 (10월~4월): 매일 10시, 22시 KST
+    - cron: '0 1,13 * 10-12,1-4 *'  # UTC 기준 (KST -9시간)
+    - cron: '0 1,13 * 10-12,1-4 *'
+    # 비시즌 (5월~9월): 매주 월요일 10시 KST
+    - cron: '0 1 * 5-9 * 1'  # UTC 기준 월요일 01:00 (KST 10:00)
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run volleyball crawler
+        run: |
+          # 크롤링 스크립트 실행
+          # node crawl-volleyball.js
+          echo "Volleyball crawler will be implemented here"
+          # TODO: 크롤링 스크립트 구현 후 활성화
+
+      - name: Commit and push changes
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/data/volleyball-detail.json public/data/sports.json
+          git diff --staged --quiet || (git commit -m "chore: update volleyball data [skip ci]" && git push)
