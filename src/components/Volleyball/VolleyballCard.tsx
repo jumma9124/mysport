@@ -66,11 +66,13 @@ const VolleyballCard = () => {
         {/* 순위 - 중앙 정렬 */}
         <div className="flex flex-col items-center justify-center mb-6">
           <div className="text-6xl font-bold text-white mb-4">{data.currentRank}위</div>
-          <div className="text-center">
-            <div className="text-sm text-white mb-1">전적 / 승률 / 세트득실률</div>
-            <div className="text-base text-gray-300">
-              {data.record.wins}승 {data.record.losses}패 / 승률 {data.record.winRate.toFixed(3)} / {data.record.setRate.toFixed(3)}
-            </div>
+        </div>
+
+        {/* 전적 정보 - 왼쪽 정렬 */}
+        <div className="mb-4">
+          <div className="text-sm text-white mb-1">전적 / 승률 / 세트득실률</div>
+          <div className="text-base text-white">
+            {data.record.wins}승 {data.record.losses}패 / 승률 {data.record.winRate.toFixed(3)} / {data.record.setRate.toFixed(3)}
           </div>
         </div>
 
