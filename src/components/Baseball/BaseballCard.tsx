@@ -70,10 +70,13 @@ const BaseballCard = () => {
           <span className="text-sm text-gray-400">KBO 리그</span>
         </div>
 
-        {/* 순위 - 중앙 정렬 */}
-        <div className="flex justify-center mb-6">
-          <div className="text-6xl font-bold text-white">{data.currentRank}위</div>
+        {/* 순위 - 중앙 정렬, 더 큰 크기 */}
+        <div className="flex justify-center mb-8">
+          <div className="text-8xl font-bold text-white">{data.currentRank}위</div>
         </div>
+
+        {/* 중간 여백 */}
+        <div className="flex-1"></div>
 
         {/* 전적 정보 - 가로 한 줄 */}
         <div className="flex items-center justify-between mb-6">
@@ -88,7 +91,7 @@ const BaseballCard = () => {
           </span>
         </div>
 
-        {/* 하단 영역을 flex-1로 설정하여 공간 채우기 */}
+        {/* 하단 여백 */}
         <div className="flex-1"></div>
 
         {/* 마지막 시리즈 */}
