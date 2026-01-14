@@ -25,9 +25,9 @@ const MainLayout = ({ area1, area2, area3, area4 }: MainLayoutProps) => {
     <div className="min-h-screen bg-black flex flex-col p-4 md:p-6">
       <div className="max-w-[1400px] mx-auto w-full flex flex-col flex-1">
         {/* 헤더 */}
-        <header className="mb-6 flex items-center justify-between">
+        <header className="mb-6 flex items-center justify-center relative">
           <h1 className="text-3xl font-bold text-white">MY SPORT</h1>
-          <div className="text-sm text-white">
+          <div className="text-sm text-white absolute right-0">
             마지막 업데이트: {getLastUpdateTime()}
           </div>
         </header>
