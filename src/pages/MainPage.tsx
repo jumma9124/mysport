@@ -10,7 +10,10 @@ const MainPage = () => {
       area2={<BaseballCard />}
       area3={<InternationalSportsCard />}
       area4={
-        <div className="bg-gray-900 rounded-lg p-6 h-full flex flex-col">
+        <div className="rounded-lg p-6 h-full flex flex-col" style={{
+          background: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(10px)'
+        }}>
           {/* 빈 영역 */}
         </div>
       }

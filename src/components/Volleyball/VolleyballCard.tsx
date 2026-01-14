@@ -21,7 +21,10 @@ const VolleyballCard = () => {
 
   if (loading || !data) {
     return (
-      <div className="bg-gray-900 rounded-lg p-6 animate-pulse h-full flex flex-col">
+      <div className="rounded-lg p-6 animate-pulse h-full flex flex-col" style={{
+        background: 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: 'blur(10px)'
+      }}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
       </div>
@@ -33,13 +36,22 @@ const VolleyballCard = () => {
 
   return (
     <Link to="/volleyball" className="block h-full">
-      <div className={`bg-gray-900 rounded-lg p-6 hover:bg-gray-800 transition-colors cursor-pointer border ${borderColor} h-full flex flex-col`}>
+      <div className={`rounded-lg p-6 transition-colors cursor-pointer border ${borderColor} h-full flex flex-col`} style={{
+        background: 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: 'blur(10px)'
+      }}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
+            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+              background: 'rgba(76, 175, 80, 0.2)',
+              borderColor: 'rgba(76, 175, 80, 0.5)',
+              color: '#4caf50',
+              fontSize: '16px',
+              fontWeight: 700
+            }}>
+              ✓
+            </div>
             <h2 className="text-xl font-bold text-white">{data.team}</h2>
           </div>
           <span className="text-sm text-gray-400">V-리그</span>
