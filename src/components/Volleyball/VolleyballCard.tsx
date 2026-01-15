@@ -95,7 +95,7 @@ const VolleyballCard = () => {
 
         {/* 오프시즌 - 마지막 시리즈 */}
         {isOffSeason && (
-          <div className="border-t border-gray-700 pt-4">
+          <div className="bg-gray-800/50 rounded-lg p-3">
             <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
             {data.recentMatches.length > 0 ? (
               <>
@@ -116,7 +116,7 @@ const VolleyballCard = () => {
         {/* 시즌 중 - 최근/다음 경기 */}
         {!isOffSeason && (
           <>
-            <div className="border-t border-gray-700 pt-4 mb-4">
+            <div className="bg-gray-800/50 rounded-lg p-3 mb-3">
               <h4 className="text-sm text-white mb-2">최근 경기</h4>
               {data.recentMatches.length > 0 ? (
                 <div className="flex items-center justify-between">
@@ -133,7 +133,7 @@ const VolleyballCard = () => {
               )}
             </div>
 
-            <div className="border-t border-gray-700 pt-4">
+            <div className="bg-gray-800/50 rounded-lg p-3">
               <h4 className="text-sm text-white mb-2">다음 경기</h4>
               {data.upcomingMatch ? (
                 <div className="flex items-center justify-between">

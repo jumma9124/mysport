@@ -89,13 +89,13 @@ const BaseballCard = () => {
 
         {/* 마지막 시리즈 */}
         {isOffSeason && (
-          <div className="border-t border-gray-700 pt-4">
+          <div className="bg-gray-800/50 rounded-lg p-3">
             <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
             {data.lastSeries ? (
               <>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-white">vs {data.lastSeries.opponent}</span>
-                  <span className="px-2 py-1 bg-red-600 text-white text-xs rounded">
+                  <span className={`px-2 py-1 text-white text-xs rounded ${data.lastSeries.result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
                     {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ const BaseballCard = () => {
         )}
 
         {!isOffSeason && (
-          <div className="border-t border-gray-700 pt-4">
+          <div className="bg-gray-800/50 rounded-lg p-3">
             <h4 className="text-sm text-white mb-2">다음 경기</h4>
             <div className="text-sm text-gray-400">예정된 경기 없음</div>
           </div>

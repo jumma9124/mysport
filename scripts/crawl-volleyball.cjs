@@ -1,48 +1,182 @@
 const fs = require('fs');
 const path = require('path');
+const cheerio = require('cheerio');
+const fetch = require('node-fetch');
 
 /**
- * 네이버 스포츠 V리그 데이터 크롤링
+ * 네이버 스포츠 V리그 실시간 데이터 크롤링
  * 현대캐피탈 스카이워커스 팀 정보 수집
  */
 
 const TEAM_NAME = '현대캐피탈';
+const TEAM_FULL_NAME = '현대캐피탈 스카이워커스';
+const TEAM_CODE = '1005';
 const DATA_DIR = path.join(__dirname, '../public/data');
 
-// 네이버 스포츠 API 엔드포인트
-const NAVER_VOLLEYBALL_API = {
-  standings: 'https://sports.news.naver.com/kovo/record/index?category=kovo&year=2025',
-  schedule: 'https://sports.news.naver.com/kovo/schedule/index?category=kovo&year=2026&month=01',
+// 네이버 스포츠 모바일 URL
+const NAVER_URLS = {
+  standings: 'https://m.sports.naver.com/volleyball/record/kovo?seasonCode=022&tab=teamRank',
+  schedule: (date) => `https://m.sports.naver.com/volleyball/schedule/index?category=kovo&date=${date}&teamCode=${TEAM_CODE}`,
 };
 
-async function fetchWithTimeout(url, options = {}, timeout = 10000) {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
+async function fetchWithRetry(url, options = {}, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'ko-KR,ko;q=0.9',
+          ...options.headers,
+        },
+      });
 
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        ...options.headers,
-      },
-    });
-    clearTimeout(id);
-    return response;
-  } catch (error) {
-    clearTimeout(id);
-    throw error;
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      return response;
+    } catch (error) {
+      console.error(`Attempt ${i + 1}/${retries} failed:`, error.message);
+      if (i === retries - 1) throw error;
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+    }
   }
 }
 
-async function crawlVolleyballData() {
+async function crawlStandings() {
   try {
-    console.log('Starting volleyball data crawl...');
+    console.log('Fetching standings from Naver Sports...');
+    const response = await fetchWithRetry(NAVER_URLS.standings);
+    const html = await response.text();
+    const $ = cheerio.load(html);
 
-    // 순위표 데이터 (하드코딩 - 실제로는 네이버에서 크롤링)
-    // 네이버 스포츠는 직접 크롤링이 어려우므로 수동 업데이트 필요
-    const standingsData = [
+    const standings = [];
+
+    // 순위표 파싱 (모바일 버전)
+    $('.TeamRankList_row__n_bDX').each((idx, elem) => {
+      const $row = $(elem);
+
+      const rank = parseInt($row.find('.TeamRankList_rank__3qtv0').text().trim());
+      const teamName = $row.find('.TeamRankList_team__AW7V6 .TeamRankList_name__2rInP').text().trim();
+
+      // 승-패 파싱
+      const recordText = $row.find('.TeamRankList_record__1DgHl').text().trim();
+      const recordMatch = recordText.match(/(\d+)승\s*(\d+)패/);
+      const wins = recordMatch ? parseInt(recordMatch[1]) : 0;
+      const losses = recordMatch ? parseInt(recordMatch[2]) : 0;
+
+      // 세트득실 파싱
+      const setRecordText = $row.find('.TeamRankList_setWinLose__2FcZx').text().trim();
+      const setMatch = setRecordText.match(/(\d+)-(\d+)/);
+      const setWins = setMatch ? parseInt(setMatch[1]) : 0;
+      const setLosses = setMatch ? parseInt(setMatch[2]) : 0;
+
+      // 세트득실률
+      const setRateText = $row.find('.TeamRankList_etc__1XFqX').eq(0).text().trim();
+      const setRate = parseFloat(setRateText) || 0;
+
+      if (!isNaN(rank) && teamName) {
+        standings.push({
+          name: teamName,
+          wins,
+          losses,
+          setWins,
+          setLosses,
+          setRate,
+          rank,
+        });
+      }
+    });
+
+    if (standings.length === 0) {
+      console.warn('No standings data found');
+      return null;
+    }
+
+    console.log(`✓ Found ${standings.length} teams in standings`);
+    return standings;
+
+  } catch (error) {
+    console.error('Failed to crawl standings:', error.message);
+    return null;
+  }
+}
+
+async function crawlRecentMatches() {
+  try {
+    console.log('Fetching recent matches from Naver Sports...');
+
+    // 최근 30일간의 경기 확인
+    const matches = [];
+    const now = new Date();
+
+    for (let i = 0; i < 30; i++) {
+      const date = new Date(now);
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+
+      const url = NAVER_URLS.schedule(dateStr);
+      const response = await fetchWithRetry(url);
+      const html = await response.text();
+      const $ = cheerio.load(html);
+
+      // 경기 정보 파싱
+      $('.ScheduleAllGameListItem_item_box__1HDdX').each((_, elem) => {
+        const $match = $(elem);
+
+        const status = $match.find('.ScheduleAllGameListItem_game_state__3lmN2').text().trim();
+
+        // 종료된 경기만
+        if (status === '경기종료') {
+          const homeTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(0).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
+          const awayTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(1).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
+
+          const homeScore = parseInt($match.find('.ScheduleAllGameListItem_team__R-bjK').eq(0).find('.ScheduleAllGameListItem_score__3Xzs7').text().trim());
+          const awayScore = parseInt($match.find('.ScheduleAllGameListItem_team__R-bjK').eq(1).find('.ScheduleAllGameListItem_score__3Xzs7').text().trim());
+
+          const matchDate = dateStr.substring(2).replace(/-/g, '.');
+
+          if (!isNaN(homeScore) && !isNaN(awayScore)) {
+            const isHome = homeTeam.includes(TEAM_NAME);
+            const opponent = isHome ? awayTeam : homeTeam;
+            const ourScore = isHome ? homeScore : awayScore;
+            const opponentScore = isHome ? awayScore : homeScore;
+
+            matches.push({
+              date: matchDate,
+              opponent: opponent,
+              venue: '천안유관순체육관',
+              result: ourScore > opponentScore ? 'win' : 'loss',
+              score: `${ourScore}-${opponentScore}`,
+            });
+          }
+        }
+      });
+
+      if (matches.length >= 2) break;
+    }
+
+    if (matches.length === 0) {
+      console.warn('No recent matches found');
+      return null;
+    }
+
+    console.log(`✓ Found ${matches.length} recent matches`);
+    return matches.slice(0, 2);
+
+  } catch (error) {
+    console.error('Failed to crawl recent matches:', error.message);
+    return null;
+  }
+}
+
+function getFallbackData() {
+  console.log('Using fallback data...');
+
+  return {
+    standings: [
       {
         name: 'OK저축은행',
         wins: 15,
@@ -53,7 +187,7 @@ async function crawlVolleyballData() {
         rank: 1,
       },
       {
-        name: '현대캐피탈 스카이워커스',
+        name: TEAM_FULL_NAME,
         wins: 12,
         losses: 8,
         setWins: 43,
@@ -70,10 +204,8 @@ async function crawlVolleyballData() {
         setRate: 1.188,
         rank: 3,
       },
-    ];
-
-    // 최근 경기 데이터 (예시)
-    const recentMatches = [
+    ],
+    recentMatches: [
       {
         date: '26.01.14',
         opponent: '삼성화재',
@@ -98,12 +230,29 @@ async function crawlVolleyballData() {
           { setNumber: 3, ourScore: 19, opponentScore: 25 },
         ],
       },
-    ];
+    ],
+  };
+}
+
+async function crawlVolleyballData() {
+  try {
+    console.log('Starting volleyball data crawl...');
+
+    // 실시간 데이터 크롤링 시도
+    const [standings, recentMatches] = await Promise.all([
+      crawlStandings(),
+      crawlRecentMatches(),
+    ]);
+
+    // 크롤링 실패 시 폴백 데이터 사용
+    const fallbackData = getFallbackData();
+    const standingsData = standings || fallbackData.standings;
+    const matchesData = recentMatches || fallbackData.recentMatches;
 
     // volleyball-detail.json 생성
     const volleyballDetail = {
       leagueStandings: standingsData,
-      recentMatches: recentMatches,
+      recentMatches: matchesData,
     };
 
     // sports.json 업데이트
@@ -114,18 +263,20 @@ async function crawlVolleyballData() {
       sportsData = JSON.parse(fs.readFileSync(sportsJsonPath, 'utf8'));
     }
 
-    const currentTeam = standingsData.find(team => team.name === '현대캐피탈 스카이워커스');
+    const currentTeam = standingsData.find(team => team.name.includes(TEAM_NAME));
 
-    sportsData.volleyball = {
-      team: '현대캐피탈 스카이워커스',
-      currentRank: currentTeam.rank,
-      record: {
-        wins: currentTeam.wins,
-        losses: currentTeam.losses,
-        winRate: parseFloat((currentTeam.wins / (currentTeam.wins + currentTeam.losses)).toFixed(3)),
-        setRate: currentTeam.setRate,
-      },
-    };
+    if (currentTeam) {
+      sportsData.volleyball = {
+        team: TEAM_FULL_NAME,
+        currentRank: currentTeam.rank,
+        record: {
+          wins: currentTeam.wins,
+          losses: currentTeam.losses,
+          winRate: parseFloat((currentTeam.wins / (currentTeam.wins + currentTeam.losses)).toFixed(3)),
+          setRate: currentTeam.setRate,
+        },
+      };
+    }
 
     // 파일 저장
     if (!fs.existsSync(DATA_DIR)) {
@@ -145,9 +296,11 @@ async function crawlVolleyballData() {
     );
 
     console.log('✓ Volleyball data updated successfully');
-    console.log(`  - Rank: ${currentTeam.rank}`);
-    console.log(`  - Record: ${currentTeam.wins}W-${currentTeam.losses}L`);
-    console.log(`  - Recent matches: ${recentMatches.length}`);
+    if (currentTeam) {
+      console.log(`  - Rank: ${currentTeam.rank}`);
+      console.log(`  - Record: ${currentTeam.wins}W-${currentTeam.losses}L`);
+    }
+    console.log(`  - Recent matches: ${matchesData.length}`);
 
   } catch (error) {
     console.error('Failed to crawl volleyball data:', error);

@@ -10,7 +10,9 @@
       "Bash(node scripts/crawl-volleyball.js:*)",
       "Bash(node scripts/crawl-volleyball.cjs:*)",
       "Bash(node scripts/crawl-baseball.cjs:*)",
-      "Bash(node scripts/crawl-major-events.cjs:*)"
+      "Bash(node scripts/crawl-major-events.cjs:*)",
+      "Bash(npm install:*)",
+      "Bash(git restore:*)"
     ]
   }
 }
