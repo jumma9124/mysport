@@ -177,15 +177,22 @@ const BaseballDetail = () => {
                   <div>
                     {data.pitchers.length > 0 ? (
                       <div className="space-y-3">
-                        {data.pitchers.map((player: any, idx) => (
+                        {[...data.pitchers]
+                          .sort((a, b) => a.era - b.era)
+                          .map((player: any, idx) => (
                           <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                             <div className="flex justify-between items-center">
-                              <div className="font-semibold text-white text-lg">{player.name}</div>
+                              <div className="flex items-center gap-3">
+                                <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.5)', minWidth: '24px' }}>
+                                  {idx + 1}
+                                </span>
+                                <div className="font-semibold text-white text-lg">{player.name}</div>
+                              </div>
                               <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
                                 평균자책점 {player.era.toFixed(2)}
                               </div>
                             </div>
-                            <div className="flex gap-4 mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                            <div className="flex gap-4 mt-2 ml-9 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
                               <span>{player.wins}승 {player.losses}패</span>
                               <span>탈삼진 {player.so}</span>
                             </div>
@@ -202,15 +209,22 @@ const BaseballDetail = () => {
                   <div>
                     {data.batters.length > 0 ? (
                       <div className="space-y-3">
-                        {data.batters.map((player: any, idx) => (
+                        {[...data.batters]
+                          .sort((a, b) => b.avg - a.avg)
+                          .map((player: any, idx) => (
                           <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                             <div className="flex justify-between items-center">
-                              <div className="font-semibold text-white text-lg">{player.name}</div>
+                              <div className="flex items-center gap-3">
+                                <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.5)', minWidth: '24px' }}>
+                                  {idx + 1}
+                                </span>
+                                <div className="font-semibold text-white text-lg">{player.name}</div>
+                              </div>
                               <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
                                 타율 {player.avg.toFixed(3)}
                               </div>
                             </div>
-                            <div className="flex gap-4 mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                            <div className="flex gap-4 mt-2 ml-9 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
                               <span>안타 {player.hits}</span>
                               <span>홈런 {player.hr}</span>
                               <span>타점 {player.rbi}</span>
@@ -281,15 +295,39 @@ const BaseballDetail = () => {
             <h2 className="text-xl font-bold text-white">상대전적</h2>
           </div>
           {data.headToHead.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {data.headToHead.map((h2h, idx) => (
-                <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                  <div className="font-semibold mb-2 text-white">{h2h.opponent}</div>
-                  <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                    {h2h.wins}승 {h2h.losses}패 {h2h.draws}무
-                  </div>
-                </div>
-              ))}
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                    {data.headToHead.map((h2h, idx) => (
+                      <th key={idx} style={{
+                        padding: '10px 12px',
+                        textAlign: 'center',
+                        color: 'rgba(255,255,255,0.7)',
+                        fontSize: '14px',
+                        fontWeight: 600
+                      }}>
+                        {h2h.opponent}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {data.headToHead.map((h2h, idx) => (
+                      <td key={idx} style={{
+                        padding: '12px',
+                        textAlign: 'center',
+                        color: 'white',
+                        fontSize: '14px',
+                        borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                      }}>
+                        {h2h.wins}-{h2h.losses}-{h2h.draws}
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
             </div>
           ) : (
             <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
