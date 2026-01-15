@@ -192,7 +192,7 @@ const BaseballDetail = () => {
                           <tbody>
                             {[...data.pitchers]
                               .filter(p => p.era > 0)
-                              .sort((a, b) => a.era - b.era)
+                              .sort((a, b) => (a.rank || 999) - (b.rank || 999))
                               .slice(0, 10)
                               .map((player: BaseballPitcher, idx) => {
                                 const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
@@ -247,7 +247,7 @@ const BaseballDetail = () => {
                           </thead>
                           <tbody>
                             {[...data.batters]
-                              .sort((a, b) => (b.avg || 0) - (a.avg || 0))
+                              .sort((a, b) => (a.rank || 999) - (b.rank || 999))
                               .slice(0, 10)
                               .map((player: BaseballBatter, idx) => {
                                 const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));

@@ -247,6 +247,21 @@ async function crawlBatters() {
         const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
         if (cells.length < 5) return;
         
+        // 순위 찾기 (첫 번째 셀 또는 순위 표시 요소)
+        let rank = 0;
+        const rankEl = row.querySelector('[class*="ranking"], [class*="rank"]') || cells[0];
+        if (rankEl) {
+          const rankText = rankEl.textContent.trim();
+          const rankMatch = rankText.match(/(\d+)/);
+          if (rankMatch) {
+            rank = parseInt(rankMatch[1]);
+          }
+        }
+        // 순위가 없으면 행 인덱스로 설정
+        if (rank === 0) {
+          rank = rows.indexOf(row) + 1;
+        }
+        
         // 타율 찾기 (highlight 클래스를 가진 셀 또는 두 번째 셀)
         let avg = 0;
         const highlightCell = row.querySelector('[class*="highlight"], .TextInfo_highlight__XWSuq');
@@ -321,16 +336,16 @@ async function crawlBatters() {
           }
         }
         
-        // 모든 선수 추가 (타율이 0이어도 추가, 팀 정보 포함)
+        // 모든 선수 추가 (순위 정보 포함)
         if (name) {
-          result.push({ name, team, avg, hits, hr, rbi });
+          result.push({ name, team, rank, avg, hits, hr, rbi });
         }
       });
       
       return { 
         data: result
           .filter((item, index, self) => index === self.findIndex(t => t.name === item.name && t.team === item.team))
-          .sort((a, b) => b.avg - a.avg),
+          .sort((a, b) => (a.rank || 999) - (b.rank || 999)),
         debug: { totalRows: rows.length, found: result.length }
       };
     }, TEAM_NAME);
@@ -461,6 +476,21 @@ async function crawlPitchers() {
         const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
         if (cells.length < 5) return;
         
+        // 순위 찾기 (첫 번째 셀 또는 순위 표시 요소)
+        let rank = 0;
+        const rankEl = row.querySelector('[class*="ranking"], [class*="rank"]') || cells[0];
+        if (rankEl) {
+          const rankText = rankEl.textContent.trim();
+          const rankMatch = rankText.match(/(\d+)/);
+          if (rankMatch) {
+            rank = parseInt(rankMatch[1]);
+          }
+        }
+        // 순위가 없으면 행 인덱스로 설정
+        if (rank === 0) {
+          rank = rows.indexOf(row) + 1;
+        }
+        
         // 셀에서 직접 텍스트 추출 - 순서대로
         const cellTexts = [];
         cells.forEach((cell) => {
@@ -513,16 +543,16 @@ async function crawlPitchers() {
           if (soMatch) so = parseInt(soMatch[1]);
         }
         
-        // 모든 선수 추가 (평균자책점이 0이어도 추가, 팀 정보 포함)
+        // 모든 선수 추가 (순위 정보 포함)
         if (name) {
-          result.push({ name, team, era, wins, losses, so });
+          result.push({ name, team, rank, era, wins, losses, so });
         }
       });
       
       return { 
         data: result
           .filter((item, index, self) => index === self.findIndex(t => t.name === item.name && t.team === item.team))
-          .sort((a, b) => a.era - b.era),
+          .sort((a, b) => (a.rank || 999) - (b.rank || 999)),
         debug: { totalRows: rows.length, found: result.length }
       };
     }, TEAM_NAME);

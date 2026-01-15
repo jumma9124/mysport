@@ -23,6 +23,7 @@ export interface BaseballPlayer {
 export interface BaseballPitcher {
   name: string;
   team?: string; // 팀 정보 추가
+  rank?: number; // 순위 정보
   era: number;
   wins: number;
   losses: number;
@@ -32,6 +33,7 @@ export interface BaseballPitcher {
 export interface BaseballBatter {
   name: string;
   team?: string; // 팀 정보 추가
+  rank?: number; // 순위 정보
   avg: number;
   hits: number;
   hr: number;
