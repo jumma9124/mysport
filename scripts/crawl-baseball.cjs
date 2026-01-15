@@ -15,8 +15,8 @@ const DATA_DIR = path.join(__dirname, '../public/data');
 // 네이버 스포츠 모바일 URL
 const NAVER_URLS = {
   standings: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=teamRank',
-  batters: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=player&category=batting',
-  pitchers: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=player&category=pitching',
+  batters: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=hitter',
+  pitchers: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=pitcher',
   headToHead: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=vsTeam',
 };
 
@@ -24,18 +24,38 @@ async function crawlStandings() {
   let browser;
   try {
     console.log('Launching browser for standings...');
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    try {
+      browser = await puppeteer.launch({
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--disable-gpu'
+        ],
+        timeout: 60000
+      });
+    } catch (launchError) {
+      console.error('Failed to launch browser:', launchError.message);
+      console.error('Make sure Chromium is installed. Run: npm install puppeteer');
+      throw launchError;
+    }
 
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+    await page.setViewport({ width: 375, height: 667 });
 
     console.log('Navigating to Naver Sports...');
     await page.goto(NAVER_URLS.standings, {
-      waitUntil: 'networkidle2',
-      timeout: 30000
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    }).catch(async (err) => {
+      console.warn('First navigation attempt failed, retrying...', err.message);
+      await page.goto(NAVER_URLS.standings, {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      });
     });
 
     // React 렌더링 대기
@@ -114,6 +134,7 @@ async function crawlStandings() {
   } catch (error) {
     if (browser) await browser.close();
     console.error('Failed to crawl standings:', error.message);
+    console.error('Error details:', error.stack);
     return null;
   }
 }
@@ -122,75 +143,173 @@ async function crawlBatters() {
   let browser;
   try {
     console.log('Fetching batters data...');
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    try {
+      browser = await puppeteer.launch({
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--disable-gpu'
+        ],
+        timeout: 60000
+      });
+    } catch (launchError) {
+      console.error('Failed to launch browser:', launchError.message);
+      throw launchError;
+    }
 
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+    await page.setViewport({ width: 375, height: 667 });
 
+    console.log('Navigating to batters page:', NAVER_URLS.batters);
     await page.goto(NAVER_URLS.batters, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'networkidle2',
       timeout: 60000
     });
 
-    // 더 긴 대기 시간으로 React 렌더링 대기
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
-    // 선택자 확인
-    const hasSelector = await page.evaluate(() => {
-      return document.querySelector('.TableBody_list__P8yRn') !== null;
+    // React 렌더링 대기 - 더 긴 대기 시간
+    await new Promise(resolve => setTimeout(resolve, 10000));
+    
+    // 페이지 스크롤하여 지연 로딩된 콘텐츠 활성화
+    await page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight / 2);
+    });
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // 테이블이 나타날 때까지 대기
+    await page.waitForSelector('table, [class*="Table"], [class*="Record"], [class*="Player"]', { timeout: 15000 }).catch(() => {
+      console.log('Waiting for table content...');
     });
 
-    if (!hasSelector) {
-      console.log('Selector not found, trying alternative...');
-      await browser.close();
-      return null;
-    }
-
     const batters = await page.evaluate((teamName) => {
-      const rows = document.querySelectorAll('.TableBody_item__eCenH');
       const result = [];
+      const seen = new Set(); // 중복 방지
+      
+      // 모든 행 찾기
+      let rows = [];
+      const selectors = [
+        'table tbody tr',
+        'tbody tr',
+        'tr'
+      ];
+      
+      for (const selector of selectors) {
+        try {
+          const found = document.querySelectorAll(selector);
+          if (found.length > 5) {
+            rows = Array.from(found);
+            break;
+          }
+        } catch (e) {}
+      }
 
       rows.forEach((row) => {
-        const teamEl = row.querySelector('.PlayerInfo_team__3jg2Q');
-        const playerTeam = teamEl ? teamEl.textContent.trim() : '';
-
-        if (playerTeam.includes(teamName)) {
-          const nameEl = row.querySelector('.PlayerInfo_name__3A9qb');
-          const name = nameEl ? nameEl.textContent.trim() : '';
-
-          const textElements = row.querySelectorAll('.TextInfo_text__ysEqh');
-          const values = [];
-          textElements.forEach(el => {
-            const text = el.textContent.trim();
-            values.push(text);
-          });
-
-          // values 배열에서 타율, 안타, 홈런, 타점 추출
-          const avg = values[0] ? parseFloat(values[0]) : 0;
-          const hits = values[2] ? parseInt(values[2]) : 0;
-          const hr = values[4] ? parseInt(values[4]) : 0;
-          const rbi = values[5] ? parseInt(values[5]) : 0;
-
-          if (name) {
-            result.push({ name, avg, hits, hr, rbi });
+        const rowText = row.textContent || '';
+        
+        // 한화 소속 선수 찾기
+        if (!rowText.includes(teamName) && !rowText.includes('한화')) return;
+        
+        // 모든 셀의 텍스트 추출 (td, th, div, span 모두 포함)
+        const allCells = Array.from(row.querySelectorAll('td, th, div, span'));
+        const allText = allCells.map(c => c.textContent.trim()).filter(t => t.length > 0);
+        
+        if (allText.length < 3) return;
+        
+        // 선수 이름 찾기
+        let name = '';
+        let nameIndex = -1;
+        const excludeWords = ['한화', '이글스', '팀', '순위', '기록', '타자', '투수', '승', '패', 'LG', 'KIA', 'SSG', '삼성', 'NC', 'KT', '롯데', '두산', '키움', '홈런', '타점', '안타'];
+        
+        for (let i = 0; i < Math.min(10, allText.length); i++) {
+          const text = allText[i];
+          // 한글 이름 패턴 (2-4자)
+          if (/^[가-힣]{2,4}$/.test(text) && !excludeWords.includes(text)) {
+            name = text;
+            nameIndex = i;
+            break;
           }
+          // 영문 이름 (예: 페라자)
+          if (/^[A-Za-z]{3,15}$/.test(text) && !excludeWords.includes(text)) {
+            name = text;
+            nameIndex = i;
+            break;
+          }
+        }
+        
+        if (!name || seen.has(name)) return;
+        seen.add(name);
+        
+        // 타율 찾기 (0.xxx 형식)
+        let avg = 0;
+        const avgMatch = rowText.match(/\b(0?\.\d{3})\b/);
+        if (avgMatch) {
+          const val = parseFloat(avgMatch[1]);
+          if (val > 0 && val < 1) avg = val;
+        }
+        
+        // 숫자 추출
+        const allNumbers = rowText.match(/\b\d+\b/g) || [];
+        const numbers = [];
+        allNumbers.forEach(match => {
+          const num = parseInt(match);
+          if (num > 0 && num < 1000) {
+            numbers.push(num);
+          }
+        });
+        
+        // 숫자에서 타율 제거
+        const intNumbers = numbers.filter(n => {
+          const asDecimal = n / 1000;
+          return Math.abs(asDecimal - avg) > 0.01; // 타율과 다른 숫자만
+        });
+        
+        // 데이터 추출: 안타, 홈런, 타점
+        // 일반적으로 안타 > 홈런, 타점은 중간 정도
+        let hits = 0, hr = 0, rbi = 0;
+        
+        if (intNumbers.length > 0) {
+          // 안타는 보통 큰 숫자
+          hits = intNumbers[0] || 0;
+          // 홈런은 보통 작은 숫자 (0-50)
+          hr = intNumbers.find(n => n >= 1 && n <= 60) || 0;
+          // 타점은 중간 크기
+          rbi = intNumbers.find(n => n > hr && n < 200) || intNumbers[intNumbers.length - 1] || 0;
+        }
+        
+        // 최소한 타율은 있어야 함
+        if (name && avg > 0) {
+          result.push({ name, avg, hits, hr, rbi });
         }
       });
 
-      return result;
+      // 중복 제거 및 정렬 (타율 순)
+      return result
+        .filter((item, index, self) => 
+          index === self.findIndex(t => t.name === item.name)
+        )
+        .sort((a, b) => b.avg - a.avg)
+        .slice(0, 20); // 상위 20명만
     }, TEAM_NAME);
 
     await browser.close();
 
     console.log(`✓ Found ${batters.length} batters`);
-    return batters;
+    if (batters.length > 0) {
+      console.log('Sample:', JSON.stringify(batters.slice(0, 3), null, 2));
+    }
+    return batters.length > 0 ? batters : null;
 
   } catch (error) {
     if (browser) await browser.close();
-    console.log('⚠ Batters data not available (using fallback)');
+    console.error('⚠ Batters crawl error:', error.message);
+    console.error('Error details:', error.stack);
     return null;
   }
 }
@@ -199,73 +318,169 @@ async function crawlPitchers() {
   let browser;
   try {
     console.log('Fetching pitchers data...');
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    try {
+      browser = await puppeteer.launch({
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--disable-gpu'
+        ],
+        timeout: 60000
+      });
+    } catch (launchError) {
+      console.error('Failed to launch browser:', launchError.message);
+      throw launchError;
+    }
 
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+    await page.setViewport({ width: 375, height: 667 });
 
+    console.log('Navigating to pitchers page:', NAVER_URLS.pitchers);
     await page.goto(NAVER_URLS.pitchers, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'networkidle2',
       timeout: 60000
     });
 
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
-    const hasSelector = await page.evaluate(() => {
-      return document.querySelector('.TableBody_list__P8yRn') !== null;
+    // React 렌더링 대기 - 더 긴 대기 시간
+    await new Promise(resolve => setTimeout(resolve, 10000));
+    
+    // 페이지 스크롤하여 지연 로딩된 콘텐츠 활성화
+    await page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight / 2);
+    });
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // 테이블이 나타날 때까지 대기
+    await page.waitForSelector('table, [class*="Table"], [class*="Record"], [class*="Player"]', { timeout: 15000 }).catch(() => {
+      console.log('Waiting for table content...');
     });
 
-    if (!hasSelector) {
-      console.log('Selector not found for pitchers');
-      await browser.close();
-      return null;
-    }
-
     const pitchers = await page.evaluate((teamName) => {
-      const rows = document.querySelectorAll('.TableBody_item__eCenH');
       const result = [];
+      const seen = new Set(); // 중복 방지
+      
+      // 모든 행 찾기
+      let rows = [];
+      const selectors = [
+        'table tbody tr',
+        'tbody tr',
+        'tr'
+      ];
+      
+      for (const selector of selectors) {
+        try {
+          const found = document.querySelectorAll(selector);
+          if (found.length > 5) {
+            rows = Array.from(found);
+            break;
+          }
+        } catch (e) {}
+      }
 
       rows.forEach((row) => {
-        const teamEl = row.querySelector('.PlayerInfo_team__3jg2Q');
-        const playerTeam = teamEl ? teamEl.textContent.trim() : '';
-
-        if (playerTeam.includes(teamName)) {
-          const nameEl = row.querySelector('.PlayerInfo_name__3A9qb');
-          const name = nameEl ? nameEl.textContent.trim() : '';
-
-          const textElements = row.querySelectorAll('.TextInfo_text__ysEqh');
-          const values = [];
-          textElements.forEach(el => {
-            const text = el.textContent.trim();
-            values.push(text);
-          });
-
-          // values 배열에서 평균자책점, 승, 패, 탈삼진 추출
-          const era = values[0] ? parseFloat(values[0]) : 0;
-          const wins = values[2] ? parseInt(values[2]) : 0;
-          const losses = values[3] ? parseInt(values[3]) : 0;
-          const so = values[6] ? parseInt(values[6]) : 0;
-
-          if (name) {
-            result.push({ name, era, wins, losses, so });
+        const rowText = row.textContent || '';
+        
+        // 한화 소속 선수 찾기
+        if (!rowText.includes(teamName) && !rowText.includes('한화')) return;
+        
+        // 모든 셀의 텍스트 추출
+        const allCells = Array.from(row.querySelectorAll('td, th, div, span'));
+        const allText = allCells.map(c => c.textContent.trim()).filter(t => t.length > 0);
+        
+        if (allText.length < 3) return;
+        
+        // 선수 이름 찾기
+        let name = '';
+        let nameIndex = -1;
+        const excludeWords = ['한화', '이글스', '팀', '순위', '기록', '타자', '투수', '승', '패', 'LG', 'KIA', 'SSG', '삼성', 'NC', 'KT', '롯데', '두산', '키움'];
+        
+        for (let i = 0; i < Math.min(10, allText.length); i++) {
+          const text = allText[i];
+          // 한글 이름 패턴
+          if (/^[가-힣]{2,4}$/.test(text) && !excludeWords.includes(text)) {
+            name = text;
+            nameIndex = i;
+            break;
           }
+          // 영문 이름
+          if (/^[A-Za-z]{3,15}$/.test(text) && !excludeWords.includes(text)) {
+            name = text;
+            nameIndex = i;
+            break;
+          }
+        }
+        
+        if (!name || seen.has(name)) return;
+        seen.add(name);
+        
+        // 평균자책점 찾기 (x.xx 형식, 보통 0~20)
+        let era = 0;
+        const eraMatches = rowText.match(/\b(\d+\.\d{2})\b/g) || [];
+        for (const match of eraMatches) {
+          const val = parseFloat(match);
+          if (val > 0 && val < 20) {
+            era = val;
+            break;
+          }
+        }
+        
+        // 숫자 추출
+        const allNumbers = rowText.match(/\b\d+\b/g) || [];
+        const numbers = [];
+        allNumbers.forEach(match => {
+          const num = parseInt(match);
+          if (num > 0 && num < 1000) {
+            numbers.push(num);
+          }
+        });
+        
+        // 데이터 추출: 승, 패, 탈삼진
+        let wins = 0, losses = 0, so = 0;
+        
+        if (numbers.length > 0) {
+          // 승은 보통 첫 번째 또는 두 번째 숫자
+          wins = numbers[0] || 0;
+          // 패는 승 다음
+          losses = numbers[1] || 0;
+          // 탈삼진은 보통 큰 숫자 (30 이상)
+          so = numbers.find(n => n >= 30) || numbers[numbers.length - 1] || 0;
+        }
+        
+        // 최소한 평균자책점은 있어야 함
+        if (name && era > 0) {
+          result.push({ name, era, wins, losses, so });
         }
       });
 
-      return result;
+      // 중복 제거 및 정렬 (평균자책점 순, 낮은 것이 좋음)
+      return result
+        .filter((item, index, self) => 
+          index === self.findIndex(t => t.name === item.name)
+        )
+        .sort((a, b) => a.era - b.era)
+        .slice(0, 20); // 상위 20명만
     }, TEAM_NAME);
 
     await browser.close();
 
     console.log(`✓ Found ${pitchers.length} pitchers`);
-    return pitchers;
+    if (pitchers.length > 0) {
+      console.log('Sample:', JSON.stringify(pitchers.slice(0, 3), null, 2));
+    }
+    return pitchers.length > 0 ? pitchers : null;
 
   } catch (error) {
     if (browser) await browser.close();
-    console.log('⚠ Pitchers data not available (using fallback)');
+    console.error('⚠ Pitchers crawl error:', error.message);
+    console.error('Error details:', error.stack);
     return null;
   }
 }
@@ -274,17 +489,37 @@ async function crawlHeadToHead() {
   let browser;
   try {
     console.log('Fetching head-to-head data...');
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    try {
+      browser = await puppeteer.launch({
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--disable-gpu'
+        ],
+        timeout: 60000
+      });
+    } catch (launchError) {
+      console.error('Failed to launch browser:', launchError.message);
+      throw launchError;
+    }
 
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+    await page.setViewport({ width: 375, height: 667 });
 
     await page.goto(NAVER_URLS.headToHead, {
       waitUntil: 'domcontentloaded',
       timeout: 60000
+    }).catch(async (err) => {
+      console.warn('Head-to-head page navigation failed, retrying...', err.message);
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      await page.goto(NAVER_URLS.headToHead, {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      });
     });
 
     await new Promise(resolve => setTimeout(resolve, 5000));
@@ -347,7 +582,8 @@ async function crawlHeadToHead() {
 
   } catch (error) {
     if (browser) await browser.close();
-    console.log('⚠ Head-to-head data not available (using fallback)');
+    console.error('⚠ Head-to-head crawl error:', error.message);
+    console.error('Error details:', error.stack);
     return null;
   }
 }
