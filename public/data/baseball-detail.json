@@ -83,76 +83,55 @@
   ],
   "batters": [
     {
-      "name": "페라자",
-      "avg": 0.298,
-      "hits": 145,
-      "hr": 28,
-      "rbi": 89
-    },
-    {
-      "name": "노시환",
-      "avg": 0.285,
-      "hits": 132,
-      "hr": 24,
-      "rbi": 78
+      "name": "문현빈",
+      "avg": 0.32,
+      "hits": 12,
+      "hr": 5,
+      "rbi": 71
     },
     {
       "name": "채은성",
-      "avg": 0.274,
-      "hits": 128,
+      "avg": 0.288,
+      "hits": 19,
       "hr": 18,
-      "rbi": 72
+      "rbi": 54
     },
     {
-      "name": "문현빈",
-      "avg": 0.263,
-      "hits": 95,
-      "hr": 8,
-      "rbi": 45
-    },
-    {
-      "name": "안치홍",
-      "avg": 0.275,
-      "hits": 112,
-      "hr": 12,
-      "rbi": 56
+      "name": "노시환",
+      "avg": 0.26,
+      "hits": 32,
+      "hr": 32,
+      "rbi": 97
     }
   ],
   "pitchers": [
     {
-      "name": "류현진",
-      "era": 3.45,
-      "wins": 7,
+      "name": "폰세",
+      "era": 1.89,
+      "wins": 1,
+      "losses": 17,
+      "so": 128
+    },
+    {
+      "name": "김범수",
+      "era": 2.25,
+      "wins": 1,
+      "losses": 2,
+      "so": 30
+    },
+    {
+      "name": "한승혁",
+      "era": 2.25,
+      "wins": 3,
+      "losses": 3,
+      "so": 56
+    },
+    {
+      "name": "와이스",
+      "era": 2.87,
+      "wins": 5,
       "losses": 6,
-      "so": 80
-    },
-    {
-      "name": "문동주",
-      "era": 3.89,
-      "wins": 10,
-      "losses": 9,
-      "so": 132
-    },
-    {
-      "name": "엔스",
-      "era": 4.88,
-      "wins": 8,
-      "losses": 13,
-      "so": 91
-    },
-    {
-      "name": "바리아",
-      "era": 5.4,
-      "wins": 6,
-      "losses": 7,
-      "so": 72
-    },
-    {
-      "name": "위니",
-      "era": 4.25,
-      "wins": 6,
-      "losses": 8,
-      "so": 68
+      "so": 127
     }
   ],
   "headToHead": [

@@ -192,134 +192,137 @@ async function crawlBatters() {
       const result = [];
       const seen = new Set(); // 중복 방지
       
-      // 모든 행 찾기 (다양한 구조 지원)
+      // 테이블 행 찾기: 다양한 선택자 시도 (투수와 동일한 구조)
       let rows = [];
       const selectors = [
-        'table tbody tr',
-        'tbody tr',
-        'tr',
-        '[class*="Row"]',
-        '[class*="Item"]',
-        '[class*="Player"]',
-        'li[class*="player"]',
-        'div[class*="player"]',
-        'div[class*="record"]'
+        'ol[class*="TableBody_list"] > li[class*="TableBody_item"]',
+        'ol.TableBody_list__n3Qd7 > li.TableBody_item__PeA+h',
+        '[class*="TableBody_list"] li[class*="TableBody_item"]',
+        '.TableBody_table_body__TiTrv li'
       ];
       
       for (const selector of selectors) {
-        try {
-          const found = document.querySelectorAll(selector);
-          if (found.length > 3) {
-            rows = Array.from(found);
-            break;
-          }
-        } catch (e) {}
+        rows = Array.from(document.querySelectorAll(selector));
+        if (rows.length > 10) break;
       }
-      
-      // 행을 찾지 못했으면 모든 클릭 가능한 요소나 블록 요소 찾기
-      if (rows.length === 0) {
-        const allElements = document.querySelectorAll('div, li, article, section');
-        rows = Array.from(allElements).filter(el => {
-          const text = el.textContent || '';
-          return text.length > 20 && text.length < 500; // 적절한 크기의 텍스트 블록
-        });
-      }
-
-      // 디버깅 정보를 반환
-      const debugInfo = {
-        totalRows: rows.length,
-        bodyTextLength: (document.body.innerText || '').length,
-        hasTeamName: (document.body.innerText || '').includes(teamName),
-        sampleRowText: rows.length > 0 ? rows[0].textContent.substring(0, 200) : 'No rows'
-      };
 
       rows.forEach((row) => {
-        const rowText = row.textContent || '';
+        // 선수 정보 영역 찾기 (다양한 선택자)
+        const playerInfo = row.querySelector('[class*="PlayerInfo_player_info"]') ||
+                          row.querySelector('.PlayerInfo_player_info__4+7eS');
+        if (!playerInfo) return;
         
-        // 한화 소속 선수 찾기 (더 넓은 범위로 검색)
-        const hasTeam = rowText.includes(teamName) || 
-                       rowText.includes('한화') || 
-                       rowText.includes('HH');
+        // 선수 이름
+        const nameEl = playerInfo.querySelector('[class*="PlayerInfo_name"]') ||
+                      playerInfo.querySelector('.PlayerInfo_name__GG7ms') ||
+                      playerInfo.querySelector('a[href*="/player/"]');
+        if (!nameEl) return;
+        const name = nameEl.textContent.trim();
+        if (!name || name.length < 2) return;
         
-        if (!hasTeam) return;
+        // 팀 이름 확인
+        const teamEl = playerInfo.querySelector('[class*="PlayerInfo_team"]') ||
+                      playerInfo.querySelector('.PlayerInfo_team__OYuwW');
+        if (!teamEl) return;
+        const team = teamEl.textContent.trim();
         
-        // 테이블 셀에서 데이터 추출
-        const cells = Array.from(row.querySelectorAll('td, th'));
-        if (cells.length < 3) return;
+        // 한화 선수만 추출
+        if (!team.includes(teamName) && !team.includes('한화') && !team.includes('HH')) return;
         
-        // 각 셀의 텍스트 추출
-        const cellTexts = cells.map(c => c.textContent.trim().replace(/\s+/g, ' '));
-        const fullRowText = cellTexts.join(' ');
-        
-        // 선수 이름 찾기 (더 관대한 조건)
-        let name = '';
-        const excludeWords = ['한화', '이글스', '팀', '순위', '기록', '타자', '투수', '승', '패', 'LG', 'KIA', 'SSG', '삼성', 'NC', 'KT', '롯데', '두산', '키움', '홈런', '타점', '안타', '평균자책점', '탈삼진'];
-        
-        // 셀 순회하며 이름 찾기
-        for (let i = 0; i < cellTexts.length; i++) {
-          const text = cellTexts[i];
-          // 한글 이름 (2-4자)
-          if (/^[가-힣]{2,4}$/.test(text) && !excludeWords.includes(text)) {
-            name = text;
-            break;
-          }
-          // 영문 이름
-          if (/^[A-Za-z]{3,15}$/.test(text) && !excludeWords.includes(text)) {
-            name = text;
-            break;
-          }
-        }
-        
-        // 이름을 찾지 못했으면 전체 텍스트에서 검색
-        if (!name) {
-          const nameMatch = fullRowText.match(/\b([가-힣]{2,4}|[A-Za-z]{3,15})\b/);
-          if (nameMatch && !excludeWords.includes(nameMatch[1])) {
-            name = nameMatch[1];
-          }
-        }
-        
-        if (!name || seen.has(name)) return;
+        // 중복 방지
+        if (seen.has(name)) return;
         seen.add(name);
         
-        // 타율 찾기 (0.xxx 형식)
+        // 모든 셀 찾기
+        const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
+        if (cells.length < 5) return;
+        
+        // 타율 찾기 (highlight 클래스를 가진 셀 또는 두 번째 셀)
         let avg = 0;
-        const avgMatches = fullRowText.match(/\b(0?\.\d{3})\b/g) || [];
-        for (const match of avgMatches) {
-          const val = parseFloat(match);
-          if (val > 0 && val < 1) {
-            avg = val;
-            break;
+        const highlightCell = row.querySelector('[class*="highlight"], .TextInfo_highlight__XWSuq');
+        const avgCell = highlightCell || cells[1];
+        if (avgCell) {
+          const avgText = avgCell.textContent.trim();
+          const avgMatch = avgText.match(/(0?\.\d{3})/);
+          if (avgMatch) {
+            const val = parseFloat(avgMatch[1]);
+            if (val > 0 && val < 1) avg = val;
           }
         }
         
-        // 숫자 추출 (정수만)
-        const allNumbers = fullRowText.match(/\b\d{1,3}\b/g) || [];
-        const numbers = allNumbers.map(n => parseInt(n)).filter(n => n > 0 && n < 1000);
-        
-        // 데이터 추출
+        // 안타, 홈런, 타점 추출 - 모든 셀의 텍스트를 직접 가져와서 순서대로 추출
         let hits = 0, hr = 0, rbi = 0;
-        if (numbers.length >= 2) {
-          // 순서 가정: 첫 번째가 안타일 가능성, 중간이 홈런, 마지막이 타점
-          hits = numbers[0] || 0;
-          hr = numbers.find(n => n >= 1 && n <= 60) || numbers[1] || 0;
-          rbi = numbers[numbers.length - 1] || 0;
+        
+        // 모든 셀에서 실제 텍스트 값 추출 (원시 텍스트에서 숫자 추출)
+        const cellValues = [];
+        cells.forEach((cell) => {
+          // 셀의 전체 텍스트 가져오기
+          const text = cell.textContent.trim();
+          // 텍스트에서 첫 번째 숫자만 추출 (소수점 포함)
+          const numMatch = text.match(/(\d+\.?\d*)/);
+          if (numMatch) {
+            cellValues.push(numMatch[1]);
+          } else {
+            // 숫자가 없으면 null로 표시
+            cellValues.push(null);
+          }
+        });
+        
+        // 셀 순서 확인: 0=순위, 1=타율, 2=타석, 3=타수, 4=안타, 5=2루타, 6=3루타, 7=홈런, 8=타점, ...
+        // 타율 인덱스 찾기 (0.xxx 형식)
+        const avgIdx = cellValues.findIndex(v => v && v.match(/^0?\.\d{3}$/));
+        
+        if (avgIdx >= 0 && cellValues.length > avgIdx + 8) {
+          // 안타는 타율 다음에 타석(2), 타수(3) 뒤 (인덱스 + 4)
+          if (cellValues[avgIdx + 4]) {
+            const val = parseInt(cellValues[avgIdx + 4]);
+            if (!isNaN(val) && val >= 0 && val < 500) hits = val;
+          }
+          // 홈런은 안타(4), 2루타(5), 3루타(6) 뒤 (인덱스 + 7)
+          if (cellValues[avgIdx + 7]) {
+            const val = parseInt(cellValues[avgIdx + 7]);
+            if (!isNaN(val) && val >= 0 && val < 80) hr = val; // 홈런은 보통 80개 이하
+          }
+          // 타점은 홈런(7) 다음 (인덱스 + 8)
+          if (cellValues[avgIdx + 8]) {
+            const val = parseInt(cellValues[avgIdx + 8]);
+            if (!isNaN(val) && val >= 0 && val < 200) rbi = val;
+          }
         }
         
-        // 타율이 있으면 추가 (이름만 있어도 일단 추가)
-        if (name) {
-          result.push({ name, avg: avg || 0, hits, hr, rbi });
+        // 위 방법이 실패하면 숫자 배열에서 범위로 찾기
+        if (hits === 0 || hr === 0 || rbi === 0) {
+          const allNumbers = cellValues
+            .filter(v => v !== null)
+            .map(v => parseInt(v))
+            .filter(n => !isNaN(n) && n > 0 && n < 1000);
+          
+          if (hits === 0) {
+            // 안타는 보통 50-250 사이
+            hits = allNumbers.find(n => n >= 50 && n <= 250) || 0;
+          }
+          if (hr === 0) {
+            // 홈런은 보통 1-60 사이
+            hr = allNumbers.find(n => n >= 1 && n <= 60) || 0;
+          }
+          if (rbi === 0) {
+            // 타점은 보통 20-150 사이, 안타와는 다름
+            rbi = allNumbers.find(n => n >= 20 && n <= 150 && n !== hits && n !== hr) || 0;
+          }
+        }
+        
+        // 타율이 있으면 추가
+        if (name && avg > 0) {
+          result.push({ name, avg, hits, hr, rbi });
         }
       });
-
-      // 중복 제거 및 정렬 (타율 순)
-      const finalResult = result
-        .filter((item, index, self) => 
-          index === self.findIndex(t => t.name === item.name)
-        )
-        .sort((a, b) => b.avg - a.avg)
-        .slice(0, 20); // 상위 20명만
       
-      return { data: finalResult, debug: debugInfo };
+      return { 
+        data: result
+          .filter((item, index, self) => index === self.findIndex(t => t.name === item.name))
+          .sort((a, b) => b.avg - a.avg),
+        debug: { totalRows: rows.length, found: result.length }
+      };
     }, TEAM_NAME);
 
     if (batters && batters.debug) {
@@ -329,10 +332,7 @@ async function crawlBatters() {
 
     await browser.close();
 
-    console.log(`✓ Found ${battersData.length} batters`);
-    if (battersData.length > 0) {
-      console.log('Sample:', JSON.stringify(battersData.slice(0, 3), null, 2));
-    }
+    console.log(`✓ Found ${battersData.length} 한화 타자`);
     return battersData.length > 0 ? battersData : null;
 
   } catch (error) {
@@ -396,70 +396,133 @@ async function crawlPitchers() {
       const result = [];
       const seen = new Set();
       
-      // 전체 페이지 텍스트에서 한화 관련 부분 찾기
-      const bodyText = document.body.innerText || '';
-      if (!bodyText.includes(teamName) && !bodyText.includes('한화')) {
-        return { data: [], debug: { message: 'Team not found in page' } };
+      // 테이블 행 찾기: 다양한 선택자 시도
+      let rows = [];
+      const selectors = [
+        'ol[class*="TableBody_list"] > li[class*="TableBody_item"]',
+        'ol.TableBody_list__n3Qd7 > li.TableBody_item__PeA+h',
+        '[class*="TableBody_list"] li[class*="TableBody_item"]',
+        '.TableBody_table_body__TiTrv li'
+      ];
+      
+      for (const selector of selectors) {
+        rows = Array.from(document.querySelectorAll(selector));
+        if (rows.length > 10) break;
       }
       
-      // 텍스트를 줄 단위로 분리
-      const lines = bodyText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-      
-      // 한화 관련 라인 찾기
-      const teamLines = [];
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        if (line.includes(teamName) || line.includes('한화')) {
-          for (let j = Math.max(0, i - 2); j < Math.min(lines.length, i + 10); j++) {
-            if (!teamLines.includes(lines[j])) {
-              teamLines.push(lines[j]);
-            }
+      rows.forEach((row) => {
+        // 선수 정보 영역 찾기 (다양한 선택자)
+        const playerInfo = row.querySelector('[class*="PlayerInfo_player_info"]') ||
+                          row.querySelector('.PlayerInfo_player_info__4+7eS');
+        if (!playerInfo) return;
+        
+        // 선수 이름
+        const nameEl = playerInfo.querySelector('[class*="PlayerInfo_name"]') ||
+                      playerInfo.querySelector('.PlayerInfo_name__GG7ms') ||
+                      playerInfo.querySelector('a[href*="/player/"]');
+        if (!nameEl) return;
+        const name = nameEl.textContent.trim();
+        if (!name || name.length < 2) return;
+        
+        // 팀 이름 확인
+        const teamEl = playerInfo.querySelector('[class*="PlayerInfo_team"]') ||
+                      playerInfo.querySelector('.PlayerInfo_team__OYuwW');
+        if (!teamEl) return;
+        const team = teamEl.textContent.trim();
+        
+        // 한화 선수만 추출
+        if (!team.includes(teamName) && !team.includes('한화') && !team.includes('HH')) return;
+        
+        // 중복 방지
+        if (seen.has(name)) return;
+        seen.add(name);
+        
+        // 모든 셀 찾기
+        const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
+        if (cells.length < 5) return;
+        
+        // 평균자책점 찾기 (highlight 클래스를 가진 셀 또는 두 번째 셀)
+        let era = 0;
+        const highlightCell = row.querySelector('[class*="highlight"], .TextInfo_highlight__XWSuq');
+        const eraCell = highlightCell || cells[1];
+        if (eraCell) {
+          const eraText = eraCell.textContent.trim();
+          const eraMatch = eraText.match(/(\d+\.\d{2})/);
+          if (eraMatch) {
+            const val = parseFloat(eraMatch[1]);
+            if (val > 0 && val < 20) era = val;
           }
         }
-      }
-      
-      // 각 라인에서 선수 정보 추출
-      for (const line of teamLines) {
-        const nameMatches = line.match(/([가-힣]{2,4}|[A-Za-z]{3,15})/g);
-        if (!nameMatches) continue;
         
-        const excludeWords = ['한화', '이글스', '팀', '순위', '기록', '타자', '투수', '승', '패', 'LG', 'KIA', 'SSG', '삼성', 'NC', 'KT', '롯데', '두산', '키움'];
+        // 승, 패, 탈삼진 추출 - 모든 셀의 텍스트를 직접 가져와서 순서대로 추출
+        let wins = 0, losses = 0, so = 0;
         
-        for (const nameMatch of nameMatches) {
-          if (excludeWords.includes(nameMatch) || seen.has(nameMatch)) continue;
-          
-          // 평균자책점 찾기 (x.xx 형식, 0~20 범위)
-          const eraMatches = line.match(/\b(\d+\.\d{2})\b/g) || [];
-          let era = 0;
-          for (const match of eraMatches) {
-            const val = parseFloat(match);
-            if (val > 0 && val < 20) {
-              era = val;
-              break;
-            }
+        // 모든 셀에서 실제 텍스트 값 추출 (원시 텍스트에서 숫자 추출)
+        const cellValues = [];
+        cells.forEach((cell) => {
+          // 셀의 전체 텍스트 가져오기
+          const text = cell.textContent.trim();
+          // 텍스트에서 첫 번째 숫자만 추출 (소수점 포함)
+          const numMatch = text.match(/(\d+\.?\d*)/);
+          if (numMatch) {
+            cellValues.push(numMatch[1]);
+          } else {
+            // 숫자가 없으면 null로 표시
+            cellValues.push(null);
           }
-          
-          // 숫자 추출
-          const numbers = (line.match(/\b\d{1,3}\b/g) || []).map(n => parseInt(n)).filter(n => n > 0 && n < 1000);
-          
-          // 평균자책점이 있거나 숫자가 2개 이상 있으면 선수로 간주 (조건 완화)
-          if (era > 0 || numbers.length >= 2) {
-            const wins = numbers[0] || 0;
-            const losses = numbers[1] || 0;
-            const so = numbers.find(n => n >= 30) || (numbers.length > 2 ? numbers[numbers.length - 1] : 0);
-            
-            seen.add(nameMatch);
-            result.push({ name: nameMatch, era, wins, losses, so });
+        });
+        
+        // 셀 순서: 0=순위, 1=평균자책점, 2=경기, 3=승, 4=패, 5=세이브, 6=홀드, 7=이닝, 8=탈삼진, ...
+        // 평균자책점 인덱스 찾기 (x.xx 형식)
+        const eraIdx = cellValues.findIndex(v => v && v.match(/^\d+\.\d{2}$/));
+        
+        if (eraIdx >= 0 && cellValues.length > eraIdx + 8) {
+          // 승은 평균자책점 다음에 경기 뒤 (인덱스 + 3, 즉 eraIdx + 3)
+          if (cellValues[eraIdx + 3]) {
+            const val = parseInt(cellValues[eraIdx + 3]);
+            if (!isNaN(val) && val > 0 && val < 30) wins = val;
+          }
+          // 패는 승 다음 (인덱스 + 4, 즉 eraIdx + 4)
+          if (cellValues[eraIdx + 4]) {
+            const val = parseInt(cellValues[eraIdx + 4]);
+            if (!isNaN(val) && val > 0 && val < 30) losses = val;
+          }
+          // 탈삼진은 이닝 다음 (인덱스 + 8, 즉 eraIdx + 8)
+          if (cellValues[eraIdx + 8]) {
+            const val = parseInt(cellValues[eraIdx + 8]);
+            if (!isNaN(val) && val > 0 && val < 500) so = val;
           }
         }
-      }
+        
+        // 위 방법이 실패하면 숫자 배열에서 범위로 찾기
+        if (wins === 0 || losses === 0 || so === 0) {
+          const allNumbers = cellValues
+            .filter(v => v !== null)
+            .map(v => parseInt(v))
+            .filter(n => !isNaN(n) && n > 0 && n < 1000);
+          
+          if (wins === 0) {
+            wins = allNumbers.find(n => n >= 1 && n <= 25) || 0;
+          }
+          if (losses === 0) {
+            losses = allNumbers.find(n => n >= 1 && n <= 25 && n !== wins) || 0;
+          }
+          if (so === 0) {
+            so = allNumbers.find(n => n >= 30 && n <= 300) || 0;
+          }
+        }
+        
+        // 평균자책점이 있으면 추가
+        if (name && era > 0) {
+          result.push({ name, era, wins, losses, so });
+        }
+      });
       
       return { 
         data: result
           .filter((item, index, self) => index === self.findIndex(t => t.name === item.name))
-          .sort((a, b) => a.era - b.era)
-          .slice(0, 20),
-        debug: { totalLines: lines.length, teamLines: teamLines.length }
+          .sort((a, b) => a.era - b.era),
+        debug: { totalRows: rows.length, found: result.length }
       };
     }, TEAM_NAME);
 
@@ -470,10 +533,7 @@ async function crawlPitchers() {
 
     await browser.close();
 
-    console.log(`✓ Found ${pitchersData.length} pitchers`);
-    if (pitchersData.length > 0) {
-      console.log('Sample:', JSON.stringify(pitchersData.slice(0, 3), null, 2));
-    }
+    console.log(`✓ Found ${pitchersData.length} 한화 투수`);
     return pitchersData.length > 0 ? pitchersData : null;
 
   } catch (error) {
