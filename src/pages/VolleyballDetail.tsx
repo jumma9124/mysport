@@ -7,6 +7,7 @@ const VolleyballDetail = () => {
   const [data, setData] = useState<VolleyballData | null>(null);
   const [loading, setLoading] = useState(true);
   const [expandedMatch, setExpandedMatch] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'men' | 'women'>('men');
 
   useEffect(() => {
     const loadData = async () => {
@@ -56,26 +57,52 @@ const VolleyballDetail = () => {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
-          {/* 왼쪽: 리그 순위 (4:6 비율) */}
-          <div className="md:col-span-4">
-            <div className="h-full flex flex-col overflow-auto" style={{
+          {/* 왼쪽: 리그 순위 + 다음 경기 (4:6 비율) */}
+          <div className="md:col-span-4 flex flex-col gap-6">
+            {/* 리그 순위 */}
+            <div className="flex flex-col" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
               padding: '20px',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <div className="flex items-center mb-4">
-                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                  background: 'rgba(76, 175, 80, 0.2)',
-                  borderColor: 'rgba(76, 175, 80, 0.5)',
-                  color: '#4caf50',
-                  fontSize: '14px',
-                  fontWeight: 700
-                }}>
-                  ✓
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                    background: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                    color: '#4caf50',
+                    fontSize: '14px',
+                    fontWeight: 700
+                  }}>
+                    ✓
+                  </div>
+                  <h2 className="text-xl font-bold text-white">리그 순위</h2>
                 </div>
-                <h2 className="text-xl font-bold text-white">리그 순위</h2>
+                {/* 탭 */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setActiveTab('men')}
+                    className={`px-3 py-1 rounded text-sm font-semibold transition-colors ${
+                      activeTab === 'men'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    }`}
+                  >
+                    남자부
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('women')}
+                    className={`px-3 py-1 rounded text-sm font-semibold transition-colors ${
+                      activeTab === 'women'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    }`}
+                  >
+                    여자부
+                  </button>
+                </div>
               </div>
               <div className="space-y-2">
                 {data.leagueStandings.map((team) => (
@@ -101,12 +128,47 @@ const VolleyballDetail = () => {
                 ))}
               </div>
             </div>
+
+            {/* 다음 경기 */}
+            {data.upcomingMatch && (
+              <div style={{
+                background: 'rgb(32, 34, 52)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '15px',
+                padding: '20px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div className="flex items-center mb-4">
+                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                    background: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                    color: '#4caf50',
+                    fontSize: '14px',
+                    fontWeight: 700
+                  }}>
+                    ✓
+                  </div>
+                  <h2 className="text-xl font-bold text-white">다음 경기</h2>
+                </div>
+                <div className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <div className="text-base text-white font-semibold mb-1">{data.upcomingMatch.date}</div>
+                      <div className="text-base text-white">vs {data.upcomingMatch.opponent}</div>
+                    </div>
+                    <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                      {data.upcomingMatch.venue}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 오른쪽: 지난 경기 결과 (4:6 비율) */}
           <div className="md:col-span-6">
             {isInSeason ? (
-              <div className="h-full flex flex-col overflow-auto" style={{
+              <div className="flex flex-col" style={{
                 background: 'rgb(32, 34, 52)',
                 backdropFilter: 'blur(10px)',
                 borderRadius: '15px',
@@ -139,16 +201,16 @@ const VolleyballDetail = () => {
                               vs {match.opponent}
                             </div>
                           </div>
-                          <div className="flex items-center">
+                          <div className="flex items-center gap-3">
                             <span
-                              className={`px-3 py-1 rounded text-sm font-semibold ${
-                                match.result === 'win' ? 'bg-green-600' : 'bg-red-600'
-                              } text-white`}
+                              className={`px-3 py-1 rounded text-sm font-semibold text-white ${
+                                match.result === 'win' ? 'bg-green-600/40' : 'bg-red-600/40'
+                              }`}
                             >
                               {match.result === 'win' ? '승' : '패'} ({match.score})
                             </span>
                             <svg
-                              className={`w-5 h-5 ml-2 transition-transform text-white ${
+                              className={`w-5 h-5 transition-transform text-white ${
                                 expandedMatch === idx ? 'transform rotate-180' : ''
                               }`}
                               fill="none"
@@ -171,14 +233,17 @@ const VolleyballDetail = () => {
                           }}>
                             <div className="text-sm font-semibold mb-2 text-white">세트 스코어</div>
                             <div className="space-y-1">
-                              {match.sets.map((set, setIdx) => (
-                                <div key={setIdx} className="flex justify-between text-sm text-white">
-                                  <span>{setIdx + 1}세트</span>
-                                  <span>
-                                    {set.ourScore} - {set.opponentScore}
-                                  </span>
-                                </div>
-                              ))}
+                              {match.sets.map((set, setIdx) => {
+                                const ourWin = set.ourScore > set.opponentScore;
+                                return (
+                                  <div key={setIdx} className="flex justify-between text-sm text-white">
+                                    <span>{setIdx + 1}세트</span>
+                                    <span>
+                                      {ourWin ? `${set.ourScore}-${set.opponentScore}` : `${set.opponentScore}-${set.ourScore}`}
+                                    </span>
+                                  </div>
+                                );
+                              })}
                             </div>
                           </div>
                         )}
@@ -192,7 +257,7 @@ const VolleyballDetail = () => {
                 )}
               </div>
             ) : (
-              <div className="h-full flex flex-col overflow-auto" style={{
+              <div className="flex flex-col" style={{
                 background: 'rgb(32, 34, 52)',
                 backdropFilter: 'blur(10px)',
                 borderRadius: '15px',
@@ -237,41 +302,6 @@ const VolleyballDetail = () => {
             )}
           </div>
         </div>
-
-        {/* 다음 경기 - 하단 */}
-        {data.upcomingMatch && (
-          <div className="mt-6" style={{
-            background: 'rgb(32, 34, 52)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '15px',
-            padding: '20px',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
-          }}>
-            <div className="flex items-center mb-4">
-              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                background: 'rgba(76, 175, 80, 0.2)',
-                borderColor: 'rgba(76, 175, 80, 0.5)',
-                color: '#4caf50',
-                fontSize: '14px',
-                fontWeight: 700
-              }}>
-                ✓
-              </div>
-              <h2 className="text-xl font-bold text-white">다음 경기</h2>
-            </div>
-            <div className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="text-base text-white font-semibold mb-1">{data.upcomingMatch.date}</div>
-                  <div className="text-base text-white">vs {data.upcomingMatch.opponent}</div>
-                </div>
-                <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                  {data.upcomingMatch.venue}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
