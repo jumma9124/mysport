@@ -60,16 +60,15 @@ const BaseballDetail = () => {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-6" style={{ alignItems: 'stretch' }}>
           {/* 왼쪽: 리그 순위 (4:6 비율) */}
-          <div className="md:col-span-4">
-            <div className="flex flex-col" style={{
+          <div className="md:col-span-4" style={{ display: 'flex' }}>
+            <div className="flex flex-col w-full" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
               padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              height: 'fit-content'
+              border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
               <div className="flex items-center mb-4">
                 <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
@@ -120,14 +119,13 @@ const BaseballDetail = () => {
           </div>
 
           {/* 오른쪽: 투수/타자 기록 (4:6 비율) */}
-          <div className="md:col-span-6">
-            <div className="flex flex-col" style={{
+          <div className="md:col-span-6" style={{ display: 'flex' }}>
+            <div className="flex flex-col w-full" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
               padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              height: 'fit-content'
+              border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
               {/* 헤더 */}
               <div className="flex items-center mb-4">
@@ -174,7 +172,7 @@ const BaseballDetail = () => {
               </div>
 
               {/* 탭 내용 */}
-              <div style={{ overflowY: 'auto', overflowX: 'auto', maxHeight: '500px' }}>
+              <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', minHeight: 0 }}>
                 {activeTab === 'pitcher' ? (
                   <div>
                     {data.pitchers.length > 0 ? (
