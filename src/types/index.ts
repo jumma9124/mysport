@@ -65,6 +65,8 @@ export interface VolleyballTeam {
   setLosses: number;
   setRate: number;
   rank: number;
+  points?: number; // 승점
+  winRate?: number; // 승률
 }
 
 export interface VolleyballMatch {

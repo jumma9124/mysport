@@ -67,66 +67,96 @@ const VolleyballDetail = () => {
               padding: '20px',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                    background: 'rgba(76, 175, 80, 0.2)',
-                    borderColor: 'rgba(76, 175, 80, 0.5)',
-                    color: '#4caf50',
-                    fontSize: '14px',
-                    fontWeight: 700
-                  }}>
-                    ✓
-                  </div>
-                  <h2 className="text-xl font-bold text-white">리그 순위</h2>
+              <div className="flex items-center mb-4">
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                  background: 'rgba(76, 175, 80, 0.2)',
+                  borderColor: 'rgba(76, 175, 80, 0.5)',
+                  color: '#4caf50',
+                  fontSize: '14px',
+                  fontWeight: 700
+                }}>
+                  ✓
                 </div>
-                {/* 탭 */}
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setActiveTab('men')}
-                    className={`px-3 py-1 rounded text-sm font-semibold transition-colors ${
-                      activeTab === 'men'
-                        ? 'bg-green-600 text-white'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    }`}
-                  >
-                    남자부
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('women')}
-                    className={`px-3 py-1 rounded text-sm font-semibold transition-colors ${
-                      activeTab === 'women'
-                        ? 'bg-green-600 text-white'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    }`}
-                  >
-                    여자부
-                  </button>
+                <h2 className="text-xl font-bold text-white">리그 순위</h2>
+              </div>
+
+              {/* 탭 */}
+              <div className="flex gap-2 mb-4">
+                <button
+                  onClick={() => setActiveTab('men')}
+                  style={{
+                    flex: 1,
+                    padding: '10px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontWeight: 600,
+                    background: activeTab === 'men' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+                    color: activeTab === 'men' ? 'white' : 'rgba(255,255,255,0.6)',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  남자부
+                </button>
+                <button
+                  onClick={() => setActiveTab('women')}
+                  style={{
+                    flex: 1,
+                    padding: '10px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontWeight: 600,
+                    background: activeTab === 'women' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+                    color: activeTab === 'women' ? 'white' : 'rgba(255,255,255,0.6)',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  여자부
+                </button>
+              </div>
+
+              {/* 테이블 */}
+              {activeTab === 'men' ? (
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                        <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
+                        <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>팀</th>
+                        <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>승점</th>
+                        <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>전적</th>
+                        <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>승률</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.leagueStandings.map((team) => {
+                        const isOurTeam = team.name.includes('현대캐피탈');
+
+                        return (
+                          <tr
+                            key={team.name}
+                            style={{
+                              background: isOurTeam ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
+                              borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                            }}
+                          >
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{team.rank}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{team.name}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.points}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.wins}-{team.losses}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.winRate?.toFixed(3) || '0.000'}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
-              </div>
-              <div className="space-y-2">
-                {data.leagueStandings.map((team) => (
-                  <div
-                    key={team.name}
-                    className="p-3 rounded"
-                    style={{
-                      background: team.name === data.team
-                        ? 'rgba(76, 175, 80, 0.2)'
-                        : 'rgba(255, 255, 255, 0.05)',
-                      border: team.name === data.team
-                        ? '2px solid rgba(76, 175, 80, 0.5)'
-                        : '1px solid rgba(255, 255, 255, 0.1)'
-                    }}
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold text-white">{team.rank}위 {team.name}</span>
-                      <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                        {team.wins}승 {team.losses}패
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '40px 0', color: 'rgba(255,255,255,0.5)' }}>
+                  로딩 중...
+                </div>
+              )}
             </div>
 
             {/* 다음 경기 */}
@@ -231,19 +261,16 @@ const VolleyballDetail = () => {
                             background: 'rgba(255, 255, 255, 0.05)',
                             borderColor: 'rgba(255, 255, 255, 0.1)'
                           }}>
-                            <div className="text-sm font-semibold mb-2 text-white">세트 스코어</div>
+                            <div className="text-sm font-semibold mb-2 text-white">세트 스코어 ({match.score})</div>
                             <div className="space-y-1">
-                              {match.sets.map((set, setIdx) => {
-                                const ourWin = set.ourScore > set.opponentScore;
-                                return (
-                                  <div key={setIdx} className="flex justify-between text-sm text-white">
-                                    <span>{setIdx + 1}세트</span>
-                                    <span>
-                                      {ourWin ? `${set.ourScore}-${set.opponentScore}` : `${set.opponentScore}-${set.ourScore}`}
-                                    </span>
-                                  </div>
-                                );
-                              })}
+                              {match.sets.map((set, setIdx) => (
+                                <div key={setIdx} className="flex justify-between text-sm text-white">
+                                  <span>{setIdx + 1}세트</span>
+                                  <span>
+                                    {set.ourScore}-{set.opponentScore}
+                                  </span>
+                                </div>
+                              ))}
                             </div>
                           </div>
                         )}
