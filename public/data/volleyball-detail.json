@@ -36,13 +36,13 @@
     {
       "name": "한국전력",
       "wins": 12,
-      "losses": 9,
+      "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.132,
+      "setRate": 1.098,
       "rank": 4,
-      "points": 34,
-      "winRate": 0.571
+      "points": 35,
+      "winRate": 0.545
     },
     {
       "name": "OK저축은행",
@@ -57,14 +57,14 @@
     },
     {
       "name": "우리카드",
-      "wins": 8,
+      "wins": 9,
       "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.783,
+      "setRate": 0.813,
       "rank": 6,
-      "points": 24,
-      "winRate": 0.381
+      "points": 26,
+      "winRate": 0.409
     },
     {
       "name": "삼성화재",
