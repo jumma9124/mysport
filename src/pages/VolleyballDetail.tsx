@@ -39,20 +39,29 @@ const VolleyballDetail = () => {
       <div className="max-w-7xl mx-auto w-full flex flex-col flex-1">
         {/* 헤더 */}
         <header className="mb-6">
-          <Link to="/" className="text-white hover:text-gray-300 inline-flex items-center mb-4">
-            ← 돌아가기
-          </Link>
-          <div className="flex items-center">
-            <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-              background: 'rgba(76, 175, 80, 0.2)',
-              borderColor: 'rgba(76, 175, 80, 0.5)',
-              color: '#4caf50',
-              fontSize: '16px',
-              fontWeight: 700
-            }}>
-              ✓
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                background: 'rgba(76, 175, 80, 0.2)',
+                borderColor: 'rgba(76, 175, 80, 0.5)',
+                color: '#4caf50',
+                fontSize: '16px',
+                fontWeight: 700
+              }}>
+                ✓
+              </div>
+              <h1 className="text-3xl font-bold text-white">{data.team}</h1>
             </div>
-            <h1 className="text-3xl font-bold text-white">{data.team}</h1>
+            <Link
+              to="/"
+              className="text-white hover:opacity-80 inline-flex items-center px-4 py-2 rounded-lg transition-opacity"
+              style={{
+                background: 'rgb(32, 34, 52)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              ← 돌아가기
+            </Link>
           </div>
         </header>
 
