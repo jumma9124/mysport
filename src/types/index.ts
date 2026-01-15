@@ -20,6 +20,22 @@ export interface BaseballPlayer {
   stats: Record<string, number | string>;
 }
 
+export interface BaseballPitcher {
+  name: string;
+  era: number;
+  wins: number;
+  losses: number;
+  so: number;
+}
+
+export interface BaseballBatter {
+  name: string;
+  avg: number;
+  hits: number;
+  hr: number;
+  rbi: number;
+}
+
 export interface BaseballSeries {
   opponent: string;
   date: string;
@@ -44,8 +60,8 @@ export interface BaseballData {
     winRate: number;
   };
   leagueStandings: BaseballTeam[];
-  pitchers: BaseballPlayer[];
-  batters: BaseballPlayer[];
+  pitchers: BaseballPitcher[];
+  batters: BaseballBatter[];
   headToHead: Array<{
     opponent: string;
     wins: number;

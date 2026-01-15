@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BaseballData } from '@/types';
+import { BaseballData, BaseballPitcher, BaseballBatter } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
 
 const BaseballDetail = () => {
@@ -179,7 +179,7 @@ const BaseballDetail = () => {
                       <div className="space-y-3">
                         {[...data.pitchers]
                           .sort((a, b) => a.era - b.era)
-                          .map((player: any, idx) => (
+                          .map((player: BaseballPitcher, idx) => (
                           <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                             <div className="flex justify-between items-center">
                               <div className="flex items-center gap-3">
@@ -211,7 +211,7 @@ const BaseballDetail = () => {
                       <div className="space-y-3">
                         {[...data.batters]
                           .sort((a, b) => b.avg - a.avg)
-                          .map((player: any, idx) => (
+                          .map((player: BaseballBatter, idx) => (
                           <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                             <div className="flex justify-between items-center">
                               <div className="flex items-center gap-3">
