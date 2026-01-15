@@ -22,7 +22,8 @@ const DEFAULT_SEASON_DATES: Record<SportType, { start: Date; end: Date }> = {
 // season-config.json에서 시즌 설정 로드
 export const loadSeasonConfig = async (): Promise<void> => {
   try {
-    const response = await fetch('/data/season-config.json');
+    const baseUrl = window.location.pathname.includes('/mysport/') ? '/mysport/' : '/';
+    const response = await fetch(`${baseUrl}data/season-config.json`);
     if (!response.ok) throw new Error('Failed to fetch season-config.json');
     const config = await response.json();
 

@@ -5,7 +5,8 @@
       "Bash(del tmpclaude-*)",
       "Bash(git add:*)",
       "Bash(npm run build:*)",
-      "Bash(gh run:*)"
+      "Bash(gh run:*)",
+      "Bash(curl:*)"
     ]
   }
 }
