@@ -461,75 +461,56 @@ async function crawlPitchers() {
         const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
         if (cells.length < 5) return;
         
-        // 평균자책점 찾기 (highlight 클래스를 가진 셀 또는 두 번째 셀)
-        let era = 0;
-        const highlightCell = row.querySelector('[class*="highlight"], .TextInfo_highlight__XWSuq');
-        const eraCell = highlightCell || cells[1];
-        if (eraCell) {
-          const eraText = eraCell.textContent.trim();
-          const eraMatch = eraText.match(/(\d+\.\d{2})/);
-          if (eraMatch) {
-            const val = parseFloat(eraMatch[1]);
-            if (val > 0 && val < 20) era = val;
-          }
-        }
-        
-        // 승, 패, 탈삼진 추출 - 모든 셀의 텍스트를 직접 가져와서 순서대로 추출
-        let wins = 0, losses = 0, so = 0;
-        
-        // 모든 셀에서 실제 텍스트 값 추출 (원시 텍스트에서 숫자 추출)
-        const cellValues = [];
+        // 셀에서 직접 텍스트 추출 - 순서대로
+        const cellTexts = [];
         cells.forEach((cell) => {
-          // 셀의 전체 텍스트 가져오기
-          const text = cell.textContent.trim();
-          // 텍스트에서 첫 번째 숫자만 추출 (소수점 포함)
-          const numMatch = text.match(/(\d+\.?\d*)/);
-          if (numMatch) {
-            cellValues.push(numMatch[1]);
-          } else {
-            // 숫자가 없으면 null로 표시
-            cellValues.push(null);
-          }
+          const textEl = cell.querySelector('[class*="TextInfo_text"], .TextInfo_text__y5AWv') || cell;
+          const text = textEl.textContent.trim();
+          cellTexts.push(text);
         });
         
-        // 셀 순서: 0=순위, 1=평균자책점, 2=경기, 3=승, 4=패, 5=세이브, 6=홀드, 7=이닝, 8=탈삼진, ...
-        // 평균자책점 인덱스 찾기 (x.xx 형식)
-        const eraIdx = cellValues.findIndex(v => v && v.match(/^\d+\.\d{2}$/));
-        
-        if (eraIdx >= 0 && cellValues.length > eraIdx + 8) {
-          // 승은 평균자책점 다음에 경기 뒤 (인덱스 + 3, 즉 eraIdx + 3)
-          if (cellValues[eraIdx + 3]) {
-            const val = parseInt(cellValues[eraIdx + 3]);
-            if (!isNaN(val) && val > 0 && val < 30) wins = val;
+        // 셀 순서: 0=순위(숨김), 1=평균자책점, 2=경기, 3=승, 4=패, 5=세이브, 6=홀드, 7=이닝, 8=탈삼진, ...
+        // 평균자책점 찾기 (highlight 셀 또는 두 번째 셀)
+        let era = 0;
+        const highlightCell = row.querySelector('[class*="highlight"], .TextInfo_highlight__XWSuq');
+        if (highlightCell) {
+          const eraText = highlightCell.textContent.trim();
+          const eraMatch = eraText.match(/(\d+\.\d{2})/);
+          if (eraMatch) {
+            era = parseFloat(eraMatch[1]);
           }
-          // 패는 승 다음 (인덱스 + 4, 즉 eraIdx + 4)
-          if (cellValues[eraIdx + 4]) {
-            const val = parseInt(cellValues[eraIdx + 4]);
-            if (!isNaN(val) && val > 0 && val < 30) losses = val;
-          }
-          // 탈삼진은 이닝 다음 (인덱스 + 8, 즉 eraIdx + 8)
-          if (cellValues[eraIdx + 8]) {
-            const val = parseInt(cellValues[eraIdx + 8]);
-            if (!isNaN(val) && val > 0 && val < 500) so = val;
+        } else if (cellTexts.length > 1) {
+          const eraMatch = cellTexts[1].match(/(\d+\.\d{2})/);
+          if (eraMatch) {
+            era = parseFloat(eraMatch[1]);
           }
         }
         
-        // 위 방법이 실패하면 숫자 배열에서 범위로 찾기
-        if (wins === 0 || losses === 0 || so === 0) {
-          const allNumbers = cellValues
-            .filter(v => v !== null)
-            .map(v => parseInt(v))
-            .filter(n => !isNaN(n) && n > 0 && n < 1000);
-          
-          if (wins === 0) {
-            wins = allNumbers.find(n => n >= 1 && n <= 25) || 0;
-          }
-          if (losses === 0) {
-            losses = allNumbers.find(n => n >= 1 && n <= 25 && n !== wins) || 0;
-          }
-          if (so === 0) {
-            so = allNumbers.find(n => n >= 30 && n <= 300) || 0;
-          }
+        // 승, 패, 탈삼진 추출 - 셀 인덱스로 직접 추출
+        let wins = 0, losses = 0, so = 0, games = 0;
+        
+        // 경기 수 (인덱스 2)
+        if (cellTexts.length > 2) {
+          const gamesMatch = cellTexts[2].match(/(\d+)/);
+          if (gamesMatch) games = parseInt(gamesMatch[1]);
+        }
+        
+        // 승 (인덱스 3)
+        if (cellTexts.length > 3) {
+          const winsMatch = cellTexts[3].match(/(\d+)/);
+          if (winsMatch) wins = parseInt(winsMatch[1]);
+        }
+        
+        // 패 (인덱스 4)
+        if (cellTexts.length > 4) {
+          const lossesMatch = cellTexts[4].match(/(\d+)/);
+          if (lossesMatch) losses = parseInt(lossesMatch[1]);
+        }
+        
+        // 탈삼진 (인덱스 8)
+        if (cellTexts.length > 8) {
+          const soMatch = cellTexts[8].match(/(\d+)/);
+          if (soMatch) so = parseInt(soMatch[1]);
         }
         
         // 모든 선수 추가 (평균자책점이 0이어도 추가, 팀 정보 포함)

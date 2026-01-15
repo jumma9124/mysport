@@ -488,193 +488,193 @@
       "name": "김대우",
       "team": "삼성",
       "era": 0,
-      "wins": 2,
-      "losses": 1,
-      "so": 1
+      "wins": 0,
+      "losses": 0,
+      "so": 0
     },
     {
       "name": "김민재",
       "team": "KIA",
       "era": 0,
-      "wins": 1,
-      "losses": 2,
-      "so": 2
+      "wins": 0,
+      "losses": 0,
+      "so": 1
     },
     {
       "name": "김성민",
       "team": "SSG",
       "era": 0,
-      "wins": 2,
-      "losses": 1,
-      "so": 90
+      "wins": 1,
+      "losses": 0,
+      "so": 0
     },
     {
       "name": "김한중",
       "team": "두산",
       "era": 0,
-      "wins": 2,
-      "losses": 1,
-      "so": 1
+      "wins": 0,
+      "losses": 0,
+      "so": 0
     },
     {
       "name": "데이비슨",
       "team": "NC",
       "era": 0,
-      "wins": 1,
+      "wins": 0,
       "losses": 0,
-      "so": 90
+      "so": 0
     },
     {
       "name": "신지환",
       "team": "SSG",
       "era": 0,
-      "wins": 1,
-      "losses": 25,
-      "so": 99
+      "wins": 0,
+      "losses": 0,
+      "so": 1
     },
     {
       "name": "양현",
       "team": "삼성",
       "era": 0,
-      "wins": 4,
-      "losses": 3,
-      "so": 2
+      "wins": 0,
+      "losses": 0,
+      "so": 1
     },
     {
       "name": "유지성",
       "team": "KIA",
       "era": 0,
-      "wins": 1,
+      "wins": 0,
       "losses": 0,
-      "so": 90
+      "so": 0
     },
     {
       "name": "이상민",
       "team": "삼성",
       "era": 0,
-      "wins": 1,
-      "losses": 2,
-      "so": 2
+      "wins": 0,
+      "losses": 0,
+      "so": 1
     },
     {
       "name": "이종준",
       "team": "LG",
       "era": 0,
-      "wins": 2,
-      "losses": 1,
-      "so": 95
+      "wins": 0,
+      "losses": 0,
+      "so": 2
     },
     {
       "name": "이교훈",
       "team": "두산",
       "era": 1.17,
       "wins": 1,
-      "losses": 10,
-      "so": 4
+      "losses": 0,
+      "so": 7
     },
     {
       "name": "이재익",
       "team": "삼성",
       "era": 1.23,
       "wins": 1,
-      "losses": 7,
-      "so": 8
+      "losses": 0,
+      "so": 6
     },
     {
       "name": "김강률",
       "team": "LG",
       "era": 1.46,
       "wins": 1,
-      "losses": 1,
-      "so": 7
+      "losses": 0,
+      "so": 9
     },
     {
       "name": "성영탁",
       "team": "KIA",
       "era": 1.55,
-      "wins": 2,
-      "losses": 1,
-      "so": 38
+      "wins": 3,
+      "losses": 2,
+      "so": 30
     },
     {
       "name": "조병현",
       "team": "SSG",
       "era": 1.6,
-      "wins": 4,
-      "losses": 1,
-      "so": 42
+      "wins": 5,
+      "losses": 4,
+      "so": 79
     },
     {
       "name": "폰세",
       "team": "한화",
       "era": 1.89,
-      "wins": 1,
-      "losses": 17,
-      "so": 128
+      "wins": 17,
+      "losses": 1,
+      "so": 252
     },
     {
       "name": "이우찬",
       "team": "LG",
       "era": 1.89,
-      "wins": 1,
-      "losses": 23,
-      "so": 13
+      "wins": 0,
+      "losses": 1,
+      "so": 20
     },
     {
       "name": "백정현",
       "team": "삼성",
       "era": 1.95,
-      "wins": 1,
-      "losses": 1,
-      "so": 19
+      "wins": 2,
+      "losses": 0,
+      "so": 31
     },
     {
       "name": "이로운",
       "team": "SSG",
       "era": 1.99,
-      "wins": 5,
-      "losses": 1,
-      "so": 56
+      "wins": 6,
+      "losses": 5,
+      "so": 66
     },
     {
       "name": "최용준",
       "team": "KT",
       "era": 2,
-      "wins": 2,
-      "losses": 7,
-      "so": 13
+      "wins": 1,
+      "losses": 0,
+      "so": 5
     },
     {
       "name": "노경은",
       "team": "SSG",
       "era": 2.14,
-      "wins": 6,
-      "losses": 3,
-      "so": 60
+      "wins": 3,
+      "losses": 6,
+      "so": 68
     },
     {
       "name": "네일",
       "team": "KIA",
       "era": 2.25,
-      "wins": 4,
-      "losses": 2,
-      "so": 135
+      "wins": 8,
+      "losses": 4,
+      "so": 152
     },
     {
       "name": "앤더슨",
       "team": "SSG",
       "era": 2.25,
-      "wins": 7,
-      "losses": 3,
-      "so": 121
+      "wins": 12,
+      "losses": 7,
+      "so": 245
     },
     {
       "name": "김범수",
       "team": "한화",
       "era": 2.25,
-      "wins": 1,
-      "losses": 2,
-      "so": 30
+      "wins": 2,
+      "losses": 1,
+      "so": 41
     },
     {
       "name": "한승혁",
@@ -682,207 +682,207 @@
       "era": 2.25,
       "wins": 3,
       "losses": 3,
-      "so": 56
+      "so": 53
     },
     {
       "name": "김영우",
       "team": "LG",
       "era": 2.4,
-      "wins": 2,
-      "losses": 1,
-      "so": 49
+      "wins": 3,
+      "losses": 2,
+      "so": 56
     },
     {
       "name": "우규민",
       "team": "KT",
       "era": 2.44,
-      "wins": 2,
-      "losses": 1,
-      "so": 45
+      "wins": 1,
+      "losses": 2,
+      "so": 24
     },
     {
       "name": "김현수",
       "team": "KIA",
       "era": 2.45,
-      "wins": 2,
-      "losses": 18,
-      "so": 17
+      "wins": 0,
+      "losses": 0,
+      "so": 11
     },
     {
       "name": "주승우",
       "team": "키움",
       "era": 2.45,
       "wins": 2,
-      "losses": 16,
+      "losses": 2,
       "so": 35
     },
     {
       "name": "이상동",
       "team": "KT",
       "era": 2.49,
-      "wins": 2,
-      "losses": 3,
-      "so": 31
+      "wins": 3,
+      "losses": 0,
+      "so": 34
     },
     {
       "name": "구창모",
       "team": "NC",
       "era": 2.51,
-      "wins": 2,
-      "losses": 4,
-      "so": 14
+      "wins": 1,
+      "losses": 0,
+      "so": 18
     },
     {
       "name": "후라도",
       "team": "삼성",
       "era": 2.6,
-      "wins": 8,
-      "losses": 4,
-      "so": 177
+      "wins": 15,
+      "losses": 8,
+      "so": 142
     },
     {
       "name": "잭로그",
       "team": "두산",
       "era": 2.81,
-      "wins": 8,
-      "losses": 5,
-      "so": 146
+      "wins": 10,
+      "losses": 8,
+      "so": 156
     },
     {
       "name": "와이스",
       "team": "한화",
       "era": 2.87,
-      "wins": 5,
-      "losses": 6,
-      "so": 127
+      "wins": 16,
+      "losses": 5,
+      "so": 207
     },
     {
       "name": "임찬규",
       "team": "LG",
       "era": 3.03,
-      "wins": 7,
-      "losses": 3,
-      "so": 163
+      "wins": 11,
+      "losses": 7,
+      "so": 107
     },
     {
       "name": "원태인",
       "team": "삼성",
       "era": 3.24,
-      "wins": 4,
-      "losses": 8,
-      "so": 157
+      "wins": 12,
+      "losses": 4,
+      "so": 108
     },
     {
       "name": "고영표",
       "team": "KT",
       "era": 3.3,
-      "wins": 8,
-      "losses": 9,
-      "so": 170
+      "wins": 11,
+      "losses": 8,
+      "so": 154
     },
     {
       "name": "소형준",
       "team": "KT",
       "era": 3.3,
-      "wins": 7,
-      "losses": 1,
-      "so": 155
+      "wins": 10,
+      "losses": 7,
+      "so": 123
     },
     {
       "name": "치리노스",
       "team": "LG",
       "era": 3.31,
-      "wins": 6,
-      "losses": 11,
-      "so": 173
+      "wins": 13,
+      "losses": 6,
+      "so": 137
     },
     {
       "name": "손주영",
       "team": "LG",
       "era": 3.41,
-      "wins": 6,
-      "losses": 12,
-      "so": 153
+      "wins": 11,
+      "losses": 6,
+      "so": 132
     },
     {
       "name": "라일리",
       "team": "NC",
       "era": 3.45,
-      "wins": 7,
-      "losses": 13,
-      "so": 136
+      "wins": 17,
+      "losses": 7,
+      "so": 216
     },
     {
       "name": "송승기",
       "team": "LG",
       "era": 3.5,
-      "wins": 6,
-      "losses": 14,
-      "so": 149
+      "wins": 11,
+      "losses": 6,
+      "so": 125
     },
     {
       "name": "올러",
       "team": "KIA",
       "era": 3.62,
-      "wins": 7,
-      "losses": 15,
-      "so": 125
+      "wins": 11,
+      "losses": 7,
+      "so": 169
     },
     {
       "name": "헤이수스",
       "team": "KT",
       "era": 3.96,
       "wins": 9,
-      "losses": 16,
-      "so": 173
+      "losses": 9,
+      "so": 165
     },
     {
       "name": "콜어빈",
       "team": "두산",
       "era": 4.48,
-      "wins": 12,
-      "losses": 17,
-      "so": 142
+      "wins": 8,
+      "losses": 12,
+      "so": 128
     },
     {
       "name": "로건",
       "team": "NC",
       "era": 4.53,
-      "wins": 12,
-      "losses": 18,
-      "so": 180
+      "wins": 7,
+      "losses": 12,
+      "so": 149
     },
     {
       "name": "박세웅",
       "team": "롯데",
       "era": 4.93,
-      "wins": 13,
-      "losses": 19,
-      "so": 183
+      "wins": 11,
+      "losses": 13,
+      "so": 156
     },
     {
       "name": "하영민",
       "team": "키움",
       "era": 4.99,
-      "wins": 14,
-      "losses": 20,
-      "so": 169
+      "wins": 7,
+      "losses": 14,
+      "so": 134
     },
     {
       "name": "김광현",
       "team": "SSG",
       "era": 5,
       "wins": 10,
-      "losses": 21,
-      "so": 164
+      "losses": 10,
+      "so": 138
     },
     {
       "name": "양현종",
       "team": "KIA",
       "era": 5.06,
-      "wins": 9,
-      "losses": 22,
-      "so": 171
+      "wins": 7,
+      "losses": 9,
+      "so": 109
     }
   ],
   "headToHead": [
