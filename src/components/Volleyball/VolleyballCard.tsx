@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VolleyballData } from '@/types';
 import { fetchVolleyballData } from '@/utils/dataUpdater';
-import { getSeasonStatus } from '@/utils/seasonManager';
+import { getSeasonStatus, getDaysUntilSeasonStart } from '@/utils/seasonManager';
 
 const VolleyballCard = () => {
   const [data, setData] = useState<VolleyballData | null>(null);
@@ -35,6 +35,8 @@ const VolleyballCard = () => {
   }
 
   const isInSeason = getSeasonStatus('volleyball') === 'in-season';
+  const isOffSeason = getSeasonStatus('volleyball') === 'off-season';
+  const daysUntilStart = getDaysUntilSeasonStart('volleyball');
   const borderColor = isInSeason ? '2px solid #ff9800' : '1px solid rgba(255, 255, 255, 0.2)';
 
   return (
@@ -58,7 +60,12 @@ const VolleyballCard = () => {
             }}>
               ✓
             </div>
-            <h2 className="text-xl font-bold text-white">{data.team}</h2>
+            <h2 className="text-xl font-bold text-white">
+              {data.team}
+              {daysUntilStart !== null && (
+                <span className="text-sm font-normal ml-2">(D-{daysUntilStart})</span>
+              )}
+            </h2>
           </div>
           <span className="text-sm text-gray-400">V-리그</span>
         </div>
@@ -68,49 +75,78 @@ const VolleyballCard = () => {
 
         {/* 전적 정보 */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>전적 / 승률 / 세트득실률</span>
+          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            전적 / 승률{isOffSeason ? ' / 시즌 종료' : ' / 세트득실률'}
+          </span>
           <span className="text-sm text-white">
             {data.record.wins}승 {data.record.losses}패
             <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
             승률 {data.record.winRate.toFixed(3)}
-            <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
-            {data.record.setRate.toFixed(3)}
+            {!isOffSeason && (
+              <>
+                <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
+                {data.record.setRate.toFixed(3)}
+              </>
+            )}
           </span>
         </div>
 
         {/* 하단 여백 */}
         <div className="flex-1"></div>
 
-        {/* 최근 경기 */}
-        <div className="border-t border-gray-700 pt-4 mb-4">
-          <h4 className="text-sm text-white mb-2">최근 경기</h4>
-          {data.recentMatches.length > 0 ? (
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-white">vs {data.recentMatches[0].opponent}</span>
-              <div className="flex items-center gap-2">
-                <span className={`px-2 py-1 text-white text-xs rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
-                  {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
-                </span>
-                <span className="text-xs text-gray-400">{data.recentMatches[0].date}</span>
-              </div>
-            </div>
-          ) : (
-            <div className="text-sm text-gray-400">데이터 없음</div>
-          )}
-        </div>
+        {/* 오프시즌 - 마지막 시리즈 */}
+        {isOffSeason && (
+          <div className="border-t border-gray-700 pt-4">
+            <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
+            {data.recentMatches.length > 0 ? (
+              <>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-white">vs {data.recentMatches[0].opponent}</span>
+                  <span className={`px-2 py-1 text-white text-xs rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
+                    {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
+                  </span>
+                </div>
+                <div className="text-xs text-gray-400 mt-2">2025 시즌 최종 순위 (2026년 3월 재개)</div>
+              </>
+            ) : (
+              <div className="text-sm text-gray-400">데이터 없음</div>
+            )}
+          </div>
+        )}
 
-        {/* 다음 경기 */}
-        <div className="border-t border-gray-700 pt-4">
-          <h4 className="text-sm text-white mb-2">다음 경기</h4>
-          {data.upcomingMatch ? (
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-white">vs {data.upcomingMatch.opponent} ({data.upcomingMatch.venue})</span>
-              <span className="text-xs text-gray-400">{data.upcomingMatch.date}</span>
+        {/* 시즌 중 - 최근/다음 경기 */}
+        {!isOffSeason && (
+          <>
+            <div className="border-t border-gray-700 pt-4 mb-4">
+              <h4 className="text-sm text-white mb-2">최근 경기</h4>
+              {data.recentMatches.length > 0 ? (
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-white">vs {data.recentMatches[0].opponent}</span>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-1 text-white text-xs rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
+                      {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
+                    </span>
+                    <span className="text-xs text-gray-400">{data.recentMatches[0].date}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-sm text-gray-400">데이터 없음</div>
+              )}
             </div>
-          ) : (
-            <div className="text-sm text-gray-400">데이터 없음</div>
-          )}
-        </div>
+
+            <div className="border-t border-gray-700 pt-4">
+              <h4 className="text-sm text-white mb-2">다음 경기</h4>
+              {data.upcomingMatch ? (
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-white">vs {data.upcomingMatch.opponent} ({data.upcomingMatch.venue})</span>
+                  <span className="text-xs text-gray-400">{data.upcomingMatch.date}</span>
+                </div>
+              ) : (
+                <div className="text-sm text-gray-400">예정된 경기 없음</div>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </Link>
   );

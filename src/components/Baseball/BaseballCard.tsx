@@ -62,7 +62,7 @@ const BaseballCard = () => {
             </div>
             <h2 className="text-xl font-bold text-white">
               {data.team}
-              {daysUntilStart !== null && daysUntilStart <= 7 && (
+              {daysUntilStart !== null && (
                 <span className="text-sm font-normal ml-2">(D-{daysUntilStart})</span>
               )}
             </h2>
@@ -112,7 +112,7 @@ const BaseballCard = () => {
         {!isOffSeason && (
           <div className="border-t border-gray-700 pt-4">
             <h4 className="text-sm text-white mb-2">다음 경기</h4>
-            <div className="text-sm text-gray-400">로딩 중...</div>
+            <div className="text-sm text-gray-400">예정된 경기 없음</div>
           </div>
         )}
       </div>
