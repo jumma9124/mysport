@@ -457,9 +457,113 @@
       "hits": 35,
       "hr": 43,
       "rbi": 73
+    },
+    {
+      "name": "김준태",
+      "team": "LG",
+      "avg": 0,
+      "hits": 0,
+      "hr": 1,
+      "rbi": 0
+    },
+    {
+      "name": "이승현",
+      "team": "한화",
+      "avg": 0,
+      "hits": 0,
+      "hr": 1,
+      "rbi": 0
+    },
+    {
+      "name": "장규현",
+      "team": "한화",
+      "avg": 0,
+      "hits": 0,
+      "hr": 1,
+      "rbi": 0
     }
   ],
   "pitchers": [
+    {
+      "name": "김대우",
+      "team": "삼성",
+      "era": 0,
+      "wins": 2,
+      "losses": 1,
+      "so": 1
+    },
+    {
+      "name": "김민재",
+      "team": "KIA",
+      "era": 0,
+      "wins": 1,
+      "losses": 2,
+      "so": 2
+    },
+    {
+      "name": "김성민",
+      "team": "SSG",
+      "era": 0,
+      "wins": 2,
+      "losses": 1,
+      "so": 90
+    },
+    {
+      "name": "김한중",
+      "team": "두산",
+      "era": 0,
+      "wins": 2,
+      "losses": 1,
+      "so": 1
+    },
+    {
+      "name": "데이비슨",
+      "team": "NC",
+      "era": 0,
+      "wins": 1,
+      "losses": 0,
+      "so": 90
+    },
+    {
+      "name": "신지환",
+      "team": "SSG",
+      "era": 0,
+      "wins": 1,
+      "losses": 25,
+      "so": 99
+    },
+    {
+      "name": "양현",
+      "team": "삼성",
+      "era": 0,
+      "wins": 4,
+      "losses": 3,
+      "so": 2
+    },
+    {
+      "name": "유지성",
+      "team": "KIA",
+      "era": 0,
+      "wins": 1,
+      "losses": 0,
+      "so": 90
+    },
+    {
+      "name": "이상민",
+      "team": "삼성",
+      "era": 0,
+      "wins": 1,
+      "losses": 2,
+      "so": 2
+    },
+    {
+      "name": "이종준",
+      "team": "LG",
+      "era": 0,
+      "wins": 2,
+      "losses": 1,
+      "so": 95
+    },
     {
       "name": "이교훈",
       "team": "두산",

@@ -179,8 +179,9 @@ const BaseballDetail = () => {
                       <div className="space-y-3">
                         {[...data.pitchers]
                           .sort((a, b) => a.era - b.era)
+                          .slice(0, 10)
                           .map((player: BaseballPitcher, idx) => {
-                            const isHanwha = player.team?.includes('한화') || player.team?.includes('HH');
+                            const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
                             return (
                               <div 
                                 key={idx} 
@@ -228,8 +229,9 @@ const BaseballDetail = () => {
                       <div className="space-y-3">
                         {[...data.batters]
                           .sort((a, b) => b.avg - a.avg)
+                          .slice(0, 10)
                           .map((player: BaseballBatter, idx) => {
-                            const isHanwha = player.team?.includes('한화') || player.team?.includes('HH');
+                            const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
                             return (
                               <div 
                                 key={idx} 

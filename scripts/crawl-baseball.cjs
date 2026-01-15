@@ -173,11 +173,23 @@ async function crawlBatters() {
     // React 렌더링 대기 - 더 긴 대기 시간
     await new Promise(resolve => setTimeout(resolve, 10000));
     
-    // 페이지 스크롤하여 지연 로딩된 콘텐츠 활성화
-    await page.evaluate(() => {
-      window.scrollTo(0, document.body.scrollHeight / 2);
-    });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // 페이지 스크롤하여 지연 로딩된 콘텐츠 활성화 - 여러 번 반복
+    let previousHeight = 0;
+    let currentHeight = await page.evaluate(() => document.body.scrollHeight);
+    let scrollAttempts = 0;
+    const maxScrollAttempts = 10;
+    
+    while (scrollAttempts < maxScrollAttempts && currentHeight > previousHeight) {
+      previousHeight = currentHeight;
+      await page.evaluate(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      currentHeight = await page.evaluate(() => document.body.scrollHeight);
+      scrollAttempts++;
+    }
+    
+    // 마지막으로 한 번 더 스크롤
     await page.evaluate(() => {
       window.scrollTo(0, document.body.scrollHeight);
     });
@@ -309,8 +321,8 @@ async function crawlBatters() {
           }
         }
         
-        // 타율이 있으면 추가 (모든 선수, 팀 정보 포함)
-        if (name && avg > 0) {
+        // 모든 선수 추가 (타율이 0이어도 추가, 팀 정보 포함)
+        if (name) {
           result.push({ name, team, avg, hits, hr, rbi });
         }
       });
@@ -375,11 +387,23 @@ async function crawlPitchers() {
     // React 렌더링 대기 - 더 긴 대기 시간
     await new Promise(resolve => setTimeout(resolve, 10000));
     
-    // 페이지 스크롤하여 지연 로딩된 콘텐츠 활성화
-    await page.evaluate(() => {
-      window.scrollTo(0, document.body.scrollHeight / 2);
-    });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // 페이지 스크롤하여 지연 로딩된 콘텐츠 활성화 - 여러 번 반복
+    let previousHeight = 0;
+    let currentHeight = await page.evaluate(() => document.body.scrollHeight);
+    let scrollAttempts = 0;
+    const maxScrollAttempts = 10;
+    
+    while (scrollAttempts < maxScrollAttempts && currentHeight > previousHeight) {
+      previousHeight = currentHeight;
+      await page.evaluate(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      currentHeight = await page.evaluate(() => document.body.scrollHeight);
+      scrollAttempts++;
+    }
+    
+    // 마지막으로 한 번 더 스크롤
     await page.evaluate(() => {
       window.scrollTo(0, document.body.scrollHeight);
     });
@@ -508,8 +532,8 @@ async function crawlPitchers() {
           }
         }
         
-        // 평균자책점이 있으면 추가 (모든 선수, 팀 정보 포함)
-        if (name && era > 0) {
+        // 모든 선수 추가 (평균자책점이 0이어도 추가, 팀 정보 포함)
+        if (name) {
           result.push({ name, team, era, wins, losses, so });
         }
       });
