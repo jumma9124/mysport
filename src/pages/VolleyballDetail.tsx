@@ -261,17 +261,7 @@ const VolleyballDetail = () => {
                             background: 'rgba(255, 255, 255, 0.05)',
                             borderColor: 'rgba(255, 255, 255, 0.1)'
                           }}>
-                            <div className="text-sm font-semibold mb-2 text-white">세트 스코어 ({match.score})</div>
-                            <div className="space-y-1">
-                              {match.sets.map((set, setIdx) => (
-                                <div key={setIdx} className="flex justify-between text-sm text-white">
-                                  <span>{setIdx + 1}세트</span>
-                                  <span>
-                                    {set.ourScore}-{set.opponentScore}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
+                            <div className="text-sm text-white">세트 스코어 ({match.score})</div>
                           </div>
                         )}
                       </div>
