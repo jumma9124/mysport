@@ -63,12 +63,13 @@ const BaseballDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
           {/* 왼쪽: 리그 순위 (4:6 비율) */}
           <div className="md:col-span-4">
-            <div className="h-full flex flex-col overflow-auto" style={{
+            <div className="flex flex-col" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
               padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              height: 'fit-content'
             }}>
               <div className="flex items-center mb-4">
                 <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
@@ -120,12 +121,13 @@ const BaseballDetail = () => {
 
           {/* 오른쪽: 투수/타자 기록 (4:6 비율) */}
           <div className="md:col-span-6">
-            <div className="h-full flex flex-col overflow-auto" style={{
+            <div className="flex flex-col" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
               padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              maxHeight: 'calc(100vh - 200px)'
             }}>
               {/* 헤더 */}
               <div className="flex items-center mb-4">
@@ -172,11 +174,11 @@ const BaseballDetail = () => {
               </div>
 
               {/* 탭 내용 */}
-              <div className="min-h-[300px]">
+              <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto' }}>
                 {activeTab === 'pitcher' ? (
                   <div>
                     {data.pitchers.length > 0 ? (
-                      <div style={{ overflowX: 'auto' }}>
+                      <div>
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                           <thead>
                             <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
@@ -233,7 +235,7 @@ const BaseballDetail = () => {
                 ) : (
                   <div>
                     {data.batters.length > 0 ? (
-                      <div style={{ overflowX: 'auto' }}>
+                      <div>
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                           <thead>
                             <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
