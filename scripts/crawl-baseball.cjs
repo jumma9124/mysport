@@ -226,12 +226,10 @@ async function crawlBatters() {
         if (!teamEl) return;
         const team = teamEl.textContent.trim();
         
-        // 한화 선수만 추출
-        if (!team.includes(teamName) && !team.includes('한화') && !team.includes('HH')) return;
-        
-        // 중복 방지
-        if (seen.has(name)) return;
-        seen.add(name);
+        // 중복 방지 (이름+팀 조합으로)
+        const key = `${name}_${team}`;
+        if (seen.has(key)) return;
+        seen.add(key);
         
         // 모든 셀 찾기
         const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
@@ -311,15 +309,15 @@ async function crawlBatters() {
           }
         }
         
-        // 타율이 있으면 추가
+        // 타율이 있으면 추가 (모든 선수, 팀 정보 포함)
         if (name && avg > 0) {
-          result.push({ name, avg, hits, hr, rbi });
+          result.push({ name, team, avg, hits, hr, rbi });
         }
       });
       
       return { 
         data: result
-          .filter((item, index, self) => index === self.findIndex(t => t.name === item.name))
+          .filter((item, index, self) => index === self.findIndex(t => t.name === item.name && t.team === item.team))
           .sort((a, b) => b.avg - a.avg),
         debug: { totalRows: rows.length, found: result.length }
       };
@@ -332,7 +330,7 @@ async function crawlBatters() {
 
     await browser.close();
 
-    console.log(`✓ Found ${battersData.length} 한화 타자`);
+    console.log(`✓ Found ${battersData.length} 타자`);
     return battersData.length > 0 ? battersData : null;
 
   } catch (error) {
@@ -430,12 +428,10 @@ async function crawlPitchers() {
         if (!teamEl) return;
         const team = teamEl.textContent.trim();
         
-        // 한화 선수만 추출
-        if (!team.includes(teamName) && !team.includes('한화') && !team.includes('HH')) return;
-        
-        // 중복 방지
-        if (seen.has(name)) return;
-        seen.add(name);
+        // 중복 방지 (이름+팀 조합으로)
+        const key = `${name}_${team}`;
+        if (seen.has(key)) return;
+        seen.add(key);
         
         // 모든 셀 찾기
         const cells = Array.from(row.querySelectorAll('[class*="TableBody_cell"], .TableBody_cell__0H8Ds'));
@@ -512,15 +508,15 @@ async function crawlPitchers() {
           }
         }
         
-        // 평균자책점이 있으면 추가
+        // 평균자책점이 있으면 추가 (모든 선수, 팀 정보 포함)
         if (name && era > 0) {
-          result.push({ name, era, wins, losses, so });
+          result.push({ name, team, era, wins, losses, so });
         }
       });
       
       return { 
         data: result
-          .filter((item, index, self) => index === self.findIndex(t => t.name === item.name))
+          .filter((item, index, self) => index === self.findIndex(t => t.name === item.name && t.team === item.team))
           .sort((a, b) => a.era - b.era),
         debug: { totalRows: rows.length, found: result.length }
       };
@@ -533,7 +529,7 @@ async function crawlPitchers() {
 
     await browser.close();
 
-    console.log(`✓ Found ${pitchersData.length} 한화 투수`);
+    console.log(`✓ Found ${pitchersData.length} 투수`);
     return pitchersData.length > 0 ? pitchersData : null;
 
   } catch (error) {

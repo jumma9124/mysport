@@ -179,25 +179,42 @@ const BaseballDetail = () => {
                       <div className="space-y-3">
                         {[...data.pitchers]
                           .sort((a, b) => a.era - b.era)
-                          .map((player: BaseballPitcher, idx) => (
-                          <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                            <div className="flex justify-between items-center">
-                              <div className="flex items-center gap-3">
-                                <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.5)', minWidth: '24px' }}>
-                                  {idx + 1}
-                                </span>
-                                <div className="font-semibold text-white text-lg">{player.name}</div>
+                          .map((player: BaseballPitcher, idx) => {
+                            const isHanwha = player.team?.includes('한화') || player.team?.includes('HH');
+                            return (
+                              <div 
+                                key={idx} 
+                                className="p-4 rounded" 
+                                style={{ 
+                                  background: isHanwha ? 'rgba(76, 175, 80, 0.2)' : 'rgba(255, 255, 255, 0.05)',
+                                  border: isHanwha ? '1px solid rgba(76, 175, 80, 0.5)' : 'none'
+                                }}
+                              >
+                                <div className="flex justify-between items-center">
+                                  <div className="flex items-center gap-3">
+                                    <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.5)', minWidth: '24px' }}>
+                                      {idx + 1}
+                                    </span>
+                                    <div className="font-semibold text-lg" style={{ color: isHanwha ? '#4caf50' : 'white' }}>
+                                      {player.name}
+                                    </div>
+                                    {player.team && (
+                                      <span className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                                        {player.team}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                    평균자책점 {player.era.toFixed(2)}
+                                  </div>
+                                </div>
+                                <div className="flex gap-4 mt-2 ml-9 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                  <span>{player.wins}승 {player.losses}패</span>
+                                  <span>탈삼진 {player.so}</span>
+                                </div>
                               </div>
-                              <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                                평균자책점 {player.era.toFixed(2)}
-                              </div>
-                            </div>
-                            <div className="flex gap-4 mt-2 ml-9 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                              <span>{player.wins}승 {player.losses}패</span>
-                              <span>탈삼진 {player.so}</span>
-                            </div>
-                          </div>
-                        ))}
+                            );
+                          })}
                       </div>
                     ) : (
                       <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
@@ -211,26 +228,43 @@ const BaseballDetail = () => {
                       <div className="space-y-3">
                         {[...data.batters]
                           .sort((a, b) => b.avg - a.avg)
-                          .map((player: BaseballBatter, idx) => (
-                          <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                            <div className="flex justify-between items-center">
-                              <div className="flex items-center gap-3">
-                                <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.5)', minWidth: '24px' }}>
-                                  {idx + 1}
-                                </span>
-                                <div className="font-semibold text-white text-lg">{player.name}</div>
+                          .map((player: BaseballBatter, idx) => {
+                            const isHanwha = player.team?.includes('한화') || player.team?.includes('HH');
+                            return (
+                              <div 
+                                key={idx} 
+                                className="p-4 rounded" 
+                                style={{ 
+                                  background: isHanwha ? 'rgba(76, 175, 80, 0.2)' : 'rgba(255, 255, 255, 0.05)',
+                                  border: isHanwha ? '1px solid rgba(76, 175, 80, 0.5)' : 'none'
+                                }}
+                              >
+                                <div className="flex justify-between items-center">
+                                  <div className="flex items-center gap-3">
+                                    <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.5)', minWidth: '24px' }}>
+                                      {idx + 1}
+                                    </span>
+                                    <div className="font-semibold text-lg" style={{ color: isHanwha ? '#4caf50' : 'white' }}>
+                                      {player.name}
+                                    </div>
+                                    {player.team && (
+                                      <span className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                                        {player.team}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                    타율 {player.avg.toFixed(3)}
+                                  </div>
+                                </div>
+                                <div className="flex gap-4 mt-2 ml-9 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                  <span>안타 {player.hits}</span>
+                                  <span>홈런 {player.hr}</span>
+                                  <span>타점 {player.rbi}</span>
+                                </div>
                               </div>
-                              <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                                타율 {player.avg.toFixed(3)}
-                              </div>
-                            </div>
-                            <div className="flex gap-4 mt-2 ml-9 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                              <span>안타 {player.hits}</span>
-                              <span>홈런 {player.hr}</span>
-                              <span>타점 {player.rbi}</span>
-                            </div>
-                          </div>
-                        ))}
+                            );
+                          })}
                       </div>
                     ) : (
                       <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
