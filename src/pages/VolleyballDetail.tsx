@@ -41,7 +41,18 @@ const VolleyballDetail = () => {
           <Link to="/" className="text-white hover:text-gray-300 inline-flex items-center mb-4">
             ← 돌아가기
           </Link>
-          <h1 className="text-3xl font-bold text-white">{data.team}</h1>
+          <div className="flex items-center">
+            <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+              background: 'rgba(76, 175, 80, 0.2)',
+              borderColor: 'rgba(76, 175, 80, 0.5)',
+              color: '#4caf50',
+              fontSize: '16px',
+              fontWeight: 700
+            }}>
+              ✓
+            </div>
+            <h1 className="text-3xl font-bold text-white">{data.team}</h1>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
@@ -54,7 +65,18 @@ const VolleyballDetail = () => {
               padding: '20px',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <h2 className="text-xl font-bold mb-4 text-white">리그 순위</h2>
+              <div className="flex items-center mb-4">
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                  background: 'rgba(76, 175, 80, 0.2)',
+                  borderColor: 'rgba(76, 175, 80, 0.5)',
+                  color: '#4caf50',
+                  fontSize: '14px',
+                  fontWeight: 700
+                }}>
+                  ✓
+                </div>
+                <h2 className="text-xl font-bold text-white">리그 순위</h2>
+              </div>
               <div className="space-y-2">
                 {data.leagueStandings.map((team) => (
                   <div
@@ -78,20 +100,6 @@ const VolleyballDetail = () => {
                   </div>
                 ))}
               </div>
-
-              {/* 다음 예정 경기 */}
-              {data.upcomingMatch && (
-                <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                  <h3 className="text-sm font-semibold text-white mb-2">다음 예정 경기</h3>
-                  <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                    <div>{data.upcomingMatch.date}</div>
-                    <div>vs {data.upcomingMatch.opponent}</div>
-                    <div className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                      {data.upcomingMatch.venue}
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
@@ -105,7 +113,18 @@ const VolleyballDetail = () => {
                 padding: '20px',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }}>
-                <h2 className="text-xl font-bold mb-4 text-white">지난 경기 결과 (2주)</h2>
+                <div className="flex items-center mb-4">
+                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                    background: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                    color: '#4caf50',
+                    fontSize: '14px',
+                    fontWeight: 700
+                  }}>
+                    ✓
+                  </div>
+                  <h2 className="text-xl font-bold text-white">지난 경기 결과</h2>
+                </div>
                 {data.recentMatches.length > 0 ? (
                   <div className="space-y-3">
                     {data.recentMatches.map((match, idx) => (
@@ -180,7 +199,18 @@ const VolleyballDetail = () => {
                 padding: '20px',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }}>
-                <h2 className="text-xl font-bold mb-4 text-white">공격수 순위</h2>
+                <div className="flex items-center mb-4">
+                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                    background: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                    color: '#4caf50',
+                    fontSize: '14px',
+                    fontWeight: 700
+                  }}>
+                    ✓
+                  </div>
+                  <h2 className="text-xl font-bold text-white">공격수 순위</h2>
+                </div>
                 {data.attackers && data.attackers.length > 0 ? (
                   <div className="space-y-3">
                     {data.attackers.map((player, idx) => (
@@ -207,6 +237,41 @@ const VolleyballDetail = () => {
             )}
           </div>
         </div>
+
+        {/* 다음 경기 - 하단 */}
+        {data.upcomingMatch && (
+          <div className="mt-6" style={{
+            background: 'rgb(32, 34, 52)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '15px',
+            padding: '20px',
+            border: '1px solid rgba(255, 255, 255, 0.2)'
+          }}>
+            <div className="flex items-center mb-4">
+              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                background: 'rgba(76, 175, 80, 0.2)',
+                borderColor: 'rgba(76, 175, 80, 0.5)',
+                color: '#4caf50',
+                fontSize: '14px',
+                fontWeight: 700
+              }}>
+                ✓
+              </div>
+              <h2 className="text-xl font-bold text-white">다음 경기</h2>
+            </div>
+            <div className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="text-base text-white font-semibold mb-1">{data.upcomingMatch.date}</div>
+                  <div className="text-base text-white">vs {data.upcomingMatch.opponent}</div>
+                </div>
+                <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                  {data.upcomingMatch.venue}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

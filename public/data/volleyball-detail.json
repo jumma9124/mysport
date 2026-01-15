@@ -1,31 +1,67 @@
 {
   "leagueStandings": [
     {
-      "name": "OK저축은행",
-      "wins": 15,
-      "losses": 4,
-      "setWins": 47,
-      "setLosses": 18,
-      "setRate": 2.611,
+      "name": "대한항공",
+      "wins": 14,
+      "losses": 7,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.5,
       "rank": 1
     },
     {
-      "name": "현대캐피탈 스카이워커스",
-      "wins": 12,
+      "name": "현대캐피탈",
+      "wins": 13,
       "losses": 8,
-      "setWins": 43,
-      "setLosses": 31,
-      "setRate": 1.387,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.469,
       "rank": 2
     },
     {
-      "name": "삼성화재",
-      "wins": 11,
-      "losses": 8,
-      "setWins": 38,
-      "setLosses": 32,
-      "setRate": 1.188,
+      "name": "KB손해보험",
+      "wins": 12,
+      "losses": 10,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.073,
       "rank": 3
+    },
+    {
+      "name": "한국전력",
+      "wins": 12,
+      "losses": 9,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.132,
+      "rank": 4
+    },
+    {
+      "name": "OK저축은행",
+      "wins": 11,
+      "losses": 11,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.021,
+      "rank": 5
+    },
+    {
+      "name": "우리카드",
+      "wins": 8,
+      "losses": 13,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 0.783,
+      "rank": 6
+    },
+    {
+      "name": "삼성화재",
+      "wins": 5,
+      "losses": 17,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 0.483,
+      "rank": 7
     }
   ],
   "recentMatches": [

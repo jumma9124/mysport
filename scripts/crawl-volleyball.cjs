@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
-const fetch = require('node-fetch');
+const puppeteer = require('puppeteer');
 
 /**
- * 네이버 스포츠 V리그 실시간 데이터 크롤링
+ * 네이버 스포츠 V리그 실시간 데이터 크롤링 (Puppeteer 사용)
  * 현대캐피탈 스카이워커스 팀 정보 수집
  */
 
@@ -19,76 +19,80 @@ const NAVER_URLS = {
   schedule: (date) => `https://m.sports.naver.com/volleyball/schedule/index?category=kovo&date=${date}&teamCode=${TEAM_CODE}`,
 };
 
-async function fetchWithRetry(url, options = {}, retries = 3) {
-  for (let i = 0; i < retries; i++) {
-    try {
-      const response = await fetch(url, {
-        ...options,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          'Accept-Language': 'ko-KR,ko;q=0.9',
-          ...options.headers,
-        },
+async function crawlStandings() {
+  let browser;
+  try {
+    console.log('Launching browser for standings...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+
+    console.log('Navigating to Naver Sports...');
+    await page.goto(NAVER_URLS.standings, {
+      waitUntil: 'networkidle2',
+      timeout: 30000
+    });
+
+    // React가 렌더링될 때까지 대기
+    await page.waitForSelector('.TableBody_list__P8yRn', { timeout: 10000 });
+
+    // 추가 대기 시간 (React 렌더링 완료 보장)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // JavaScript로 페이지 내에서 데이터 추출
+    const standings = await page.evaluate(() => {
+      const rows = document.querySelectorAll('.TableBody_item__eCenH');
+      const result = [];
+
+      rows.forEach((row) => {
+        // 순위
+        const rankEl = row.querySelector('.TeamInfo_ranking__MqHpq');
+        const rank = rankEl ? parseInt(rankEl.textContent.trim()) : 0;
+
+        // 팀명
+        const teamEl = row.querySelector('.TeamInfo_team_name__dni7F');
+        const teamName = teamEl ? teamEl.textContent.trim() : '';
+
+        // 모든 텍스트 요소 직접 가져오기
+        const textElements = row.querySelectorAll('.TextInfo_text__ysEqh');
+
+        // blind 클래스가 없는 실제 데이터만 추출
+        const values = [];
+        textElements.forEach(el => {
+          const text = el.textContent.trim();
+          // blind span 제외하고 숫자만 추출
+          const numMatch = text.match(/\d+\.?\d*/);
+          if (numMatch) {
+            values.push(numMatch[0]);
+          }
+        });
+
+        // values 배열: [승점, 경기, 승, 패, 세트득실률, 점수득실률, ...]
+        const wins = values[2] ? parseInt(values[2]) : 0;
+        const losses = values[3] ? parseInt(values[3]) : 0;
+        const setRate = values[4] ? parseFloat(values[4]) : 0;
+
+        if (!isNaN(rank) && teamName) {
+          result.push({
+            name: teamName,
+            wins,
+            losses,
+            setWins: 0,
+            setLosses: 0,
+            setRate,
+            rank,
+          });
+        }
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-
-      return response;
-    } catch (error) {
-      console.error(`Attempt ${i + 1}/${retries} failed:`, error.message);
-      if (i === retries - 1) throw error;
-      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
-    }
-  }
-}
-
-async function crawlStandings() {
-  try {
-    console.log('Fetching standings from Naver Sports...');
-    const response = await fetchWithRetry(NAVER_URLS.standings);
-    const html = await response.text();
-    const $ = cheerio.load(html);
-
-    const standings = [];
-
-    // 순위표 파싱 (모바일 버전)
-    $('.TeamRankList_row__n_bDX').each((idx, elem) => {
-      const $row = $(elem);
-
-      const rank = parseInt($row.find('.TeamRankList_rank__3qtv0').text().trim());
-      const teamName = $row.find('.TeamRankList_team__AW7V6 .TeamRankList_name__2rInP').text().trim();
-
-      // 승-패 파싱
-      const recordText = $row.find('.TeamRankList_record__1DgHl').text().trim();
-      const recordMatch = recordText.match(/(\d+)승\s*(\d+)패/);
-      const wins = recordMatch ? parseInt(recordMatch[1]) : 0;
-      const losses = recordMatch ? parseInt(recordMatch[2]) : 0;
-
-      // 세트득실 파싱
-      const setRecordText = $row.find('.TeamRankList_setWinLose__2FcZx').text().trim();
-      const setMatch = setRecordText.match(/(\d+)-(\d+)/);
-      const setWins = setMatch ? parseInt(setMatch[1]) : 0;
-      const setLosses = setMatch ? parseInt(setMatch[2]) : 0;
-
-      // 세트득실률
-      const setRateText = $row.find('.TeamRankList_etc__1XFqX').eq(0).text().trim();
-      const setRate = parseFloat(setRateText) || 0;
-
-      if (!isNaN(rank) && teamName) {
-        standings.push({
-          name: teamName,
-          wins,
-          losses,
-          setWins,
-          setLosses,
-          setRate,
-          rank,
-        });
-      }
+      return result;
     });
+
+    await browser.close();
 
     if (standings.length === 0) {
       console.warn('No standings data found');
@@ -105,58 +109,101 @@ async function crawlStandings() {
 }
 
 async function crawlRecentMatches() {
+  let browser;
   try {
-    console.log('Fetching recent matches from Naver Sports...');
+    console.log('Fetching recent matches with Puppeteer...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
 
-    // 최근 30일간의 경기 확인
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+
     const matches = [];
     const now = new Date();
 
-    for (let i = 0; i < 30; i++) {
+    // 최근 30일간 경기 확인
+    for (let i = 0; i < 30 && matches.length < 2; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];
 
       const url = NAVER_URLS.schedule(dateStr);
-      const response = await fetchWithRetry(url);
-      const html = await response.text();
-      const $ = cheerio.load(html);
+      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
-      // 경기 정보 파싱
-      $('.ScheduleAllGameListItem_item_box__1HDdX').each((_, elem) => {
-        const $match = $(elem);
+      // React 렌더링 대기
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-        const status = $match.find('.ScheduleAllGameListItem_game_state__3lmN2').text().trim();
+      const dayMatches = await page.evaluate((teamName) => {
+        const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        const results = [];
 
-        // 종료된 경기만
-        if (status === '경기종료') {
-          const homeTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(0).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
-          const awayTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(1).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
+        items.forEach((item) => {
+          const status = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2')?.textContent.trim();
 
-          const homeScore = parseInt($match.find('.ScheduleAllGameListItem_team__R-bjK').eq(0).find('.ScheduleAllGameListItem_score__3Xzs7').text().trim());
-          const awayScore = parseInt($match.find('.ScheduleAllGameListItem_team__R-bjK').eq(1).find('.ScheduleAllGameListItem_score__3Xzs7').text().trim());
+          if (status === '경기종료') {
+            const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
+            const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+            const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
 
-          const matchDate = dateStr.substring(2).replace(/-/g, '.');
+            if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
+              const homeScore = parseInt(teams[0]?.querySelector('.ScheduleAllGameListItem_score__3Xzs7')?.textContent.trim());
+              const awayScore = parseInt(teams[1]?.querySelector('.ScheduleAllGameListItem_score__3Xzs7')?.textContent.trim());
 
-          if (!isNaN(homeScore) && !isNaN(awayScore)) {
-            const isHome = homeTeam.includes(TEAM_NAME);
-            const opponent = isHome ? awayTeam : homeTeam;
-            const ourScore = isHome ? homeScore : awayScore;
-            const opponentScore = isHome ? awayScore : homeScore;
+              const isHome = homeTeam.includes(teamName);
+              const opponent = isHome ? awayTeam : homeTeam;
+              const ourScore = isHome ? homeScore : awayScore;
+              const opponentScore = isHome ? awayScore : homeScore;
 
-            matches.push({
-              date: matchDate,
-              opponent: opponent,
-              venue: '천안유관순체육관',
-              result: ourScore > opponentScore ? 'win' : 'loss',
-              score: `${ourScore}-${opponentScore}`,
-            });
+              // 세트 스코어 파싱
+              const setsEl = item.querySelectorAll('.ScheduleGameListItem_score__18lAy');
+              const sets = [];
+              setsEl.forEach((setEl, idx) => {
+                const scores = setEl.querySelectorAll('span');
+                if (scores.length >= 2) {
+                  const homeSetScore = parseInt(scores[0].textContent.trim());
+                  const awaySetScore = parseInt(scores[1].textContent.trim());
+                  sets.push({
+                    setNumber: idx + 1,
+                    ourScore: isHome ? homeSetScore : awaySetScore,
+                    opponentScore: isHome ? awaySetScore : homeSetScore
+                  });
+                }
+              });
+
+              if (!isNaN(ourScore) && !isNaN(opponentScore)) {
+                results.push({
+                  opponent,
+                  ourScore,
+                  opponentScore,
+                  result: ourScore > opponentScore ? 'win' : 'loss',
+                  sets
+                });
+              }
+            }
           }
-        }
-      });
+        });
 
-      if (matches.length >= 2) break;
+        return results;
+      }, TEAM_NAME);
+
+      if (dayMatches.length > 0) {
+        const matchDate = dateStr.substring(2).replace(/-/g, '.');
+        dayMatches.forEach(match => {
+          matches.push({
+            date: matchDate,
+            opponent: match.opponent,
+            venue: '천안유관순체육관',
+            result: match.result,
+            score: `${match.ourScore}-${match.opponentScore}`,
+            sets: match.sets
+          });
+        });
+      }
     }
+
+    await browser.close();
 
     if (matches.length === 0) {
       console.warn('No recent matches found');
@@ -167,70 +214,80 @@ async function crawlRecentMatches() {
     return matches.slice(0, 2);
 
   } catch (error) {
+    if (browser) await browser.close();
     console.error('Failed to crawl recent matches:', error.message);
     return null;
   }
 }
 
 async function crawlUpcomingMatch() {
+  let browser;
   try {
-    console.log('Fetching upcoming match from Naver Sports...');
+    console.log('Fetching upcoming match with Puppeteer...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
 
     const now = new Date();
 
-    // 앞으로 30일간의 경기 확인
+    // 앞으로 30일간 경기 확인
     for (let i = 0; i < 30; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() + i);
       const dateStr = date.toISOString().split('T')[0];
 
       const url = NAVER_URLS.schedule(dateStr);
-      const response = await fetchWithRetry(url);
-      const html = await response.text();
-      const $ = cheerio.load(html);
+      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
-      // 경기 정보 파싱
-      let upcomingMatch = null;
+      // React 렌더링 대기
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-      $('.ScheduleAllGameListItem_item_box__1HDdX').each((_, elem) => {
-        const $match = $(elem);
+      const upcomingMatch = await page.evaluate((teamName, matchDate) => {
+        const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
 
-        const status = $match.find('.ScheduleAllGameListItem_game_state__3lmN2').text().trim();
+        for (let item of items) {
+          const status = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2')?.textContent.trim();
 
-        // 예정된 경기만
-        if (status !== '경기종료' && !upcomingMatch) {
-          const homeTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(0).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
-          const awayTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(1).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
+          if (status !== '경기종료') {
+            const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
+            const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+            const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
 
-          // 현대캐피탈이 포함된 경기만
-          if (homeTeam.includes(TEAM_NAME) || awayTeam.includes(TEAM_NAME)) {
-            const isHome = homeTeam.includes(TEAM_NAME);
-            const opponent = isHome ? awayTeam : homeTeam;
-            const venue = isHome ? '천안유관순체육관' : '원정';
-            const matchDate = dateStr.substring(2).replace(/-/g, '.');
+            if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
+              const isHome = homeTeam.includes(teamName);
+              const opponent = isHome ? awayTeam : homeTeam;
+              const venue = isHome ? '천안유관순체육관' : '원정';
+              const timeText = item.querySelector('.ScheduleAllGameListItem_time__3xyqM')?.textContent.trim() || '';
 
-            // 시간 정보 파싱
-            const timeText = $match.find('.ScheduleAllGameListItem_time__3xyqM').text().trim();
-
-            upcomingMatch = {
-              date: `${matchDate} ${timeText}`,
-              opponent: opponent,
-              venue: venue,
-            };
+              return {
+                date: `${matchDate} ${timeText}`,
+                opponent,
+                venue
+              };
+            }
           }
         }
-      });
+
+        return null;
+      }, TEAM_NAME, dateStr.substring(2).replace(/-/g, '.'));
 
       if (upcomingMatch) {
+        await browser.close();
         console.log('✓ Found upcoming match');
         return upcomingMatch;
       }
     }
 
+    await browser.close();
     console.warn('No upcoming match found');
     return null;
 
   } catch (error) {
+    if (browser) await browser.close();
     console.error('Failed to crawl upcoming match:', error.message);
     return null;
   }
@@ -267,6 +324,42 @@ function getFallbackData() {
         setLosses: 32,
         setRate: 1.188,
         rank: 3,
+      },
+      {
+        name: '한국전력',
+        wins: 10,
+        losses: 9,
+        setWins: 37,
+        setLosses: 33,
+        setRate: 1.121,
+        rank: 4,
+      },
+      {
+        name: 'KB손해보험',
+        wins: 9,
+        losses: 10,
+        setWins: 35,
+        setLosses: 37,
+        setRate: 0.946,
+        rank: 5,
+      },
+      {
+        name: '우리카드',
+        wins: 7,
+        losses: 12,
+        setWins: 30,
+        setLosses: 41,
+        setRate: 0.732,
+        rank: 6,
+      },
+      {
+        name: '삼성화재블루팡스',
+        wins: 4,
+        losses: 15,
+        setWins: 21,
+        setLosses: 49,
+        setRate: 0.429,
+        rank: 7,
       },
     ],
     recentMatches: [
