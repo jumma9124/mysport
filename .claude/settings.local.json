@@ -12,7 +12,8 @@
       "Bash(node scripts/crawl-baseball.cjs:*)",
       "Bash(node scripts/crawl-major-events.cjs:*)",
       "Bash(npm install:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(node scripts/debug-standings.cjs:*)"
     ]
   }
 }

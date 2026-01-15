@@ -1,7 +1,7 @@
 {
   "leagueStandings": [
     {
-      "name": "KIA 타이거즈",
+      "name": "KIA",
       "wins": 87,
       "losses": 55,
       "draws": 2,
@@ -9,20 +9,156 @@
       "rank": 1
     },
     {
-      "name": "한화 이글스",
-      "wins": 83,
-      "losses": 57,
-      "draws": 4,
-      "winRate": 0.593,
+      "name": "삼성",
+      "wins": 78,
+      "losses": 64,
+      "draws": 2,
+      "winRate": 0.549,
       "rank": 2
     },
     {
-      "name": "LG 트윈스",
-      "wins": 79,
-      "losses": 62,
-      "draws": 3,
-      "winRate": 0.56,
+      "name": "LG",
+      "wins": 76,
+      "losses": 66,
+      "draws": 2,
+      "winRate": 0.535,
       "rank": 3
+    },
+    {
+      "name": "두산",
+      "wins": 74,
+      "losses": 68,
+      "draws": 2,
+      "winRate": 0.521,
+      "rank": 4
+    },
+    {
+      "name": "KT",
+      "wins": 72,
+      "losses": 70,
+      "draws": 2,
+      "winRate": 0.507,
+      "rank": 5
+    },
+    {
+      "name": "SSG",
+      "wins": 72,
+      "losses": 70,
+      "draws": 2,
+      "winRate": 0.507,
+      "rank": 6
+    },
+    {
+      "name": "롯데",
+      "wins": 66,
+      "losses": 74,
+      "draws": 4,
+      "winRate": 0.471,
+      "rank": 7
+    },
+    {
+      "name": "한화",
+      "wins": 66,
+      "losses": 76,
+      "draws": 2,
+      "winRate": 0.465,
+      "rank": 8
+    },
+    {
+      "name": "NC",
+      "wins": 61,
+      "losses": 81,
+      "draws": 2,
+      "winRate": 0.43,
+      "rank": 9
+    },
+    {
+      "name": "키움",
+      "wins": 58,
+      "losses": 86,
+      "draws": 0,
+      "winRate": 0.403,
+      "rank": 10
+    },
+    {
+      "name": "두산",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 1
+    },
+    {
+      "name": "SSG",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 1
+    },
+    {
+      "name": "LG",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 3
+    },
+    {
+      "name": "한화",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 4
+    },
+    {
+      "name": "KIA",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 4
+    },
+    {
+      "name": "KT",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 4
+    },
+    {
+      "name": "롯데",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 7
+    },
+    {
+      "name": "삼성",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 8
+    },
+    {
+      "name": "NC",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 9
+    },
+    {
+      "name": "키움",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "winRate": 0,
+      "rank": 10
     }
   ],
   "batters": [
