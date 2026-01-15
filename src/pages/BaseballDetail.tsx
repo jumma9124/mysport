@@ -34,10 +34,30 @@ const BaseballDetail = () => {
       <div className="max-w-7xl mx-auto w-full flex flex-col flex-1">
         {/* 헤더 */}
         <header className="mb-6">
-          <Link to="/" className="text-white hover:text-gray-300 inline-flex items-center mb-4">
-            ← 돌아가기
-          </Link>
-          <h1 className="text-3xl font-bold text-white">{data.team}</h1>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                background: 'rgba(76, 175, 80, 0.2)',
+                borderColor: 'rgba(76, 175, 80, 0.5)',
+                color: '#4caf50',
+                fontSize: '16px',
+                fontWeight: 700
+              }}>
+                ✓
+              </div>
+              <h1 className="text-3xl font-bold text-white">{data.team}</h1>
+            </div>
+            <Link
+              to="/"
+              className="text-white hover:opacity-80 inline-flex items-center px-4 py-2 rounded-lg transition-opacity"
+              style={{
+                background: 'rgb(32, 34, 52)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              ← 돌아가기
+            </Link>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
@@ -50,29 +70,50 @@ const BaseballDetail = () => {
               padding: '20px',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <h2 className="text-xl font-bold mb-4 text-white">리그 순위</h2>
-              <div className="space-y-2">
-                {data.leagueStandings.map((team) => (
-                  <div
-                    key={team.name}
-                    className="p-3 rounded"
-                    style={{
-                      background: team.name === data.team
-                        ? 'rgba(76, 175, 80, 0.2)'
-                        : 'rgba(255, 255, 255, 0.05)',
-                      border: team.name === data.team
-                        ? '2px solid rgba(76, 175, 80, 0.5)'
-                        : '1px solid rgba(255, 255, 255, 0.1)'
-                    }}
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold text-white">{team.rank}위 {team.name}</span>
-                      <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                        {team.wins}승 {team.losses}패 ({(team.winRate * 100).toFixed(1)}%)
-                      </span>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex items-center mb-4">
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                  background: 'rgba(76, 175, 80, 0.2)',
+                  borderColor: 'rgba(76, 175, 80, 0.5)',
+                  color: '#4caf50',
+                  fontSize: '14px',
+                  fontWeight: 700
+                }}>
+                  ✓
+                </div>
+                <h2 className="text-xl font-bold text-white">리그 순위</h2>
+              </div>
+
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                      <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
+                      <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>팀</th>
+                      <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>전적</th>
+                      <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>승률</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.leagueStandings.map((team) => {
+                      const isOurTeam = team.name.includes('한화');
+
+                      return (
+                        <tr
+                          key={team.name}
+                          style={{
+                            background: isOurTeam ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
+                            borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                          }}
+                        >
+                          <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{team.rank}</td>
+                          <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{team.name}</td>
+                          <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.wins}-{team.losses}-{team.draws}</td>
+                          <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.winRate?.toFixed(3) || '0.000'}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

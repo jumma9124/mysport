@@ -45,6 +45,7 @@ async function crawlStandings() {
     const standings = await page.evaluate(() => {
       const rows = document.querySelectorAll('.TableBody_item__eCenH');
       const result = [];
+      const seenTeams = new Set(); // 중복 팀 체크
 
       rows.forEach((row) => {
         const rankEl = row.querySelector('.TeamInfo_ranking__MqHpq');
@@ -52,6 +53,11 @@ async function crawlStandings() {
 
         const teamEl = row.querySelector('.TeamInfo_team_name__dni7F');
         const teamName = teamEl ? teamEl.textContent.trim() : '';
+
+        // 중복 팀 제외
+        if (seenTeams.has(teamName)) {
+          return;
+        }
 
         const textElements = row.querySelectorAll('.TextInfo_text__ysEqh');
         const values = [];
@@ -78,7 +84,9 @@ async function crawlStandings() {
           }
         });
 
-        if (!isNaN(rank) && teamName) {
+        // 유효한 데이터만 추가 (wins나 losses가 0이 아닌 경우)
+        if (!isNaN(rank) && teamName && (wins > 0 || losses > 0)) {
+          seenTeams.add(teamName);
           result.push({
             name: teamName,
             wins,
