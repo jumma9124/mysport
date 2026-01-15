@@ -60,11 +60,9 @@ const InternationalSportsCard = () => {
 
   const getEventIcon = () => {
     return (
-      <div className="w-6 h-6 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-        background: 'rgba(76, 175, 80, 0.2)',
-        borderColor: 'rgba(76, 175, 80, 0.5)',
+      <div className="w-6 h-6 flex-shrink-0 inline-flex items-center justify-center" style={{
         color: '#4caf50',
-        fontSize: '14px',
+        fontSize: '18px',
         fontWeight: 700
       }}>
         ✓

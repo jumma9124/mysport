@@ -237,18 +237,18 @@ const VolleyballDetail = () => {
                           <div>
                             <div className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>{match.date}</div>
                             <div className="flex items-center gap-2">
-                              <div className="text-lg font-semibold text-white">
-                                vs {match.opponent}
-                              </div>
                               <span
                                 className="px-2 py-0.5 rounded text-sm"
                                 style={{
-                                  backgroundColor: match.result === 'win' ? 'rgba(76, 175, 80, 0.25)' : 'rgba(239, 68, 68, 0.25)',
-                                  color: match.result === 'win' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(239, 68, 68, 0.9)'
+                                  backgroundColor: match.result === 'win' ? 'rgba(76, 175, 80, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                                  color: match.result === 'win' ? 'rgba(76, 175, 80, 0.7)' : 'rgba(239, 68, 68, 0.7)'
                                 }}
                               >
                                 {match.result === 'win' ? '승' : '패'} ({match.score})
                               </span>
+                              <div className="text-lg font-semibold text-white">
+                                vs {match.opponent}
+                              </div>
                             </div>
                           </div>
                           <svg
