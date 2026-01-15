@@ -183,8 +183,8 @@ const VolleyballDetail = () => {
                 <div className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                   <div className="flex justify-between items-center">
                     <div>
-                      <div className="text-base text-white font-semibold mb-1">{data.upcomingMatch.date}</div>
-                      <div className="text-base text-white">vs {data.upcomingMatch.opponent}</div>
+                      <div className="text-sm mb-1" style={{ color: 'rgba(255,255,255,0.5)' }}>{data.upcomingMatch.date}</div>
+                      <div className="text-lg font-semibold text-white">vs {data.upcomingMatch.opponent}</div>
                     </div>
                     <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
                       {data.upcomingMatch.venue}
@@ -226,8 +226,8 @@ const VolleyballDetail = () => {
                           className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
                         >
                           <div>
-                            <div className="font-semibold text-white">{match.date}</div>
-                            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>{match.date}</div>
+                            <div className="text-lg font-semibold text-white">
                               vs {match.opponent}
                             </div>
                           </div>
