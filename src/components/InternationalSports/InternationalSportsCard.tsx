@@ -59,32 +59,17 @@ const InternationalSportsCard = () => {
   }
 
   const getEventIcon = (iconType: string) => {
-    switch (iconType) {
-      case 'snow':
-        return (
-          <div className="w-8 h-8 rounded bg-gradient-to-br from-green-400 to-orange-400 flex items-center justify-center">
-            <span className="text-white text-xs">⛷</span>
-          </div>
-        );
-      case 'baseball':
-        return (
-          <div className="w-8 h-8 rounded bg-blue-500 flex items-center justify-center">
-            <span className="text-white text-xs">⚾</span>
-          </div>
-        );
-      case 'soccer':
-        return (
-          <div className="w-8 h-8 rounded bg-green-500 flex items-center justify-center">
-            <span className="text-white text-xs">⚽</span>
-          </div>
-        );
-      default:
-        return (
-          <div className="w-8 h-8 rounded bg-gray-700 flex items-center justify-center">
-            <span className="text-gray-400 text-xs">●</span>
-          </div>
-        );
-    }
+    return (
+      <div className="w-6 h-6 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+        background: 'rgba(76, 175, 80, 0.2)',
+        borderColor: 'rgba(76, 175, 80, 0.5)',
+        color: '#4caf50',
+        fontSize: '14px',
+        fontWeight: 700
+      }}>
+        ✓
+      </div>
+    );
   };
 
   return (
@@ -110,7 +95,7 @@ const InternationalSportsCard = () => {
             </div>
             <h2 className="text-xl font-bold text-white">주요 스포츠 이벤트</h2>
           </div>
-          <span className="text-sm text-gray-400">다가오는 대회</span>
+          <span className="text-sm text-gray-400">국제 스포츠대회</span>
         </div>
 
         {/* 이벤트 리스트 */}
