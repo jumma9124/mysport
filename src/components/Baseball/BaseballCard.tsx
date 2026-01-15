@@ -76,10 +76,10 @@ const BaseballCard = () => {
         {/* 전적 정보 */}
         <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
           <div className="flex items-center justify-between">
-            <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <span className="text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
               전적 / 승률{isOffSeason ? ' / 시즌 종료' : ''}
             </span>
-            <span className="text-sm text-white">
+            <span className="text-base text-white">
               {data.record.wins}승 {data.record.losses}패 {data.record.draws}무
               <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
               승률 .{(data.record.winRate * 1000).toFixed(0)}
@@ -89,29 +89,33 @@ const BaseballCard = () => {
 
         {/* 마지막 시리즈 */}
         {isOffSeason && (
-          <div className="bg-gray-800/50 rounded-lg p-3">
+          <>
             <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
-            {data.lastSeries ? (
-              <>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-white">vs {data.lastSeries.opponent}</span>
-                  <span className={`px-2 py-1 text-white text-xs rounded ${data.lastSeries.result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
-                    {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
-                  </span>
-                </div>
-                <div className="text-xs text-gray-400 mt-2">2025 시즌 최종 순위 (2026년 3월 재개)</div>
-              </>
-            ) : (
-              <div className="text-sm text-gray-400">로딩 중...</div>
-            )}
-          </div>
+            <div className="bg-gray-800/50 rounded-lg p-3">
+              {data.lastSeries ? (
+                <>
+                  <div className="flex items-center justify-between">
+                    <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
+                    <span className={`px-2 py-1 text-white text-sm rounded ${data.lastSeries.result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
+                      {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
+                    </span>
+                  </div>
+                  <div className="text-sm text-gray-400 mt-2">2025 시즌 최종 순위 (2026년 3월 재개)</div>
+                </>
+              ) : (
+                <div className="text-base text-gray-400">로딩 중...</div>
+              )}
+            </div>
+          </>
         )}
 
         {!isOffSeason && (
-          <div className="bg-gray-800/50 rounded-lg p-3">
+          <>
             <h4 className="text-sm text-white mb-2">다음 경기</h4>
-            <div className="text-sm text-gray-400">예정된 경기 없음</div>
-          </div>
+            <div className="bg-gray-800/50 rounded-lg p-3">
+              <div className="text-base text-gray-400">예정된 경기 없음</div>
+            </div>
+          </>
         )}
       </div>
     </Link>

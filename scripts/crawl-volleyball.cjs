@@ -172,6 +172,70 @@ async function crawlRecentMatches() {
   }
 }
 
+async function crawlUpcomingMatch() {
+  try {
+    console.log('Fetching upcoming match from Naver Sports...');
+
+    const now = new Date();
+
+    // 앞으로 30일간의 경기 확인
+    for (let i = 0; i < 30; i++) {
+      const date = new Date(now);
+      date.setDate(date.getDate() + i);
+      const dateStr = date.toISOString().split('T')[0];
+
+      const url = NAVER_URLS.schedule(dateStr);
+      const response = await fetchWithRetry(url);
+      const html = await response.text();
+      const $ = cheerio.load(html);
+
+      // 경기 정보 파싱
+      let upcomingMatch = null;
+
+      $('.ScheduleAllGameListItem_item_box__1HDdX').each((_, elem) => {
+        const $match = $(elem);
+
+        const status = $match.find('.ScheduleAllGameListItem_game_state__3lmN2').text().trim();
+
+        // 예정된 경기만
+        if (status !== '경기종료' && !upcomingMatch) {
+          const homeTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(0).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
+          const awayTeam = $match.find('.ScheduleAllGameListItem_team__R-bjK').eq(1).find('.ScheduleAllGameListItem_name__3LNRT').text().trim();
+
+          // 현대캐피탈이 포함된 경기만
+          if (homeTeam.includes(TEAM_NAME) || awayTeam.includes(TEAM_NAME)) {
+            const isHome = homeTeam.includes(TEAM_NAME);
+            const opponent = isHome ? awayTeam : homeTeam;
+            const venue = isHome ? '천안유관순체육관' : '원정';
+            const matchDate = dateStr.substring(2).replace(/-/g, '.');
+
+            // 시간 정보 파싱
+            const timeText = $match.find('.ScheduleAllGameListItem_time__3xyqM').text().trim();
+
+            upcomingMatch = {
+              date: `${matchDate} ${timeText}`,
+              opponent: opponent,
+              venue: venue,
+            };
+          }
+        }
+      });
+
+      if (upcomingMatch) {
+        console.log('✓ Found upcoming match');
+        return upcomingMatch;
+      }
+    }
+
+    console.warn('No upcoming match found');
+    return null;
+
+  } catch (error) {
+    console.error('Failed to crawl upcoming match:', error.message);
+    return null;
+  }
+}
+
 function getFallbackData() {
   console.log('Using fallback data...');
 
@@ -231,6 +295,11 @@ function getFallbackData() {
         ],
       },
     ],
+    upcomingMatch: {
+      date: '26.01.18 14:00',
+      opponent: 'KB손해보험',
+      venue: '천안유관순체육관',
+    },
   };
 }
 
@@ -239,20 +308,23 @@ async function crawlVolleyballData() {
     console.log('Starting volleyball data crawl...');
 
     // 실시간 데이터 크롤링 시도
-    const [standings, recentMatches] = await Promise.all([
+    const [standings, recentMatches, upcomingMatch] = await Promise.all([
       crawlStandings(),
       crawlRecentMatches(),
+      crawlUpcomingMatch(),
     ]);
 
     // 크롤링 실패 시 폴백 데이터 사용
     const fallbackData = getFallbackData();
     const standingsData = standings || fallbackData.standings;
     const matchesData = recentMatches || fallbackData.recentMatches;
+    const upcomingMatchData = upcomingMatch || fallbackData.upcomingMatch;
 
     // volleyball-detail.json 생성
     const volleyballDetail = {
       leagueStandings: standingsData,
       recentMatches: matchesData,
+      upcomingMatch: upcomingMatchData,
     };
 
     // sports.json 업데이트
@@ -275,6 +347,8 @@ async function crawlVolleyballData() {
           winRate: parseFloat((currentTeam.wins / (currentTeam.wins + currentTeam.losses)).toFixed(3)),
           setRate: currentTeam.setRate,
         },
+        recentMatches: matchesData,
+        upcomingMatch: upcomingMatchData,
       };
     }
 
