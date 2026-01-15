@@ -353,7 +353,7 @@ async function crawlHeadToHead() {
 }
 
 function getFallbackData() {
-  console.log('Using fallback data...');
+  console.log('Using fallback data (2024 season final stats)...');
 
   return {
     standings: [
@@ -367,18 +367,18 @@ function getFallbackData() {
       },
       {
         name: TEAM_FULL_NAME,
-        wins: 83,
-        losses: 57,
-        draws: 4,
-        winRate: 0.593,
-        rank: 2,
+        wins: 66,
+        losses: 76,
+        draws: 2,
+        winRate: 0.465,
+        rank: 8,
       },
       {
         name: 'LG 트윈스',
-        wins: 79,
-        losses: 62,
-        draws: 3,
-        winRate: 0.560,
+        wins: 76,
+        losses: 66,
+        draws: 2,
+        winRate: 0.535,
         rank: 3,
       },
     ],
@@ -386,18 +386,32 @@ function getFallbackData() {
       { name: '페라자', avg: 0.298, hits: 145, hr: 28, rbi: 89 },
       { name: '노시환', avg: 0.285, hits: 132, hr: 24, rbi: 78 },
       { name: '채은성', avg: 0.274, hits: 128, hr: 18, rbi: 72 },
+      { name: '문현빈', avg: 0.263, hits: 95, hr: 8, rbi: 45 },
+      { name: '안치홍', avg: 0.275, hits: 112, hr: 12, rbi: 56 },
     ],
     pitchers: [
-      { name: '류현진', era: 3.45, wins: 12, losses: 8, so: 145 },
+      { name: '류현진', era: 3.45, wins: 7, losses: 6, so: 80 },
       { name: '문동주', era: 3.89, wins: 10, losses: 9, so: 132 },
-      { name: '웨스', era: 4.12, wins: 9, losses: 10, so: 118 },
+      { name: '엔스', era: 4.88, wins: 8, losses: 13, so: 91 },
+      { name: '바리아', era: 5.40, wins: 6, losses: 7, so: 72 },
+      { name: '위니', era: 4.25, wins: 6, losses: 8, so: 68 },
     ],
-    headToHead: [],
+    headToHead: [
+      { opponent: 'KIA', wins: 5, losses: 11, draws: 0 },
+      { opponent: '삼성', wins: 6, losses: 10, draws: 0 },
+      { opponent: 'LG', wins: 8, losses: 8, draws: 0 },
+      { opponent: '두산', wins: 9, losses: 7, draws: 0 },
+      { opponent: 'KT', wins: 8, losses: 8, draws: 0 },
+      { opponent: 'SSG', wins: 9, losses: 7, draws: 0 },
+      { opponent: '롯데', wins: 9, losses: 7, draws: 0 },
+      { opponent: 'NC', wins: 6, losses: 10, draws: 0 },
+      { opponent: '키움', wins: 6, losses: 8, draws: 0 },
+    ],
     lastSeries: {
-      opponent: '삼성',
-      date: '25.10.03',
-      result: 'win',
-      score: '5-3',
+      opponent: 'KIA',
+      date: '24.10.02',
+      result: 'loss',
+      score: '3-4',
     },
   };
 }

@@ -127,6 +127,20 @@ const BaseballDetail = () => {
               padding: '20px',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
+              {/* 헤더 */}
+              <div className="flex items-center mb-4">
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                  background: 'rgba(76, 175, 80, 0.2)',
+                  borderColor: 'rgba(76, 175, 80, 0.5)',
+                  color: '#4caf50',
+                  fontSize: '14px',
+                  fontWeight: 700
+                }}>
+                  ✓
+                </div>
+                <h2 className="text-xl font-bold text-white">선수 기록</h2>
+              </div>
+
               {/* 탭 */}
               <div className="flex mb-4" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
                 <button
@@ -162,12 +176,18 @@ const BaseballDetail = () => {
                 {activeTab === 'pitcher' ? (
                   <div>
                     {data.pitchers.length > 0 ? (
-                      <div className="space-y-2">
-                        {data.pitchers.map((player, idx) => (
-                          <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                            <div className="font-semibold text-white">{player.name}</div>
-                            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                              {player.position}
+                      <div className="space-y-3">
+                        {data.pitchers.map((player: any, idx) => (
+                          <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+                            <div className="flex justify-between items-center">
+                              <div className="font-semibold text-white text-lg">{player.name}</div>
+                              <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                평균자책점 {player.era.toFixed(2)}
+                              </div>
+                            </div>
+                            <div className="flex gap-4 mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                              <span>{player.wins}승 {player.losses}패</span>
+                              <span>탈삼진 {player.so}</span>
                             </div>
                           </div>
                         ))}
@@ -181,12 +201,19 @@ const BaseballDetail = () => {
                 ) : (
                   <div>
                     {data.batters.length > 0 ? (
-                      <div className="space-y-2">
-                        {data.batters.map((player, idx) => (
-                          <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                            <div className="font-semibold text-white">{player.name}</div>
-                            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                              {player.position}
+                      <div className="space-y-3">
+                        {data.batters.map((player: any, idx) => (
+                          <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+                            <div className="flex justify-between items-center">
+                              <div className="font-semibold text-white text-lg">{player.name}</div>
+                              <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                타율 {player.avg.toFixed(3)}
+                              </div>
+                            </div>
+                            <div className="flex gap-4 mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                              <span>안타 {player.hits}</span>
+                              <span>홈런 {player.hr}</span>
+                              <span>타점 {player.rbi}</span>
                             </div>
                           </div>
                         ))}
@@ -241,7 +268,18 @@ const BaseballDetail = () => {
           padding: '20px',
           border: '1px solid rgba(255, 255, 255, 0.2)'
         }}>
-          <h2 className="text-xl font-bold mb-4 text-white">상대전적</h2>
+          <div className="flex items-center mb-4">
+            <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+              background: 'rgba(76, 175, 80, 0.2)',
+              borderColor: 'rgba(76, 175, 80, 0.5)',
+              color: '#4caf50',
+              fontSize: '14px',
+              fontWeight: 700
+            }}>
+              ✓
+            </div>
+            <h2 className="text-xl font-bold text-white">상대전적</h2>
+          </div>
           {data.headToHead.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {data.headToHead.map((h2h, idx) => (
