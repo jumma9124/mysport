@@ -99,15 +99,12 @@ const VolleyballCard = () => {
             <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
             <div className="bg-gray-800/50 rounded-lg p-3">
               {data.recentMatches.length > 0 ? (
-                <>
-                  <div className="flex items-center justify-between">
-                    <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
-                    <span className={`px-2 py-1 text-white text-sm rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
-                      {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
-                    </span>
-                  </div>
-                  <div className="text-sm text-gray-400 mt-2">2025 시즌 최종 순위 (2026년 3월 재개)</div>
-                </>
+                <div className="flex items-center justify-between">
+                  <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
+                  <span className={`px-2 py-1 text-white text-sm rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
+                    {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
+                  </span>
+                </div>
               ) : (
                 <div className="text-base text-gray-400">데이터 없음</div>
               )}
