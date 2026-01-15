@@ -14,10 +14,10 @@ const DATA_DIR = path.join(__dirname, '../public/data');
 
 // 네이버 스포츠 모바일 URL
 const NAVER_URLS = {
-  standings: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2024&tab=teamRank',
-  batters: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2024&tab=player&category=batting',
-  pitchers: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2024&tab=player&category=pitching',
-  headToHead: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2024&tab=vsTeam',
+  standings: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=teamRank',
+  batters: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=player&category=batting',
+  pitchers: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=player&category=pitching',
+  headToHead: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=vsTeam',
 };
 
 async function crawlStandings() {
@@ -174,7 +174,7 @@ async function crawlBatters() {
           const hr = values[4] ? parseInt(values[4]) : 0;
           const rbi = values[5] ? parseInt(values[5]) : 0;
 
-          if (name && result.length < 5) {
+          if (name) {
             result.push({ name, avg, hits, hr, rbi });
           }
         }
@@ -249,7 +249,7 @@ async function crawlPitchers() {
           const losses = values[3] ? parseInt(values[3]) : 0;
           const so = values[6] ? parseInt(values[6]) : 0;
 
-          if (name && result.length < 5) {
+          if (name) {
             result.push({ name, era, wins, losses, so });
           }
         }
@@ -353,7 +353,7 @@ async function crawlHeadToHead() {
 }
 
 function getFallbackData() {
-  console.log('Using fallback data (2024 season final stats)...');
+  console.log('Using fallback data (previous season stats)...');
 
   return {
     standings: [
