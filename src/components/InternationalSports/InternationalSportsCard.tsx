@@ -58,7 +58,7 @@ const InternationalSportsCard = () => {
     );
   }
 
-  const getEventIcon = (iconType: string) => {
+  const getEventIcon = () => {
     return (
       <div className="w-6 h-6 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
         background: 'rgba(76, 175, 80, 0.2)',
@@ -104,7 +104,7 @@ const InternationalSportsCard = () => {
             events.map((event, index) => (
               <div key={index} className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
-                  {getEventIcon(event.icon)}
+                  {getEventIcon()}
                 </div>
                 <div className="flex-1">
                   <div className="text-base text-white font-medium">{event.name}</div>
