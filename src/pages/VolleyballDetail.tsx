@@ -35,7 +35,7 @@ const VolleyballDetail = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col p-4 md:p-6">
-      <div className="max-w-[1400px] mx-auto w-full flex flex-col flex-1">
+      <div className="max-w-7xl mx-auto w-full flex flex-col flex-1">
         {/* 헤더 */}
         <header className="mb-6">
           <Link to="/" className="text-white hover:text-gray-300 inline-flex items-center mb-4">
@@ -44,10 +44,9 @@ const VolleyballDetail = () => {
           <h1 className="text-3xl font-bold text-white">{data.team}</h1>
         </header>
 
-        {/* 2×2 그리드 레이아웃 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
-          {/* 왼쪽 상단: 리그 순위 */}
-          <div className="min-h-[300px] md:min-h-0">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
+          {/* 왼쪽: 리그 순위 (4:6 비율) */}
+          <div className="md:col-span-4">
             <div className="h-full flex flex-col overflow-auto" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
@@ -96,8 +95,8 @@ const VolleyballDetail = () => {
             </div>
           </div>
 
-          {/* 오른쪽 상단: 지난 경기 결과 */}
-          <div className="min-h-[300px] md:min-h-0">
+          {/* 오른쪽: 지난 경기 결과 (4:6 비율) */}
+          <div className="md:col-span-6">
             {isInSeason ? (
               <div className="h-full flex flex-col overflow-auto" style={{
                 background: 'rgb(32, 34, 52)',
@@ -206,31 +205,6 @@ const VolleyballDetail = () => {
                 )}
               </div>
             )}
-          </div>
-
-          {/* 하단 영역들 - 빈 영역 */}
-          <div className="min-h-[300px] md:min-h-0">
-            <div className="h-full flex flex-col overflow-auto" style={{
-              background: 'rgb(32, 34, 52)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '15px',
-              padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}>
-              {/* 빈 영역 */}
-            </div>
-          </div>
-
-          <div className="min-h-[300px] md:min-h-0">
-            <div className="h-full flex flex-col overflow-auto" style={{
-              background: 'rgb(32, 34, 52)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '15px',
-              padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}>
-              {/* 빈 영역 */}
-            </div>
           </div>
         </div>
       </div>

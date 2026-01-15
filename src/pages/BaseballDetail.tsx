@@ -31,7 +31,7 @@ const BaseballDetail = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col p-4 md:p-6">
-      <div className="max-w-[1400px] mx-auto w-full flex flex-col flex-1">
+      <div className="max-w-7xl mx-auto w-full flex flex-col flex-1">
         {/* 헤더 */}
         <header className="mb-6">
           <Link to="/" className="text-white hover:text-gray-300 inline-flex items-center mb-4">
@@ -40,10 +40,9 @@ const BaseballDetail = () => {
           <h1 className="text-3xl font-bold text-white">{data.team}</h1>
         </header>
 
-        {/* 2×2 그리드 레이아웃 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
-          {/* 왼쪽 상단: 리그 순위 */}
-          <div className="min-h-[300px] md:min-h-0">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
+          {/* 왼쪽: 리그 순위 (4:6 비율) */}
+          <div className="md:col-span-4">
             <div className="h-full flex flex-col overflow-auto" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
@@ -78,8 +77,8 @@ const BaseballDetail = () => {
             </div>
           </div>
 
-          {/* 오른쪽 상단: 투수/타자 기록 */}
-          <div className="min-h-[300px] md:min-h-0">
+          {/* 오른쪽: 투수/타자 기록 (4:6 비율) */}
+          <div className="md:col-span-6">
             <div className="h-full flex flex-col overflow-auto" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
@@ -161,73 +160,63 @@ const BaseballDetail = () => {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* 왼쪽 하단: 현재 시리즈 / 상대전적 */}
-          <div className="min-h-[300px] md:min-h-0">
-            <div className="h-full flex flex-col overflow-auto" style={{
-              background: 'rgb(32, 34, 52)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '15px',
-              padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}>
-              {isInSeason && data.currentSeries ? (
-                <>
-                  <h2 className="text-xl font-bold mb-4 text-white">현재 시리즈</h2>
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="font-semibold mb-2 text-white">vs {data.currentSeries.opponent}</h3>
-                      <div className="space-y-2">
-                        {data.currentSeries.games.map((game, idx) => (
-                          <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                            <div className="flex justify-between text-white">
-                              <span>{game.date}</span>
-                              <span className={game.result === 'win' ? 'text-green-400' : game.result === 'loss' ? 'text-red-400' : 'text-gray-400'}>
-                                {game.result === 'win' ? '승' : game.result === 'loss' ? '패' : '무'} - {game.score}
-                              </span>
-                            </div>
-                          </div>
-                        ))}
+        {/* 시즌 중: 현재 시리즈 */}
+        {isInSeason && data.currentSeries && (
+          <div className="mt-6" style={{
+            background: 'rgb(32, 34, 52)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '15px',
+            padding: '20px',
+            border: '1px solid rgba(255, 255, 255, 0.2)'
+          }}>
+            <h2 className="text-xl font-bold mb-4 text-white">현재 시리즈</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold mb-2 text-white">vs {data.currentSeries.opponent}</h3>
+                <div className="space-y-2">
+                  {data.currentSeries.games.map((game, idx) => (
+                    <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+                      <div className="flex justify-between text-white">
+                        <span>{game.date}</span>
+                        <span className={game.result === 'win' ? 'text-green-400' : game.result === 'loss' ? 'text-red-400' : 'text-gray-400'}>
+                          {game.result === 'win' ? '승' : game.result === 'loss' ? '패' : '무'} - {game.score}
+                        </span>
                       </div>
                     </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-xl font-bold mb-4 text-white">상대전적</h2>
-                  {data.headToHead.length > 0 ? (
-                    <div className="space-y-2">
-                      {data.headToHead.slice(0, 5).map((h2h, idx) => (
-                        <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                          <div className="font-semibold mb-1 text-white">{h2h.opponent}</div>
-                          <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                            {h2h.wins}승 {h2h.losses}패 {h2h.draws}무
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                      데이터 없음
-                    </div>
-                  )}
-                </>
-              )}
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
+        )}
 
-          {/* 오른쪽 하단: 빈 영역 */}
-          <div className="min-h-[300px] md:min-h-0">
-            <div className="h-full flex flex-col overflow-auto" style={{
-              background: 'rgb(32, 34, 52)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '15px',
-              padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}>
-              {/* 빈 영역 */}
+        {/* 상대전적 - 하단 */}
+        <div className="mt-6" style={{
+          background: 'rgb(32, 34, 52)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '15px',
+          padding: '20px',
+          border: '1px solid rgba(255, 255, 255, 0.2)'
+        }}>
+          <h2 className="text-xl font-bold mb-4 text-white">상대전적</h2>
+          {data.headToHead.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {data.headToHead.map((h2h, idx) => (
+                <div key={idx} className="p-4 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+                  <div className="font-semibold mb-2 text-white">{h2h.opponent}</div>
+                  <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                    {h2h.wins}승 {h2h.losses}패 {h2h.draws}무
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          ) : (
+            <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              데이터 없음
+            </div>
+          )}
         </div>
       </div>
     </div>
