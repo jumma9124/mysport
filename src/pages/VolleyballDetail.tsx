@@ -236,34 +236,36 @@ const VolleyballDetail = () => {
                         >
                           <div>
                             <div className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>{match.date}</div>
-                            <div className="text-lg font-semibold text-white">
-                              vs {match.opponent}
+                            <div className="flex items-center gap-2">
+                              <div className="text-lg font-semibold text-white">
+                                vs {match.opponent}
+                              </div>
+                              <span
+                                className="px-2 py-0.5 rounded text-sm"
+                                style={{
+                                  backgroundColor: match.result === 'win' ? 'rgba(76, 175, 80, 0.25)' : 'rgba(239, 68, 68, 0.25)',
+                                  color: match.result === 'win' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(239, 68, 68, 0.9)'
+                                }}
+                              >
+                                {match.result === 'win' ? '승' : '패'} ({match.score})
+                              </span>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3">
-                            <span
-                              className={`px-3 py-1 rounded text-sm font-semibold text-white ${
-                                match.result === 'win' ? 'bg-green-600/40' : 'bg-red-600/40'
-                              }`}
-                            >
-                              {match.result === 'win' ? '승' : '패'} ({match.score})
-                            </span>
-                            <svg
-                              className={`w-5 h-5 transition-transform text-white ${
-                                expandedMatch === idx ? 'transform rotate-180' : ''
-                              }`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
-                          </div>
+                          <svg
+                            className={`w-5 h-5 transition-transform text-white ${
+                              expandedMatch === idx ? 'transform rotate-180' : ''
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </button>
                         {expandedMatch === idx && (
                           <div className="p-4 border-t" style={{
