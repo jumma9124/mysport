@@ -26,11 +26,7 @@ jobs:
         run: npm ci
 
       - name: Run major events crawler
-        run: |
-          # 크롤링 스크립트 실행
-          # node crawl-major-events.js
-          echo "Major events crawler will be implemented here"
-          # TODO: 크롤링 스크립트 구현 후 활성화
+        run: node scripts/crawl-major-events.cjs
 
       - name: Commit and push changes
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'

@@ -71,23 +71,21 @@ const BaseballCard = () => {
         </div>
 
         {/* 순위 */}
-        <div className="text-5xl font-bold text-white mb-4">{data.currentRank}위</div>
+        <div className="text-5xl font-bold text-white mb-6 text-center">{data.currentRank}위</div>
 
         {/* 전적 정보 */}
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            전적 / 승률
-            {isOffSeason && <span className="ml-2">시즌 종료</span>}
-          </span>
-          <span className="text-sm text-white">
-            {data.record.wins}승 {data.record.losses}패 {data.record.draws}무
-            <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
-            승률 .{(data.record.winRate * 1000).toFixed(0)}
-          </span>
+        <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
+          <div className="flex items-center justify-between">
+            <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+              전적 / 승률{isOffSeason ? ' / 시즌 종료' : ''}
+            </span>
+            <span className="text-sm text-white">
+              {data.record.wins}승 {data.record.losses}패 {data.record.draws}무
+              <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
+              승률 .{(data.record.winRate * 1000).toFixed(0)}
+            </span>
+          </div>
         </div>
-
-        {/* 하단 여백 */}
-        <div className="flex-1"></div>
 
         {/* 마지막 시리즈 */}
         {isOffSeason && (

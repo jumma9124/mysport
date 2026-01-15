@@ -12,10 +12,10 @@
     {
       "name": "현대캐피탈 스카이워커스",
       "wins": 12,
-      "losses": 7,
-      "setWins": 42,
-      "setLosses": 28,
-      "setRate": 1.5,
+      "losses": 8,
+      "setWins": 43,
+      "setLosses": 31,
+      "setRate": 1.387,
       "rank": 2
     },
     {
@@ -29,6 +29,30 @@
     }
   ],
   "recentMatches": [
+    {
+      "date": "26.01.14",
+      "opponent": "삼성화재",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": [
+        {
+          "setNumber": 1,
+          "ourScore": 25,
+          "opponentScore": 20
+        },
+        {
+          "setNumber": 2,
+          "ourScore": 25,
+          "opponentScore": 22
+        },
+        {
+          "setNumber": 3,
+          "ourScore": 25,
+          "opponentScore": 18
+        }
+      ]
+    },
     {
       "date": "26.01.09",
       "opponent": "OK저축은행",
@@ -53,10 +77,5 @@
         }
       ]
     }
-  ],
-  "upcomingMatch": {
-    "date": "26.01.14",
-    "opponent": "삼성화재",
-    "venue": "천안유관순체육관"
-  }
+  ]
 }

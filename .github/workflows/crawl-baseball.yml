@@ -29,11 +29,7 @@ jobs:
         run: npm ci
 
       - name: Run baseball crawler
-        run: |
-          # 크롤링 스크립트 실행
-          # node crawl-baseball.js
-          echo "Baseball crawler will be implemented here"
-          # TODO: 크롤링 스크립트 구현 후 활성화
+        run: node scripts/crawl-baseball.cjs
 
       - name: Commit and push changes
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
