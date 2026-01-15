@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { BaseballData, BaseballPitcher, BaseballBatter } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
@@ -7,6 +7,8 @@ const BaseballDetail = () => {
   const [data, setData] = useState<BaseballData | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'pitcher' | 'batter'>('pitcher');
+  const [playerRecordsHeight, setPlayerRecordsHeight] = useState<number | null>(null);
+  const leagueStandingsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const loadData = async () => {
@@ -18,6 +20,24 @@ const BaseballDetail = () => {
 
     loadData();
   }, []);
+
+  // 리그 순위 섹션의 높이를 측정해서 선수 기록 섹션 높이에 적용
+  useEffect(() => {
+    if (leagueStandingsRef.current && data) {
+      const updateHeight = () => {
+        if (leagueStandingsRef.current) {
+          setPlayerRecordsHeight(leagueStandingsRef.current.offsetHeight);
+        }
+      };
+      
+      updateHeight();
+      window.addEventListener('resize', updateHeight);
+      
+      return () => {
+        window.removeEventListener('resize', updateHeight);
+      };
+    }
+  }, [data]);
 
   if (loading || !data) {
     return (
@@ -63,7 +83,7 @@ const BaseballDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6" style={{ alignItems: 'stretch' }}>
           {/* 왼쪽: 리그 순위 (4:6 비율) */}
           <div className="md:col-span-4" style={{ display: 'flex' }}>
-            <div className="flex flex-col w-full" style={{
+            <div ref={leagueStandingsRef} className="flex flex-col w-full" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
@@ -125,7 +145,8 @@ const BaseballDetail = () => {
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
               padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              height: playerRecordsHeight ? `${playerRecordsHeight}px` : 'auto'
             }}>
               {/* 헤더 */}
               <div className="flex items-center mb-4">
