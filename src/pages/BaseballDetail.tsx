@@ -103,8 +103,7 @@ const BaseballDetail = () => {
                 <h2 className="text-xl font-bold text-white">리그 순위</h2>
               </div>
 
-              <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
                       <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
@@ -134,7 +133,6 @@ const BaseballDetail = () => {
                     })}
                   </tbody>
                 </table>
-              </div>
             </div>
           </div>
 
