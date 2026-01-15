@@ -127,7 +127,7 @@ const BaseballDetail = () => {
               borderRadius: '15px',
               padding: '20px',
               border: '1px solid rgba(255, 255, 255, 0.2)',
-              maxHeight: 'calc(100vh - 200px)'
+              height: 'fit-content'
             }}>
               {/* 헤더 */}
               <div className="flex items-center mb-4">
@@ -174,7 +174,7 @@ const BaseballDetail = () => {
               </div>
 
               {/* 탭 내용 */}
-              <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto' }}>
+              <div style={{ overflowY: 'auto', overflowX: 'auto', maxHeight: '500px' }}>
                 {activeTab === 'pitcher' ? (
                   <div>
                     {data.pitchers.length > 0 ? (
