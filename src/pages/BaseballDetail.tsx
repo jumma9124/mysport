@@ -82,8 +82,8 @@ const BaseballDetail = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6" style={{ alignItems: 'stretch' }}>
           {/* 왼쪽: 리그 순위 (4:6 비율) */}
-          <div className="md:col-span-4" style={{ display: 'flex' }}>
-            <div ref={leagueStandingsRef} className="flex flex-col w-full" style={{
+          <div className="md:col-span-4">
+            <div ref={leagueStandingsRef} className="w-full" style={{
               background: 'rgb(32, 34, 52)',
               backdropFilter: 'blur(10px)',
               borderRadius: '15px',
