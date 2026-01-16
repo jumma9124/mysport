@@ -85,8 +85,7 @@ export interface VolleyballTeam {
   setLosses: number;
   setRate: number;
   rank: number;
-  points?: number; // 승점
-  winRate?: number; // 승률
+  points: number; // 승점
 }
 
 export interface VolleyballMatch {
@@ -117,7 +116,7 @@ export interface VolleyballData {
   record: {
     wins: number;
     losses: number;
-    winRate: number;
+    points: number;
     setRate: number;
   };
   leagueStandings: VolleyballTeam[];

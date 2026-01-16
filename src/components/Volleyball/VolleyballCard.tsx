@@ -77,12 +77,12 @@ const VolleyballCard = () => {
         <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
           <div className="flex items-center justify-between">
             <span className="text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              전적 / 승률{isOffSeason ? ' / 시즌 종료' : ' / 세트득실률'}
+              전적 / 승점{isOffSeason ? ' / 시즌 종료' : ' / 세트득실률'}
             </span>
             <span className="text-base text-white">
               {data.record.wins}승 {data.record.losses}패
               <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
-              승률 {data.record.winRate.toFixed(3)}
+              {data.record.points}점
               {!isOffSeason && (
                 <>
                   <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>

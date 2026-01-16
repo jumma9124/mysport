@@ -76,8 +76,6 @@ async function crawlStandings() {
         const wins = values[2] ? parseInt(values[2]) : 0;
         const losses = values[3] ? parseInt(values[3]) : 0;
         const setRate = values[4] ? parseFloat(values[4]) : 0;
-        // 승률도 네이버에서 가져오기 (계산하지 않음)
-        const winRate = (wins + losses) > 0 ? parseFloat((wins / (wins + losses)).toFixed(3)) : 0;
 
         if (!isNaN(rank) && teamName) {
           result.push({
@@ -89,7 +87,6 @@ async function crawlStandings() {
             setRate,
             rank,
             points,
-            winRate,
           });
         }
       });
@@ -312,7 +309,6 @@ function getFallbackData() {
         setRate: 2.611,
         rank: 1,
         points: 49,
-        winRate: 0.789,
       },
       {
         name: TEAM_FULL_NAME,
@@ -323,7 +319,6 @@ function getFallbackData() {
         setRate: 1.387,
         rank: 2,
         points: 44,
-        winRate: 0.600,
       },
       {
         name: '삼성화재',
@@ -334,7 +329,6 @@ function getFallbackData() {
         setRate: 1.188,
         rank: 3,
         points: 41,
-        winRate: 0.579,
       },
       {
         name: '한국전력',
@@ -345,7 +339,6 @@ function getFallbackData() {
         setRate: 1.121,
         rank: 4,
         points: 39,
-        winRate: 0.526,
       },
       {
         name: 'KB손해보험',
@@ -356,7 +349,6 @@ function getFallbackData() {
         setRate: 0.946,
         rank: 5,
         points: 37,
-        winRate: 0.474,
       },
       {
         name: '우리카드',
@@ -367,7 +359,6 @@ function getFallbackData() {
         setRate: 0.732,
         rank: 6,
         points: 33,
-        winRate: 0.368,
       },
       {
         name: '삼성화재블루팡스',
@@ -378,7 +369,6 @@ function getFallbackData() {
         setRate: 0.429,
         rank: 7,
         points: 27,
-        winRate: 0.211,
       },
     ],
     recentMatches: [
@@ -456,7 +446,7 @@ async function crawlVolleyballData() {
         record: {
           wins: currentTeam.wins,
           losses: currentTeam.losses,
-          winRate: parseFloat((currentTeam.wins / (currentTeam.wins + currentTeam.losses)).toFixed(3)),
+          points: currentTeam.points,
           setRate: currentTeam.setRate,
         },
         recentMatches: matchesData,

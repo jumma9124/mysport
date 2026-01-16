@@ -8,8 +8,7 @@
       "setLosses": 0,
       "setRate": 1.5,
       "rank": 1,
-      "points": 42,
-      "winRate": 0.667
+      "points": 42
     },
     {
       "name": "현대캐피탈",
@@ -19,8 +18,7 @@
       "setLosses": 0,
       "setRate": 1.469,
       "rank": 2,
-      "points": 41,
-      "winRate": 0.619
+      "points": 41
     },
     {
       "name": "KB손해보험",
@@ -30,8 +28,7 @@
       "setLosses": 0,
       "setRate": 1.073,
       "rank": 3,
-      "points": 37,
-      "winRate": 0.545
+      "points": 37
     },
     {
       "name": "한국전력",
@@ -41,8 +38,7 @@
       "setLosses": 0,
       "setRate": 1.098,
       "rank": 4,
-      "points": 35,
-      "winRate": 0.545
+      "points": 35
     },
     {
       "name": "OK저축은행",
@@ -52,8 +48,7 @@
       "setLosses": 0,
       "setRate": 1.021,
       "rank": 5,
-      "points": 33,
-      "winRate": 0.5
+      "points": 33
     },
     {
       "name": "우리카드",
@@ -63,8 +58,7 @@
       "setLosses": 0,
       "setRate": 0.813,
       "rank": 6,
-      "points": 26,
-      "winRate": 0.409
+      "points": 26
     },
     {
       "name": "삼성화재",
@@ -74,8 +68,7 @@
       "setLosses": 0,
       "setRate": 0.483,
       "rank": 7,
-      "points": 14,
-      "winRate": 0.227
+      "points": 14
     }
   ],
   "recentMatches": [
