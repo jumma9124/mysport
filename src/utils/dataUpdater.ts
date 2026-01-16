@@ -31,7 +31,7 @@ const getDefaultVolleyballData = (): VolleyballData => ({
   record: {
     wins: 20,
     losses: 10,
-    winRate: 0.667,
+    points: 60,
     setRate: 1.25,
   },
   leagueStandings: [],
