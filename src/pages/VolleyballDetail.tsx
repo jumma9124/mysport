@@ -234,11 +234,14 @@ const VolleyballDetail = () => {
                           onClick={() => toggleMatch(idx)}
                           className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
                         >
-                          <div>
-                            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>{match.date}</div>
-                            <div className="flex items-center gap-2">
+                          <div className="flex-1">
+                            <div className="text-sm mb-2" style={{ color: 'rgba(255,255,255,0.5)' }}>{match.date}</div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <div className="text-lg font-semibold text-white">
+                                vs {match.opponent}
+                              </div>
                               <span
-                                className="px-2 py-0.5 rounded text-sm"
+                                className="px-2 py-0.5 rounded text-sm whitespace-nowrap"
                                 style={{
                                   backgroundColor: match.result === 'win' ? 'rgba(76, 175, 80, 0.15)' : 'rgba(239, 68, 68, 0.15)',
                                   color: match.result === 'win' ? 'rgba(76, 175, 80, 0.7)' : 'rgba(239, 68, 68, 0.7)'
@@ -246,9 +249,6 @@ const VolleyballDetail = () => {
                               >
                                 {match.result === 'win' ? '승' : '패'} ({match.score})
                               </span>
-                              <div className="text-lg font-semibold text-white">
-                                vs {match.opponent}
-                              </div>
                             </div>
                           </div>
                           <svg
