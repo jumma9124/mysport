@@ -120,6 +120,7 @@ const VolleyballCard = () => {
               {data.recentMatches.length > 0 ? (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
+                    <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
                     <span
                       className="px-2 py-0.5 rounded text-sm"
                       style={{
@@ -129,7 +130,6 @@ const VolleyballCard = () => {
                     >
                       {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
                     </span>
-                    <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
                   </div>
                   <span className="text-sm text-gray-400">{data.recentMatches[0].date}</span>
                 </div>

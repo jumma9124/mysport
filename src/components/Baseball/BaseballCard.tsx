@@ -95,6 +95,7 @@ const BaseballCard = () => {
               {data.lastSeries ? (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
+                    <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
                     <span
                       className="px-2 py-0.5 rounded text-sm"
                       style={{
@@ -104,7 +105,6 @@ const BaseballCard = () => {
                     >
                       {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
                     </span>
-                    <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
                   </div>
                   <span className="text-sm text-gray-400">{data.lastSeries.date}</span>
                 </div>
