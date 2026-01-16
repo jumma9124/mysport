@@ -275,65 +275,32 @@ async function crawlBatters() {
           }
         }
         
-        // 안타, 홈런, 타점 추출 - 모든 셀의 텍스트를 직접 가져와서 순서대로 추출
+        // 안타, 홈런, 타점 추출 - 각 셀에서 숫자 추출
         let hits = 0, hr = 0, rbi = 0;
-        
-        // 모든 셀에서 실제 텍스트 값 추출 (원시 텍스트에서 숫자 추출)
-        const cellValues = [];
-        cells.forEach((cell) => {
-          // 셀의 전체 텍스트 가져오기
+
+        // 각 셀에서 모든 숫자 추출
+        const cellNumbers = [];
+        cells.forEach(cell => {
           const text = cell.textContent.trim();
-          // 텍스트에서 첫 번째 숫자만 추출 (소수점 포함)
-          const numMatch = text.match(/(\d+\.?\d*)/);
-          if (numMatch) {
-            cellValues.push(numMatch[1]);
-          } else {
-            // 숫자가 없으면 null로 표시
-            cellValues.push(null);
+          const numbers = text.match(/\d+/g);
+          if (numbers) {
+            numbers.forEach(num => {
+              const val = parseInt(num);
+              // 유효한 통계 범위의 숫자만 수집
+              if (val > 0 && val < 500) {
+                cellNumbers.push(val);
+              }
+            });
           }
         });
-        
-        // 셀 순서 확인: 0=순위, 1=타율, 2=타석, 3=타수, 4=안타, 5=2루타, 6=3루타, 7=홈런, 8=타점, ...
-        // 타율 인덱스 찾기 (0.xxx 형식)
-        const avgIdx = cellValues.findIndex(v => v && v.match(/^0?\.\d{3}$/));
-        
-        if (avgIdx >= 0 && cellValues.length > avgIdx + 8) {
-          // 안타는 타율 다음에 타석(2), 타수(3) 뒤 (인덱스 + 4)
-          if (cellValues[avgIdx + 4]) {
-            const val = parseInt(cellValues[avgIdx + 4]);
-            if (!isNaN(val) && val >= 0 && val < 500) hits = val;
-          }
-          // 홈런은 안타(4), 2루타(5), 3루타(6) 뒤 (인덱스 + 7)
-          if (cellValues[avgIdx + 7]) {
-            const val = parseInt(cellValues[avgIdx + 7]);
-            if (!isNaN(val) && val >= 0 && val < 80) hr = val; // 홈런은 보통 80개 이하
-          }
-          // 타점은 홈런(7) 다음 (인덱스 + 8)
-          if (cellValues[avgIdx + 8]) {
-            const val = parseInt(cellValues[avgIdx + 8]);
-            if (!isNaN(val) && val >= 0 && val < 200) rbi = val;
-          }
-        }
-        
-        // 위 방법이 실패하면 숫자 배열에서 범위로 찾기
-        if (hits === 0 || hr === 0 || rbi === 0) {
-          const allNumbers = cellValues
-            .filter(v => v !== null)
-            .map(v => parseInt(v))
-            .filter(n => !isNaN(n) && n > 0 && n < 1000);
-          
-          if (hits === 0) {
-            // 안타는 보통 50-250 사이
-            hits = allNumbers.find(n => n >= 50 && n <= 250) || 0;
-          }
-          if (hr === 0) {
-            // 홈런은 보통 1-60 사이
-            hr = allNumbers.find(n => n >= 1 && n <= 60) || 0;
-          }
-          if (rbi === 0) {
-            // 타점은 보통 20-150 사이, 안타와는 다름
-            rbi = allNumbers.find(n => n >= 20 && n <= 150 && n !== hits && n !== hr) || 0;
-          }
+
+        // 네이버 KBO 타자 기록 실제 순서: [순위, 타율숫자, 경기, 타수, 안타, 홈런, 2루타, 3루타, 타점, 득점, ...]
+        // cellNumbers 배열의 실제 인덱스: [0:순위, 1:타율숫자, 2:경기, 3:타수, 4:안타, 5:홈런, 6:2루타번호, 7:2루타, 8:3루타번호, 9:3루타, 10:타점, 11:득점, ...]
+
+        if (cellNumbers.length >= 11) {
+          hits = cellNumbers[4];   // 안타
+          hr = cellNumbers[5];     // 홈런
+          rbi = cellNumbers[10];   // 타점
         }
         
         // 모든 선수 추가 (순위 정보 포함)
@@ -341,12 +308,15 @@ async function crawlBatters() {
           result.push({ name, team, rank, avg, hits, hr, rbi });
         }
       });
-      
-      return { 
+
+      return {
         data: result
           .filter((item, index, self) => index === self.findIndex(t => t.name === item.name && t.team === item.team))
           .sort((a, b) => (a.rank || 999) - (b.rank || 999)),
-        debug: { totalRows: rows.length, found: result.length }
+        debug: {
+          totalRows: rows.length,
+          found: result.length
+        }
       };
     }, TEAM_NAME);
 
