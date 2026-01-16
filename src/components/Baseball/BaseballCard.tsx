@@ -94,10 +94,19 @@ const BaseballCard = () => {
             <div className="bg-gray-800/50 rounded-lg p-3">
               {data.lastSeries ? (
                 <div className="flex items-center justify-between">
-                  <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
-                  <span className={`px-2 py-1 text-white text-sm rounded ${data.lastSeries.result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
-                    {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="px-2 py-0.5 rounded text-sm"
+                      style={{
+                        backgroundColor: data.lastSeries.result === 'win' ? 'rgba(76, 175, 80, 0.15)' : data.lastSeries.result === 'loss' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(156, 163, 175, 0.15)',
+                        color: data.lastSeries.result === 'win' ? 'rgba(76, 175, 80, 0.7)' : data.lastSeries.result === 'loss' ? 'rgba(239, 68, 68, 0.7)' : 'rgba(156, 163, 175, 0.7)'
+                      }}
+                    >
+                      {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
+                    </span>
+                    <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
+                  </div>
+                  <span className="text-sm text-gray-400">{data.lastSeries.date}</span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">로딩 중...</div>

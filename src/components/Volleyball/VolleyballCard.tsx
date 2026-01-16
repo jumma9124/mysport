@@ -119,13 +119,19 @@ const VolleyballCard = () => {
             <div className="bg-gray-800/50 rounded-lg p-3 mb-3">
               {data.recentMatches.length > 0 ? (
                 <div className="flex items-center justify-between">
-                  <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
                   <div className="flex items-center gap-2">
-                    <span className={`px-2 py-1 text-white text-sm rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
+                    <span
+                      className="px-2 py-0.5 rounded text-sm"
+                      style={{
+                        backgroundColor: data.recentMatches[0].result === 'win' ? 'rgba(76, 175, 80, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                        color: data.recentMatches[0].result === 'win' ? 'rgba(76, 175, 80, 0.7)' : 'rgba(239, 68, 68, 0.7)'
+                      }}
+                    >
                       {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
                     </span>
-                    <span className="text-sm text-gray-400">{data.recentMatches[0].date}</span>
+                    <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
                   </div>
+                  <span className="text-sm text-gray-400">{data.recentMatches[0].date}</span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">데이터 없음</div>
