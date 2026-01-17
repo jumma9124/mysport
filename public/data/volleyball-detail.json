@@ -42,13 +42,13 @@
     },
     {
       "name": "OK저축은행",
-      "wins": 11,
+      "wins": 12,
       "losses": 11,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.021,
+      "setRate": 1.041,
       "rank": 5,
-      "points": 33
+      "points": 35
     },
     {
       "name": "우리카드",
@@ -63,12 +63,12 @@
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 17,
+      "losses": 18,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.483,
+      "setRate": 0.492,
       "rank": 7,
-      "points": 14
+      "points": 15
     }
   ],
   "recentMatches": [
