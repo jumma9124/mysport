@@ -12,13 +12,13 @@
     },
     {
       "name": "현대캐피탈",
-      "wins": 13,
+      "wins": 14,
       "losses": 8,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.469,
+      "setRate": 1.563,
       "rank": 2,
-      "points": 41
+      "points": 44
     },
     {
       "name": "KB손해보험",
@@ -53,10 +53,10 @@
     {
       "name": "우리카드",
       "wins": 9,
-      "losses": 13,
+      "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.813,
+      "setRate": 0.765,
       "rank": 6,
       "points": 26
     },
