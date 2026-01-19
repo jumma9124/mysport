@@ -75,16 +75,42 @@ export const fetchBaseballData = async (): Promise<BaseballData> => {
   }
 };
 
-// JSON 파일에서 배구 데이터 로드
-export const fetchVolleyballData = async (): Promise<VolleyballData> => {
+// 배구 데이터 로드 (실시간 크롤링 또는 JSON 파일)
+export const fetchVolleyballData = async (useRealtime = true): Promise<VolleyballData> => {
   try {
-    // sports.json에서 기본 정보 로드
+    // 실시간 크롤링 시도
+    if (useRealtime) {
+      try {
+        const apiPath = window.location.hostname === 'localhost' 
+          ? '/api/crawl-volleyball' 
+          : `${getBasePath()}api/crawl-volleyball`;
+        
+        const crawlResponse = await fetch(apiPath, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (crawlResponse.ok) {
+          const crawlData = await crawlResponse.json();
+          return {
+            ...crawlData,
+            seasonStatus: getSeasonStatus('volleyball'),
+          };
+        }
+      } catch (crawlError) {
+        console.warn('Real-time crawl failed, falling back to JSON:', crawlError);
+        // 실시간 크롤링 실패 시 JSON 파일로 폴백
+      }
+    }
+
+    // JSON 파일에서 로드 (폴백)
     const sportsResponse = await fetch(`${getBasePath()}data/sports.json`);
     if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
     const sportsData = await sportsResponse.json();
     const volleyballData = sportsData.volleyball;
 
-    // volleyball-detail.json에서 상세 정보 로드
     const detailResponse = await fetch(`${getBasePath()}data/volleyball-detail.json`);
     if (!detailResponse.ok) throw new Error('Failed to fetch volleyball-detail.json');
     const detailData = await detailResponse.json();
