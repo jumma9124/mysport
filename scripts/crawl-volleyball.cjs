@@ -138,10 +138,35 @@ async function crawlRecentMatches() {
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
       // React 렌더링 대기
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // 페이지 구조 확인
+      const pageInfo = await page.evaluate(() => {
+        const bodyText = document.body ? document.body.textContent : '';
+        const hasSchedule = bodyText.includes('경기') || bodyText.includes('스케줄');
+        const itemCount = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX').length;
+        return {
+          hasSchedule,
+          itemCount,
+          title: document.title,
+          url: window.location.href
+        };
+      });
+      console.log(`[CRAWL] Recent matches - Page info: ${JSON.stringify(pageInfo)}`);
 
-      const dayMatches = await page.evaluate((teamName) => {
+      const dayMatchesResult = await page.evaluate((teamName) => {
         const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        const debugInfo = {
+          totalItems: items.length,
+          items: []
+        };
+        
+        // 대체 셀렉터 시도
+        if (items.length === 0) {
+          const altItems = document.querySelectorAll('[class*="Schedule"], [class*="Game"], [class*="Item"]');
+          debugInfo.alternativeItems = altItems.length;
+        }
+        
         const results = [];
 
         items.forEach((item, idx) => {
@@ -152,6 +177,15 @@ async function crawlRecentMatches() {
             const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
             const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
             const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+            
+            debugInfo.items.push({
+              idx: idx + 1,
+              status,
+              teamsCount: teams.length,
+              homeTeam,
+              awayTeam,
+              matchesTeam: homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))
+            });
 
             if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
               const homeScore = parseInt(teams[0]?.querySelector('.ScheduleAllGameListItem_score__3Xzs7')?.textContent.trim());
@@ -191,11 +225,13 @@ async function crawlRecentMatches() {
           }
         });
 
-        return results;
+        return { results, debugInfo };
       }, TEAM_NAME);
 
-      console.log(`[CRAWL] Date ${dateStr}: Found ${dayMatches ? dayMatches.length : 0} matches`);
-      if (dayMatches && dayMatches.length > 0) {
+      const dayMatches = dayMatchesResult?.results || [];
+      console.log(`[CRAWL] Date ${dateStr}: Debug info: ${JSON.stringify(dayMatchesResult?.debugInfo)}`);
+      console.log(`[CRAWL] Date ${dateStr}: Found ${dayMatches.length} matches`);
+      if (dayMatches.length > 0) {
         const matchDate = dateStr.substring(2).replace(/-/g, '.');
         dayMatches.forEach(match => {
           console.log(`[CRAWL] Adding match: ${matchDate} vs ${match.opponent}`);
@@ -255,20 +291,52 @@ async function crawlUpcomingMatch() {
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
       // React 렌더링 대기
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // 페이지 구조 확인
+      const pageInfo = await page.evaluate(() => {
+        const bodyText = document.body ? document.body.textContent : '';
+        const hasSchedule = bodyText.includes('경기') || bodyText.includes('스케줄');
+        const itemCount = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX').length;
+        return {
+          hasSchedule,
+          itemCount,
+          title: document.title,
+          url: window.location.href
+        };
+      });
+      console.log(`[CRAWL] Upcoming match - Page info: ${JSON.stringify(pageInfo)}`);
 
-      const upcomingMatch = await page.evaluate((teamName, matchDate) => {
+      const upcomingMatchResult = await page.evaluate((teamName, matchDate) => {
         const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        const debugInfo = {
+          totalItems: items.length,
+          items: []
+        };
+        
+        // 대체 셀렉터 시도
+        if (items.length === 0) {
+          const altItems = document.querySelectorAll('[class*="Schedule"], [class*="Game"], [class*="Item"]');
+          debugInfo.alternativeItems = altItems.length;
+        }
 
         for (let item of items) {
           const statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
           const status = statusEl ? statusEl.textContent.trim() : null;
 
-          if (status !== '경기종료') {
-            const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
-            const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
-            const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+          const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
+          const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+          const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+          
+          debugInfo.items.push({
+            status,
+            teamsCount: teams.length,
+            homeTeam,
+            awayTeam,
+            matchesTeam: homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))
+          });
 
+          if (status !== '경기종료') {
             if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
               const isHome = homeTeam.includes(teamName);
               const opponent = isHome ? awayTeam : homeTeam;
@@ -276,18 +344,20 @@ async function crawlUpcomingMatch() {
               const timeTextEl = item.querySelector('.ScheduleAllGameListItem_time__3xyqM');
               const timeText = timeTextEl ? timeTextEl.textContent.trim() : '';
 
-              return {
+              return { match: {
                 date: `${matchDate} ${timeText}`,
                 opponent,
                 venue
-              };
+              }, debugInfo };
             }
           }
         }
 
-        return null;
+        return { match: null, debugInfo };
       }, TEAM_NAME, dateStr.substring(2).replace(/-/g, '.'));
 
+      const upcomingMatch = upcomingMatchResult?.match || null;
+      console.log(`[CRAWL] Date ${dateStr}: Debug info: ${JSON.stringify(upcomingMatchResult?.debugInfo)}`);
       console.log(`[CRAWL] Date ${dateStr}: Found ${upcomingMatch ? '1' : '0'} upcoming matches`);
       if (upcomingMatch) {
         console.log(`[CRAWL] Upcoming match details: ${JSON.stringify(upcomingMatch)}`);
