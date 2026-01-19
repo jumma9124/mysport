@@ -124,14 +124,17 @@ async function crawlRecentMatches() {
 
     const matches = [];
     const now = new Date();
+    console.log(`[CRAWL] Starting recent matches crawl at ${now.toISOString()}`);
 
     // 최근 30일간 경기 확인
     for (let i = 0; i < 30 && matches.length < 2; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];
+      console.log(`[CRAWL] Checking date ${i} days ago: ${dateStr}`);
 
       const url = NAVER_URLS.schedule(dateStr);
+      console.log(`[CRAWL] Fetching URL: ${url}`);
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
       // React 렌더링 대기
@@ -141,8 +144,9 @@ async function crawlRecentMatches() {
         const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
         const results = [];
 
-        items.forEach((item) => {
-          const status = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2')?.textContent.trim();
+        items.forEach((item, idx) => {
+          const statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
+          const status = statusEl ? statusEl.textContent.trim() : null;
 
           if (status === '경기종료') {
             const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
@@ -190,9 +194,11 @@ async function crawlRecentMatches() {
         return results;
       }, TEAM_NAME);
 
-      if (dayMatches.length > 0) {
+      console.log(`[CRAWL] Date ${dateStr}: Found ${dayMatches ? dayMatches.length : 0} matches`);
+      if (dayMatches && dayMatches.length > 0) {
         const matchDate = dateStr.substring(2).replace(/-/g, '.');
         dayMatches.forEach(match => {
+          console.log(`[CRAWL] Adding match: ${matchDate} vs ${match.opponent}`);
           matches.push({
             date: matchDate,
             opponent: match.opponent,
@@ -235,14 +241,17 @@ async function crawlUpcomingMatch() {
     await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
 
     const now = new Date();
+    console.log(`[CRAWL] Starting upcoming match crawl at ${now.toISOString()}`);
 
     // 앞으로 30일간 경기 확인 (오늘 제외, 내일부터)
     for (let i = 1; i <= 30; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() + i);
       const dateStr = date.toISOString().split('T')[0];
+      console.log(`[CRAWL] Checking upcoming date ${i} days ahead: ${dateStr}`);
 
       const url = NAVER_URLS.schedule(dateStr);
+      console.log(`[CRAWL] Fetching URL: ${url}`);
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
       // React 렌더링 대기
@@ -252,7 +261,8 @@ async function crawlUpcomingMatch() {
         const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
 
         for (let item of items) {
-          const status = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2')?.textContent.trim();
+          const statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
+          const status = statusEl ? statusEl.textContent.trim() : null;
 
           if (status !== '경기종료') {
             const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
@@ -263,7 +273,8 @@ async function crawlUpcomingMatch() {
               const isHome = homeTeam.includes(teamName);
               const opponent = isHome ? awayTeam : homeTeam;
               const venue = isHome ? '천안유관순체육관' : '원정';
-              const timeText = item.querySelector('.ScheduleAllGameListItem_time__3xyqM')?.textContent.trim() || '';
+              const timeTextEl = item.querySelector('.ScheduleAllGameListItem_time__3xyqM');
+              const timeText = timeTextEl ? timeTextEl.textContent.trim() : '';
 
               return {
                 date: `${matchDate} ${timeText}`,
@@ -277,15 +288,17 @@ async function crawlUpcomingMatch() {
         return null;
       }, TEAM_NAME, dateStr.substring(2).replace(/-/g, '.'));
 
+      console.log(`[CRAWL] Date ${dateStr}: Found ${upcomingMatch ? '1' : '0'} upcoming matches`);
       if (upcomingMatch) {
+        console.log(`[CRAWL] Upcoming match details: ${JSON.stringify(upcomingMatch)}`);
         await browser.close();
-        console.log('✓ Found upcoming match');
+        console.log(`✓ Found upcoming match: ${JSON.stringify(upcomingMatch)}`);
         return upcomingMatch;
       }
     }
 
     await browser.close();
-    console.warn('No upcoming match found');
+    console.warn('No upcoming match found in next 30 days');
     return null;
 
   } catch (error) {
@@ -387,11 +400,19 @@ async function crawlVolleyballData() {
       crawlUpcomingMatch(),
     ]);
 
+    console.log(`[RESULT] Standings: ${standings ? 'SUCCESS (' + standings.length + ' teams)' : 'FAILED'}`);
+    console.log(`[RESULT] Recent matches: ${recentMatches ? 'SUCCESS (' + recentMatches.length + ' matches)' : 'FAILED'}`);
+    console.log(`[RESULT] Upcoming match: ${upcomingMatch ? 'SUCCESS (' + JSON.stringify(upcomingMatch) + ')' : 'FAILED'}`);
+
     // 크롤링 실패 시 폴백 데이터 사용
     const fallbackData = getFallbackData();
     const standingsData = standings || fallbackData.standings;
     const matchesData = recentMatches || fallbackData.recentMatches;
     const upcomingMatchData = upcomingMatch || fallbackData.upcomingMatch;
+
+    console.log(`[FINAL] Using standings: ${standings ? 'CRAWLED' : 'FALLBACK'}`);
+    console.log(`[FINAL] Using recent matches: ${recentMatches ? 'CRAWLED (' + recentMatches.length + ')' : 'FALLBACK (' + (matchesData ? matchesData.length : 0) + ')'}`);
+    console.log(`[FINAL] Using upcoming match: ${upcomingMatch ? 'CRAWLED' : 'FALLBACK'} - ${upcomingMatchData ? JSON.stringify(upcomingMatchData) : 'null'}`);
 
     // volleyball-detail.json 생성
     const volleyballDetail = {
