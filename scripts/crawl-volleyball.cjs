@@ -236,8 +236,8 @@ async function crawlUpcomingMatch() {
 
     const now = new Date();
 
-    // 앞으로 30일간 경기 확인
-    for (let i = 0; i < 30; i++) {
+    // 앞으로 30일간 경기 확인 (오늘 제외, 내일부터)
+    for (let i = 1; i <= 30; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() + i);
       const dateStr = date.toISOString().split('T')[0];
@@ -371,37 +371,8 @@ function getFallbackData() {
         points: 27,
       },
     ],
-    recentMatches: [
-      {
-        date: '26.01.14',
-        opponent: '삼성화재',
-        venue: '천안유관순체육관',
-        result: 'win',
-        score: '3-0',
-        sets: [
-          { setNumber: 1, ourScore: 25, opponentScore: 20 },
-          { setNumber: 2, ourScore: 25, opponentScore: 22 },
-          { setNumber: 3, ourScore: 25, opponentScore: 18 },
-        ],
-      },
-      {
-        date: '26.01.09',
-        opponent: 'OK저축은행',
-        venue: '천안유관순체육관',
-        result: 'loss',
-        score: '0-3',
-        sets: [
-          { setNumber: 1, ourScore: 18, opponentScore: 25 },
-          { setNumber: 2, ourScore: 22, opponentScore: 25 },
-          { setNumber: 3, ourScore: 19, opponentScore: 25 },
-        ],
-      },
-    ],
-    upcomingMatch: {
-      date: '26.01.18 14:00',
-      opponent: 'KB손해보험',
-      venue: '천안유관순체육관',
-    },
+    recentMatches: [],
+    upcomingMatch: null,
   };
 }
 
