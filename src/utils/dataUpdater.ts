@@ -80,8 +80,7 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
   try {
     // 개발 환경(localhost)에서만 실시간 크롤링 시도
     const isDevelopment = window.location.hostname === 'localhost' || 
-                         window.location.hostname === '127.0.0.1' ||
-                         import.meta.env.DEV;
+                         window.location.hostname === '127.0.0.1';
     
     if (useRealtime && isDevelopment) {
       try {
