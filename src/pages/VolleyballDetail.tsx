@@ -243,7 +243,11 @@ const VolleyballDetail = () => {
                           className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
                         >
                           <div className="flex-1">
-                            <div className="text-sm mb-2" style={{ color: 'rgba(255,255,255,0.5)' }}>{match.date}</div>
+                            <div className="text-sm mb-2" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                              {match.date.includes('-') 
+                                ? match.date.replace(/(\d{4})-(\d{2})-(\d{2})/, '$1.$2.$3')
+                                : match.date}
+                            </div>
                             <div className="flex items-center gap-2 flex-wrap">
                               <div className="text-lg font-semibold text-white">
                                 vs {match.opponent}

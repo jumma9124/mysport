@@ -126,8 +126,8 @@ async function crawlRecentMatches() {
     const now = new Date();
     console.log(`[CRAWL] Starting recent matches crawl at ${now.toISOString()}`);
 
-    // 최근 30일간 경기 확인
-    for (let i = 0; i < 30 && matches.length < 2; i++) {
+    // 최근 30일간 경기 확인 (최대 3개까지)
+    for (let i = 0; i < 30 && matches.length < 3; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];
@@ -155,28 +155,66 @@ async function crawlRecentMatches() {
       console.log(`[CRAWL] Recent matches - Page info: ${JSON.stringify(pageInfo)}`);
 
       const dayMatchesResult = await page.evaluate((teamName) => {
-        const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        // 다양한 셀렉터 시도
+        let items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        
+        // 대체 셀렉터들
+        if (items.length === 0) {
+          items = document.querySelectorAll('[class*="Schedule"] [class*="Item"]');
+        }
+        if (items.length === 0) {
+          items = document.querySelectorAll('[class*="Game"] [class*="Item"]');
+        }
+        if (items.length === 0) {
+          items = document.querySelectorAll('li[class*="game"], div[class*="game"]');
+        }
+        
         const debugInfo = {
           totalItems: items.length,
-          items: []
+          items: [],
+          selectors: {
+            primary: document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX').length,
+            alt1: document.querySelectorAll('[class*="Schedule"] [class*="Item"]').length,
+            alt2: document.querySelectorAll('[class*="Game"] [class*="Item"]').length,
+            alt3: document.querySelectorAll('li[class*="game"], div[class*="game"]').length
+          }
         };
-        
-        // 대체 셀렉터 시도
-        if (items.length === 0) {
-          const altItems = document.querySelectorAll('[class*="Schedule"], [class*="Game"], [class*="Item"]');
-          debugInfo.alternativeItems = altItems.length;
-        }
         
         const results = [];
 
         items.forEach((item, idx) => {
-          const statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
+          // 다양한 상태 셀렉터 시도
+          let statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
+          if (!statusEl) {
+            statusEl = item.querySelector('[class*="state"], [class*="status"], [class*="game_state"]');
+          }
           const status = statusEl ? statusEl.textContent.trim() : null;
 
-          if (status === '경기종료') {
-            const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
-            const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
-            const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+          if (status === '경기종료' || status === '종료' || (status && !status.includes('예정') && !status.includes('취소'))) {
+            // 다양한 팀 셀렉터 시도
+            let teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
+            if (teams.length === 0) {
+              teams = item.querySelectorAll('[class*="team"], [class*="Team"]');
+            }
+            if (teams.length === 0) {
+              teams = item.querySelectorAll('div[class*="home"], div[class*="away"]');
+            }
+            
+            let homeTeam = '';
+            let awayTeam = '';
+            
+            if (teams.length >= 2) {
+              // 팀명 추출 시도
+              const homeTeamEl = teams[0].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
+                                teams[0].querySelector('[class*="name"]') ||
+                                teams[0].querySelector('span, div');
+              const awayTeamEl = teams[1].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
+                                teams[1].querySelector('[class*="name"]') ||
+                                teams[1].querySelector('span, div');
+              
+              homeTeam = homeTeamEl ? homeTeamEl.textContent.trim() : '';
+              awayTeam = awayTeamEl ? awayTeamEl.textContent.trim() : '';
+            }
             
             debugInfo.items.push({
               idx: idx + 1,
@@ -188,8 +226,23 @@ async function crawlRecentMatches() {
             });
 
             if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
-              const homeScore = parseInt(teams[0]?.querySelector('.ScheduleAllGameListItem_score__3Xzs7')?.textContent.trim());
-              const awayScore = parseInt(teams[1]?.querySelector('.ScheduleAllGameListItem_score__3Xzs7')?.textContent.trim());
+              // 스코어 추출 시도
+              let homeScoreEl = teams[0].querySelector('.ScheduleAllGameListItem_score__3Xzs7') ||
+                               teams[0].querySelector('[class*="score"]') ||
+                               teams[0].querySelector('span, div');
+              let awayScoreEl = teams[1].querySelector('.ScheduleAllGameListItem_score__3Xzs7') ||
+                               teams[1].querySelector('[class*="score"]') ||
+                               teams[1].querySelector('span, div');
+              
+              const homeScoreText = homeScoreEl ? homeScoreEl.textContent.trim() : '';
+              const awayScoreText = awayScoreEl ? awayScoreEl.textContent.trim() : '';
+              
+              // 숫자만 추출
+              const homeScoreMatch = homeScoreText.match(/\d+/);
+              const awayScoreMatch = awayScoreText.match(/\d+/);
+              
+              const homeScore = homeScoreMatch ? parseInt(homeScoreMatch[0]) : 0;
+              const awayScore = awayScoreMatch ? parseInt(awayScoreMatch[0]) : 0;
 
               const isHome = homeTeam.includes(teamName);
               const opponent = isHome ? awayTeam : homeTeam;
@@ -212,7 +265,7 @@ async function crawlRecentMatches() {
                 }
               });
 
-              if (!isNaN(ourScore) && !isNaN(opponentScore)) {
+              if (!isNaN(ourScore) && !isNaN(opponentScore) && (ourScore > 0 || opponentScore > 0)) {
                 results.push({
                   opponent,
                   ourScore,
@@ -232,11 +285,10 @@ async function crawlRecentMatches() {
       console.log(`[CRAWL] Date ${dateStr}: Debug info: ${JSON.stringify(dayMatchesResult?.debugInfo)}`);
       console.log(`[CRAWL] Date ${dateStr}: Found ${dayMatches.length} matches`);
       if (dayMatches.length > 0) {
-        const matchDate = dateStr.substring(2).replace(/-/g, '.');
         dayMatches.forEach(match => {
-          console.log(`[CRAWL] Adding match: ${matchDate} vs ${match.opponent}`);
+          console.log(`[CRAWL] Adding match: ${dateStr} vs ${match.opponent}`);
           matches.push({
-            date: matchDate,
+            date: dateStr, // ISO 형식으로 저장 (예: "2026-01-04")
             opponent: match.opponent,
             venue: '천안유관순체육관',
             result: match.result,
@@ -255,7 +307,9 @@ async function crawlRecentMatches() {
     }
 
     console.log(`✓ Found ${matches.length} recent matches`);
-    return matches.slice(0, 2);
+    // 최신순으로 정렬 (날짜 내림차순)
+    matches.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return matches.slice(0, 3); // 최대 3개 반환
 
   } catch (error) {
     if (browser) await browser.close();
@@ -308,25 +362,46 @@ async function crawlUpcomingMatch() {
       console.log(`[CRAWL] Upcoming match - Page info: ${JSON.stringify(pageInfo)}`);
 
       const upcomingMatchResult = await page.evaluate((teamName, matchDate) => {
-        const items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        // 다양한 셀렉터 시도
+        let items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
+        if (items.length === 0) {
+          items = document.querySelectorAll('[class*="Schedule"] [class*="Item"]');
+        }
+        if (items.length === 0) {
+          items = document.querySelectorAll('[class*="Game"] [class*="Item"]');
+        }
+        
         const debugInfo = {
           totalItems: items.length,
           items: []
         };
-        
-        // 대체 셀렉터 시도
-        if (items.length === 0) {
-          const altItems = document.querySelectorAll('[class*="Schedule"], [class*="Game"], [class*="Item"]');
-          debugInfo.alternativeItems = altItems.length;
-        }
 
         for (let item of items) {
-          const statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
+          let statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
+          if (!statusEl) {
+            statusEl = item.querySelector('[class*="state"], [class*="status"]');
+          }
           const status = statusEl ? statusEl.textContent.trim() : null;
 
-          const teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
-          const homeTeam = teams[0]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
-          const awayTeam = teams[1]?.querySelector('.ScheduleAllGameListItem_name__3LNRT')?.textContent.trim();
+          let teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
+          if (teams.length === 0) {
+            teams = item.querySelectorAll('[class*="team"], [class*="Team"]');
+          }
+          
+          let homeTeam = '';
+          let awayTeam = '';
+          
+          if (teams.length >= 2) {
+            const homeTeamEl = teams[0].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
+                              teams[0].querySelector('[class*="name"]') ||
+                              teams[0].querySelector('span, div');
+            const awayTeamEl = teams[1].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
+                              teams[1].querySelector('[class*="name"]') ||
+                              teams[1].querySelector('span, div');
+            
+            homeTeam = homeTeamEl ? homeTeamEl.textContent.trim() : '';
+            awayTeam = awayTeamEl ? awayTeamEl.textContent.trim() : '';
+          }
           
           debugInfo.items.push({
             status,
@@ -336,16 +411,20 @@ async function crawlUpcomingMatch() {
             matchesTeam: homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))
           });
 
-          if (status !== '경기종료') {
+          if (status !== '경기종료' && status !== '종료') {
             if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
               const isHome = homeTeam.includes(teamName);
               const opponent = isHome ? awayTeam : homeTeam;
               const venue = isHome ? '천안유관순체육관' : '원정';
-              const timeTextEl = item.querySelector('.ScheduleAllGameListItem_time__3xyqM');
+              
+              let timeTextEl = item.querySelector('.ScheduleAllGameListItem_time__3xyqM');
+              if (!timeTextEl) {
+                timeTextEl = item.querySelector('[class*="time"], [class*="Time"]');
+              }
               const timeText = timeTextEl ? timeTextEl.textContent.trim() : '';
 
               return { match: {
-                date: `${matchDate} ${timeText}`,
+                date: `${matchDate} ${timeText}`.trim(),
                 opponent,
                 venue
               }, debugInfo };
