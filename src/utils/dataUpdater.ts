@@ -51,7 +51,7 @@ export const fetchBaseballData = async (): Promise<BaseballData> => {
     const sportsResponse = await fetch(`${getBasePath()}data/sports.json`);
     if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
     const sportsData = await sportsResponse.json();
-    const baseballData = sportsData.baseball;
+    const baseballData = sportsData.baseball || {};
 
     // baseball-detail.json에서 상세 정보 로드
     const detailResponse = await fetch(`${getBasePath()}data/baseball-detail.json`);
@@ -78,14 +78,14 @@ export const fetchBaseballData = async (): Promise<BaseballData> => {
 // 배구 데이터 로드 (실시간 크롤링 또는 JSON 파일)
 export const fetchVolleyballData = async (useRealtime = true): Promise<VolleyballData> => {
   try {
-    // 실시간 크롤링 시도
-    if (useRealtime) {
+    // 개발 환경(localhost)에서만 실시간 크롤링 시도
+    const isDevelopment = window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1' ||
+                         import.meta.env.DEV;
+    
+    if (useRealtime && isDevelopment) {
       try {
-        const apiPath = window.location.hostname === 'localhost' 
-          ? '/api/crawl-volleyball' 
-          : `${getBasePath()}api/crawl-volleyball`;
-        
-        const crawlResponse = await fetch(apiPath, {
+        const crawlResponse = await fetch('/api/crawl-volleyball', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -98,6 +98,9 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
             ...crawlData,
             seasonStatus: getSeasonStatus('volleyball'),
           };
+        } else {
+          // 404 등 HTTP 에러는 조용히 폴백
+          console.warn(`Real-time crawl returned ${crawlResponse.status}, falling back to JSON`);
         }
       } catch (crawlError) {
         console.warn('Real-time crawl failed, falling back to JSON:', crawlError);
@@ -109,7 +112,7 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
     const sportsResponse = await fetch(`${getBasePath()}data/sports.json`);
     if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
     const sportsData = await sportsResponse.json();
-    const volleyballData = sportsData.volleyball;
+    const volleyballData = sportsData.volleyball || {};
 
     const detailResponse = await fetch(`${getBasePath()}data/volleyball-detail.json`);
     if (!detailResponse.ok) throw new Error('Failed to fetch volleyball-detail.json');

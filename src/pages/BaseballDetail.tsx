@@ -11,14 +11,22 @@ const BaseballDetail = () => {
   const leagueStandingsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const loadData = async () => {
       setLoading(true);
       const result = await fetchBaseballData();
-      setData(result);
-      setLoading(false);
+      if (isMounted) {
+        setData(result);
+        setLoading(false);
+      }
     };
 
     loadData();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // 리그 순위 섹션의 높이를 측정해서 선수 기록 섹션 높이에 적용

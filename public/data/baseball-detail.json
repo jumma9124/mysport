@@ -985,62 +985,7 @@
       "so": 18
     }
   ],
-  "headToHead": [
-    {
-      "opponent": "KIA",
-      "wins": 5,
-      "losses": 11,
-      "draws": 0
-    },
-    {
-      "opponent": "삼성",
-      "wins": 6,
-      "losses": 10,
-      "draws": 0
-    },
-    {
-      "opponent": "LG",
-      "wins": 8,
-      "losses": 8,
-      "draws": 0
-    },
-    {
-      "opponent": "두산",
-      "wins": 9,
-      "losses": 7,
-      "draws": 0
-    },
-    {
-      "opponent": "KT",
-      "wins": 8,
-      "losses": 8,
-      "draws": 0
-    },
-    {
-      "opponent": "SSG",
-      "wins": 9,
-      "losses": 7,
-      "draws": 0
-    },
-    {
-      "opponent": "롯데",
-      "wins": 9,
-      "losses": 7,
-      "draws": 0
-    },
-    {
-      "opponent": "NC",
-      "wins": 6,
-      "losses": 10,
-      "draws": 0
-    },
-    {
-      "opponent": "키움",
-      "wins": 6,
-      "losses": 8,
-      "draws": 0
-    }
-  ],
+  "headToHead": [],
   "lastSeries": {
     "opponent": "KIA",
     "date": "24.10.02",

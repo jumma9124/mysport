@@ -10,14 +10,22 @@ const VolleyballDetail = () => {
   const [activeTab, setActiveTab] = useState<'men' | 'women'>('men');
 
   useEffect(() => {
+    let isMounted = true;
+    
     const loadData = async () => {
       setLoading(true);
       const result = await fetchVolleyballData();
-      setData(result);
-      setLoading(false);
+      if (isMounted) {
+        setData(result);
+        setLoading(false);
+      }
     };
 
     loadData();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const toggleMatch = (index: number) => {

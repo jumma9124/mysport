@@ -17,7 +17,11 @@ const NAVER_URLS = {
   standings: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=teamRank',
   batters: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=hitter',
   pitchers: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=pitcher',
-  headToHead: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=vsTeam',
+};
+
+// KBO 공식 사이트 URL
+const KBO_URLS = {
+  headToHead: 'https://www.koreabaseball.com/Record/TeamRank/TeamRank.aspx',
 };
 
 async function crawlStandings() {
@@ -548,7 +552,7 @@ async function crawlPitchers() {
 async function crawlHeadToHead() {
   let browser;
   try {
-    console.log('Fetching head-to-head data...');
+    console.log('Fetching head-to-head data from KBO...');
     try {
       browser = await puppeteer.launch({
         headless: true,
@@ -567,68 +571,115 @@ async function crawlHeadToHead() {
     }
 
     const page = await browser.newPage();
-    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
-    await page.setViewport({ width: 375, height: 667 });
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+    await page.setViewport({ width: 1920, height: 1080 });
 
-    await page.goto(NAVER_URLS.headToHead, {
-      waitUntil: 'domcontentloaded',
+    await page.goto(KBO_URLS.headToHead, {
+      waitUntil: 'networkidle2',
       timeout: 60000
-    }).catch(async (err) => {
-      console.warn('Head-to-head page navigation failed, retrying...', err.message);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      await page.goto(NAVER_URLS.headToHead, {
-        waitUntil: 'domcontentloaded',
-        timeout: 60000
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
+    // 디버깅: 페이지 구조 확인
+    const debugInfo = await page.evaluate(() => {
+      const tables = document.querySelectorAll('table');
+      const info = {
+        tablesCount: tables.length,
+        tables: []
+      };
+
+      tables.forEach((table, idx) => {
+        const tableInfo = {
+          index: idx,
+          className: table.className,
+          id: table.id,
+          rowsCount: table.querySelectorAll('tr').length,
+          headersCount: table.querySelectorAll('th').length,
+          firstRowText: ''
+        };
+
+        const firstRow = table.querySelector('tbody tr');
+        if (firstRow) {
+          tableInfo.firstRowText = firstRow.textContent.trim().substring(0, 200);
+        }
+
+        info.tables.push(tableInfo);
       });
+
+      return info;
     });
 
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
-    const hasSelector = await page.evaluate(() => {
-      return document.querySelector('.TableBody_list__P8yRn') !== null;
-    });
-
-    if (!hasSelector) {
-      console.log('Selector not found for head-to-head');
-      await browser.close();
-      return null;
-    }
+    console.log('=== KBO Page Debug ===');
+    console.log(JSON.stringify(debugInfo, null, 2));
 
     const headToHead = await page.evaluate((teamName) => {
-      const rows = document.querySelectorAll('.TableBody_item__eCenH');
       const result = [];
 
+      // KBO 사이트의 두 번째 테이블 (팀간 승패표) 찾기
+      const tables = document.querySelectorAll('table.tData');
+      if (tables.length < 2) {
+        console.log('Head-to-head table not found');
+        return result;
+      }
+
+      const table = tables[1]; // 두 번째 테이블이 팀간 승패표
+      const rows = Array.from(table.querySelectorAll('tbody tr'));
+      console.log(`Found ${rows.length} rows in head-to-head table`);
+
+      // 테이블 헤더에서 팀 이름 순서 확인
+      const headerRow = table.querySelector('thead tr');
+      if (!headerRow) {
+        console.log('Header row not found');
+        return result;
+      }
+
+      const headers = Array.from(headerRow.querySelectorAll('th'));
+      console.log(`Found ${headers.length} header cells`);
+
+      // 헤더에서 팀 이름만 추출 (첫 번째는 "팀명", 마지막은 "합계" 제외)
+      const teamNames = [];
+      for (let i = 1; i < headers.length - 1; i++) {
+        const headerText = headers[i].textContent.trim();
+        // 형식: "LG\n(승-패-무)" -> "LG"만 추출
+        const teamName = headerText.split('\n')[0].trim();
+        teamNames.push(teamName);
+      }
+
+      console.log('Team names from headers:', teamNames);
+
       rows.forEach((row) => {
-        const teamEl = row.querySelector('.TeamInfo_team_name__dni7F');
-        const ourTeam = teamEl ? teamEl.textContent.trim() : '';
+        const cells = Array.from(row.querySelectorAll('td'));
+        if (cells.length < 2) return;
 
-        if (ourTeam.includes(teamName)) {
-          const opponentRows = row.parentElement.querySelectorAll('.TableBody_item__eCenH');
+        // 첫 번째 셀에서 팀 이름 찾기
+        const teamCell = cells[0];
+        const teamText = teamCell.textContent.trim();
 
-          opponentRows.forEach((opRow, idx) => {
-            if (idx === 0) return; // Skip first row (our team)
+        if (teamText.includes(teamName) || teamText.includes('한화')) {
+          console.log(`Found our team row: ${teamText}`);
 
-            const opTeamEl = opRow.querySelector('.TeamInfo_team_name__dni7F');
-            const opponent = opTeamEl ? opTeamEl.textContent.trim() : '';
+          // 각 팀별 전적 파싱 (첫 번째 셀은 팀 이름, 마지막 셀은 합계이므로 건너뜀)
+          for (let i = 1; i < cells.length - 1 && i - 1 < teamNames.length; i++) {
+            const cellText = cells[i].textContent.trim();
 
-            const textElements = opRow.querySelectorAll('.TextInfo_text__ysEqh');
-            const values = [];
-            textElements.forEach(el => {
-              const text = el.textContent.trim();
-              const numMatch = text.match(/\d+/);
-              if (numMatch) {
-                values.push(parseInt(numMatch[0]));
-              }
-            });
+            // "■"는 자기 자신이므로 건너뜀
+            if (cellText === '■') continue;
 
-            const wins = values[0] || 0;
-            const losses = values[1] || 0;
-            const draws = values[2] || 0;
+            // 형식: "5-4-1" (승-패-무)
+            const parts = cellText.split('-').map(p => parseInt(p.trim()) || 0);
 
-            if (opponent) {
-              result.push({ opponent, wins, losses, draws });
+            if (parts.length >= 2) {
+              const opponent = teamNames[i - 1];
+              result.push({
+                opponent: opponent,
+                wins: parts[0],
+                losses: parts[1],
+                draws: parts.length > 2 ? parts[2] : 0
+              });
+              console.log(`${opponent}: ${parts[0]}-${parts[1]}-${parts.length > 2 ? parts[2] : 0}`);
             }
-          });
+          }
         }
       });
 

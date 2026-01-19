@@ -9,16 +9,24 @@ const BaseballCard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const loadData = async () => {
       setLoading(true);
       const result = await fetchBaseballData();
-      setData(result);
-      setLoading(false);
+      if (isMounted) {
+        setData(result);
+        setLoading(false);
+      }
     };
 
     loadData();
     // 실제로는 시즌 중일 때 오전 10시, 오후 10시에 업데이트
     // 오프시즌일 때는 일주일에 한번
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (loading || !data) {

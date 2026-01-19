@@ -9,14 +9,22 @@ const VolleyballCard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const loadData = async () => {
       setLoading(true);
       const result = await fetchVolleyballData();
-      setData(result);
-      setLoading(false);
+      if (isMounted) {
+        setData(result);
+        setLoading(false);
+      }
     };
 
     loadData();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (loading || !data) {
@@ -83,7 +91,7 @@ const VolleyballCard = () => {
               {data.record.wins}승 {data.record.losses}패
               <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
               {data.record.points}점
-              {!isOffSeason && (
+              {!isOffSeason && data.record.setRate !== undefined && (
                 <>
                   <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
                   {data.record.setRate.toFixed(3)}
