@@ -105,36 +105,35 @@ const InternationalSportsDetail = () => {
         </header>
 
         {/* 이벤트 리스트 */}
-        <div style={{
-          background: 'rgb(32, 34, 52)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '15px',
-          padding: '20px',
-          border: '1px solid rgba(255, 255, 255, 0.2)'
-        }}>
-          <div className="flex items-center mb-4">
-            <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-              background: 'rgba(76, 175, 80, 0.2)',
-              borderColor: 'rgba(76, 175, 80, 0.5)',
-              color: '#4caf50',
-              fontSize: '14px',
-              fontWeight: 700
-            }}>
-              ✓
-            </div>
-            <h2 className="text-xl font-bold text-white">국제 스포츠 대회</h2>
-          </div>
+        {events.length > 0 ? (
+          <div className="space-y-4">
+            {events.map((event, idx) => (
+              <div key={idx} style={{
+                background: 'rgb(32, 34, 52)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '15px',
+                padding: '20px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div className="flex items-center mb-4">
+                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                    background: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                    color: '#4caf50',
+                    fontSize: '14px',
+                    fontWeight: 700
+                  }}>
+                    ✓
+                  </div>
+                  <h2 className="text-xl font-bold text-white">{event.name}</h2>
+                </div>
 
-          {events.length > 0 ? (
-            <div className="space-y-3">
-              {events.map((event, idx) => (
-                <div key={idx} className="rounded-lg" style={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                <div className="rounded-lg" style={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
                   <button
                     onClick={() => toggleEvent(idx)}
                     className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-white font-semibold">{event.name}</span>
                       <span
                         className="px-2 py-0.5 rounded text-sm"
                         style={{
@@ -144,11 +143,9 @@ const InternationalSportsDetail = () => {
                       >
                         {event.daysLeft === 0 ? '진행 중' : `개막 D-${event.daysLeft}`}
                       </span>
-                    </div>
-                    <div className="flex items-center gap-2">
                       <span className="text-sm text-gray-400">{event.date}</span>
-                      <span className="text-white">{expandedEvents[idx] ? '▼' : '▶'}</span>
                     </div>
+                    <span className="text-white">{expandedEvents[idx] ? '▼' : '▶'}</span>
                   </button>
 
                   {expandedEvents[idx] && (
@@ -199,14 +196,14 @@ const InternationalSportsDetail = () => {
                     </div>
                   )}
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
-              예정된 이벤트가 없습니다
-            </div>
-          )}
-        </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            예정된 이벤트가 없습니다
+          </div>
+        )}
       </div>
     </div>
   );
