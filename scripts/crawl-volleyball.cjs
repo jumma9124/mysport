@@ -16,6 +16,7 @@ const DATA_DIR = path.join(__dirname, '../public/data');
 // 네이버 스포츠 모바일 URL
 const NAVER_URLS = {
   standings: 'https://m.sports.naver.com/volleyball/record/kovo?seasonCode=022&tab=teamRank',
+  standingsWomen: 'https://m.sports.naver.com/volleyball/record/index?category=wkovo',
   schedule: (date) => `https://m.sports.naver.com/volleyball/schedule/index?category=kovo&date=${date}&teamCode=${TEAM_CODE}`,
 };
 
@@ -106,6 +107,97 @@ async function crawlStandings() {
 
   } catch (error) {
     console.error('Failed to crawl standings:', error.message);
+    return null;
+  }
+}
+
+async function crawlStandingsWomen() {
+  let browser;
+  try {
+    console.log('Launching browser for women\'s standings...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+
+    console.log('Navigating to Naver Sports Women\'s Division...');
+    await page.goto(NAVER_URLS.standingsWomen, {
+      waitUntil: 'networkidle2',
+      timeout: 30000
+    });
+
+    // React가 렌더링될 때까지 대기
+    await page.waitForSelector('.TableBody_list__P8yRn', { timeout: 10000 });
+
+    // 추가 대기 시간 (React 렌더링 완료 보장)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // JavaScript로 페이지 내에서 데이터 추출
+    const standings = await page.evaluate(() => {
+      const rows = document.querySelectorAll('.TableBody_item__eCenH');
+      const result = [];
+
+      rows.forEach((row) => {
+        // 순위
+        const rankEl = row.querySelector('.TeamInfo_ranking__MqHpq');
+        const rank = rankEl ? parseInt(rankEl.textContent.trim()) : 0;
+
+        // 팀명
+        const teamEl = row.querySelector('.TeamInfo_team_name__dni7F');
+        const teamName = teamEl ? teamEl.textContent.trim() : '';
+
+        // 모든 텍스트 요소 직접 가져오기
+        const textElements = row.querySelectorAll('.TextInfo_text__ysEqh');
+
+        // blind 클래스가 없는 실제 데이터만 추출
+        const values = [];
+        textElements.forEach(el => {
+          const text = el.textContent.trim();
+          // blind span 제외하고 숫자만 추출
+          const numMatch = text.match(/\d+\.?\d*/);
+          if (numMatch) {
+            values.push(numMatch[0]);
+          }
+        });
+
+        // values 배열: [승점, 경기, 승, 패, 세트득실률, 점수득실률, ...]
+        const points = values[0] ? parseInt(values[0]) : 0;
+        const wins = values[2] ? parseInt(values[2]) : 0;
+        const losses = values[3] ? parseInt(values[3]) : 0;
+        const setRate = values[4] ? parseFloat(values[4]) : 0;
+
+        if (!isNaN(rank) && teamName) {
+          result.push({
+            name: teamName,
+            wins,
+            losses,
+            setWins: 0,
+            setLosses: 0,
+            setRate,
+            rank,
+            points,
+          });
+        }
+      });
+
+      return result;
+    });
+
+    await browser.close();
+
+    if (standings.length === 0) {
+      console.warn('No women\'s standings data found');
+      return null;
+    }
+
+    console.log(`✓ Found ${standings.length} teams in women's standings`);
+    return standings;
+
+  } catch (error) {
+    console.error('Failed to crawl women\'s standings:', error.message);
     return null;
   }
 }
@@ -483,20 +575,23 @@ async function crawlVolleyballData() {
   try {
     console.log('Starting volleyball data crawl...');
 
-    // 실시간 데이터 크롤링 시도
-    const [standings, recentMatches, upcomingMatch] = await Promise.all([
+    // 실시간 데이터 크롤링 시도 (여자부 순위 추가)
+    const [standings, standingsWomen, recentMatches, upcomingMatch] = await Promise.all([
       crawlStandings(),
+      crawlStandingsWomen(),
       crawlRecentMatches(),
       crawlUpcomingMatch(),
     ]);
 
     console.log(`[RESULT] Standings: ${standings ? 'SUCCESS (' + standings.length + ' teams)' : 'FAILED'}`);
+    console.log(`[RESULT] Women's Standings: ${standingsWomen ? 'SUCCESS (' + standingsWomen.length + ' teams)' : 'FAILED'}`);
     console.log(`[RESULT] Recent matches: ${recentMatches ? 'SUCCESS (' + recentMatches.length + ' matches)' : 'FAILED'}`);
     console.log(`[RESULT] Upcoming match: ${upcomingMatch ? 'SUCCESS (' + JSON.stringify(upcomingMatch) + ')' : 'FAILED'}`);
 
     // 크롤링 실패 시 폴백 데이터 사용
     const fallbackData = getFallbackData();
     const standingsData = standings || fallbackData.standings;
+    const standingsWomenData = standingsWomen || [];
     // recentMatches 처리: null이면 빈 배열, 배열이고 길이가 0보다 크면 사용
     let matchesData = [];
     if (recentMatches) {
@@ -521,12 +616,14 @@ async function crawlVolleyballData() {
     // volleyball-detail.json 생성
     const volleyballDetail = {
       leagueStandings: standingsData || [],
+      leagueStandingsWomen: standingsWomenData || [],
       recentMatches: matchesData || [],
       upcomingMatch: upcomingMatchData || null,
     };
-    
+
     console.log(`[SAVE] Saving volleyball-detail.json with:`);
     console.log(`  - leagueStandings: ${volleyballDetail.leagueStandings.length} teams`);
+    console.log(`  - leagueStandingsWomen: ${volleyballDetail.leagueStandingsWomen.length} teams`);
     console.log(`  - recentMatches: ${volleyballDetail.recentMatches.length} matches`);
     if (volleyballDetail.recentMatches.length > 0) {
       console.log(`  - recentMatches data: ${JSON.stringify(volleyballDetail.recentMatches)}`);

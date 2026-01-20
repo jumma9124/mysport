@@ -124,6 +124,7 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
     const result = {
       ...volleyballData,
       leagueStandings: detailData.leagueStandings || [],
+      leagueStandingsWomen: detailData.leagueStandingsWomen || [],
       recentMatches: detailData.recentMatches || [],
       upcomingMatch: detailData.upcomingMatch,
       attackers: detailData.attackers,

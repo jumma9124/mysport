@@ -69,6 +69,7 @@ export function volleyballCrawlPlugin(): Plugin {
           const result = {
             ...sportsData.volleyball,
             leagueStandings: volleyballDetail.leagueStandings || [],
+            leagueStandingsWomen: volleyballDetail.leagueStandingsWomen || [],
             recentMatches: volleyballDetail.recentMatches || [],
             upcomingMatch: volleyballDetail.upcomingMatch,
           };

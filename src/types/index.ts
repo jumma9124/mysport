@@ -120,6 +120,7 @@ export interface VolleyballData {
     setRate: number;
   };
   leagueStandings: VolleyballTeam[];
+  leagueStandingsWomen?: VolleyballTeam[]; // 여자부 순위
   recentMatches: VolleyballMatch[];
   upcomingMatch?: {
     date: string;
