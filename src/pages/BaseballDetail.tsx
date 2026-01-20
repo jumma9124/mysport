@@ -372,9 +372,90 @@ const BaseballDetail = () => {
                       </div>
                     </button>
                     {expandedGames[idx] && (
-                      <div className="px-4 pb-4 space-y-2">
-                        <div className="pt-2 border-t border-white/10">
-                          <div className="text-sm text-gray-400">경기 상세 정보가 여기에 표시됩니다.</div>
+                      <div className="px-4 pb-4 space-y-4">
+                        <div className="pt-4 border-t border-white/10">
+                          {/* 이닝별 점수 */}
+                          {game.innings && game.innings.length > 0 && (
+                            <div className="mb-4">
+                              <h4 className="text-sm font-semibold text-white mb-2">이닝별 점수</h4>
+                              <div style={{ overflowX: 'auto' }}>
+                                <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse' }}>
+                                  <thead>
+                                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                                      <th style={{ padding: '8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>팀</th>
+                                      {game.innings.map((inning) => (
+                                        <th key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>
+                                          {inning.inning}
+                                        </th>
+                                      ))}
+                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>R</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                                      <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.team}</td>
+                                      {game.innings.map((inning) => (
+                                        <td key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>
+                                          {inning.ourScore}
+                                        </td>
+                                      ))}
+                                      <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px', fontWeight: 600 }}>
+                                        {game.innings.reduce((sum, inning) => sum + inning.ourScore, 0)}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries.opponent}</td>
+                                      {game.innings.map((inning) => (
+                                        <td key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>
+                                          {inning.opponentScore}
+                                        </td>
+                                      ))}
+                                      <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px', fontWeight: 600 }}>
+                                        {game.innings.reduce((sum, inning) => sum + inning.opponentScore, 0)}
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* 팀 기록 */}
+                          {(game.ourTeamStats || game.opponentStats) && (
+                            <div>
+                              <h4 className="text-sm font-semibold text-white mb-2">팀 기록</h4>
+                              <div style={{ overflowX: 'auto' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                                  <thead>
+                                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                                      <th style={{ padding: '8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>팀</th>
+                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>안타</th>
+                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>홈런</th>
+                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>실책</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {game.ourTeamStats && (
+                                      <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                                        <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.team}</td>
+                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.ourTeamStats.hits}</td>
+                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.ourTeamStats.homeRuns}</td>
+                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.ourTeamStats.errors}</td>
+                                      </tr>
+                                    )}
+                                    {game.opponentStats && (
+                                      <tr>
+                                        <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries.opponent}</td>
+                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.hits}</td>
+                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.homeRuns}</td>
+                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.errors}</td>
+                                      </tr>
+                                    )}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}

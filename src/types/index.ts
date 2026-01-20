@@ -51,6 +51,21 @@ export interface BaseballSeries {
     date: string;
     result: 'win' | 'loss' | 'draw';
     score: string;
+    innings?: Array<{
+      inning: number;
+      ourScore: number;
+      opponentScore: number;
+    }>;
+    ourTeamStats?: {
+      hits: number;
+      errors: number;
+      homeRuns: number;
+    };
+    opponentStats?: {
+      hits: number;
+      errors: number;
+      homeRuns: number;
+    };
   }>;
 }
 
