@@ -284,17 +284,21 @@ async function crawlRecentMatches() {
       const dayMatches = dayMatchesResult?.results || [];
       console.log(`[CRAWL] Date ${dateStr}: Debug info: ${JSON.stringify(dayMatchesResult?.debugInfo)}`);
       console.log(`[CRAWL] Date ${dateStr}: Found ${dayMatches.length} matches`);
-      if (dayMatches.length > 0) {
+      if (dayMatches && dayMatches.length > 0) {
         dayMatches.forEach(match => {
-          console.log(`[CRAWL] Adding match: ${dateStr} vs ${match.opponent}`);
-          matches.push({
-            date: dateStr, // ISO 형식으로 저장 (예: "2026-01-04")
-            opponent: match.opponent,
-            venue: '천안유관순체육관',
-            result: match.result,
-            score: `${match.ourScore}-${match.opponentScore}`,
-            sets: match.sets
-          });
+          if (match && match.opponent) {
+            console.log(`[CRAWL] Adding match: ${dateStr} vs ${match.opponent}, result: ${match.result}, score: ${match.ourScore}-${match.opponentScore}`);
+            matches.push({
+              date: dateStr, // ISO 형식으로 저장 (예: "2026-01-04")
+              opponent: match.opponent,
+              venue: '천안유관순체육관',
+              result: match.result,
+              score: `${match.ourScore}-${match.opponentScore}`,
+              sets: match.sets || []
+            });
+          } else {
+            console.warn(`[CRAWL] Skipping invalid match: ${JSON.stringify(match)}`);
+          }
         });
       }
     }
@@ -302,14 +306,16 @@ async function crawlRecentMatches() {
     await browser.close();
 
     if (matches.length === 0) {
-      console.warn('No recent matches found');
-      return null;
+      console.warn('No recent matches found after checking 30 days');
+      return []; // null 대신 빈 배열 반환
     }
 
     console.log(`✓ Found ${matches.length} recent matches`);
     // 최신순으로 정렬 (날짜 내림차순)
     matches.sort((a, b) => new Date(b.date) - new Date(a.date));
-    return matches.slice(0, 3); // 최대 3개 반환
+    const result = matches.slice(0, 3); // 최대 3개 반환
+    console.log(`✓ Returning ${result.length} recent matches: ${JSON.stringify(result)}`);
+    return result;
 
   } catch (error) {
     if (browser) await browser.close();
@@ -448,7 +454,7 @@ async function crawlUpcomingMatch() {
 
     await browser.close();
     console.warn('No upcoming match found in next 30 days');
-    return null;
+    return null; // upcomingMatch는 null 유지
 
   } catch (error) {
     if (browser) await browser.close();
@@ -556,19 +562,41 @@ async function crawlVolleyballData() {
     // 크롤링 실패 시 폴백 데이터 사용
     const fallbackData = getFallbackData();
     const standingsData = standings || fallbackData.standings;
-    const matchesData = recentMatches || fallbackData.recentMatches;
+    // recentMatches 처리: null이면 빈 배열, 배열이고 길이가 0보다 크면 사용
+    let matchesData = [];
+    if (recentMatches) {
+      if (Array.isArray(recentMatches) && recentMatches.length > 0) {
+        matchesData = recentMatches;
+        console.log(`[FINAL] Using CRAWLED recent matches: ${matchesData.length} matches`);
+      } else {
+        console.warn(`[FINAL] recentMatches is not a valid array or is empty: ${JSON.stringify(recentMatches)}`);
+        matchesData = [];
+      }
+    } else {
+      console.warn(`[FINAL] recentMatches is null, using empty array`);
+      matchesData = [];
+    }
     const upcomingMatchData = upcomingMatch || fallbackData.upcomingMatch;
 
-    console.log(`[FINAL] Using standings: ${standings ? 'CRAWLED' : 'FALLBACK'}`);
-    console.log(`[FINAL] Using recent matches: ${recentMatches ? 'CRAWLED (' + recentMatches.length + ')' : 'FALLBACK (' + (matchesData ? matchesData.length : 0) + ')'}`);
+    console.log(`[FINAL] Using standings: ${standings ? 'CRAWLED (' + standings.length + ' teams)' : 'FALLBACK'}`);
+    console.log(`[FINAL] Using recent matches: ${recentMatches && recentMatches.length > 0 ? 'CRAWLED (' + recentMatches.length + ' matches)' : 'EMPTY/FALLBACK'}`);
+    console.log(`[FINAL] Recent matches data: ${JSON.stringify(matchesData)}`);
     console.log(`[FINAL] Using upcoming match: ${upcomingMatch ? 'CRAWLED' : 'FALLBACK'} - ${upcomingMatchData ? JSON.stringify(upcomingMatchData) : 'null'}`);
 
     // volleyball-detail.json 생성
     const volleyballDetail = {
-      leagueStandings: standingsData,
-      recentMatches: matchesData,
-      upcomingMatch: upcomingMatchData,
+      leagueStandings: standingsData || [],
+      recentMatches: matchesData || [],
+      upcomingMatch: upcomingMatchData || null,
     };
+    
+    console.log(`[SAVE] Saving volleyball-detail.json with:`);
+    console.log(`  - leagueStandings: ${volleyballDetail.leagueStandings.length} teams`);
+    console.log(`  - recentMatches: ${volleyballDetail.recentMatches.length} matches`);
+    if (volleyballDetail.recentMatches.length > 0) {
+      console.log(`  - recentMatches data: ${JSON.stringify(volleyballDetail.recentMatches)}`);
+    }
+    console.log(`  - upcomingMatch: ${volleyballDetail.upcomingMatch ? JSON.stringify(volleyballDetail.upcomingMatch) : 'null'}`);
 
     // sports.json 업데이트
     const sportsJsonPath = path.join(DATA_DIR, 'sports.json');
