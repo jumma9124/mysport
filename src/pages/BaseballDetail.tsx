@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { BaseballData, BaseballPitcher, BaseballBatter, BaseballSeries } from '@/types';
+import { BaseballData, BaseballPitcher, BaseballBatter } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
 
 const BaseballDetail = () => {
