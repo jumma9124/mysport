@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { BaseballData, BaseballPitcher, BaseballBatter } from '@/types';
+import { BaseballData, BaseballPitcher, BaseballBatter, BaseballSeries } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
 
 const BaseballDetail = () => {
@@ -8,7 +8,15 @@ const BaseballDetail = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'pitcher' | 'batter'>('pitcher');
   const [playerRecordsHeight, setPlayerRecordsHeight] = useState<number | null>(null);
+  const [expandedGames, setExpandedGames] = useState<{ [key: number]: boolean }>({});
   const leagueStandingsRef = useRef<HTMLDivElement>(null);
+
+  const toggleGame = (index: number) => {
+    setExpandedGames(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -317,8 +325,8 @@ const BaseballDetail = () => {
           </div>
         </div>
 
-        {/* 시즌 중: 현재 시리즈 */}
-        {isInSeason && data.currentSeries && (
+        {/* 시즌 중: 지난 시리즈 경기결과 */}
+        {isInSeason && (
           <div className="mt-6" style={{
             background: 'rgb(32, 34, 52)',
             backdropFilter: 'blur(10px)',
@@ -326,24 +334,58 @@ const BaseballDetail = () => {
             padding: '20px',
             border: '1px solid rgba(255, 255, 255, 0.2)'
           }}>
-            <h2 className="text-xl font-bold mb-4 text-white">현재 시리즈</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold mb-2 text-white">vs {data.currentSeries.opponent}</h3>
-                <div className="space-y-2">
-                  {data.currentSeries.games.map((game, idx) => (
-                    <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                      <div className="flex justify-between text-white">
-                        <span>{game.date}</span>
-                        <span className={game.result === 'win' ? 'text-green-400' : game.result === 'loss' ? 'text-red-400' : 'text-gray-400'}>
-                          {game.result === 'win' ? '승' : game.result === 'loss' ? '패' : '무'} - {game.score}
+            <div className="flex items-center mb-4">
+              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                background: 'rgba(76, 175, 80, 0.2)',
+                borderColor: 'rgba(76, 175, 80, 0.5)',
+                color: '#4caf50',
+                fontSize: '14px',
+                fontWeight: 700
+              }}>
+                ✓
+              </div>
+              <h2 className="text-xl font-bold text-white">한화 지난 시리즈 경기결과</h2>
+            </div>
+            {data.currentSeries && data.currentSeries.games && data.currentSeries.games.length > 0 ? (
+              <div className="space-y-3">
+                {data.currentSeries.games.map((game, idx) => (
+                  <div key={idx} className="rounded-lg" style={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                    <button
+                      onClick={() => toggleGame(idx)}
+                      className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
+                    >
+                      <div className="flex items-center gap-4">
+                        <span className="text-white font-semibold">vs {data.currentSeries.opponent}</span>
+                        <span
+                          className="px-2 py-0.5 rounded text-sm"
+                          style={{
+                            backgroundColor: game.result === 'win' ? 'rgba(76, 175, 80, 0.15)' : game.result === 'loss' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(156, 163, 175, 0.15)',
+                            color: game.result === 'win' ? 'rgba(76, 175, 80, 0.7)' : game.result === 'loss' ? 'rgba(239, 68, 68, 0.7)' : 'rgba(156, 163, 175, 0.7)'
+                          }}
+                        >
+                          {game.result === 'win' ? '승' : game.result === 'loss' ? '패' : '무'} ({game.score})
                         </span>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-400">{game.date}</span>
+                        <span className="text-white">{expandedGames[idx] ? '▼' : '▶'}</span>
+                      </div>
+                    </button>
+                    {expandedGames[idx] && (
+                      <div className="px-4 pb-4 space-y-2">
+                        <div className="pt-2 border-t border-white/10">
+                          <div className="text-sm text-gray-400">경기 상세 정보가 여기에 표시됩니다.</div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-            </div>
+            ) : (
+              <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                데이터 없음
+              </div>
+            )}
           </div>
         )}
 
