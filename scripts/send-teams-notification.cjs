@@ -117,6 +117,7 @@ async function sendTeamsNotification(matchResult) {
 
 /**
  * 배구 경기 결과 확인 및 알림 전송
+ * 이전 크롤링과 비교하여 새로운 경기 결과가 추가된 경우에만 알림
  */
 async function checkAndNotifyVolleyballResult() {
   console.log('[TEAMS] Checking volleyball match result...');
@@ -124,6 +125,7 @@ async function checkAndNotifyVolleyballResult() {
   try {
     // volleyball-detail.json에서 최근 경기 결과 읽기
     const dataPath = path.join(__dirname, '../public/data/volleyball-detail.json');
+    const lastNotifiedPath = path.join(__dirname, '../public/data/.last-notified.json');
 
     if (!fs.existsSync(dataPath)) {
       console.warn('[TEAMS] volleyball-detail.json not found');
@@ -148,13 +150,25 @@ async function checkAndNotifyVolleyballResult() {
       date: latestMatch.date
     });
 
-    // 오늘 날짜와 비교
-    const today = new Date();
-    const todayStr = `${today.getMonth() + 1}.${today.getDate()}`;
+    // 이전에 알림 보낸 경기 정보 읽기
+    let lastNotified = null;
+    if (fs.existsSync(lastNotifiedPath)) {
+      try {
+        lastNotified = JSON.parse(fs.readFileSync(lastNotifiedPath, 'utf8'));
+      } catch (err) {
+        console.warn('[TEAMS] Failed to read last notified data:', err.message);
+      }
+    }
 
-    // 최근 경기가 오늘인지 확인
-    if (latestMatch.date.includes(todayStr)) {
-      console.log('[TEAMS] Today\'s match found. Sending notification...');
+    // 고유 식별자 생성 (날짜 + 상대팀 + 스코어)
+    const matchId = `${latestMatch.date}_${latestMatch.opponent}_${latestMatch.score}`;
+    const lastMatchId = lastNotified?.matchId;
+
+    // 새로운 경기 결과인지 확인
+    if (matchId !== lastMatchId) {
+      console.log('[TEAMS] New match result detected. Sending notification...');
+      console.log('[TEAMS] Previous matchId:', lastMatchId);
+      console.log('[TEAMS] Current matchId:', matchId);
 
       await sendTeamsNotification({
         team: data.team || '현대캐피탈',
@@ -163,8 +177,20 @@ async function checkAndNotifyVolleyballResult() {
         score: latestMatch.score,
         date: latestMatch.date
       });
+
+      // 알림 보낸 경기 정보 저장
+      fs.writeFileSync(lastNotifiedPath, JSON.stringify({
+        matchId,
+        date: latestMatch.date,
+        opponent: latestMatch.opponent,
+        score: latestMatch.score,
+        notifiedAt: new Date().toISOString()
+      }, null, 2), 'utf8');
+
+      console.log('[TEAMS] Notification sent and recorded');
     } else {
-      console.log('[TEAMS] No match today. Latest match was on:', latestMatch.date);
+      console.log('[TEAMS] This match was already notified. Skipping...');
+      console.log('[TEAMS] MatchId:', matchId);
     }
 
   } catch (error) {

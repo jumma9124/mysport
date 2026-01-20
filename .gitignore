@@ -25,3 +25,9 @@ dist-ssr
 
 # Temporary Claude files
 tmpclaude-*
+
+# Environment variables
+.env
+
+# Notification tracking
+public/data/.last-notified.json
