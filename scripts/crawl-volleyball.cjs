@@ -155,124 +155,79 @@ async function crawlRecentMatches() {
       console.log(`[CRAWL] Recent matches - Page info: ${JSON.stringify(pageInfo)}`);
 
       const dayMatchesResult = await page.evaluate((teamName) => {
-        // 다양한 셀렉터 시도
-        let items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
-        
-        // 대체 셀렉터들
-        if (items.length === 0) {
-          items = document.querySelectorAll('[class*="Schedule"] [class*="Item"]');
-        }
-        if (items.length === 0) {
-          items = document.querySelectorAll('[class*="Game"] [class*="Item"]');
-        }
-        if (items.length === 0) {
-          items = document.querySelectorAll('li[class*="game"], div[class*="game"]');
-        }
-        
+        // 새로운 페이지 구조에 맞는 셀렉터 사용
+        const items = document.querySelectorAll('[class*="MatchBox_match_item"]');
+
         const debugInfo = {
           totalItems: items.length,
           items: [],
           selectors: {
-            primary: document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX').length,
-            alt1: document.querySelectorAll('[class*="Schedule"] [class*="Item"]').length,
-            alt2: document.querySelectorAll('[class*="Game"] [class*="Item"]').length,
-            alt3: document.querySelectorAll('li[class*="game"], div[class*="game"]').length
+            matchBox: items.length
           }
         };
-        
+
         const results = [];
 
         items.forEach((item, idx) => {
-          // 다양한 상태 셀렉터 시도
-          let statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
-          if (!statusEl) {
-            statusEl = item.querySelector('[class*="state"], [class*="status"], [class*="game_state"]');
-          }
+          // 상태 확인
+          const statusEl = item.querySelector('[class*="status"]');
           const status = statusEl ? statusEl.textContent.trim() : null;
 
-          if (status === '경기종료' || status === '종료' || (status && !status.includes('예정') && !status.includes('취소'))) {
-            // 다양한 팀 셀렉터 시도
-            let teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
-            if (teams.length === 0) {
-              teams = item.querySelectorAll('[class*="team"], [class*="Team"]');
-            }
-            if (teams.length === 0) {
-              teams = item.querySelectorAll('div[class*="home"], div[class*="away"]');
-            }
-            
-            let homeTeam = '';
-            let awayTeam = '';
-            
-            if (teams.length >= 2) {
-              // 팀명 추출 시도
-              const homeTeamEl = teams[0].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
-                                teams[0].querySelector('[class*="name"]') ||
-                                teams[0].querySelector('span, div');
-              const awayTeamEl = teams[1].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
-                                teams[1].querySelector('[class*="name"]') ||
-                                teams[1].querySelector('span, div');
-              
-              homeTeam = homeTeamEl ? homeTeamEl.textContent.trim() : '';
-              awayTeam = awayTeamEl ? awayTeamEl.textContent.trim() : '';
-            }
-            
-            debugInfo.items.push({
-              idx: idx + 1,
-              status,
-              teamsCount: teams.length,
-              homeTeam,
-              awayTeam,
-              matchesTeam: homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))
-            });
+          // 종료된 경기만 처리
+          if (status === '종료') {
+            const teamItems = item.querySelectorAll('[class*="team_item"]');
 
-            if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
-              // 스코어 추출 시도
-              let homeScoreEl = teams[0].querySelector('.ScheduleAllGameListItem_score__3Xzs7') ||
-                               teams[0].querySelector('[class*="score"]') ||
-                               teams[0].querySelector('span, div');
-              let awayScoreEl = teams[1].querySelector('.ScheduleAllGameListItem_score__3Xzs7') ||
-                               teams[1].querySelector('[class*="score"]') ||
-                               teams[1].querySelector('span, div');
-              
-              const homeScoreText = homeScoreEl ? homeScoreEl.textContent.trim() : '';
-              const awayScoreText = awayScoreEl ? awayScoreEl.textContent.trim() : '';
-              
+            if (teamItems.length >= 2) {
+              const team1NameEl = teamItems[0].querySelector('[class*="team_name"]');
+              const team2NameEl = teamItems[1].querySelector('[class*="team_name"]');
+
+              let team1Name = team1NameEl ? team1NameEl.textContent.trim() : '';
+              let team2Name = team2NameEl ? team2NameEl.textContent.trim() : '';
+
+              // "홈" 텍스트 제거
+              team1Name = team1Name.replace('홈', '');
+              team2Name = team2Name.replace('홈', '');
+
+              // 스코어 추출
+              const team1ScoreEl = teamItems[0].querySelector('[class*="score"]');
+              const team2ScoreEl = teamItems[1].querySelector('[class*="score"]');
+
+              const team1ScoreText = team1ScoreEl ? team1ScoreEl.textContent.trim() : '';
+              const team2ScoreText = team2ScoreEl ? team2ScoreEl.textContent.trim() : '';
+
               // 숫자만 추출
-              const homeScoreMatch = homeScoreText.match(/\d+/);
-              const awayScoreMatch = awayScoreText.match(/\d+/);
-              
-              const homeScore = homeScoreMatch ? parseInt(homeScoreMatch[0]) : 0;
-              const awayScore = awayScoreMatch ? parseInt(awayScoreMatch[0]) : 0;
+              const team1ScoreMatch = team1ScoreText.match(/\d+/);
+              const team2ScoreMatch = team2ScoreText.match(/\d+/);
 
-              const isHome = homeTeam.includes(teamName);
-              const opponent = isHome ? awayTeam : homeTeam;
-              const ourScore = isHome ? homeScore : awayScore;
-              const opponentScore = isHome ? awayScore : homeScore;
+              const team1Score = team1ScoreMatch ? parseInt(team1ScoreMatch[0]) : 0;
+              const team2Score = team2ScoreMatch ? parseInt(team2ScoreMatch[0]) : 0;
 
-              // 세트 스코어 파싱
-              const setsEl = item.querySelectorAll('.ScheduleGameListItem_score__18lAy');
-              const sets = [];
-              setsEl.forEach((setEl, idx) => {
-                const scores = setEl.querySelectorAll('span');
-                if (scores.length >= 2) {
-                  const homeSetScore = parseInt(scores[0].textContent.trim());
-                  const awaySetScore = parseInt(scores[1].textContent.trim());
-                  sets.push({
-                    setNumber: idx + 1,
-                    ourScore: isHome ? homeSetScore : awaySetScore,
-                    opponentScore: isHome ? awaySetScore : homeSetScore
-                  });
-                }
+              debugInfo.items.push({
+                idx: idx + 1,
+                status,
+                team1Name,
+                team2Name,
+                team1Score,
+                team2Score,
+                matchesTeam: team1Name.includes(teamName) || team2Name.includes(teamName)
               });
 
-              if (!isNaN(ourScore) && !isNaN(opponentScore) && (ourScore > 0 || opponentScore > 0)) {
-                results.push({
-                  opponent,
-                  ourScore,
-                  opponentScore,
-                  result: ourScore > opponentScore ? 'win' : 'loss',
-                  sets
-                });
+              // 우리 팀이 포함된 경기인지 확인
+              if (team1Name.includes(teamName) || team2Name.includes(teamName)) {
+                const isTeam1 = team1Name.includes(teamName);
+                const opponent = isTeam1 ? team2Name : team1Name;
+                const ourScore = isTeam1 ? team1Score : team2Score;
+                const opponentScore = isTeam1 ? team2Score : team1Score;
+
+                if (!isNaN(ourScore) && !isNaN(opponentScore)) {
+                  results.push({
+                    opponent,
+                    ourScore,
+                    opponentScore,
+                    result: ourScore > opponentScore ? 'win' : 'loss',
+                    sets: [] // 세트 스코어는 나중에 추가 가능
+                  });
+                }
               }
             }
           }
@@ -368,66 +323,46 @@ async function crawlUpcomingMatch() {
       console.log(`[CRAWL] Upcoming match - Page info: ${JSON.stringify(pageInfo)}`);
 
       const upcomingMatchResult = await page.evaluate((teamName, matchDate) => {
-        // 다양한 셀렉터 시도
-        let items = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX');
-        if (items.length === 0) {
-          items = document.querySelectorAll('[class*="Schedule"] [class*="Item"]');
-        }
-        if (items.length === 0) {
-          items = document.querySelectorAll('[class*="Game"] [class*="Item"]');
-        }
-        
+        // 새로운 페이지 구조에 맞는 셀렉터 사용
+        const items = document.querySelectorAll('[class*="MatchBox_match_item"]');
+
         const debugInfo = {
           totalItems: items.length,
           items: []
         };
 
         for (let item of items) {
-          let statusEl = item.querySelector('.ScheduleAllGameListItem_game_state__3lmN2');
-          if (!statusEl) {
-            statusEl = item.querySelector('[class*="state"], [class*="status"]');
-          }
+          const statusEl = item.querySelector('[class*="status"]');
           const status = statusEl ? statusEl.textContent.trim() : null;
 
-          let teams = item.querySelectorAll('.ScheduleAllGameListItem_team__R-bjK');
-          if (teams.length === 0) {
-            teams = item.querySelectorAll('[class*="team"], [class*="Team"]');
-          }
-          
-          let homeTeam = '';
-          let awayTeam = '';
-          
-          if (teams.length >= 2) {
-            const homeTeamEl = teams[0].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
-                              teams[0].querySelector('[class*="name"]') ||
-                              teams[0].querySelector('span, div');
-            const awayTeamEl = teams[1].querySelector('.ScheduleAllGameListItem_name__3LNRT') || 
-                              teams[1].querySelector('[class*="name"]') ||
-                              teams[1].querySelector('span, div');
-            
-            homeTeam = homeTeamEl ? homeTeamEl.textContent.trim() : '';
-            awayTeam = awayTeamEl ? awayTeamEl.textContent.trim() : '';
-          }
-          
-          debugInfo.items.push({
-            status,
-            teamsCount: teams.length,
-            homeTeam,
-            awayTeam,
-            matchesTeam: homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))
-          });
+          const teamItems = item.querySelectorAll('[class*="team_item"]');
 
-          if (status !== '경기종료' && status !== '종료') {
-            if (homeTeam && awayTeam && (homeTeam.includes(teamName) || awayTeam.includes(teamName))) {
-              const isHome = homeTeam.includes(teamName);
-              const opponent = isHome ? awayTeam : homeTeam;
-              const venue = isHome ? '천안유관순체육관' : '원정';
-              
-              let timeTextEl = item.querySelector('.ScheduleAllGameListItem_time__3xyqM');
-              if (!timeTextEl) {
-                timeTextEl = item.querySelector('[class*="time"], [class*="Time"]');
-              }
-              const timeText = timeTextEl ? timeTextEl.textContent.trim() : '';
+          if (teamItems.length >= 2) {
+            const team1NameEl = teamItems[0].querySelector('[class*="team_name"]');
+            const team2NameEl = teamItems[1].querySelector('[class*="team_name"]');
+
+            let team1Name = team1NameEl ? team1NameEl.textContent.trim() : '';
+            let team2Name = team2NameEl ? team2NameEl.textContent.trim() : '';
+
+            // "홈" 텍스트 제거
+            team1Name = team1Name.replace('홈', '');
+            team2Name = team2Name.replace('홈', '');
+
+            debugInfo.items.push({
+              status,
+              team1Name,
+              team2Name,
+              matchesTeam: team1Name.includes(teamName) || team2Name.includes(teamName)
+            });
+
+            // 종료되지 않은 경기이고, 우리 팀이 포함된 경기
+            if (status !== '종료' && (team1Name.includes(teamName) || team2Name.includes(teamName))) {
+              const isTeam1 = team1Name.includes(teamName);
+              const opponent = isTeam1 ? team2Name : team1Name;
+              const venue = isTeam1 ? '천안유관순체육관' : '원정';
+
+              const timeEl = item.querySelector('[class*="time"]');
+              const timeText = timeEl ? timeEl.textContent.trim() : '';
 
               return { match: {
                 date: `${matchDate} ${timeText}`.trim(),

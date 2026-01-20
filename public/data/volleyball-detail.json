@@ -71,6 +71,35 @@
       "points": 15
     }
   ],
-  "recentMatches": [],
-  "upcomingMatch": null
+  "recentMatches": [
+    {
+      "date": "2026-01-20",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    },
+    {
+      "date": "2026-01-20",
+      "opponent": "OK저축은행",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "0-3",
+      "sets": []
+    },
+    {
+      "date": "2026-01-20",
+      "opponent": "삼성화재",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    }
+  ],
+  "upcomingMatch": {
+    "date": "26.01.21 경기 시간19:00",
+    "opponent": "한국전력",
+    "venue": "천안유관순체육관"
+  }
 }
