@@ -44,21 +44,52 @@ const getDefaultInternationalSportsData = (): InternationalSportsData => ({
   data: {},
 });
 
-// JSON 파일에서 야구 데이터 로드
-export const fetchBaseballData = async (): Promise<BaseballData> => {
+// 야구 데이터 로드 (실시간 크롤링 또는 JSON 파일)
+export const fetchBaseballData = async (useRealtime = true): Promise<BaseballData> => {
   try {
-    // sports.json에서 기본 정보 로드
+    // 개발 환경(localhost)에서만 실시간 크롤링 시도
+    const isDevelopment = window.location.hostname === 'localhost' ||
+                         window.location.hostname === '127.0.0.1';
+
+    if (useRealtime && isDevelopment) {
+      try {
+        const crawlResponse = await fetch('/api/crawl-baseball', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (crawlResponse.ok) {
+          const crawlData = await crawlResponse.json();
+          console.log('[DATA] Crawled baseball data:', {
+            leagueStandings: crawlData.leagueStandings?.length || 0,
+            pitchers: crawlData.pitchers?.length || 0,
+            batters: crawlData.batters?.length || 0
+          });
+          return {
+            ...crawlData,
+            seasonStatus: getSeasonStatus('baseball'),
+          };
+        } else {
+          console.warn(`Real-time baseball crawl returned ${crawlResponse.status}, falling back to JSON`);
+        }
+      } catch (crawlError) {
+        console.warn('Real-time baseball crawl failed, falling back to JSON:', crawlError);
+      }
+    }
+
+    // JSON 파일에서 로드 (폴백)
     const sportsResponse = await fetch(`${getBasePath()}data/sports.json`);
     if (!sportsResponse.ok) throw new Error('Failed to fetch sports.json');
     const sportsData = await sportsResponse.json();
     const baseballData = sportsData.baseball || {};
 
-    // baseball-detail.json에서 상세 정보 로드
     const detailResponse = await fetch(`${getBasePath()}data/baseball-detail.json`);
     if (!detailResponse.ok) throw new Error('Failed to fetch baseball-detail.json');
     const detailData = await detailResponse.json();
 
-    return {
+    const result = {
       ...baseballData,
       leagueStandings: detailData.leagueStandings || [],
       pitchers: detailData.pitchers || [],
@@ -69,6 +100,14 @@ export const fetchBaseballData = async (): Promise<BaseballData> => {
       seasonStatus: getSeasonStatus('baseball'),
       seasonStartDate: detailData.seasonStartDate,
     };
+
+    console.log('[DATA] Loaded baseball from JSON:', {
+      leagueStandings: result.leagueStandings?.length || 0,
+      pitchers: result.pitchers?.length || 0,
+      batters: result.batters?.length || 0
+    });
+
+    return result;
   } catch (error) {
     console.error('Failed to fetch baseball data:', error);
     return getDefaultBaseballData();

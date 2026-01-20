@@ -3,6 +3,96 @@ import { spawn } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 
+export function baseballCrawlPlugin(): Plugin {
+  return {
+    name: 'baseball-crawl-api',
+    configureServer(server) {
+      server.middlewares.use('/api/crawl-baseball', async (req, res, next) => {
+        try {
+          // CORS 헤더 설정
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+          if (req.method === 'OPTIONS') {
+            res.writeHead(200);
+            res.end();
+            return;
+          }
+
+          console.log('[API] Baseball crawl requested');
+
+          // 크롤링 스크립트 실행
+          const scriptPath = path.resolve(process.cwd(), 'scripts/crawl-baseball.cjs');
+          const { exec } = await import('child_process');
+          const { promisify } = await import('util');
+          const execAsync = promisify(exec);
+
+          try {
+            await execAsync(`node "${scriptPath}"`, {
+              cwd: process.cwd(),
+              maxBuffer: 10 * 1024 * 1024, // 10MB
+            });
+          } catch (execError: any) {
+            // 실행 에러는 무시하고 계속 진행 (크롤링 실패 가능)
+            console.warn('[API] Crawl script error (continuing):', execError.message);
+          }
+
+          // 업데이트된 데이터 읽기
+          const dataDir = path.resolve(process.cwd(), 'public/data');
+          const baseballDetailPath = path.join(dataDir, 'baseball-detail.json');
+          const sportsJsonPath = path.join(dataDir, 'sports.json');
+
+          let baseballDetail: any = {};
+          let sportsData: any = {};
+
+          if (fs.existsSync(baseballDetailPath)) {
+            baseballDetail = JSON.parse(fs.readFileSync(baseballDetailPath, 'utf8'));
+            console.log('[API] Loaded baseball-detail.json:', {
+              leagueStandings: baseballDetail.leagueStandings?.length || 0,
+              pitchers: baseballDetail.pitchers?.length || 0,
+              batters: baseballDetail.batters?.length || 0
+            });
+          } else {
+            console.warn('[API] baseball-detail.json not found');
+          }
+
+          if (fs.existsSync(sportsJsonPath)) {
+            sportsData = JSON.parse(fs.readFileSync(sportsJsonPath, 'utf8'));
+            console.log('[API] Loaded sports.json');
+          } else {
+            console.warn('[API] sports.json not found');
+          }
+
+          const result = {
+            ...sportsData.baseball,
+            leagueStandings: baseballDetail.leagueStandings || [],
+            pitchers: baseballDetail.pitchers || [],
+            batters: baseballDetail.batters || [],
+            headToHead: baseballDetail.headToHead || [],
+            lastSeries: baseballDetail.lastSeries,
+            currentSeries: baseballDetail.currentSeries,
+          };
+
+          console.log('[API] Returning baseball data:', {
+            leagueStandingsCount: result.leagueStandings?.length || 0,
+            pitchersCount: result.pitchers?.length || 0,
+            battersCount: result.batters?.length || 0
+          });
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(result));
+
+        } catch (error: any) {
+          console.error('[API] Error:', error);
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: error.message }));
+        }
+      });
+    },
+  };
+}
+
 export function volleyballCrawlPlugin(): Plugin {
   return {
     name: 'volleyball-crawl-api',
