@@ -265,7 +265,7 @@ const VolleyballDetail = () => {
                   }}>
                     ✓
                   </div>
-                  <h2 className="text-xl font-bold text-white">지난 경기 결과</h2>
+                  <h2 className="text-xl font-bold text-white">현대캐피탈 지난 경기 결과</h2>
                 </div>
                 {data.recentMatches.length > 0 ? (
                   <div className="space-y-3">
