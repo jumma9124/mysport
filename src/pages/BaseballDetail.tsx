@@ -404,7 +404,7 @@ const BaseballDetail = () => {
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries.opponent}</td>
+                                      <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries?.opponent}</td>
                                       {game.innings.map((inning) => (
                                         <td key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>
                                           {inning.opponentScore}
@@ -445,7 +445,7 @@ const BaseballDetail = () => {
                                     )}
                                     {game.opponentStats && (
                                       <tr>
-                                        <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries.opponent}</td>
+                                        <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries?.opponent}</td>
                                         <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.hits}</td>
                                         <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.homeRuns}</td>
                                         <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.errors}</td>
