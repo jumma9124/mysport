@@ -93,6 +93,10 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
 
         if (crawlResponse.ok) {
           const crawlData = await crawlResponse.json();
+          console.log('[DATA] Crawled data:', {
+            recentMatches: crawlData.recentMatches?.length || 0,
+            upcomingMatch: crawlData.upcomingMatch ? 'exists' : 'null'
+          });
           return {
             ...crawlData,
             seasonStatus: getSeasonStatus('volleyball'),
@@ -117,7 +121,7 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
     if (!detailResponse.ok) throw new Error('Failed to fetch volleyball-detail.json');
     const detailData = await detailResponse.json();
 
-    return {
+    const result = {
       ...volleyballData,
       leagueStandings: detailData.leagueStandings || [],
       recentMatches: detailData.recentMatches || [],
@@ -126,6 +130,13 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
       seasonStatus: getSeasonStatus('volleyball'),
       seasonStartDate: detailData.seasonStartDate,
     };
+    
+    console.log('[DATA] Loaded from JSON:', {
+      recentMatches: result.recentMatches?.length || 0,
+      upcomingMatch: result.upcomingMatch ? 'exists' : 'null'
+    });
+    
+    return result;
   } catch (error) {
     console.error('Failed to fetch volleyball data:', error);
     return getDefaultVolleyballData();

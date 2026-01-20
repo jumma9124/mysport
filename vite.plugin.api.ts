@@ -48,10 +48,22 @@ export function volleyballCrawlPlugin(): Plugin {
           
           if (fs.existsSync(volleyballDetailPath)) {
             volleyballDetail = JSON.parse(fs.readFileSync(volleyballDetailPath, 'utf8'));
+            console.log('[API] Loaded volleyball-detail.json:', {
+              recentMatches: volleyballDetail.recentMatches?.length || 0,
+              upcomingMatch: volleyballDetail.upcomingMatch ? 'exists' : 'null'
+            });
+          } else {
+            console.warn('[API] volleyball-detail.json not found');
           }
           
           if (fs.existsSync(sportsJsonPath)) {
             sportsData = JSON.parse(fs.readFileSync(sportsJsonPath, 'utf8'));
+            console.log('[API] Loaded sports.json:', {
+              volleyballRecentMatches: sportsData.volleyball?.recentMatches?.length || 0,
+              volleyballUpcomingMatch: sportsData.volleyball?.upcomingMatch ? 'exists' : 'null'
+            });
+          } else {
+            console.warn('[API] sports.json not found');
           }
           
           const result = {
@@ -60,6 +72,12 @@ export function volleyballCrawlPlugin(): Plugin {
             recentMatches: volleyballDetail.recentMatches || [],
             upcomingMatch: volleyballDetail.upcomingMatch,
           };
+          
+          console.log('[API] Returning data:', {
+            recentMatchesCount: result.recentMatches?.length || 0,
+            upcomingMatch: result.upcomingMatch ? 'exists' : 'null',
+            recentMatches: result.recentMatches
+          });
           
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify(result));
