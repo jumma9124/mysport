@@ -355,7 +355,7 @@ const BaseballDetail = () => {
                       className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
                     >
                       <div className="flex items-center gap-4">
-                        <span className="text-white font-semibold">vs {data.currentSeries.opponent}</span>
+                        <span className="text-white font-semibold">vs {data.currentSeries?.opponent}</span>
                         <span
                           className="px-2 py-0.5 rounded text-sm"
                           style={{
