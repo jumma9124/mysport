@@ -81,43 +81,49 @@ const VolleyballCard = () => {
         {/* 순위 */}
         <div className="text-5xl font-bold text-white mb-6 text-center">{data.currentRank}위</div>
 
-        {/* 전적 정보 */}
-        <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
-          <div className="flex items-center justify-between">
-            <span className="text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              전적 / 승점{isOffSeason ? ' / 시즌 종료' : ' / 세트득실률'}
-            </span>
-            <span className="text-base text-white">
-              {data.record.wins}승 {data.record.losses}패
-              <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
-              {data.record.points}점
-              {!isOffSeason && data.record.setRate !== undefined && (
-                <>
-                  <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
-                  {data.record.setRate.toFixed(3)}
-                </>
-              )}
-            </span>
-          </div>
-        </div>
-
-        {/* 오프시즌 - 마지막 시리즈 */}
+        {/* 오프시즌 - 시즌 총 기록만 표시 */}
         {isOffSeason && (
-          <>
-            <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
-            <div className="bg-gray-800/50 rounded-lg p-3">
-              {data.recentMatches.length > 0 ? (
+          <div className="bg-gray-800/50 rounded-lg p-4">
+            <h4 className="text-sm text-white mb-3 text-center" style={{ color: 'rgba(255,255,255,0.7)' }}>시즌 총 기록</h4>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>전적</span>
+                <span className="text-base text-white font-semibold">{data.record.wins}승 {data.record.losses}패</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>승점</span>
+                <span className="text-base text-white font-semibold">{data.record.points}점</span>
+              </div>
+              {data.record.setRate !== undefined && (
                 <div className="flex items-center justify-between">
-                  <span className="text-base text-white">vs {data.recentMatches[0].opponent}</span>
-                  <span className={`px-2 py-1 text-white text-sm rounded ${data.recentMatches[0].result === 'win' ? 'bg-green-600' : 'bg-red-600'}`}>
-                    {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
-                  </span>
+                  <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>세트득실률</span>
+                  <span className="text-base text-white font-semibold">{data.record.setRate.toFixed(3)}</span>
                 </div>
-              ) : (
-                <div className="text-base text-gray-400">데이터 없음</div>
               )}
             </div>
-          </>
+          </div>
+        )}
+
+        {/* 시즌 중 - 전적 정보 */}
+        {!isOffSeason && (
+          <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
+            <div className="flex items-center justify-between">
+              <span className="text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                전적 / 승점 / 세트득실률
+              </span>
+              <span className="text-base text-white">
+                {data.record.wins}승 {data.record.losses}패
+                <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
+                {data.record.points}점
+                {data.record.setRate !== undefined && (
+                  <>
+                    <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
+                    {data.record.setRate.toFixed(3)}
+                  </>
+                )}
+              </span>
+            </div>
+          </div>
         )}
 
         {/* 시즌 중 - 최근/다음 경기 */}

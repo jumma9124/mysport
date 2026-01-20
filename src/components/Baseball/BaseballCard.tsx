@@ -95,7 +95,7 @@ const BaseballCard = () => {
           </div>
         </div>
 
-        {/* 마지막 시리즈 */}
+        {/* 오프시즌 - 마지막 시리즈 */}
         {isOffSeason && (
           <>
             <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
@@ -123,11 +123,36 @@ const BaseballCard = () => {
           </>
         )}
 
+        {/* 시즌 중 - 현재 시리즈 및 다음 시리즈 */}
         {!isOffSeason && (
           <>
-            <h4 className="text-sm text-white mb-2">다음 경기</h4>
+            <h4 className="text-sm text-white mb-2">현재 시리즈</h4>
+            <div className="bg-gray-800/50 rounded-lg p-3 mb-3">
+              {data.currentSeries ? (
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base text-white">vs {data.currentSeries.opponent}</span>
+                    <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                      {data.currentSeries.wins}승 {data.currentSeries.losses}패
+                    </span>
+                  </div>
+                  <span className="text-sm text-gray-400">{data.currentSeries.date}</span>
+                </div>
+              ) : (
+                <div className="text-base text-gray-400">진행 중인 시리즈 없음</div>
+              )}
+            </div>
+
+            <h4 className="text-sm text-white mb-2">다음 시리즈</h4>
             <div className="bg-gray-800/50 rounded-lg p-3">
-              <div className="text-base text-gray-400">예정된 경기 없음</div>
+              {data.nextSeries ? (
+                <div className="flex items-center justify-between">
+                  <span className="text-base text-white">vs {data.nextSeries.opponent}</span>
+                  <span className="text-sm text-gray-400">{data.nextSeries.date}</span>
+                </div>
+              ) : (
+                <div className="text-base text-gray-400">예정된 시리즈 없음</div>
+              )}
             </div>
           </>
         )}

@@ -43,9 +43,11 @@ export interface BaseballBatter {
 export interface BaseballSeries {
   opponent: string;
   date: string;
-  result: 'win' | 'loss' | 'draw';
-  score: string;
-  games: Array<{
+  result?: 'win' | 'loss' | 'draw'; // 완료된 시리즈에만 존재
+  wins?: number; // 진행 중인 시리즈용
+  losses?: number; // 진행 중인 시리즈용
+  score?: string;
+  games?: Array<{
     date: string;
     result: 'win' | 'loss' | 'draw';
     score: string;
@@ -74,6 +76,10 @@ export interface BaseballData {
   }>;
   currentSeries?: BaseballSeries;
   lastSeries?: BaseballSeries;
+  nextSeries?: {
+    opponent: string;
+    date: string;
+  };
 }
 
 // 배구 관련 타입
