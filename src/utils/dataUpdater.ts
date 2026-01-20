@@ -183,9 +183,40 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
   }
 };
 
-// JSON 파일에서 국제스포츠 데이터 로드
-export const fetchInternationalSportsData = async (): Promise<InternationalSportsData> => {
+// 국제 스포츠 데이터 로드 (실시간 크롤링 또는 JSON 파일)
+export const fetchInternationalSportsData = async (useRealtime = true): Promise<InternationalSportsData> => {
   try {
+    // 개발 환경(localhost)에서만 실시간 크롤링 시도
+    const isDevelopment = window.location.hostname === 'localhost' ||
+                         window.location.hostname === '127.0.0.1';
+
+    if (useRealtime && isDevelopment) {
+      try {
+        const crawlResponse = await fetch('/api/crawl-international', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (crawlResponse.ok) {
+          const crawlData = await crawlResponse.json();
+          console.log('[DATA] Crawled international sports data:', {
+            events: crawlData.data?.events?.length || 0
+          });
+          return {
+            ...crawlData,
+            seasonStatus: getSeasonStatus('international'),
+          };
+        } else {
+          console.warn(`Real-time international crawl returned ${crawlResponse.status}, falling back to JSON`);
+        }
+      } catch (crawlError) {
+        console.warn('Real-time international crawl failed, falling back to JSON:', crawlError);
+      }
+    }
+
+    // JSON 파일에서 로드 (폴백)
     const response = await fetch(`${getBasePath()}data/major-events.json`);
     if (!response.ok) throw new Error('Failed to fetch major-events.json');
     const events = await response.json();

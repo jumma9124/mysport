@@ -93,6 +93,85 @@ export function baseballCrawlPlugin(): Plugin {
   };
 }
 
+export function internationalSportsCrawlPlugin(): Plugin {
+  return {
+    name: 'international-sports-crawl-api',
+    configureServer(server) {
+      server.middlewares.use('/api/crawl-international', async (req, res, next) => {
+        try {
+          // CORS 헤더 설정
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+          if (req.method === 'OPTIONS') {
+            res.writeHead(200);
+            res.end();
+            return;
+          }
+
+          console.log('[API] International sports crawl requested');
+
+          // 크롤링 스크립트 실행
+          const scriptPath = path.resolve(process.cwd(), 'scripts/crawl-international.cjs');
+          const { exec } = await import('child_process');
+          const { promisify } = await import('util');
+          const execAsync = promisify(exec);
+
+          try {
+            await execAsync(`node "${scriptPath}"`, {
+              cwd: process.cwd(),
+              maxBuffer: 10 * 1024 * 1024, // 10MB
+            });
+          } catch (execError: any) {
+            // 실행 에러는 무시하고 계속 진행 (크롤링 실패 가능)
+            console.warn('[API] Crawl script error (continuing):', execError.message);
+          }
+
+          // 업데이트된 데이터 읽기
+          const dataDir = path.resolve(process.cwd(), 'public/data');
+          const eventsPath = path.join(dataDir, 'major-events.json');
+          const sportsJsonPath = path.join(dataDir, 'sports.json');
+
+          let events: any = [];
+          let sportsData: any = {};
+
+          if (fs.existsSync(eventsPath)) {
+            events = JSON.parse(fs.readFileSync(eventsPath, 'utf8'));
+            console.log('[API] Loaded major-events.json:', events.length);
+          } else {
+            console.warn('[API] major-events.json not found');
+          }
+
+          if (fs.existsSync(sportsJsonPath)) {
+            sportsData = JSON.parse(fs.readFileSync(sportsJsonPath, 'utf8'));
+            console.log('[API] Loaded sports.json');
+          } else {
+            console.warn('[API] sports.json not found');
+          }
+
+          const result = {
+            ...sportsData.international,
+            data: {
+              events
+            }
+          };
+
+          console.log('[API] Returning international sports data');
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(result));
+
+        } catch (error: any) {
+          console.error('[API] Error:', error);
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: error.message }));
+        }
+      });
+    },
+  };
+}
+
 export function volleyballCrawlPlugin(): Plugin {
   return {
     name: 'volleyball-crawl-api',
