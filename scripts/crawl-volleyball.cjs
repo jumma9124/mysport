@@ -679,6 +679,16 @@ async function crawlVolleyballData() {
     }
     console.log(`  - Recent matches: ${matchesData.length}`);
 
+    // Teams 알림 전송 (경기 결과가 있는 경우)
+    try {
+      const { checkAndNotifyVolleyballResult } = require('./send-teams-notification.cjs');
+      console.log('\n[NOTIFICATION] Checking if notification should be sent...');
+      await checkAndNotifyVolleyballResult();
+    } catch (notifyError) {
+      console.warn('[NOTIFICATION] Failed to send Teams notification:', notifyError.message);
+      // 알림 실패는 크롤링 전체를 실패로 처리하지 않음
+    }
+
   } catch (error) {
     console.error('Failed to crawl volleyball data:', error);
     process.exit(1);

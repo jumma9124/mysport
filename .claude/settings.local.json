@@ -14,7 +14,9 @@
       "Bash(npm install:*)",
       "Bash(git restore:*)",
       "Bash(node scripts/debug-standings.cjs:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(node -e:*)",
+      "Bash(git push:*)"
     ]
   }
 }
