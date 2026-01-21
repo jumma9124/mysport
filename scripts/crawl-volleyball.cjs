@@ -231,20 +231,35 @@ async function crawlRecentMatches() {
 
       // React 렌더링 대기
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // 페이지 구조 확인
-      const pageInfo = await page.evaluate(() => {
+
+      // 페이지 구조 확인 및 URL 검증
+      const pageInfo = await page.evaluate((requestedDate) => {
         const bodyText = document.body ? document.body.textContent : '';
         const hasSchedule = bodyText.includes('경기') || bodyText.includes('스케줄');
         const itemCount = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX').length;
+        const actualUrl = window.location.href;
+
+        // URL에서 실제 날짜 추출
+        const dateMatch = actualUrl.match(/date=(\d{4}-\d{2}-\d{2})/);
+        const actualDate = dateMatch ? dateMatch[1] : null;
+
         return {
           hasSchedule,
           itemCount,
           title: document.title,
-          url: window.location.href
+          url: actualUrl,
+          requestedDate,
+          actualDate,
+          dateMatches: actualDate === requestedDate
         };
-      });
+      }, dateStr);
       console.log(`[CRAWL] Recent matches - Page info: ${JSON.stringify(pageInfo)}`);
+
+      // 날짜가 일치하지 않으면 건너뛰기 (Naver가 다른 날짜로 리다이렉트함)
+      if (!pageInfo.dateMatches) {
+        console.log(`[CRAWL] Skipping date ${dateStr} - Naver redirected to ${pageInfo.actualDate}`);
+        continue;
+      }
 
       const dayMatchesResult = await page.evaluate((teamName) => {
         // 새로운 페이지 구조에 맞는 셀렉터 사용
@@ -399,20 +414,35 @@ async function crawlUpcomingMatch() {
 
       // React 렌더링 대기
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // 페이지 구조 확인
-      const pageInfo = await page.evaluate(() => {
+
+      // 페이지 구조 확인 및 URL 검증
+      const pageInfo = await page.evaluate((requestedDate) => {
         const bodyText = document.body ? document.body.textContent : '';
         const hasSchedule = bodyText.includes('경기') || bodyText.includes('스케줄');
         const itemCount = document.querySelectorAll('.ScheduleAllGameListItem_item_box__1HDdX').length;
+        const actualUrl = window.location.href;
+
+        // URL에서 실제 날짜 추출
+        const dateMatch = actualUrl.match(/date=(\d{4}-\d{2}-\d{2})/);
+        const actualDate = dateMatch ? dateMatch[1] : null;
+
         return {
           hasSchedule,
           itemCount,
           title: document.title,
-          url: window.location.href
+          url: actualUrl,
+          requestedDate,
+          actualDate,
+          dateMatches: actualDate === requestedDate
         };
-      });
+      }, dateStr);
       console.log(`[CRAWL] Upcoming match - Page info: ${JSON.stringify(pageInfo)}`);
+
+      // 날짜가 일치하지 않으면 건너뛰기 (Naver가 다른 날짜로 리다이렉트함)
+      if (!pageInfo.dateMatches) {
+        console.log(`[CRAWL] Skipping date ${dateStr} - Naver redirected to ${pageInfo.actualDate}`);
+        continue;
+      }
 
       const upcomingMatchResult = await page.evaluate((teamName, matchDate) => {
         // 새로운 페이지 구조에 맞는 셀렉터 사용
@@ -454,7 +484,10 @@ async function crawlUpcomingMatch() {
               const venue = isTeam1 ? '천안유관순체육관' : '원정';
 
               const timeEl = item.querySelector('[class*="time"]');
-              const timeText = timeEl ? timeEl.textContent.trim() : '';
+              let timeText = timeEl ? timeEl.textContent.trim() : '';
+
+              // "경기 시간19:00" -> "19:00" 형식으로 변환
+              timeText = timeText.replace(/^경기\s*시간\s*/i, '').trim();
 
               return { match: {
                 date: matchDate, // ISO 형식으로 저장 (예: "2026-01-21")
