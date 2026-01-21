@@ -122,7 +122,7 @@ const RankChart = () => {
                   x={padding.left - 5}
                   y={y}
                   fill="rgba(255,255,255,0.5)"
-                  fontSize="10"
+                  fontSize="5"
                   textAnchor="end"
                   dominantBaseline="middle"
                 >
@@ -159,7 +159,7 @@ const RankChart = () => {
                   x={point.x}
                   y={point.y - 10}
                   fill="white"
-                  fontSize="10"
+                  fontSize="5"
                   textAnchor="middle"
                   fontWeight="bold"
                 >
@@ -178,7 +178,7 @@ const RankChart = () => {
                 x={point.x}
                 y={chartHeight - 10}
                 fill="rgba(255,255,255,0.5)"
-                fontSize="10"
+                fontSize="5"
                 textAnchor="middle"
               >
                 {formatDate(point.date)}
