@@ -17,7 +17,7 @@ const DATA_DIR = path.join(__dirname, '../public/data');
 const NAVER_URLS = {
   standings: 'https://m.sports.naver.com/volleyball/record/kovo?seasonCode=022&tab=teamRank',
   standingsWomen: 'https://m.sports.naver.com/volleyball/record/index?category=wkovo',
-  schedule: (date) => `https://m.sports.naver.com/volleyball/schedule/index?category=kovo&date=${date}&teamCode=${TEAM_CODE}`,
+  schedule: (date) => `https://m.sports.naver.com/volleyball/schedule/index?category=kovo&date=${date}`, // teamCode 제거
 };
 
 async function crawlStandings() {
@@ -261,107 +261,131 @@ async function crawlRecentMatches() {
         continue;
       }
 
-      const dayMatchesResult = await page.evaluate((teamName) => {
-        // 새로운 페이지 구조에 맞는 셀렉터 사용
-        const items = document.querySelectorAll('[class*="MatchBox_match_item"]');
+      const dayMatchesResult = await page.evaluate((teamName, targetDate) => {
+        // 날짜 헤더 찾기 (예: "1월 18일")
+        const dateParts = targetDate.split('-'); // "2026-01-18" -> ["2026", "01", "18"]
+        const month = parseInt(dateParts[1]); // "01" -> 1
+        const day = parseInt(dateParts[2]); // "18" -> 18
+        const datePattern = `${month}월 ${day}일`; // "1월 18일"
+
+        // 모든 날짜 그룹 찾기
+        const dateGroups = document.querySelectorAll('[class*="ScheduleLeagueType_match_list_group"]');
+
+        let targetGroup = null;
+        for (const group of dateGroups) {
+          const titleEl = group.querySelector('[class*="ScheduleLeagueType_title"]');
+          if (titleEl && titleEl.textContent.includes(datePattern)) {
+            targetGroup = group;
+            break;
+          }
+        }
 
         const debugInfo = {
-          totalItems: items.length,
-          items: [],
-          selectors: {
-            matchBox: items.length
-          }
+          targetDate,
+          datePattern,
+          foundGroup: !!targetGroup,
+          totalGroups: dateGroups.length,
+          items: []
         };
 
         const results = [];
 
-        items.forEach((item, idx) => {
-          // 상태 확인
-          const statusEl = item.querySelector('[class*="status"]');
-          const status = statusEl ? statusEl.textContent.trim() : null;
+        // 해당 날짜 그룹에서만 경기 추출
+        if (targetGroup) {
+          const items = targetGroup.querySelectorAll('[class*="MatchBox_match_item"]');
 
-          // 종료된 경기만 처리
-          if (status === '종료') {
-            const teamItems = item.querySelectorAll('[class*="team_item"]');
+          items.forEach((item, idx) => {
+            const statusEl = item.querySelector('[class*="status"]');
+            const status = statusEl ? statusEl.textContent.trim() : null;
 
-            if (teamItems.length >= 2) {
-              const team1NameEl = teamItems[0].querySelector('[class*="team_name"]');
-              const team2NameEl = teamItems[1].querySelector('[class*="team_name"]');
+            // 종료된 경기만 처리
+            if (status === '종료') {
+              const teamItems = item.querySelectorAll('[class*="team_item"]');
 
-              let team1Name = team1NameEl ? team1NameEl.textContent.trim() : '';
-              let team2Name = team2NameEl ? team2NameEl.textContent.trim() : '';
+              if (teamItems.length >= 2) {
+                const team1NameEl = teamItems[0].querySelector('[class*="team_name"]');
+                const team2NameEl = teamItems[1].querySelector('[class*="team_name"]');
 
-              // "홈" 텍스트 제거
-              team1Name = team1Name.replace('홈', '');
-              team2Name = team2Name.replace('홈', '');
+                let team1Name = team1NameEl ? team1NameEl.textContent.trim() : '';
+                let team2Name = team2NameEl ? team2NameEl.textContent.trim() : '';
 
-              // 스코어 추출
-              const team1ScoreEl = teamItems[0].querySelector('[class*="score"]');
-              const team2ScoreEl = teamItems[1].querySelector('[class*="score"]');
+                // "홈" 텍스트 제거
+                team1Name = team1Name.replace('홈', '');
+                team2Name = team2Name.replace('홈', '');
 
-              const team1ScoreText = team1ScoreEl ? team1ScoreEl.textContent.trim() : '';
-              const team2ScoreText = team2ScoreEl ? team2ScoreEl.textContent.trim() : '';
+                // 스코어 추출
+                const team1ScoreEl = teamItems[0].querySelector('[class*="score"]');
+                const team2ScoreEl = teamItems[1].querySelector('[class*="score"]');
 
-              // 숫자만 추출
-              const team1ScoreMatch = team1ScoreText.match(/\d+/);
-              const team2ScoreMatch = team2ScoreText.match(/\d+/);
+                const team1ScoreText = team1ScoreEl ? team1ScoreEl.textContent.trim() : '';
+                const team2ScoreText = team2ScoreEl ? team2ScoreEl.textContent.trim() : '';
 
-              const team1Score = team1ScoreMatch ? parseInt(team1ScoreMatch[0]) : 0;
-              const team2Score = team2ScoreMatch ? parseInt(team2ScoreMatch[0]) : 0;
+                // 숫자만 추출
+                const team1ScoreMatch = team1ScoreText.match(/\d+/);
+                const team2ScoreMatch = team2ScoreText.match(/\d+/);
 
-              debugInfo.items.push({
-                idx: idx + 1,
-                status,
-                team1Name,
-                team2Name,
-                team1Score,
-                team2Score,
-                matchesTeam: team1Name.includes(teamName) || team2Name.includes(teamName)
-              });
+                const team1Score = team1ScoreMatch ? parseInt(team1ScoreMatch[0]) : 0;
+                const team2Score = team2ScoreMatch ? parseInt(team2ScoreMatch[0]) : 0;
 
-              // 우리 팀이 포함된 경기인지 확인
-              if (team1Name.includes(teamName) || team2Name.includes(teamName)) {
-                const isTeam1 = team1Name.includes(teamName);
-                const opponent = isTeam1 ? team2Name : team1Name;
-                const ourScore = isTeam1 ? team1Score : team2Score;
-                const opponentScore = isTeam1 ? team2Score : team1Score;
+                debugInfo.items.push({
+                  idx: idx + 1,
+                  status,
+                  team1Name,
+                  team2Name,
+                  team1Score,
+                  team2Score,
+                  matchesTeam: team1Name.includes(teamName) || team2Name.includes(teamName)
+                });
 
-                if (!isNaN(ourScore) && !isNaN(opponentScore)) {
-                  results.push({
-                    opponent,
-                    ourScore,
-                    opponentScore,
-                    result: ourScore > opponentScore ? 'win' : 'loss',
-                    sets: [] // 세트 스코어는 나중에 추가 가능
-                  });
+                // 우리 팀이 포함된 경기인지 확인
+                if (team1Name.includes(teamName) || team2Name.includes(teamName)) {
+                  const isTeam1 = team1Name.includes(teamName);
+                  const opponent = isTeam1 ? team2Name : team1Name;
+                  const ourScore = isTeam1 ? team1Score : team2Score;
+                  const opponentScore = isTeam1 ? team2Score : team1Score;
+
+                  if (!isNaN(ourScore) && !isNaN(opponentScore)) {
+                    results.push({
+                      opponent,
+                      ourScore,
+                      opponentScore,
+                      result: ourScore > opponentScore ? 'win' : 'loss',
+                      sets: []
+                    });
+                  }
                 }
               }
             }
-          }
-        });
+          });
+        }
 
         return { results, debugInfo };
-      }, TEAM_NAME);
+      }, TEAM_NAME, dateStr);
 
       const dayMatches = dayMatchesResult?.results || [];
       console.log(`[CRAWL] Date ${dateStr}: Debug info: ${JSON.stringify(dayMatchesResult?.debugInfo)}`);
       console.log(`[CRAWL] Date ${dateStr}: Found ${dayMatches.length} matches`);
+
+      // 여러 경기가 있으면 마지막 경기를 사용 (가장 최신 경기)
+      // 네이버가 전체 시즌 데이터를 반환하므로, 그 날짜의 실제 경기는 리스트의 마지막에 위치
       if (dayMatches && dayMatches.length > 0) {
-        dayMatches.forEach(match => {
-          if (match && match.opponent) {
-            console.log(`[CRAWL] Adding match: ${dateStr} vs ${match.opponent}, result: ${match.result}, score: ${match.ourScore}-${match.opponentScore}`);
-            matches.push({
-              date: dateStr, // ISO 형식으로 저장 (예: "2026-01-04")
-              opponent: match.opponent,
-              venue: '천안유관순체육관',
-              result: match.result,
-              score: `${match.ourScore}-${match.opponentScore}`,
-              sets: match.sets || []
-            });
-          } else {
-            console.warn(`[CRAWL] Skipping invalid match: ${JSON.stringify(match)}`);
+        const match = dayMatches[dayMatches.length - 1]; // 마지막 경기 사용
+        if (match && match.opponent) {
+          console.log(`[CRAWL] Adding match: ${dateStr} vs ${match.opponent}, result: ${match.result}, score: ${match.ourScore}-${match.opponentScore}`);
+          if (dayMatches.length > 1) {
+            console.log(`[CRAWL] Warning: Found ${dayMatches.length} matches on same date, using the last one (most recent)`);
           }
-        });
+          matches.push({
+            date: dateStr, // ISO 형식으로 저장 (예: "2026-01-04")
+            opponent: match.opponent,
+            venue: '천안유관순체육관',
+            result: match.result,
+            score: `${match.ourScore}-${match.opponentScore}`,
+            sets: match.sets || []
+          });
+        } else {
+          console.warn(`[CRAWL] Skipping invalid match: ${JSON.stringify(match)}`);
+        }
       }
     }
 

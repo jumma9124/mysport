@@ -146,31 +146,31 @@
   "recentMatches": [
     {
       "date": "2026-01-18",
-      "opponent": "대한항공",
+      "opponent": "우리카드",
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-0",
       "sets": []
     },
     {
-      "date": "2026-01-18",
-      "opponent": "OK저축은행",
-      "venue": "천안유관순체육관",
-      "result": "loss",
-      "score": "0-3",
-      "sets": []
-    },
-    {
-      "date": "2026-01-18",
+      "date": "2026-01-14",
       "opponent": "삼성화재",
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-0",
       "sets": []
+    },
+    {
+      "date": "2026-01-09",
+      "opponent": "OK저축은행",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "0-3",
+      "sets": []
     }
   ],
   "upcomingMatch": {
-    "date": "2026-01-23",
+    "date": "2026-01-22",
     "time": "19:00",
     "opponent": "한국전력",
     "venue": "천안유관순체육관"

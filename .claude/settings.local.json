@@ -18,7 +18,11 @@
       "Bash(node -e:*)",
       "Bash(git push:*)",
       "Bash(npm run crawl:volleyball:*)",
-      "Bash(npm run crawl:baseball:*)"
+      "Bash(npm run crawl:baseball:*)",
+      "Bash(node scripts/test-team-page.cjs:*)",
+      "Bash(node scripts/debug-page-structure.cjs:*)",
+      "Bash(node scripts/test-visible-matches.cjs:*)",
+      "Bash(node scripts/check-page-tabs.cjs:*)"
     ]
   }
 }
