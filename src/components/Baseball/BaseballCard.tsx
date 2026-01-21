@@ -8,6 +8,18 @@ const BaseballCard = () => {
   const [data, setData] = useState<BaseballData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // 날짜 형식 변환 함수 (YYYY-MM-DD → MM.DD)
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    // ISO 형식 (2025-10-02)
+    if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const [year, month, day] = dateStr.split('-');
+      return `${month}.${day}`;
+    }
+    // 이미 YY.MM.DD 형식이면 그대로 반환
+    return dateStr;
+  };
+
   useEffect(() => {
     let isMounted = true;
     
@@ -114,7 +126,7 @@ const BaseballCard = () => {
                       {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
                     </span>
                   </div>
-                  <span className="text-sm text-gray-400">{data.lastSeries.date}</span>
+                  <span className="text-sm text-gray-400">{formatDate(data.lastSeries.date)}</span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">로딩 중...</div>
@@ -136,7 +148,7 @@ const BaseballCard = () => {
                       {data.currentSeries.wins}승 {data.currentSeries.losses}패
                     </span>
                   </div>
-                  <span className="text-sm text-gray-400">{data.currentSeries.date}</span>
+                  <span className="text-sm text-gray-400">{formatDate(data.currentSeries.date)}</span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">진행 중인 시리즈 없음</div>
@@ -148,7 +160,7 @@ const BaseballCard = () => {
               {data.nextSeries ? (
                 <div className="flex items-center justify-between">
                   <span className="text-base text-white">vs {data.nextSeries.opponent}</span>
-                  <span className="text-sm text-gray-400">{data.nextSeries.date}</span>
+                  <span className="text-sm text-gray-400">{formatDate(data.nextSeries.date)}</span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">예정된 시리즈 없음</div>

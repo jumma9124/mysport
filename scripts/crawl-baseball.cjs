@@ -756,7 +756,7 @@ function getFallbackData() {
     ],
     lastSeries: {
       opponent: 'KIA',
-      date: '24.10.02',
+      date: '2025-10-02',
       result: 'loss',
       score: '3-4',
     },
