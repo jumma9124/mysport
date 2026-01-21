@@ -17,9 +17,39 @@ interface RankChartData {
 const RankChart = () => {
   const [data, setData] = useState<RankChartData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedYear, setSelectedYear] = useState<number>(2025);
+  const [availableYears, setAvailableYears] = useState<number[]>([2025]);
 
   useEffect(() => {
-    fetch('/mysport/data/baseball-daily-rank.json')
+    // Try to load available years by checking for files
+    const checkYears = async () => {
+      const years = [2025, 2024, 2023, 2022];
+      const available: number[] = [];
+
+      for (const year of years) {
+        try {
+          const filename = year === 2025 ? 'baseball-daily-rank.json' : `baseball-daily-rank-${year}.json`;
+          const response = await fetch(`/mysport/data/${filename}`, { method: 'HEAD' });
+          if (response.ok) {
+            available.push(year);
+          }
+        } catch (e) {
+          // File doesn't exist
+        }
+      }
+
+      if (available.length > 0) {
+        setAvailableYears(available);
+        setSelectedYear(available[0]);
+      }
+    };
+
+    checkYears();
+  }, []);
+
+  useEffect(() => {
+    const filename = selectedYear === 2025 ? 'baseball-daily-rank.json' : `baseball-daily-rank-${selectedYear}.json`;
+    fetch(`/mysport/data/${filename}`)
       .then(res => res.json())
       .then(data => {
         setData(data);
@@ -29,7 +59,7 @@ const RankChart = () => {
         console.error('Failed to load rank data:', error);
         setLoading(false);
       });
-  }, []);
+  }, [selectedYear]);
 
   if (loading || !data) {
     return (
@@ -75,17 +105,30 @@ const RankChart = () => {
       border: '1px solid rgba(255, 255, 255, 0.2)'
     }}>
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-            background: 'rgba(76, 175, 80, 0.2)',
-            borderColor: 'rgba(76, 175, 80, 0.5)',
-            color: '#4caf50',
-            fontSize: '14px',
-            fontWeight: 700
-          }}>
-            ✓
+        <div className="flex items-center gap-4">
+          <div className="flex items-center">
+            <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+              background: 'rgba(76, 175, 80, 0.2)',
+              borderColor: 'rgba(76, 175, 80, 0.5)',
+              color: '#4caf50',
+              fontSize: '14px',
+              fontWeight: 700
+            }}>
+              ✓
+            </div>
+            <h2 className="text-xl font-bold text-white">시즌 순위 변동</h2>
           </div>
-          <h2 className="text-xl font-bold text-white">시즌 순위 변동</h2>
+          {availableYears.length > 1 && (
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+              className="px-3 py-1 rounded bg-gray-700 text-white border border-gray-600 text-sm"
+            >
+              {availableYears.map(year => (
+                <option key={year} value={year}>{year}시즌</option>
+              ))}
+            </select>
+          )}
         </div>
         <div className="flex gap-4 text-sm">
           <div>
