@@ -54,22 +54,34 @@ async function crawlDailyRank() {
     const dailyRanks = [];
 
     for (const date of dates) {
-      const dateStr = date.toISOString().split('T')[0].replace(/-/g, '');
+      const dateStr = date.toISOString().split('T')[0];
+      const dateParam = dateStr.replace(/-/g, '');
       console.log(`Checking date: ${dateStr}`);
 
       try {
-        // Set date in the input field
+        // Set the date value in the hidden field and submit via ASP.NET postback
         await page.evaluate((dateValue) => {
+          // Set the date input value
           const input = document.querySelector('#cphContents_cphContents_cphContents_txtCanlendar');
           if (input) {
-            input.value = dateValue;
-            // Trigger change event
-            const event = new Event('change', { bubbles: true });
-            input.dispatchEvent(event);
+            input.value = dateValue + '  '; // Add spaces like the original format
           }
-        }, dateStr);
 
-        // Wait for page to reload/update
+          // Set hidden field
+          const hfSearchDate = document.querySelector('#cphContents_cphContents_cphContents_hfSearchDate');
+          if (hfSearchDate) {
+            hfSearchDate.value = dateValue + '  ';
+          }
+
+          // Trigger the calendar select button (hidden button that processes date change)
+          const btnCalendarSelect = document.querySelector('#cphContents_cphContents_cphContents_btnCalendarSelect');
+          if (btnCalendarSelect) {
+            btnCalendarSelect.click();
+          }
+        }, dateParam);
+
+        // Wait for page to reload after postback
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 }).catch(() => {});
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         // Extract rank from table
