@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { BaseballData, BaseballPitcher, BaseballBatter } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
+import RankChart from '@/components/Baseball/RankChart';
 
 const BaseballDetail = () => {
   const [data, setData] = useState<BaseballData | null>(null);
@@ -149,6 +150,11 @@ const BaseballDetail = () => {
                     })}
                   </tbody>
                 </table>
+            </div>
+
+            {/* 순위 변동 그래프 */}
+            <div className="mt-6">
+              <RankChart />
             </div>
           </div>
 
