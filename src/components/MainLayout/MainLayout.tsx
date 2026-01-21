@@ -13,12 +13,8 @@ const MainLayout = ({ area1, area2, area3, area4 }: MainLayoutProps) => {
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const period = now.getHours() >= 12 ? '오후' : '오전';
-    const displayHours = now.getHours() > 12 ? now.getHours() - 12 : now.getHours() === 0 ? 12 : now.getHours();
-    
-    return `${year}. ${month}. ${day}. ${period} ${displayHours}:${minutes}:${seconds}`;
+
+    return `${year}.${month}.${day}`;
   };
 
   return (
@@ -28,7 +24,7 @@ const MainLayout = ({ area1, area2, area3, area4 }: MainLayoutProps) => {
         <header className="mb-6 flex items-center justify-center relative">
           <h1 className="text-3xl font-bold text-white">MY SPORT</h1>
           <div className="text-sm text-white absolute right-0">
-            마지막 업데이트: {getLastUpdateTime()}
+            {getLastUpdateTime()}
           </div>
         </header>
 
