@@ -45,9 +45,9 @@ const RankChart = () => {
   const { dailyRanks, bestRank, worstRank } = data;
 
   // Calculate chart dimensions
-  const chartWidth = 100; // percentage
+  const chartWidth = 800; // pixels
   const chartHeight = 200; // pixels
-  const padding = { top: 20, right: 20, bottom: 30, left: 30 };
+  const padding = { top: 20, right: 20, bottom: 30, left: 40 };
 
   // Y axis: rank (inverted, 1 is at top)
   const minRank = 1;
@@ -119,10 +119,10 @@ const RankChart = () => {
                   strokeWidth="0.5"
                 />
                 <text
-                  x={padding.left - 5}
+                  x={padding.left - 8}
                   y={y}
                   fill="rgba(255,255,255,0.5)"
-                  fontSize="5"
+                  fontSize="12"
                   textAnchor="end"
                   dominantBaseline="middle"
                 >
@@ -137,7 +137,7 @@ const RankChart = () => {
             d={pathData}
             fill="none"
             stroke="#4caf50"
-            strokeWidth="2"
+            strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -148,7 +148,7 @@ const RankChart = () => {
               <circle
                 cx={point.x}
                 cy={point.y}
-                r="3"
+                r="2"
                 fill="#4caf50"
                 stroke="white"
                 strokeWidth="1"
@@ -157,9 +157,9 @@ const RankChart = () => {
               {(index === 0 || index === points.length - 1 || point.rank === bestRank) && (
                 <text
                   x={point.x}
-                  y={point.y - 10}
+                  y={point.y - 12}
                   fill="white"
-                  fontSize="5"
+                  fontSize="12"
                   textAnchor="middle"
                   fontWeight="bold"
                 >
@@ -178,7 +178,7 @@ const RankChart = () => {
                 x={point.x}
                 y={chartHeight - 10}
                 fill="rgba(255,255,255,0.5)"
-                fontSize="5"
+                fontSize="12"
                 textAnchor="middle"
               >
                 {formatDate(point.date)}
