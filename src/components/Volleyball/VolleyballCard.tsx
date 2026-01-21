@@ -8,6 +8,17 @@ const VolleyballCard = () => {
   const [data, setData] = useState<VolleyballData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // 날짜 형식 변환 함수 (YYYY-MM-DD → MM.DD 또는 YY.MM.DD)
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    // ISO 형식 (2026-01-21)
+    if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const [year, month, day] = dateStr.split('-');
+      return `${month}.${day}`;
+    }
+    return dateStr;
+  };
+
   useEffect(() => {
     let isMounted = true;
     
@@ -145,7 +156,7 @@ const VolleyballCard = () => {
                       {data.recentMatches[0].result === 'win' ? '승' : '패'} ({data.recentMatches[0].score})
                     </span>
                   </div>
-                  <span className="text-sm text-gray-400">{data.recentMatches[0].date}</span>
+                  <span className="text-sm text-gray-400">{formatDate(data.recentMatches[0].date)}</span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">데이터 없음</div>
@@ -157,7 +168,10 @@ const VolleyballCard = () => {
               {data.upcomingMatch ? (
                 <div className="flex items-center justify-between">
                   <span className="text-base text-white">vs {data.upcomingMatch.opponent} ({data.upcomingMatch.venue})</span>
-                  <span className="text-sm text-gray-400">{data.upcomingMatch.date}</span>
+                  <span className="text-sm text-gray-400">
+                    {formatDate(data.upcomingMatch.date)}
+                    {data.upcomingMatch.time && ` ${data.upcomingMatch.time}`}
+                  </span>
                 </div>
               ) : (
                 <div className="text-base text-gray-400">예정된 경기 없음</div>

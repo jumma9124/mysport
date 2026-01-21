@@ -10,7 +10,7 @@
     },
     "recentMatches": [
       {
-        "date": "2026-01-20",
+        "date": "2026-01-21",
         "opponent": "대한항공",
         "venue": "천안유관순체육관",
         "result": "win",
@@ -18,7 +18,7 @@
         "sets": []
       },
       {
-        "date": "2026-01-20",
+        "date": "2026-01-21",
         "opponent": "OK저축은행",
         "venue": "천안유관순체육관",
         "result": "loss",
@@ -26,7 +26,7 @@
         "sets": []
       },
       {
-        "date": "2026-01-20",
+        "date": "2026-01-21",
         "opponent": "삼성화재",
         "venue": "천안유관순체육관",
         "result": "win",
@@ -34,11 +34,7 @@
         "sets": []
       }
     ],
-    "upcomingMatch": {
-      "date": "26.01.21 경기 시간19:00",
-      "opponent": "한국전력",
-      "venue": "천안유관순체육관"
-    }
+    "upcomingMatch": null
   },
   "baseball": {
     "team": "한화 이글스",

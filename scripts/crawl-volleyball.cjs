@@ -457,7 +457,8 @@ async function crawlUpcomingMatch() {
               const timeText = timeEl ? timeEl.textContent.trim() : '';
 
               return { match: {
-                date: `${matchDate} ${timeText}`.trim(),
+                date: matchDate, // ISO 형식으로 저장 (예: "2026-01-21")
+                time: timeText,
                 opponent,
                 venue
               }, debugInfo };
@@ -466,7 +467,7 @@ async function crawlUpcomingMatch() {
         }
 
         return { match: null, debugInfo };
-      }, TEAM_NAME, dateStr.substring(2).replace(/-/g, '.'));
+      }, TEAM_NAME, dateStr);
 
       const upcomingMatch = upcomingMatchResult?.match || null;
       console.log(`[CRAWL] Date ${dateStr}: Debug info: ${JSON.stringify(upcomingMatchResult?.debugInfo)}`);

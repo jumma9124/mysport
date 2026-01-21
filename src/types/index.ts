@@ -145,6 +145,7 @@ export interface VolleyballData {
   recentMatches: VolleyballMatch[];
   upcomingMatch?: {
     date: string;
+    time?: string;
     opponent: string;
     venue: string;
   };
