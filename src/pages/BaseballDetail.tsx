@@ -97,6 +97,11 @@ const BaseballDetail = () => {
           </div>
         </header>
 
+        {/* 순위 변동 그래프 - 상단 전체 너비 */}
+        <div className="mb-6">
+          <RankChart />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6" style={{ alignItems: 'stretch' }}>
           {/* 왼쪽: 리그 순위 (4:6 비율) */}
           <div className="md:col-span-4">
@@ -150,11 +155,6 @@ const BaseballDetail = () => {
                     })}
                   </tbody>
                 </table>
-            </div>
-
-            {/* 순위 변동 그래프 */}
-            <div className="mt-6">
-              <RankChart />
             </div>
           </div>
 

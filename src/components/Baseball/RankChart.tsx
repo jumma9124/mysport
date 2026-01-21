@@ -69,10 +69,25 @@ const RankChart = () => {
   };
 
   return (
-    <div className="bg-gray-800/50 rounded-lg p-4 mb-4">
+    <div className="rounded-lg p-6" style={{
+      background: 'rgb(32, 34, 52)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.2)'
+    }}>
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-bold text-white">시즌 순위 변동</h3>
-        <div className="flex gap-3 text-sm">
+        <div className="flex items-center">
+          <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+            background: 'rgba(76, 175, 80, 0.2)',
+            borderColor: 'rgba(76, 175, 80, 0.5)',
+            color: '#4caf50',
+            fontSize: '14px',
+            fontWeight: 700
+          }}>
+            ✓
+          </div>
+          <h2 className="text-xl font-bold text-white">시즌 순위 변동</h2>
+        </div>
+        <div className="flex gap-4 text-sm">
           <div>
             <span className="text-gray-400">최고 </span>
             <span className="text-green-400 font-bold">{bestRank}위</span>
