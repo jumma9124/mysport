@@ -62,10 +62,24 @@ const RankChart = () => {
 
   const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
 
-  // Format date for display (MM.DD)
-  const formatDate = (dateStr: string) => {
-    const [, month, day] = dateStr.split('-');
-    return `${month}.${day}`;
+  // Get unique months from data
+  const getMonthLabels = () => {
+    const months = ['3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월'];
+    const monthPositions = months.map((label, idx) => {
+      const monthNum = idx + 3; // 3월부터 시작
+      // Find first data point for this month
+      const firstPointIndex = dailyRanks.findIndex(item => {
+        const month = parseInt(item.date.split('-')[1]);
+        return month === monthNum;
+      });
+
+      if (firstPointIndex === -1) return null;
+
+      const x = (firstPointIndex / (dailyRanks.length - 1)) * (chartWidth - padding.left - padding.right) + padding.left;
+      return { label, x };
+    }).filter(item => item !== null);
+
+    return monthPositions;
   };
 
   return (
@@ -85,7 +99,7 @@ const RankChart = () => {
           }}>
             ✓
           </div>
-          <h2 className="text-xl font-bold text-white">시즌 순위 변동</h2>
+          <h2 className="text-xl font-bold text-white">시즌 순위</h2>
         </div>
         <div className="flex gap-4 text-sm">
           <div>
@@ -169,27 +183,24 @@ const RankChart = () => {
             </g>
           ))}
 
-          {/* X-axis labels (dates) */}
-          {[0, Math.floor(points.length / 2), points.length - 1].map(index => {
-            const point = points[index];
-            return (
-              <text
-                key={index}
-                x={point.x}
-                y={chartHeight - 10}
-                fill="rgba(255,255,255,0.5)"
-                fontSize="12"
-                textAnchor="middle"
-              >
-                {formatDate(point.date)}
-              </text>
-            );
-          })}
+          {/* X-axis labels (months) */}
+          {getMonthLabels().map((item, index) => (
+            <text
+              key={index}
+              x={item.x}
+              y={chartHeight - 10}
+              fill="rgba(255,255,255,0.5)"
+              fontSize="12"
+              textAnchor="middle"
+            >
+              {item.label}
+            </text>
+          ))}
         </svg>
       </div>
 
       <div className="mt-3 text-xs text-gray-400 text-center">
-        시즌 시작부터 현재까지의 순위 변동
+        2025
       </div>
     </div>
   );
