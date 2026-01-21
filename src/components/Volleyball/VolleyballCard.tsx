@@ -13,7 +13,7 @@ const VolleyballCard = () => {
     if (!dateStr) return '';
     // ISO 형식 (2026-01-21)
     if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
-      const [year, month, day] = dateStr.split('-');
+      const [, month, day] = dateStr.split('-');
       return `${month}.${day}`;
     }
     return dateStr;

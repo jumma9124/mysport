@@ -13,7 +13,7 @@ const BaseballCard = () => {
     if (!dateStr) return '';
     // ISO 형식 (2025-10-02)
     if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
-      const [year, month, day] = dateStr.split('-');
+      const [, month, day] = dateStr.split('-');
       return `${month}.${day}`;
     }
     // 이미 YY.MM.DD 형식이면 그대로 반환
