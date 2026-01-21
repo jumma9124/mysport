@@ -19,7 +19,7 @@ const RankChart = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/data/baseball-daily-rank.json')
+    fetch('/mysport/data/baseball-daily-rank.json')
       .then(res => res.json())
       .then(data => {
         setData(data);
