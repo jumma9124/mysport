@@ -52,21 +52,21 @@
     },
     {
       "name": "우리카드",
-      "wins": 9,
+      "wins": 10,
       "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.765,
+      "setRate": 0.824,
       "rank": 6,
-      "points": 26
+      "points": 29
     },
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 18,
+      "losses": 19,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.492,
+      "setRate": 0.469,
       "rank": 7,
       "points": 15
     }
@@ -74,13 +74,13 @@
   "leagueStandingsWomen": [
     {
       "name": "도로공사",
-      "wins": 18,
+      "wins": 19,
       "losses": 5,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.818,
+      "setRate": 1.853,
       "rank": 1,
-      "points": 49
+      "points": 52
     },
     {
       "name": "현대건설",
@@ -105,10 +105,10 @@
     {
       "name": "IBK기업은행",
       "wins": 11,
-      "losses": 12,
+      "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.022,
+      "setRate": 0.979,
       "rank": 4,
       "points": 36
     },
