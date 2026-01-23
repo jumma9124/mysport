@@ -699,6 +699,107 @@ async function crawlHeadToHead() {
   }
 }
 
+async function crawlLastSeries() {
+  let browser;
+  try {
+    console.log('Fetching last series data (off-season mode)...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--disable-gpu'
+      ],
+      timeout: 60000
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+    await page.setViewport({ width: 375, height: 667 });
+
+    // 시즌 종료 후: 10월부터 역순으로 한화 마지막 경기 찾기
+    const currentYear = new Date().getFullYear();
+    const seasonYear = currentYear > 2025 ? currentYear - 1 : 2025; // 오프시즌이면 이전 시즌
+
+    // 10월 마지막 날부터 시작해서 한화 마지막 경기 찾기
+    for (let day = 31; day >= 1; day--) {
+      const dateStr = `${seasonYear}-10-${String(day).padStart(2, '0')}`;
+      const scheduleUrl = `https://m.sports.naver.com/kbaseball/schedule/index?date=${dateStr}`;
+
+      await page.goto(scheduleUrl, {
+        waitUntil: 'networkidle2',
+        timeout: 60000
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      const lastSeries = await page.evaluate((teamName, dateStr) => {
+        // 모든 경기 아이템 찾기
+        const matchItems = document.querySelectorAll('[class*="MatchBox_match_item"]');
+
+        for (const item of matchItems) {
+          const itemText = item.textContent || '';
+
+          // 한화 경기인지 확인
+          if (!itemText.includes('한화')) continue;
+
+          // 종료된 경기인지 확인
+          const statusEl = item.querySelector('[class*="MatchBox_status"]');
+          if (!statusEl || !statusEl.textContent.includes('종료')) continue;
+
+          // 팀 이름 추출 (정확한 클래스명 사용)
+          const teamEls = item.querySelectorAll('[class*="MatchBoxHeadToHeadArea_team__"]');
+          const scoreEls = item.querySelectorAll('[class*="MatchBoxHeadToHeadArea_score__"]');
+
+          if (teamEls.length < 2 || scoreEls.length < 2) continue;
+
+          const team1 = teamEls[0].textContent.trim();
+          const team2 = teamEls[1].textContent.trim();
+          const score1 = parseInt(scoreEls[0].textContent.trim()) || 0;
+          const score2 = parseInt(scoreEls[1].textContent.trim()) || 0;
+
+          // 한화 기준으로 정리
+          const isHanwha1 = team1.includes('한화');
+          const hanwhaScore = isHanwha1 ? score1 : score2;
+          const opponentScore = isHanwha1 ? score2 : score1;
+          const opponent = isHanwha1 ? team2 : team1;
+
+          // 승패 판정
+          let result = 'draw';
+          if (hanwhaScore > opponentScore) result = 'win';
+          else if (hanwhaScore < opponentScore) result = 'loss';
+
+          return {
+            opponent: opponent,
+            date: dateStr,
+            result: result,
+            score: `${hanwhaScore}-${opponentScore}`
+          };
+        }
+
+        return null;
+      }, TEAM_NAME, dateStr);
+
+      if (lastSeries) {
+        await browser.close();
+        console.log(`✓ Found last series: vs ${lastSeries.opponent} (${lastSeries.result}) ${lastSeries.score} on ${lastSeries.date}`);
+        return lastSeries;
+      }
+    }
+
+    await browser.close();
+    console.warn('Could not find last series data in October');
+    return null;
+
+  } catch (error) {
+    if (browser) await browser.close();
+    console.error('⚠ Last series crawl error:', error.message);
+    return null;
+  }
+}
+
 function getFallbackData() {
   console.log('Using fallback data (previous season stats)...');
 
@@ -755,10 +856,10 @@ function getFallbackData() {
       { opponent: '키움', wins: 6, losses: 8, draws: 0 },
     ],
     lastSeries: {
-      opponent: 'KIA',
-      date: '2025-10-02',
+      opponent: 'LG',
+      date: '2025-10-31',
       result: 'loss',
-      score: '3-4',
+      score: '1-4',
     },
   };
 }
@@ -768,11 +869,12 @@ async function crawlBaseballData() {
     console.log('Starting baseball data crawl...');
 
     // 모든 데이터 병렬로 크롤링
-    const [standings, batters, pitchers, headToHead] = await Promise.all([
+    const [standings, batters, pitchers, headToHead, lastSeries] = await Promise.all([
       crawlStandings(),
       crawlBatters(),
       crawlPitchers(),
       crawlHeadToHead(),
+      crawlLastSeries(),
     ]);
 
     // 크롤링 실패 시 폴백 데이터 사용
@@ -781,6 +883,7 @@ async function crawlBaseballData() {
     const battersData = batters || fallbackData.batters;
     const pitchersData = pitchers || fallbackData.pitchers;
     const headToHeadData = headToHead || fallbackData.headToHead;
+    const lastSeriesData = lastSeries || fallbackData.lastSeries;
 
     // baseball-detail.json 생성
     const baseballDetail = {
@@ -788,7 +891,7 @@ async function crawlBaseballData() {
       batters: battersData,
       pitchers: pitchersData,
       headToHead: headToHeadData,
-      lastSeries: fallbackData.lastSeries,
+      lastSeries: lastSeriesData,
     };
 
     // sports.json 업데이트
