@@ -4,7 +4,11 @@ import { BaseballData } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
 import { getDaysUntilSeasonStart } from '@/utils/seasonManager';
 
-const BaseballCard = () => {
+interface BaseballCardProps {
+  isInSeason?: boolean;
+}
+
+const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
   const [data, setData] = useState<BaseballData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -41,6 +45,10 @@ const BaseballCard = () => {
     };
   }, []);
 
+  const borderStyle = isInSeason
+    ? '2px solid #f97316' // 주황색 테두리
+    : '1px solid rgba(255, 255, 255, 0.2)';
+
   if (loading || !data) {
     return (
       <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
@@ -48,7 +56,7 @@ const BaseballCard = () => {
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
-        border: '1px solid rgba(255, 255, 255, 0.2)'
+        border: borderStyle
       }}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
@@ -66,7 +74,7 @@ const BaseballCard = () => {
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
-        border: '1px solid rgba(255, 255, 255, 0.2)'
+        border: borderStyle
       }}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">

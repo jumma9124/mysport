@@ -10,7 +10,11 @@ interface Event {
   daysLeft?: number;
 }
 
-const InternationalSportsCard = () => {
+interface InternationalSportsCardProps {
+  isInSeason?: boolean;
+}
+
+const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCardProps) => {
   const [data, setData] = useState<InternationalSportsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState<Event[]>([]);
@@ -43,6 +47,10 @@ const InternationalSportsCard = () => {
     loadData();
   }, []);
 
+  const borderStyle = isInSeason
+    ? '2px solid #f97316' // 주황색 테두리
+    : '1px solid rgba(255, 255, 255, 0.2)';
+
   if (loading || !data) {
     return (
       <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
@@ -50,7 +58,7 @@ const InternationalSportsCard = () => {
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
-        border: '1px solid rgba(255, 255, 255, 0.2)'
+        border: borderStyle
       }}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
@@ -77,7 +85,7 @@ const InternationalSportsCard = () => {
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
-        border: '1px solid rgba(255, 255, 255, 0.2)'
+        border: borderStyle
       }}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">

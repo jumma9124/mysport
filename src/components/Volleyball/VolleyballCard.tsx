@@ -4,7 +4,11 @@ import { VolleyballData } from '@/types';
 import { fetchVolleyballData } from '@/utils/dataUpdater';
 import { getSeasonStatus, getDaysUntilSeasonStart } from '@/utils/seasonManager';
 
-const VolleyballCard = () => {
+interface VolleyballCardProps {
+  isInSeason?: boolean;
+}
+
+const VolleyballCard = ({ isInSeason: isInSeasonProp }: VolleyballCardProps) => {
   const [data, setData] = useState<VolleyballData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,6 +42,10 @@ const VolleyballCard = () => {
     };
   }, []);
 
+  const borderStyle = isInSeasonProp
+    ? '2px solid #f97316' // 주황색 테두리
+    : '1px solid rgba(255, 255, 255, 0.2)';
+
   if (loading || !data) {
     return (
       <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
@@ -45,7 +53,7 @@ const VolleyballCard = () => {
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
-        border: '1px solid rgba(255, 255, 255, 0.2)'
+        border: borderStyle
       }}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
@@ -53,10 +61,8 @@ const VolleyballCard = () => {
     );
   }
 
-  const isInSeason = getSeasonStatus('volleyball') === 'in-season';
   const isOffSeason = getSeasonStatus('volleyball') === 'off-season';
   const daysUntilStart = getDaysUntilSeasonStart('volleyball');
-  const borderColor = isInSeason ? '2px solid #ff9800' : '1px solid rgba(255, 255, 255, 0.2)';
 
   return (
     <Link to="/volleyball" className="block h-full">
@@ -65,7 +71,7 @@ const VolleyballCard = () => {
         backdropFilter: 'blur(10px)',
         borderRadius: '15px',
         padding: '20px',
-        border: borderColor
+        border: borderStyle
       }}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">

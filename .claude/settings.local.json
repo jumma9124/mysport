@@ -23,7 +23,21 @@
       "Bash(node scripts/debug-page-structure.cjs:*)",
       "Bash(node scripts/test-visible-matches.cjs:*)",
       "Bash(node scripts/check-page-tabs.cjs:*)",
-      "Bash(node scripts/crawl-daily-rank.cjs:*)"
+      "Bash(node scripts/crawl-daily-rank.cjs:*)",
+      "Bash(node scripts/analyze-calendar-ui.cjs:*)",
+      "Bash(node scripts/find-datepicker.cjs:*)",
+      "Bash(node scripts/open-datepicker-properly.cjs:*)",
+      "Bash(node scripts/crawl-past-years-with-calendar.cjs:*)",
+      "Bash(node scripts/test-calendar-click.cjs:*)",
+      "Bash(node scripts/test-full-flow.cjs:*)",
+      "Bash(node scripts/debug-after-click.cjs:*)",
+      "Bash(node scripts/test-crawler-2024.cjs:*)",
+      "Bash(node scripts/crawl-years-fixed.cjs:*)",
+      "Bash(node scripts/debug-available-days.cjs:*)",
+      "Bash(node scripts/crawl-years-smart.cjs:*)",
+      "Bash(git rm:*)",
+      "Bash(git stash:*)",
+      "Bash(npm run lint)"
     ]
   }
 }

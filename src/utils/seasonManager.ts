@@ -80,30 +80,38 @@ export const getSeasonStartDate = (sport: SportType): Date | null => {
   return getSeasonDates(sport).start || null;
 };
 
+// 시즌 중인지 확인 (in-season 또는 pre-season)
+export const isInSeason = (sport: SportType): boolean => {
+  const status = getSeasonStatus(sport);
+  return status === 'in-season' || status === 'pre-season';
+};
+
+// 메인 페이지 스포츠 정렬 (시즌 중인 것 먼저, 그 중 국제대회 > 야구 > 배구 순)
+export const getSortedSports = (): { sport: SportType; inSeason: boolean }[] => {
+  const sports: SportType[] = ['international', 'baseball', 'volleyball'];
+
+  // 각 스포츠의 시즌 상태 확인
+  const sportsWithStatus = sports.map(sport => ({
+    sport,
+    inSeason: isInSeason(sport)
+  }));
+
+  // 시즌 중인 것 먼저, 그 다음 기본 우선순위 (국제대회 > 야구 > 배구)
+  const inSeasonSports = sportsWithStatus.filter(s => s.inSeason);
+  const offSeasonSports = sportsWithStatus.filter(s => !s.inSeason);
+
+  // 오프시즌 스포츠는 야구 > 배구 > 국제대회 순으로 정렬
+  const offSeasonOrder: SportType[] = ['baseball', 'volleyball', 'international'];
+  offSeasonSports.sort((a, b) =>
+    offSeasonOrder.indexOf(a.sport) - offSeasonOrder.indexOf(b.sport)
+  );
+
+  return [...inSeasonSports, ...offSeasonSports];
+};
+
 // 메인 페이지에서 어떤 스포츠가 1번 영역에 와야 하는지 결정
 export const getMainAreaSport = (): SportType => {
-  const internationalStatus = getSeasonStatus('international');
-  
-  // 국제스포츠가 시즌 중이면 무조건 1번
-  if (internationalStatus === 'in-season' || internationalStatus === 'pre-season') {
-    return 'international';
-  }
-  
-  const baseballStatus = getSeasonStatus('baseball');
-  const volleyballStatus = getSeasonStatus('volleyball');
-  
-  // 야구 시즌 중이면 야구
-  if (baseballStatus === 'in-season' || baseballStatus === 'pre-season') {
-    return 'baseball';
-  }
-  
-  // 배구 시즌 중이면 배구
-  if (volleyballStatus === 'in-season' || volleyballStatus === 'pre-season') {
-    return 'volleyball';
-  }
-  
-  // 기본값은 야구
-  return 'baseball';
+  return getSortedSports()[0].sport;
 };
 
 // 데이터 업데이트 주기 결정
