@@ -1,14 +1,22 @@
 {
   "volleyball": {
     "team": "현대캐피탈 스카이워커스",
-    "currentRank": 2,
+    "currentRank": 1,
     "record": {
-      "wins": 14,
+      "wins": 15,
       "losses": 8,
-      "points": 44,
-      "setRate": 1.563
+      "points": 47,
+      "setRate": 1.656
     },
     "recentMatches": [
+      {
+        "date": "2026-01-23",
+        "opponent": "한국전력",
+        "venue": "천안유관순체육관",
+        "result": "win",
+        "score": "3-0",
+        "sets": []
+      },
       {
         "date": "2026-01-18",
         "opponent": "우리카드",
@@ -23,14 +31,6 @@
         "venue": "천안유관순체육관",
         "result": "win",
         "score": "3-0",
-        "sets": []
-      },
-      {
-        "date": "2026-01-09",
-        "opponent": "OK저축은행",
-        "venue": "천안유관순체육관",
-        "result": "loss",
-        "score": "0-3",
         "sets": []
       }
     ],
