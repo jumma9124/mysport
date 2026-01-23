@@ -98,6 +98,13 @@ export interface BaseballData {
 }
 
 // 배구 관련 타입
+export interface VolleyballPlayer {
+  name: string;
+  position: string;
+  stats: Record<string, number | string>;
+  rank?: number;
+}
+
 export interface VolleyballTeam {
   name: string;
   wins: number;
@@ -122,13 +129,6 @@ export interface VolleyballMatch {
   }>;
 }
 
-export interface VolleyballPlayer {
-  name: string;
-  position: string;
-  stats: Record<string, number | string>;
-  rank?: number;
-}
-
 export interface VolleyballData {
   team: string;
   seasonStatus: SeasonStatus;
@@ -143,13 +143,13 @@ export interface VolleyballData {
   leagueStandings: VolleyballTeam[];
   leagueStandingsWomen?: VolleyballTeam[]; // 여자부 순위
   recentMatches: VolleyballMatch[];
+  attackers?: VolleyballPlayer[]; // 공격수 순위 (시즌 종료 후 표시)
   upcomingMatch?: {
     date: string;
     time?: string;
     opponent: string;
     venue: string;
   };
-  attackers?: VolleyballPlayer[];
 }
 
 // 국제스포츠 타입

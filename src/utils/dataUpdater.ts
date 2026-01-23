@@ -165,8 +165,8 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
       leagueStandings: detailData.leagueStandings || [],
       leagueStandingsWomen: detailData.leagueStandingsWomen || [],
       recentMatches: detailData.recentMatches || [],
+      attackers: detailData.attackers || [],
       upcomingMatch: detailData.upcomingMatch,
-      attackers: detailData.attackers,
       seasonStatus: getSeasonStatus('volleyball'),
       seasonStartDate: detailData.seasonStartDate,
     };

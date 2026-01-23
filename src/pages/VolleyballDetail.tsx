@@ -245,7 +245,7 @@ const VolleyballDetail = () => {
             )}
           </div>
 
-          {/* 오른쪽: 지난 경기 결과 (4:6 비율) */}
+          {/* 오른쪽: 시즌 중에는 지난 경기 결과, 시즌 종료 후에는 공격수 순위 (4:6 비율) */}
           <div className="md:col-span-6">
             {isInSeason ? (
               <div className="flex flex-col" style={{
@@ -277,7 +277,7 @@ const VolleyballDetail = () => {
                         >
                           <div className="flex-1">
                             <div className="text-sm mb-2" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                              {match.date.includes('-') 
+                              {match.date.includes('-')
                                 ? match.date.replace(/(\d{4})-(\d{2})-(\d{2})/, '$1.$2.$3')
                                 : match.date}
                             </div>
@@ -330,6 +330,7 @@ const VolleyballDetail = () => {
                 )}
               </div>
             ) : (
+              /* 시즌 종료 후: 공격수 순위 표시 */
               <div className="flex flex-col" style={{
                 background: 'rgb(32, 34, 52)',
                 backdropFilter: 'blur(10px)',
@@ -350,21 +351,33 @@ const VolleyballDetail = () => {
                   <h2 className="text-xl font-bold text-white">공격수 순위</h2>
                 </div>
                 {data.attackers && data.attackers.length > 0 ? (
-                  <div className="space-y-3">
-                    {data.attackers.map((player, idx) => (
-                      <div key={idx} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <div className="font-semibold text-white">
-                              {player.rank}위 {player.name}
-                            </div>
-                            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                              {player.position}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                  <div style={{ overflowX: 'auto' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                      <thead>
+                        <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                          <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
+                          <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>선수</th>
+                          <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>포지션</th>
+                          <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>득점</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.attackers.map((player, idx) => (
+                          <tr
+                            key={player.name}
+                            style={{
+                              background: 'transparent',
+                              borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                            }}
+                          >
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{player.rank || idx + 1}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{player.name}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.position}</td>
+                            <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.stats?.points || '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 ) : (
                   <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
