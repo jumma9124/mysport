@@ -99,7 +99,7 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
             }}>
               ✓
             </div>
-            <h2 className="text-xl font-bold text-white">주요 스포츠 이벤트</h2>
+            <h2 className="text-xl font-bold text-white">대한민국 대표팀</h2>
           </div>
           <span className="text-sm text-gray-400">국제 스포츠대회</span>
         </div>
