@@ -3,12 +3,12 @@
     {
       "name": "현대캐피탈",
       "wins": 15,
-      "losses": 8,
+      "losses": 9,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.656,
+      "setRate": 1.571,
       "rank": 1,
-      "points": 47
+      "points": 48
     },
     {
       "name": "대한항공",
@@ -21,24 +21,24 @@
       "points": 45
     },
     {
+      "name": "한국전력",
+      "wins": 14,
+      "losses": 11,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.109,
+      "rank": 3,
+      "points": 40
+    },
+    {
       "name": "KB손해보험",
       "wins": 13,
       "losses": 11,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.043,
-      "rank": 3,
-      "points": 39
-    },
-    {
-      "name": "한국전력",
-      "wins": 13,
-      "losses": 11,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.091,
       "rank": 4,
-      "points": 38
+      "points": 39
     },
     {
       "name": "OK저축은행",
@@ -85,12 +85,12 @@
     {
       "name": "흥국생명",
       "wins": 14,
-      "losses": 10,
+      "losses": 11,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.317,
+      "setRate": 1.273,
       "rank": 2,
-      "points": 44
+      "points": 45
     },
     {
       "name": "현대건설",
@@ -114,13 +114,13 @@
     },
     {
       "name": "GS칼텍스",
-      "wins": 11,
+      "wins": 12,
       "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.902,
+      "setRate": 0.925,
       "rank": 5,
-      "points": 33
+      "points": 35
     },
     {
       "name": "페퍼저축은행",
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-01-29",
+      "opponent": "한국전력",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "2-3",
+      "sets": []
+    },
+    {
       "date": "2026-01-23",
       "opponent": "한국전력",
       "venue": "천안유관순체육관",
@@ -155,14 +163,6 @@
     {
       "date": "2026-01-18",
       "opponent": "우리카드",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-0",
-      "sets": []
-    },
-    {
-      "date": "2026-01-14",
-      "opponent": "삼성화재",
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-0",
