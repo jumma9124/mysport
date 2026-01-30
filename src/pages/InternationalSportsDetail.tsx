@@ -206,40 +206,46 @@ const InternationalSportsDetail = () => {
                     </div>
 
                     {/* 메달리스트 리스트 */}
-                    {showMedalists && data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 && (
+                    {showMedalists && (
                       <div className="mt-4 space-y-2">
                         <h5 className="text-sm font-semibold text-white mb-2">메달 획득 선수</h5>
-                        {data.winterOlympics.koreaMedalists.map((medalist, idx) => (
-                          <div
-                            key={idx}
-                            className="bg-white/5 rounded-lg p-3 border border-white/10"
-                          >
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <span className="text-2xl">
-                                  {medalist.medalType === 'gold' ? '🥇' : medalist.medalType === 'silver' ? '🥈' : '🥉'}
-                                </span>
-                                <div>
-                                  <div className="text-white font-semibold">{medalist.name}</div>
-                                  {medalist.discipline && (
-                                    <div className="text-sm text-gray-400">{medalist.discipline}</div>
-                                  )}
+                        {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 ? (
+                          data.winterOlympics.koreaMedalists.map((medalist, idx) => (
+                            <div
+                              key={idx}
+                              className="bg-white/5 rounded-lg p-3 border border-white/10"
+                            >
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-2xl">
+                                    {medalist.medalType === 'gold' ? '🥇' : medalist.medalType === 'silver' ? '🥈' : '🥉'}
+                                  </span>
+                                  <div>
+                                    <div className="text-white font-semibold">{medalist.name}</div>
+                                    {medalist.discipline && (
+                                      <div className="text-sm text-gray-400">{medalist.discipline}</div>
+                                    )}
+                                  </div>
                                 </div>
+                                {medalist.date && (
+                                  <div className="text-xs text-gray-400">{medalist.date}</div>
+                                )}
                               </div>
-                              {medalist.date && (
-                                <div className="text-xs text-gray-400">{medalist.date}</div>
-                              )}
                             </div>
+                          ))
+                        ) : (
+                          <div className="text-center py-4 text-gray-400 text-sm">
+                            아직 메달을 획득한 선수가 없습니다
                           </div>
-                        ))}
+                        )}
                       </div>
                     )}
                   </div>
 
                   {/* 전체 국가 메달 순위 */}
-                  {data.winterOlympics.allCountriesMedals && data.winterOlympics.allCountriesMedals.length > 0 && (
-                    <div>
-                      <h4 className="text-sm font-semibold text-white mb-3">전체 국가 메달 순위</h4>
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-3">전체 국가 메달 순위</h4>
+                    {data.winterOlympics.allCountriesMedals && data.winterOlympics.allCountriesMedals.length > 0 ? (
                       <div style={{ overflowX: 'auto' }}>
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                           <thead>
@@ -276,8 +282,12 @@ const InternationalSportsDetail = () => {
                           </tbody>
                         </table>
                       </div>
-                    </div>
-                  )}
+                    ) : (
+                      <div className="text-center py-4 text-gray-400 text-sm">
+                        아직 메달 순위가 없습니다
+                      </div>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <div className="space-y-4">
