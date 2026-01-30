@@ -172,16 +172,17 @@ const InternationalSportsDetail = () => {
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-sm font-semibold text-white">대한민국 메달 현황</h4>
-                      {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 && (
-                        <button
-                          onClick={() => setShowMedalists(!showMedalists)}
-                          className="text-xs text-blue-400 hover:text-blue-300"
-                        >
-                          {showMedalists ? '숨기기 ▲' : '메달리스트 보기 ▼'}
-                        </button>
-                      )}
+                      <button
+                        onClick={() => setShowMedalists(!showMedalists)}
+                        className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        {showMedalists ? '숨기기 ▲' : '메달리스트 보기 ▼'}
+                      </button>
                     </div>
-                    <div className="grid grid-cols-4 gap-4">
+                    <div
+                      className="grid grid-cols-4 gap-4 cursor-pointer"
+                      onClick={() => setShowMedalists(!showMedalists)}
+                    >
                       <div className="bg-yellow-500/10 rounded-lg p-3 text-center border border-yellow-500/20">
                         <div className="text-2xl mb-1">🥇</div>
                         <div className="text-sm text-gray-400">금메달</div>
