@@ -269,42 +269,10 @@ const InternationalSportsDetail = () => {
                       </div>
 
                       {/* 합계 */}
-                      <div className="relative">
-                        <div
-                          className="bg-blue-500/10 rounded-lg p-3 text-center border border-blue-500/20 cursor-pointer hover:bg-blue-500/5 transition-colors"
-                          onClick={() => setExpandedMedal(expandedMedal === 'total' ? null : 'total')}
-                        >
-                          <div className="text-2xl mb-1">🏆</div>
-                          <div className="text-sm text-gray-400">합계</div>
-                          <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.total}</div>
-                        </div>
-                        {expandedMedal === 'total' && (
-                          <div
-                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-blue-500/30 z-50"
-                            style={{ minWidth: '200px', maxWidth: '300px' }}
-                          >
-                            <div className="space-y-2 max-h-64 overflow-y-auto">
-                              {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 ? (
-                                data.winterOlympics.koreaMedalists.map((medalist, idx) => (
-                                  <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                    <div className="flex items-center gap-1">
-                                      <span className="text-lg">
-                                        {medalist.medalType === 'gold' ? '🥇' : medalist.medalType === 'silver' ? '🥈' : '🥉'}
-                                      </span>
-                                      <div className="flex-1">
-                                        <div className="text-white font-semibold">{medalist.name}</div>
-                                        {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                        {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))
-                              ) : (
-                                <div className="text-center py-2 text-gray-400 text-xs">없음</div>
-                              )}
-                            </div>
-                          </div>
-                        )}
+                      <div className="bg-blue-500/10 rounded-lg p-3 text-center border border-blue-500/20">
+                        <div className="text-2xl mb-1">🏆</div>
+                        <div className="text-sm text-gray-400">합계</div>
+                        <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.total}</div>
                       </div>
                     </div>
                   </div>
