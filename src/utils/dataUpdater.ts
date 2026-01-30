@@ -221,10 +221,27 @@ export const fetchInternationalSportsData = async (useRealtime = true): Promise<
     if (!response.ok) throw new Error('Failed to fetch major-events.json');
     const events = await response.json();
 
+    // 동계올림픽 데이터 로드
+    let winterOlympics = undefined;
+    try {
+      const winterResponse = await fetch(`${getBasePath()}data/winter-olympics-detail.json`);
+      if (winterResponse.ok) {
+        winterOlympics = await winterResponse.json();
+        console.log('[DATA] Loaded winter olympics data:', {
+          medals: winterOlympics?.medals,
+          todaySchedule: winterOlympics?.todaySchedule?.length || 0,
+          upcomingSchedule: winterOlympics?.upcomingSchedule?.length || 0
+        });
+      }
+    } catch (winterError) {
+      console.warn('Winter olympics data not found:', winterError);
+    }
+
     return {
       name: '주요 스포츠 이벤트',
       seasonStatus: getSeasonStatus('international'),
       data: { events },
+      winterOlympics,
     };
   } catch (error) {
     console.error('Failed to fetch international sports data:', error);

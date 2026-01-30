@@ -21,6 +21,7 @@ const InternationalSportsDetail = () => {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState<Event[]>([]);
   const [expandedEvents, setExpandedEvents] = useState<{ [key: number]: boolean }>({});
+  const [winterOlympicsTab, setWinterOlympicsTab] = useState<'medals' | 'schedule'>('medals');
 
   const toggleEvent = (index: number) => {
     setExpandedEvents(prev => ({
@@ -103,6 +104,160 @@ const InternationalSportsDetail = () => {
             </Link>
           </div>
         </header>
+
+        {/* 동계올림픽 섹션 */}
+        {data.winterOlympics && (
+          <div className="mb-4" style={{
+            background: 'rgb(32, 34, 52)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '15px',
+            padding: '20px',
+            border: '1px solid rgba(255, 255, 255, 0.2)'
+          }}>
+            <div className="flex items-center mb-4">
+              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
+                background: 'rgba(76, 175, 80, 0.2)',
+                borderColor: 'rgba(76, 175, 80, 0.5)',
+                color: '#4caf50',
+                fontSize: '14px',
+                fontWeight: 700
+              }}>
+                ✓
+              </div>
+              <h2 className="text-xl font-bold text-white">밀라노-코르티나 2026 동계올림픽</h2>
+            </div>
+
+            {/* 탭 버튼 */}
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setWinterOlympicsTab('medals')}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  background: winterOlympicsTab === 'medals' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+                  color: winterOlympicsTab === 'medals' ? 'white' : 'rgba(255,255,255,0.6)',
+                  transition: 'all 0.2s'
+                }}
+              >
+                메달 순위
+              </button>
+              <button
+                onClick={() => setWinterOlympicsTab('schedule')}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  background: winterOlympicsTab === 'schedule' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+                  color: winterOlympicsTab === 'schedule' ? 'white' : 'rgba(255,255,255,0.6)',
+                  transition: 'all 0.2s'
+                }}
+              >
+                경기 일정
+              </button>
+            </div>
+
+            {/* 탭 콘텐츠 */}
+            <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              {winterOlympicsTab === 'medals' ? (
+                <div>
+                  <h4 className="text-sm font-semibold text-white mb-3">대한민국 메달 현황</h4>
+                  <div className="grid grid-cols-4 gap-4">
+                    <div className="bg-yellow-500/10 rounded-lg p-3 text-center border border-yellow-500/20">
+                      <div className="text-2xl mb-1">🥇</div>
+                      <div className="text-sm text-gray-400">금메달</div>
+                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.gold}</div>
+                    </div>
+                    <div className="bg-gray-400/10 rounded-lg p-3 text-center border border-gray-400/20">
+                      <div className="text-2xl mb-1">🥈</div>
+                      <div className="text-sm text-gray-400">은메달</div>
+                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.silver}</div>
+                    </div>
+                    <div className="bg-orange-600/10 rounded-lg p-3 text-center border border-orange-600/20">
+                      <div className="text-2xl mb-1">🥉</div>
+                      <div className="text-sm text-gray-400">동메달</div>
+                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.bronze}</div>
+                    </div>
+                    <div className="bg-blue-500/10 rounded-lg p-3 text-center border border-blue-500/20">
+                      <div className="text-2xl mb-1">🏆</div>
+                      <div className="text-sm text-gray-400">합계</div>
+                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.total}</div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {/* 오늘의 경기 */}
+                  {data.winterOlympics.todaySchedule.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-semibold text-white mb-3">오늘의 경기</h4>
+                      <div className="space-y-2">
+                        {data.winterOlympics.todaySchedule.map((game, idx) => (
+                          <div
+                            key={idx}
+                            className="bg-white/5 rounded-lg p-3 border border-white/10"
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-white font-semibold">{game.discipline}</span>
+                              <span
+                                className="px-2 py-0.5 rounded text-xs"
+                                style={{
+                                  backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(59, 130, 246, 0.15)',
+                                  color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' : 'rgba(59, 130, 246, 0.7)'
+                                }}
+                              >
+                                {game.status}
+                              </span>
+                            </div>
+                            <div className="text-sm text-gray-400">{game.time}</div>
+                            {game.players && game.players.length > 0 && (
+                              <div className="text-sm text-gray-300 mt-1">{game.players.join(', ')}</div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 다가오는 경기 */}
+                  {data.winterOlympics.upcomingSchedule.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-semibold text-white mb-3">다가오는 경기</h4>
+                      <div className="space-y-2">
+                        {data.winterOlympics.upcomingSchedule.map((game, idx) => (
+                          <div
+                            key={idx}
+                            className="bg-white/5 rounded-lg p-3 border border-white/10"
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-white font-semibold">{game.discipline}</span>
+                              <span className="text-xs text-gray-400">{game.status}</span>
+                            </div>
+                            <div className="text-sm text-gray-400">
+                              {new Date(game.date).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })} {game.time}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {data.winterOlympics.todaySchedule.length === 0 && data.winterOlympics.upcomingSchedule.length === 0 && (
+                    <div className="text-center py-4 text-gray-400">
+                      예정된 경기가 없습니다
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* 이벤트 리스트 */}
         {events.length > 0 ? (

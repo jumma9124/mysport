@@ -152,12 +152,36 @@ export interface VolleyballData {
   };
 }
 
+// 동계올림픽 타입
+export interface WinterOlympicsData {
+  lastUpdate: string;
+  medals: {
+    gold: number;
+    silver: number;
+    bronze: number;
+    total: number;
+  };
+  todaySchedule: Array<{
+    time: string;
+    discipline: string;
+    status: string;
+    players?: string[] | null;
+  }>;
+  upcomingSchedule: Array<{
+    date: string;
+    time: string;
+    discipline: string;
+    status: string;
+  }>;
+}
+
 // 국제스포츠 타입
 export interface InternationalSportsData {
   name: string;
   seasonStatus: SeasonStatus;
   seasonStartDate?: string;
   data: any; // 국제스포츠는 나중에 확장
+  winterOlympics?: WinterOlympicsData;
 }
 
 // 영역 위치 타입
