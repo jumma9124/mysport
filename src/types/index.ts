@@ -161,6 +161,20 @@ export interface WinterOlympicsData {
     bronze: number;
     total: number;
   };
+  allCountriesMedals: Array<{
+    rank: number;
+    nation: string;
+    gold: number;
+    silver: number;
+    bronze: number;
+    total: number;
+  }>;
+  koreaMedalists: Array<{
+    name: string;
+    medalType: 'gold' | 'silver' | 'bronze';
+    discipline: string;
+    date: string;
+  }>;
   todaySchedule: Array<{
     time: string;
     discipline: string;

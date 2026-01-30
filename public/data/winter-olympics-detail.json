@@ -1,11 +1,13 @@
 {
-  "lastUpdate": "2026-01-30T00:12:05.602Z",
+  "lastUpdate": "2026-01-30T00:48:03.092Z",
   "medals": {
     "gold": 0,
     "silver": 0,
     "bronze": 0,
     "total": 0
   },
+  "allCountriesMedals": [],
+  "koreaMedalists": [],
   "todaySchedule": [
     {
       "time": "경기 시간00:00",

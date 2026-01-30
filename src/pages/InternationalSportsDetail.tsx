@@ -22,6 +22,7 @@ const InternationalSportsDetail = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [expandedEvents, setExpandedEvents] = useState<{ [key: number]: boolean }>({});
   const [winterOlympicsTab, setWinterOlympicsTab] = useState<'medals' | 'schedule'>('medals');
+  const [showMedalists, setShowMedalists] = useState(false);
 
   const toggleEvent = (index: number) => {
     setExpandedEvents(prev => ({
@@ -166,30 +167,116 @@ const InternationalSportsDetail = () => {
             {/* 탭 콘텐츠 */}
             <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
               {winterOlympicsTab === 'medals' ? (
-                <div>
-                  <h4 className="text-sm font-semibold text-white mb-3">대한민국 메달 현황</h4>
-                  <div className="grid grid-cols-4 gap-4">
-                    <div className="bg-yellow-500/10 rounded-lg p-3 text-center border border-yellow-500/20">
-                      <div className="text-2xl mb-1">🥇</div>
-                      <div className="text-sm text-gray-400">금메달</div>
-                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.gold}</div>
+                <div className="space-y-6">
+                  {/* 대한민국 메달 현황 */}
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-sm font-semibold text-white">대한민국 메달 현황</h4>
+                      {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 && (
+                        <button
+                          onClick={() => setShowMedalists(!showMedalists)}
+                          className="text-xs text-blue-400 hover:text-blue-300"
+                        >
+                          {showMedalists ? '숨기기 ▲' : '메달리스트 보기 ▼'}
+                        </button>
+                      )}
                     </div>
-                    <div className="bg-gray-400/10 rounded-lg p-3 text-center border border-gray-400/20">
-                      <div className="text-2xl mb-1">🥈</div>
-                      <div className="text-sm text-gray-400">은메달</div>
-                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.silver}</div>
+                    <div className="grid grid-cols-4 gap-4">
+                      <div className="bg-yellow-500/10 rounded-lg p-3 text-center border border-yellow-500/20">
+                        <div className="text-2xl mb-1">🥇</div>
+                        <div className="text-sm text-gray-400">금메달</div>
+                        <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.gold}</div>
+                      </div>
+                      <div className="bg-gray-400/10 rounded-lg p-3 text-center border border-gray-400/20">
+                        <div className="text-2xl mb-1">🥈</div>
+                        <div className="text-sm text-gray-400">은메달</div>
+                        <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.silver}</div>
+                      </div>
+                      <div className="bg-orange-600/10 rounded-lg p-3 text-center border border-orange-600/20">
+                        <div className="text-2xl mb-1">🥉</div>
+                        <div className="text-sm text-gray-400">동메달</div>
+                        <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.bronze}</div>
+                      </div>
+                      <div className="bg-blue-500/10 rounded-lg p-3 text-center border border-blue-500/20">
+                        <div className="text-2xl mb-1">🏆</div>
+                        <div className="text-sm text-gray-400">합계</div>
+                        <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.total}</div>
+                      </div>
                     </div>
-                    <div className="bg-orange-600/10 rounded-lg p-3 text-center border border-orange-600/20">
-                      <div className="text-2xl mb-1">🥉</div>
-                      <div className="text-sm text-gray-400">동메달</div>
-                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.bronze}</div>
-                    </div>
-                    <div className="bg-blue-500/10 rounded-lg p-3 text-center border border-blue-500/20">
-                      <div className="text-2xl mb-1">🏆</div>
-                      <div className="text-sm text-gray-400">합계</div>
-                      <div className="text-xl font-bold text-white mt-1">{data.winterOlympics.medals.total}</div>
-                    </div>
+
+                    {/* 메달리스트 리스트 */}
+                    {showMedalists && data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 && (
+                      <div className="mt-4 space-y-2">
+                        <h5 className="text-sm font-semibold text-white mb-2">메달 획득 선수</h5>
+                        {data.winterOlympics.koreaMedalists.map((medalist, idx) => (
+                          <div
+                            key={idx}
+                            className="bg-white/5 rounded-lg p-3 border border-white/10"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <span className="text-2xl">
+                                  {medalist.medalType === 'gold' ? '🥇' : medalist.medalType === 'silver' ? '🥈' : '🥉'}
+                                </span>
+                                <div>
+                                  <div className="text-white font-semibold">{medalist.name}</div>
+                                  {medalist.discipline && (
+                                    <div className="text-sm text-gray-400">{medalist.discipline}</div>
+                                  )}
+                                </div>
+                              </div>
+                              {medalist.date && (
+                                <div className="text-xs text-gray-400">{medalist.date}</div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
+
+                  {/* 전체 국가 메달 순위 */}
+                  {data.winterOlympics.allCountriesMedals && data.winterOlympics.allCountriesMedals.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-semibold text-white mb-3">전체 국가 메달 순위</h4>
+                      <div style={{ overflowX: 'auto' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                          <thead>
+                            <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
+                              <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>국가</th>
+                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥇</th>
+                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥈</th>
+                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥉</th>
+                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>합계</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {data.winterOlympics.allCountriesMedals.map((country) => {
+                              const isKorea = country.nation.includes('대한민국') || country.nation.includes('Korea');
+
+                              return (
+                                <tr
+                                  key={country.nation}
+                                  style={{
+                                    background: isKorea ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
+                                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                                  }}
+                                >
+                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.rank}</td>
+                                  <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.nation}</td>
+                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.gold}</td>
+                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.silver}</td>
+                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.bronze}</td>
+                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.total}</td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="space-y-4">
