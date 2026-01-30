@@ -184,8 +184,8 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'gold' && (
                           <div
-                            className="absolute left-0 top-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
-                            style={{ minWidth: '250px', maxWidth: '350px' }}
+                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
+                            style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').length > 0 ? (
@@ -216,8 +216,8 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'silver' && (
                           <div
-                            className="absolute left-0 top-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
-                            style={{ minWidth: '250px', maxWidth: '350px' }}
+                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
+                            style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').length > 0 ? (
@@ -248,8 +248,8 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'bronze' && (
                           <div
-                            className="absolute left-0 top-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
-                            style={{ minWidth: '250px', maxWidth: '350px' }}
+                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
+                            style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').length > 0 ? (
@@ -280,8 +280,8 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'total' && (
                           <div
-                            className="absolute left-0 top-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-blue-500/30 z-50"
-                            style={{ minWidth: '250px', maxWidth: '350px' }}
+                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-blue-500/30 z-50"
+                            style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.length > 0 ? (
