@@ -1,0 +1,53 @@
+name: Crawl International Sports
+
+on:
+  schedule:
+    # 이탈리아 오전 9시부터 6시간 간격으로 하루 4번 (UTC: 08:00, 14:00, 20:00, 02:00)
+    # 이탈리아: 09:00, 15:00, 21:00, 03:00 (UTC+1)
+    # 한국: 17:00, 23:00, 05:00, 11:00 (UTC+9)
+    - cron: '0 2,8,14,20 * * *'
+  workflow_dispatch:  # 수동 실행 가능
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run international sports crawler
+        run: node scripts/crawl-winter-olympics.cjs
+
+      - name: Commit and push changes
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          # 파일이 존재하는 경우에만 add 시도
+          if [ -f public/data/winter-olympics-detail.json ]; then
+            git add public/data/winter-olympics-detail.json
+          fi
+          if [ -f public/data/sports.json ]; then
+            git add public/data/sports.json
+          fi
+          # 변경사항이 있을 때만 커밋 및 푸시
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update international sports data"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
