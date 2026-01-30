@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { InternationalSportsData } from '@/types';
 import { fetchInternationalSportsData } from '@/utils/dataUpdater';
@@ -23,6 +23,7 @@ const InternationalSportsDetail = () => {
   const [expandedEvents, setExpandedEvents] = useState<{ [key: number]: boolean }>({});
   const [winterOlympicsTab, setWinterOlympicsTab] = useState<'medals' | 'schedule'>('medals');
   const [expandedMedal, setExpandedMedal] = useState<'gold' | 'silver' | 'bronze' | 'total' | null>(null);
+  const medalContainerRef = useRef<HTMLDivElement>(null);
 
   const toggleEvent = (index: number) => {
     setExpandedEvents(prev => ({
@@ -66,6 +67,23 @@ const InternationalSportsDetail = () => {
       isMounted = false;
     };
   }, []);
+
+  // 외부 클릭 시 말풍선 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (medalContainerRef.current && !medalContainerRef.current.contains(event.target as Node)) {
+        setExpandedMedal(null);
+      }
+    };
+
+    if (expandedMedal) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [expandedMedal]);
 
   if (loading || !data) {
     return (
@@ -171,7 +189,7 @@ const InternationalSportsDetail = () => {
                   {/* 대한민국 메달 현황 */}
                   <div>
                     <h4 className="text-sm font-semibold text-white mb-3">대한민국 메달 현황</h4>
-                    <div className="grid grid-cols-4 gap-4">
+                    <div ref={medalContainerRef} className="grid grid-cols-4 gap-4">
                       {/* 금메달 */}
                       <div className="relative">
                         <div
