@@ -184,7 +184,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'gold' && (
                           <div
-                            className="absolute top-full mt-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
+                            className="absolute bottom-full mb-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
                             style={{ minWidth: '200px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -216,7 +216,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'silver' && (
                           <div
-                            className="absolute top-full mt-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
+                            className="absolute bottom-full mb-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
                             style={{ minWidth: '200px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -248,7 +248,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'bronze' && (
                           <div
-                            className="absolute top-full mt-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
+                            className="absolute bottom-full mb-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
                             style={{ minWidth: '200px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -280,7 +280,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'total' && (
                           <div
-                            className="absolute top-full mt-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-blue-500/30 z-50"
+                            className="absolute bottom-full mb-2 left-0 right-0 bg-gray-800 rounded-lg p-3 shadow-xl border border-blue-500/30 z-50"
                             style={{ minWidth: '200px' }}
                           >
                             <div className="space-y-2 max-h-64 overflow-y-auto">
