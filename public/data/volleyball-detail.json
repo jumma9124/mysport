@@ -52,21 +52,21 @@
     },
     {
       "name": "우리카드",
-      "wins": 10,
+      "wins": 11,
       "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.824,
+      "setRate": 0.865,
       "rank": 6,
-      "points": 29
+      "points": 32
     },
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 19,
+      "losses": 20,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.469,
+      "setRate": 0.463,
       "rank": 7,
       "points": 15
     }
@@ -75,10 +75,10 @@
     {
       "name": "도로공사",
       "wins": 19,
-      "losses": 5,
+      "losses": 6,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.853,
+      "setRate": 1.703,
       "rank": 1,
       "points": 52
     },
@@ -104,13 +104,13 @@
     },
     {
       "name": "IBK기업은행",
-      "wins": 11,
+      "wins": 12,
       "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.979,
+      "setRate": 1.042,
       "rank": 4,
-      "points": 36
+      "points": 39
     },
     {
       "name": "GS칼텍스",
