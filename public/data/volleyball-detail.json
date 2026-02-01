@@ -2,13 +2,13 @@
   "leagueStandings": [
     {
       "name": "현대캐피탈",
-      "wins": 15,
+      "wins": 16,
       "losses": 9,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.571,
+      "setRate": 1.657,
       "rank": 1,
-      "points": 48
+      "points": 51
     },
     {
       "name": "대한항공",
@@ -43,10 +43,10 @@
     {
       "name": "OK저축은행",
       "wins": 12,
-      "losses": 12,
+      "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.019,
+      "setRate": 0.964,
       "rank": 5,
       "points": 36
     },
@@ -83,22 +83,22 @@
       "points": 52
     },
     {
+      "name": "흥국생명",
+      "wins": 15,
+      "losses": 11,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.311,
+      "rank": 2,
+      "points": 48
+    },
+    {
       "name": "현대건설",
       "wins": 15,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.31,
-      "rank": 2,
-      "points": 45
-    },
-    {
-      "name": "흥국생명",
-      "wins": 14,
-      "losses": 11,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.273,
       "rank": 3,
       "points": 45
     },
@@ -125,10 +125,10 @@
     {
       "name": "페퍼저축은행",
       "wins": 9,
-      "losses": 15,
+      "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.717,
+      "setRate": 0.696,
       "rank": 6,
       "points": 27
     },
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-02-01",
+      "opponent": "OK저축은행",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    },
+    {
       "date": "2026-01-29",
       "opponent": "한국전력",
       "venue": "천안유관순체육관",
@@ -155,14 +163,6 @@
     {
       "date": "2026-01-23",
       "opponent": "한국전력",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-0",
-      "sets": []
-    },
-    {
-      "date": "2026-01-18",
-      "opponent": "우리카드",
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-0",
