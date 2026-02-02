@@ -410,10 +410,10 @@ const InternationalSportsDetail = () => {
           </div>
         )}
 
-        {/* 이벤트 리스트 */}
-        {events.length > 0 ? (
+        {/* 이벤트 리스트 (동계올림픽은 위에 전용 섹션이 있으므로 제외) */}
+        {events.filter(e => !e.name.includes('동계올림픽')).length > 0 ? (
           <div className="space-y-4">
-            {events.map((event, idx) => (
+            {events.filter(e => !e.name.includes('동계올림픽')).map((event, idx) => (
               <div key={idx} style={{
                 background: 'rgb(32, 34, 52)',
                 backdropFilter: 'blur(10px)',
