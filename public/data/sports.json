@@ -62,20 +62,20 @@
     "todayGames": 1,
     "upcomingGames": [
       {
-        "date": "2026-02-02",
+        "date": "2026-02-03",
         "time": "경기 시간00:00",
         "discipline": "올림픽특집",
         "status": "LIVE"
       },
       {
-        "date": "2026-02-03",
+        "date": "2026-02-04",
         "time": "경기 시간00:00",
         "discipline": "올림픽특집",
         "status": "예정"
       },
       {
         "date": "2026-02-04",
-        "time": "경기 시간00:00",
+        "time": "경기 시간11:00",
         "discipline": "올림픽특집",
         "status": "예정"
       }
