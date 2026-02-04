@@ -376,12 +376,20 @@ const InternationalSportsDetail = () => {
                     </div>
                   )}
 
-                  {/* 다가오는 경기 */}
-                  {data.winterOlympics.upcomingSchedule.length > 0 && (
+                  {/* 다가오는 경기 (지난 날짜 제외) */}
+                  {data.winterOlympics.upcomingSchedule.filter(game => {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    return new Date(game.date) >= today;
+                  }).length > 0 && (
                     <div>
                       <h4 className="text-sm font-semibold text-white mb-3">다가오는 경기</h4>
                       <div className="space-y-2">
-                        {data.winterOlympics.upcomingSchedule.map((game, idx) => (
+                        {data.winterOlympics.upcomingSchedule.filter(game => {
+                          const today = new Date();
+                          today.setHours(0, 0, 0, 0);
+                          return new Date(game.date) >= today;
+                        }).map((game, idx) => (
                           <div
                             key={idx}
                             className="bg-white/5 rounded-lg p-3 border border-white/10"
