@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-04T08:39:32.439Z",
+  "lastUpdate": "2026-02-04T14:40:10.731Z",
   "medals": {
     "gold": 0,
     "silver": 0,
@@ -12,7 +12,7 @@
     {
       "time": "경기 시간00:00",
       "discipline": "올림픽특집",
-      "status": "LIVE",
+      "status": "종료",
       "players": [
         "JTBC 다시, 올림픽"
       ]
@@ -27,12 +27,6 @@
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-04",
-      "time": "경기 시간00:00",
-      "discipline": "올림픽특집",
-      "status": "LIVE"
-    },
     {
       "date": "2026-02-05",
       "time": "경기 시간03:05",
@@ -55,6 +49,12 @@
       "date": "2026-02-05",
       "time": "경기 시간20:10",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-06",
+      "time": "경기 시간03:05",
+      "discipline": "컬링",
       "status": "예정"
     }
   ]

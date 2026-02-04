@@ -62,12 +62,6 @@
     "todayGames": 2,
     "upcomingGames": [
       {
-        "date": "2026-02-04",
-        "time": "경기 시간00:00",
-        "discipline": "올림픽특집",
-        "status": "LIVE"
-      },
-      {
         "date": "2026-02-05",
         "time": "경기 시간03:05",
         "discipline": "컬링",
@@ -77,6 +71,12 @@
         "date": "2026-02-05",
         "time": "경기 시간07:30",
         "discipline": "올림픽특집",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-05",
+        "time": "경기 시간18:05",
+        "discipline": "컬링",
         "status": "예정"
       }
     ]
