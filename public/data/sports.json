@@ -62,12 +62,6 @@
     "todayGames": 5,
     "upcomingGames": [
       {
-        "date": "2026-02-05",
-        "time": "22:00",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
-      {
         "date": "2026-02-06",
         "time": "03:05",
         "discipline": "컬링",
@@ -76,6 +70,12 @@
       {
         "date": "2026-02-06",
         "time": "17:55",
+        "discipline": "피겨스케이팅",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-06",
+        "time": "21:35",
         "discipline": "피겨스케이팅",
         "status": "예정"
       }
