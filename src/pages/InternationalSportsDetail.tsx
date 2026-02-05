@@ -21,8 +21,9 @@ const InternationalSportsDetail = () => {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState<Event[]>([]);
   const [expandedEvents, setExpandedEvents] = useState<{ [key: number]: boolean }>({});
-  const [winterOlympicsTab, setWinterOlympicsTab] = useState<'medals' | 'schedule'>('medals');
+  const [winterOlympicsTab, setWinterOlympicsTab] = useState<'medals' | 'schedule' | 'discipline'>('medals');
   const [expandedMedal, setExpandedMedal] = useState<'gold' | 'silver' | 'bronze' | 'total' | null>(null);
+  const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>(null);
   const medalContainerRef = useRef<HTMLDivElement>(null);
 
   const toggleEvent = (index: number) => {
@@ -180,11 +181,33 @@ const InternationalSportsDetail = () => {
               >
                 경기 일정
               </button>
+              <button
+                onClick={() => {
+                  setWinterOlympicsTab('discipline');
+                  if (!selectedDiscipline && data.winterOlympics?.disciplineSchedules) {
+                    const ids = Object.keys(data.winterOlympics.disciplineSchedules);
+                    if (ids.length > 0) setSelectedDiscipline(ids[0]);
+                  }
+                }}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  background: winterOlympicsTab === 'discipline' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+                  color: winterOlympicsTab === 'discipline' ? 'white' : 'rgba(255,255,255,0.6)',
+                  transition: 'all 0.2s'
+                }}
+              >
+                종목별 일정
+              </button>
             </div>
 
             {/* 탭 콘텐츠 */}
             <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
-              {winterOlympicsTab === 'medals' ? (
+              {winterOlympicsTab === 'medals' && (
                 <div className="space-y-6">
                   {/* 대한민국 메달 현황 */}
                   <div>
@@ -342,7 +365,9 @@ const InternationalSportsDetail = () => {
                     )}
                   </div>
                 </div>
-              ) : (
+              )}
+
+              {winterOlympicsTab === 'schedule' && (
                 <div className="space-y-4">
                   {/* 오늘의 경기 */}
                   {data.winterOlympics.todaySchedule.length > 0 && (
@@ -410,6 +435,99 @@ const InternationalSportsDetail = () => {
                   {data.winterOlympics.todaySchedule.length === 0 && data.winterOlympics.upcomingSchedule.length === 0 && (
                     <div className="text-center py-4 text-gray-400">
                       예정된 경기가 없습니다
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {winterOlympicsTab === 'discipline' && (
+                <div>
+                  {data.winterOlympics.disciplineSchedules && Object.keys(data.winterOlympics.disciplineSchedules).length > 0 ? (
+                    <>
+                      {/* 종목 선택 칩 */}
+                      <div style={{
+                        display: 'flex',
+                        gap: '8px',
+                        overflowX: 'auto',
+                        paddingBottom: '12px',
+                        marginBottom: '12px',
+                      }} className="hide-scrollbar">
+                        {Object.entries(data.winterOlympics.disciplineSchedules).map(([id, entry]) => (
+                          <button
+                            key={id}
+                            onClick={() => setSelectedDiscipline(id)}
+                            style={{
+                              padding: '6px 14px',
+                              border: 'none',
+                              borderRadius: '20px',
+                              cursor: 'pointer',
+                              fontWeight: 500,
+                              fontSize: '13px',
+                              whiteSpace: 'nowrap',
+                              flexShrink: 0,
+                              background: selectedDiscipline === id ? 'rgba(102, 126, 234, 0.4)' : 'rgba(255, 255, 255, 0.08)',
+                              color: selectedDiscipline === id ? 'white' : 'rgba(255,255,255,0.5)',
+                              transition: 'all 0.2s',
+                            }}
+                          >
+                            {entry.name}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* 선택된 종목의 경기 리스트 */}
+                      {selectedDiscipline && data.winterOlympics.disciplineSchedules[selectedDiscipline] ? (
+                        <div className="space-y-2">
+                          {data.winterOlympics.disciplineSchedules[selectedDiscipline].games.map((game, idx) => (
+                            <div
+                              key={idx}
+                              className="bg-white/5 rounded-lg p-3 border border-white/10"
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-white font-semibold text-sm">{game.disciplineDetail}</span>
+                                <span
+                                  className="px-2 py-0.5 rounded text-xs"
+                                  style={{
+                                    backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' :
+                                                    game.status === '종료' ? 'rgba(107, 114, 128, 0.15)' :
+                                                    'rgba(59, 130, 246, 0.15)',
+                                    color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' :
+                                           game.status === '종료' ? 'rgba(107, 114, 128, 0.7)' :
+                                           'rgba(59, 130, 246, 0.7)'
+                                  }}
+                                >
+                                  {game.status}
+                                </span>
+                              </div>
+                              <div className="text-sm text-gray-400">
+                                {game.date && <span className="mr-2">{game.date}</span>}
+                                {game.time}
+                              </div>
+                              {game.players && game.players.length > 0 && (
+                                <div className="text-sm text-gray-300 mt-1">
+                                  {game.players.join(' vs ')}
+                                </div>
+                              )}
+                              {game.scores && game.scores.length > 0 && (
+                                <div className="text-sm font-semibold text-white mt-1">
+                                  {game.scores.join(' - ')}
+                                </div>
+                              )}
+                              {game.result && (
+                                <div className="text-xs text-gray-400 mt-1">{game.result}</div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-4 text-gray-400 text-sm">
+                          종목을 선택해주세요
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="text-center py-4 text-gray-400">
+                      종목별 일정 정보가 없습니다
                     </div>
                   )}
                 </div>

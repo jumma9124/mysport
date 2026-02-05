@@ -15,7 +15,27 @@ const NAVER_URLS = {
   medalists: 'https://m.sports.naver.com/milanocortina2026/medals?pageType=MEDALIST&sortType=recentMedalEarned',
   scheduleToday: (date) => `https://m.sports.naver.com/milanocortina2026/schedule?type=date&date=${date}&disciplineId=&isKorean=Y&isMedal=N`,
   scheduleTotal: 'https://m.sports.naver.com/milanocortina2026/schedule?type=total&date=&disciplineId=&isKorean=Y&isMedal=N',
+  scheduleDiscipline: (disciplineId) => `https://m.sports.naver.com/milanocortina2026/schedule?type=discipline&date=&disciplineId=${disciplineId}&isKorean=Y&isMedal=N`,
 };
+
+// 종목별 disciplineId 목록
+const DISCIPLINE_LIST = [
+  { id: 'STK', name: '쇼트트랙' },
+  { id: 'SSK', name: '스피드스케이팅' },
+  { id: 'FSK', name: '피겨스케이팅' },
+  { id: 'CUR', name: '컬링' },
+  { id: 'ICH', name: '아이스하키' },
+  { id: 'BOB', name: '봅슬레이' },
+  { id: 'LUG', name: '루지' },
+  { id: 'SKE', name: '스켈레톤' },
+  { id: 'ALP', name: '알파인스키' },
+  { id: 'CCS', name: '크로스컨트리스키' },
+  { id: 'SKJ', name: '스키점프' },
+  { id: 'NCB', name: '노르딕복합' },
+  { id: 'FRS', name: '프리스타일스키' },
+  { id: 'SNB', name: '스노보드' },
+  { id: 'BIA', name: '바이애슬론' },
+];
 
 /**
  * 메달 정보 크롤링
@@ -449,17 +469,130 @@ async function crawlUpcomingSchedule() {
 }
 
 /**
+ * 종목별 경기 일정 크롤링 (한국 선수 참가 종목만)
+ */
+async function crawlAllDisciplineSchedules() {
+  let browser;
+  try {
+    console.log('종목별 경기 일정 크롤링 시작...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+
+    const disciplineSchedules = {};
+
+    for (const discipline of DISCIPLINE_LIST) {
+      try {
+        console.log(`  ${discipline.name}(${discipline.id}) 크롤링 중...`);
+        const url = NAVER_URLS.scheduleDiscipline(discipline.id);
+        await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        const games = await page.evaluate(() => {
+          const results = [];
+          const gameBoxes = document.querySelectorAll('.GameBox_game_box__tYM7H');
+
+          gameBoxes.forEach((box) => {
+            try {
+              const timeEl = box.querySelector('.GameInfo_time__xl0OG');
+              const time = timeEl ? timeEl.textContent.trim() : '';
+
+              const disciplineEl = box.querySelector('.GameInfo_discipline__NmqXP');
+              const disciplineDetail = disciplineEl ? disciplineEl.textContent.trim() : '';
+
+              const statusBadge = box.querySelector('.GameInfo_status_badge__TiQiR');
+              const status = statusBadge ? statusBadge.textContent.trim() : '';
+
+              // 선수/팀 정보
+              const playerArea = box.querySelector('.GamePlayer_game_player_area__LM2p\\+');
+              let players = [];
+              if (playerArea) {
+                const playerEls = playerArea.querySelectorAll('[class*="player"]');
+                playerEls.forEach(el => {
+                  const name = el.textContent.trim();
+                  if (name) players.push(name);
+                });
+              }
+
+              // 스코어 정보
+              let scores = [];
+              const scoreEls = box.querySelectorAll('[class*="score"]');
+              scoreEls.forEach(el => {
+                const scoreText = el.textContent.trim();
+                if (scoreText && /\d/.test(scoreText)) {
+                  scores.push(scoreText);
+                }
+              });
+
+              // 결과 정보
+              const resultEl = box.querySelector('[class*="result"]');
+              const result = resultEl ? resultEl.textContent.trim() : '';
+
+              // 날짜 정보
+              const dateEl = box.querySelector('[class*="date"]');
+              const date = dateEl ? dateEl.textContent.trim() : '';
+
+              if (disciplineDetail || time) {
+                results.push({
+                  date,
+                  time,
+                  disciplineDetail,
+                  status,
+                  players: players.length > 0 ? players : null,
+                  scores: scores.length > 0 ? scores : null,
+                  result: result || null,
+                });
+              }
+            } catch (err) {
+              // skip
+            }
+          });
+
+          return results;
+        });
+
+        if (games.length > 0) {
+          disciplineSchedules[discipline.id] = {
+            name: discipline.name,
+            games: games.slice(0, 30), // 최대 30경기
+          };
+          console.log(`    -> ${games.length}개 경기 발견`);
+        } else {
+          console.log(`    -> 한국 선수 경기 없음 (스킵)`);
+        }
+      } catch (err) {
+        console.error(`    -> ${discipline.name} 크롤링 실패:`, err.message);
+      }
+    }
+
+    await browser.close();
+    console.log(`✓ 종목별 일정: ${Object.keys(disciplineSchedules).length}개 종목`);
+    return disciplineSchedules;
+
+  } catch (error) {
+    if (browser) await browser.close();
+    console.error('종목별 경기 일정 크롤링 실패:', error.message);
+    return {};
+  }
+}
+
+/**
  * 모든 동계올림픽 데이터 수집
  */
 async function crawlWinterOlympicsData() {
   try {
     console.log('동계올림픽 데이터 크롤링 시작...');
 
-    const [medals, koreaMedalists, todaySchedule, upcomingSchedule] = await Promise.all([
+    const [medals, koreaMedalists, todaySchedule, upcomingSchedule, disciplineSchedules] = await Promise.all([
       crawlMedals(),
       crawlKoreaMedalists(),
       crawlTodaySchedule(),
       crawlUpcomingSchedule(),
+      crawlAllDisciplineSchedules(),
     ]);
 
     console.log('\n[RESULT] 대한민국 메달:', medals.korea);
@@ -467,6 +600,7 @@ async function crawlWinterOlympicsData() {
     console.log('[RESULT] 대한민국 메달리스트:', koreaMedalists.length, '명');
     console.log('[RESULT] 오늘의 경기:', todaySchedule.length, '개');
     console.log('[RESULT] 다가오는 경기:', upcomingSchedule.length, '개');
+    console.log('[RESULT] 종목별 일정:', Object.keys(disciplineSchedules).length, '개 종목');
 
     // winter-olympics-detail.json 생성
     const winterOlympicsDetail = {
@@ -476,6 +610,7 @@ async function crawlWinterOlympicsData() {
       koreaMedalists,
       todaySchedule,
       upcomingSchedule,
+      disciplineSchedules,
     };
 
     // sports.json 업데이트
@@ -516,6 +651,7 @@ async function crawlWinterOlympicsData() {
     console.log(`  - 대한민국 메달리스트: ${koreaMedalists.length}명`);
     console.log(`  - 오늘의 경기: ${todaySchedule.length}개`);
     console.log(`  - 다가오는 경기: ${upcomingSchedule.length}개`);
+    console.log(`  - 종목별 일정: ${Object.keys(disciplineSchedules).length}개 종목`);
 
   } catch (error) {
     console.error('동계올림픽 데이터 크롤링 실패:', error);

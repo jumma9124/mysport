@@ -187,6 +187,18 @@ export interface WinterOlympicsData {
     discipline: string;
     status: string;
   }>;
+  disciplineSchedules?: Record<string, {
+    name: string;
+    games: Array<{
+      date: string;
+      time: string;
+      disciplineDetail: string;
+      status: string;
+      players?: string[] | null;
+      scores?: string[] | null;
+      result?: string | null;
+    }>;
+  }>;
 }
 
 // 국제스포츠 타입
