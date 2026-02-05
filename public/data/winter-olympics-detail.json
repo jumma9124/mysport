@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-04T20:32:45.627Z",
+  "lastUpdate": "2026-02-05T01:50:34.751Z",
   "medals": {
     "gold": 0,
     "silver": 0,
@@ -10,29 +10,57 @@
   "koreaMedalists": [],
   "todaySchedule": [
     {
-      "time": "경기 시간00:00",
-      "discipline": "올림픽특집",
+      "time": "경기 시간03:05",
+      "discipline": "컬링",
       "status": "종료",
       "players": [
-        "JTBC 다시, 올림픽"
+        "스웨덴스코어10",
+        "스웨덴",
+        "스웨덴",
+        "대한민국스코어3",
+        "대한민국",
+        "대한민국"
       ]
     },
     {
-      "time": "경기 시간11:00",
+      "time": "경기 시간07:30",
       "discipline": "올림픽특집",
       "status": "종료",
       "players": [
-        "꽉잡아 원정대 밀라노 출발"
+        "올림픽 특집 아침&"
+      ]
+    },
+    {
+      "time": "경기 시간18:05",
+      "discipline": "컬링",
+      "status": "예정",
+      "players": [
+        "대한민국",
+        "대한민국",
+        "대한민국",
+        "이탈리아",
+        "이탈리아",
+        "이탈리아"
+      ]
+    },
+    {
+      "time": "경기 시간20:10",
+      "discipline": "올림픽특집",
+      "status": "예정",
+      "players": [
+        "올림픽 특집 JTBC 뉴스룸"
+      ]
+    },
+    {
+      "time": "경기 시간22:00",
+      "discipline": "올림픽특집",
+      "status": "예정",
+      "players": [
+        "꽉잡아 원정대 밀라노 올림픽 선수촌 내부 라이브"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-05",
-      "time": "경기 시간07:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-05",
       "time": "경기 시간18:05",
@@ -42,6 +70,12 @@
     {
       "date": "2026-02-05",
       "time": "경기 시간20:10",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "경기 시간22:00",
       "discipline": "올림픽특집",
       "status": "예정"
     },
@@ -57,5 +91,554 @@
       "discipline": "올림픽특집",
       "status": "예정"
     }
-  ]
+  ],
+  "disciplineSchedules": {
+    "STK": {
+      "name": "쇼트트랙",
+      "games": [
+        {
+          "date": "",
+          "time": "경기 시간18:30",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간19:10",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간19:59",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간05:01",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간06:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간19:17",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간20:06",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "SSK": {
+      "name": "스피드스케이팅",
+      "games": [
+        {
+          "date": "",
+          "time": "경기 시간01:30",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간02:30",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간01:00",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간01:03",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간00:30",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간23:00",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간23:50",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 스피드스케이팅 스타디움"
+          ],
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "FSK": {
+      "name": "피겨스케이팅",
+      "games": [
+        {
+          "date": "",
+          "time": "경기 시간17:55",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간21:35",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:45",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:20",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간02:30",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간02:45",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "밀라노 아이스스케이팅 아레나"
+          ],
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "CUR": {
+      "name": "컬링",
+      "games": [
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "종료",
+          "players": [
+            "스웨덴스코어10",
+            "스웨덴",
+            "스웨덴",
+            "대한민국스코어3",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": [
+            "스코어10",
+            "스코어3"
+          ],
+          "result": "스코어10"
+        },
+        {
+          "date": "",
+          "time": "경기 시간18:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "이탈리아",
+            "이탈리아",
+            "이탈리아"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "스위스",
+            "스위스",
+            "스위스",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간22:35",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "영국",
+            "영국",
+            "영국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간22:35",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "체코",
+            "체코",
+            "체코",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "미국",
+            "미국",
+            "미국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간18:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "에스토니아",
+            "에스토니아",
+            "에스토니아",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "캐나다",
+            "캐나다",
+            "캐나다",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간21:00",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "노르웨이",
+            "노르웨이",
+            "노르웨이",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간17:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "미국",
+            "미국",
+            "미국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "이탈리아",
+            "이탈리아",
+            "이탈리아",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간22:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "영국",
+            "영국",
+            "영국",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "덴마크",
+            "덴마크",
+            "덴마크"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간22:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "일본",
+            "일본",
+            "일본",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간03:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "중국",
+            "중국",
+            "중국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간22:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국",
+            "대한민국",
+            "스위스",
+            "스위스",
+            "스위스"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간17:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "스웨덴",
+            "스웨덴",
+            "스웨덴",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "",
+          "time": "경기 시간22:05",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "캐나다",
+            "캐나다",
+            "캐나다",
+            "대한민국",
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "LUG": {
+      "name": "루지",
+      "games": [
+        {
+          "date": "",
+          "time": "경기 시간01:00",
+          "disciplineDetail": "",
+          "status": "예정",
+          "players": [
+            "코르티나 슬라이딩 센터"
+          ],
+          "scores": null,
+          "result": null
+        }
+      ]
+    }
+  }
 }
