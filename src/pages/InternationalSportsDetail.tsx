@@ -483,10 +483,10 @@ const InternationalSportsDetail = () => {
                               key={idx}
                               className="bg-white/5 rounded-lg p-3 border border-white/10"
                             >
-                              <div className="flex items-center justify-between mb-2">
-                                <span className="text-white font-semibold text-sm">{game.disciplineDetail}</span>
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-white font-semibold text-sm">{game.disciplineDetail || '-'}</span>
                                 <span
-                                  className="px-2 py-0.5 rounded text-xs"
+                                  className="px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2"
                                   style={{
                                     backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' :
                                                     game.status === '종료' ? 'rgba(107, 114, 128, 0.15)' :
@@ -499,23 +499,38 @@ const InternationalSportsDetail = () => {
                                   {game.status}
                                 </span>
                               </div>
-                              <div className="text-sm text-gray-400">
-                                {game.date && <span className="mr-2">{game.date}</span>}
+                              <div className="text-xs text-gray-500 mb-2">
+                                {game.date && (
+                                  <span className="mr-2">
+                                    {new Date(game.date).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })}
+                                  </span>
+                                )}
                                 {game.time}
                               </div>
-                              {game.players && game.players.length > 0 && (
+                              {/* 팀 대결 (선수 2명 + 스코어) */}
+                              {game.players && game.players.length === 2 && game.scores && game.scores.length === 2 ? (
+                                <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 mt-1">
+                                  <span className={`text-sm font-medium ${game.result?.includes(game.players[0]) ? 'text-white' : 'text-gray-400'}`}>
+                                    {game.players[0]}
+                                  </span>
+                                  <span className="text-sm font-bold text-white mx-3">
+                                    {game.scores[0]} - {game.scores[1]}
+                                  </span>
+                                  <span className={`text-sm font-medium ${game.result?.includes(game.players[1]) ? 'text-white' : 'text-gray-400'}`}>
+                                    {game.players[1]}
+                                  </span>
+                                </div>
+                              ) : game.players && game.players.length === 2 ? (
+                                <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 mt-1">
+                                  <span className="text-sm text-gray-300">{game.players[0]}</span>
+                                  <span className="text-xs text-gray-500">vs</span>
+                                  <span className="text-sm text-gray-300">{game.players[1]}</span>
+                                </div>
+                              ) : game.players && game.players.length > 0 ? (
                                 <div className="text-sm text-gray-300 mt-1">
-                                  {game.players.join(' vs ')}
+                                  {game.players.join(', ')}
                                 </div>
-                              )}
-                              {game.scores && game.scores.length > 0 && (
-                                <div className="text-sm font-semibold text-white mt-1">
-                                  {game.scores.join(' - ')}
-                                </div>
-                              )}
-                              {game.result && (
-                                <div className="text-xs text-gray-400 mt-1">{game.result}</div>
-                              )}
+                              ) : null}
                             </div>
                           ))}
                         </div>

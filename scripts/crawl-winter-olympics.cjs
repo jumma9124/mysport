@@ -333,26 +333,32 @@ async function crawlTodaySchedule() {
         try {
           // 시간 정보
           const timeEl = box.querySelector('.GameInfo_time__xl0OG');
-          const time = timeEl ? timeEl.textContent.trim() : '';
+          let time = '';
+          if (timeEl) {
+            const datetime = timeEl.getAttribute('datetime');
+            if (datetime) {
+              const timePart = datetime.split('T')[1];
+              time = timePart ? timePart.substring(0, 5) : '';
+            } else {
+              time = timeEl.textContent.replace(/경기\s*시간/g, '').trim();
+            }
+          }
 
-          // 종목 정보
-          const disciplineEl = box.querySelector('.GameInfo_discipline__NmqXP');
+          // 종목 정보 (date 타입 페이지에서는 discipline, discipline 타입에서는 title)
+          const disciplineEl = box.querySelector('.GameInfo_discipline__NmqXP') || box.querySelector('.GameInfo_title__jLOhV');
           const discipline = disciplineEl ? disciplineEl.textContent.trim() : '';
 
           // 상태 정보 (LIVE, 종료 등)
           const statusBadge = box.querySelector('.GameInfo_status_badge__TiQiR');
           const status = statusBadge ? statusBadge.textContent.trim() : '';
 
-          // 선수 정보 (있는 경우)
-          const playerArea = box.querySelector('.GamePlayer_game_player_area__LM2p\\+');
-          let players = [];
-          if (playerArea) {
-            const playerEls = playerArea.querySelectorAll('[class*="player"]');
-            playerEls.forEach(el => {
-              const name = el.textContent.trim();
-              if (name) players.push(name);
-            });
-          }
+          // 선수/팀 정보: 정확한 클래스 사용
+          const playerEls = box.querySelectorAll('.GamePlayer_player__jZDrh');
+          const players = [];
+          playerEls.forEach(el => {
+            const name = el.textContent.trim();
+            if (name) players.push(name);
+          });
 
           if (discipline) {
             games.push({
@@ -425,9 +431,18 @@ async function crawlUpcomingSchedule() {
         gameBoxes.forEach((box) => {
           try {
             const timeEl = box.querySelector('.GameInfo_time__xl0OG');
-            const time = timeEl ? timeEl.textContent.trim() : '';
+            let time = '';
+            if (timeEl) {
+              const datetime = timeEl.getAttribute('datetime');
+              if (datetime) {
+                const timePart = datetime.split('T')[1];
+                time = timePart ? timePart.substring(0, 5) : '';
+              } else {
+                time = timeEl.textContent.replace(/경기\s*시간/g, '').trim();
+              }
+            }
 
-            const disciplineEl = box.querySelector('.GameInfo_discipline__NmqXP');
+            const disciplineEl = box.querySelector('.GameInfo_discipline__NmqXP') || box.querySelector('.GameInfo_title__jLOhV');
             const discipline = disciplineEl ? disciplineEl.textContent.trim() : '';
 
             const statusBadge = box.querySelector('.GameInfo_status_badge__TiQiR');
@@ -498,43 +513,65 @@ async function crawlAllDisciplineSchedules() {
 
           gameBoxes.forEach((box) => {
             try {
+              // 날짜 및 시간: <time> 태그의 datetime 속성에서 추출
               const timeEl = box.querySelector('.GameInfo_time__xl0OG');
-              const time = timeEl ? timeEl.textContent.trim() : '';
+              let date = '';
+              let time = '';
+              if (timeEl) {
+                const datetime = timeEl.getAttribute('datetime'); // "2026-02-05T03:05:00"
+                if (datetime) {
+                  date = datetime.split('T')[0]; // "2026-02-05"
+                  const timePart = datetime.split('T')[1]; // "03:05:00"
+                  time = timePart ? timePart.substring(0, 5) : ''; // "03:05"
+                } else {
+                  // datetime 속성 없으면 텍스트에서 추출
+                  time = timeEl.textContent.replace(/경기\s*시간/g, '').trim();
+                }
+              }
 
-              const disciplineEl = box.querySelector('.GameInfo_discipline__NmqXP');
-              const disciplineDetail = disciplineEl ? disciplineEl.textContent.trim() : '';
+              // 세부 종목명: GameInfo_title (예: "믹스더블 라운드로빈")
+              const titleEl = box.querySelector('.GameInfo_title__jLOhV');
+              const disciplineDetail = titleEl ? titleEl.textContent.trim() : '';
 
+              // 상태: 종료, 예정, LIVE 등
               const statusBadge = box.querySelector('.GameInfo_status_badge__TiQiR');
               const status = statusBadge ? statusBadge.textContent.trim() : '';
 
-              // 선수/팀 정보
-              const playerArea = box.querySelector('.GamePlayer_game_player_area__LM2p\\+');
-              let players = [];
-              if (playerArea) {
-                const playerEls = playerArea.querySelectorAll('[class*="player"]');
-                playerEls.forEach(el => {
-                  const name = el.textContent.trim();
-                  if (name) players.push(name);
-                });
-              }
+              // 선수/팀 정보: GamePlayer_player__jZDrh (국가명 또는 선수명)
+              const playerEls = box.querySelectorAll('.GamePlayer_player__jZDrh');
+              const players = [];
+              playerEls.forEach(el => {
+                const name = el.textContent.trim();
+                if (name) players.push(name);
+              });
 
-              // 스코어 정보
-              let scores = [];
-              const scoreEls = box.querySelectorAll('[class*="score"]');
+              // 스코어 정보: GamePlayer_score__IVnBH 내부 숫자만 추출
+              const scores = [];
+              const scoreEls = box.querySelectorAll('.GamePlayer_score__IVnBH');
               scoreEls.forEach(el => {
-                const scoreText = el.textContent.trim();
-                if (scoreText && /\d/.test(scoreText)) {
-                  scores.push(scoreText);
+                // blind 스팬("스코어") 제외하고 숫자만 추출
+                const text = el.textContent.replace(/스코어/g, '').trim();
+                if (text && /\d/.test(text)) {
+                  scores.push(text);
                 }
               });
 
-              // 결과 정보
-              const resultEl = box.querySelector('[class*="result"]');
-              const result = resultEl ? resultEl.textContent.trim() : '';
-
-              // 날짜 정보
-              const dateEl = box.querySelector('[class*="date"]');
-              const date = dateEl ? dateEl.textContent.trim() : '';
+              // 승/패 정보
+              const winItems = box.querySelectorAll('[class*="type_win"]');
+              const loseItems = box.querySelectorAll('[class*="type_lose"]');
+              let result = null;
+              if (winItems.length > 0 && players.length >= 2 && scores.length >= 2) {
+                // 첫 번째 선수의 결과를 기준으로
+                const firstPlayerItem = box.querySelector('.GamePlayer_player_item__UIYmq');
+                if (firstPlayerItem) {
+                  const firstResultWrap = firstPlayerItem.querySelector('[class*="type_win"]');
+                  if (firstResultWrap) {
+                    result = players[0] + ' 승';
+                  } else {
+                    result = players[1] + ' 승';
+                  }
+                }
+              }
 
               if (disciplineDetail || time) {
                 results.push({
@@ -544,7 +581,7 @@ async function crawlAllDisciplineSchedules() {
                   status,
                   players: players.length > 0 ? players : null,
                   scores: scores.length > 0 ? scores : null,
-                  result: result || null,
+                  result,
                 });
               }
             } catch (err) {
