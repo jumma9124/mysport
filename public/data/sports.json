@@ -4,11 +4,19 @@
     "currentRank": 1,
     "record": {
       "wins": 16,
-      "losses": 9,
+      "losses": 10,
       "points": 51,
-      "setRate": 1.657
+      "setRate": 1.526
     },
     "recentMatches": [
+      {
+        "date": "2026-02-06",
+        "opponent": "우리카드",
+        "venue": "천안유관순체육관",
+        "result": "loss",
+        "score": "0-3",
+        "sets": []
+      },
       {
         "date": "2026-02-01",
         "opponent": "OK저축은행",
@@ -23,14 +31,6 @@
         "venue": "천안유관순체육관",
         "result": "loss",
         "score": "2-3",
-        "sets": []
-      },
-      {
-        "date": "2026-01-23",
-        "opponent": "한국전력",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-0",
         "sets": []
       }
     ],
