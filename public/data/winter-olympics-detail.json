@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-06T13:17:06.505Z",
+  "lastUpdate": "2026-02-06T16:57:28.724Z",
   "medals": {
     "gold": 0,
     "silver": 0,
@@ -29,7 +29,7 @@
     {
       "time": "21:35",
       "discipline": "피겨스케이팅",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "대한민국"
       ]
@@ -37,7 +37,7 @@
     {
       "time": "22:35",
       "discipline": "컬링",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "대한민국",
         "영국"
@@ -46,21 +46,15 @@
   ],
   "upcomingSchedule": [
     {
-      "date": "2026-02-06",
-      "time": "21:35",
-      "discipline": "피겨스케이팅",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-06",
-      "time": "22:35",
-      "discipline": "컬링",
+      "date": "2026-02-07",
+      "time": "04:00",
+      "discipline": "동계올림픽",
       "status": "예정"
     },
     {
       "date": "2026-02-07",
-      "time": "04:00",
-      "discipline": "동계올림픽",
+      "time": "21:00",
+      "discipline": "크로스컨트리 스키",
       "status": "예정"
     },
     {
@@ -73,6 +67,12 @@
       "date": "2026-02-08",
       "time": "03:05",
       "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-08",
+      "time": "03:45",
+      "discipline": "피겨스케이팅",
       "status": "예정"
     }
   ],
@@ -219,7 +219,7 @@
         {
           "date": "2026-02-06",
           "time": "17:55",
-          "disciplineDetail": "단체전 리듬댄스",
+          "disciplineDetail": "단체전 리듬 댄스",
           "status": "종료",
           "players": [
             "대한민국"
@@ -232,20 +232,20 @@
         {
           "date": "2026-02-06",
           "time": "21:35",
-          "disciplineDetail": "단체전 여자 싱글 쇼트 프로그램",
-          "status": "경기중",
+          "disciplineDetail": "단체전 여자 쇼트 프로그램",
+          "status": "종료",
           "players": [
             "대한민국"
           ],
           "scores": [
-            "9"
+            "11"
           ],
           "result": null
         },
         {
           "date": "2026-02-08",
           "time": "03:45",
-          "disciplineDetail": "단체전 남자 싱글 쇼트 프로그램",
+          "disciplineDetail": "단체전 남자 쇼트 프로그램",
           "status": "예정",
           "players": [
             "대한민국"
@@ -256,7 +256,7 @@
         {
           "date": "2026-02-10",
           "time": "03:20",
-          "disciplineDetail": "아이스댄스 리듬댄스",
+          "disciplineDetail": "아이스댄스 리듬 댄스",
           "status": "예정",
           "players": null,
           "scores": null,
@@ -334,13 +334,16 @@
           "date": "2026-02-06",
           "time": "22:35",
           "disciplineDetail": "믹스더블 라운드 로빈",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국",
             "영국"
           ],
-          "scores": null,
-          "result": null
+          "scores": [
+            "2",
+            "8"
+          ],
+          "result": "영국 승"
         },
         {
           "date": "2026-02-07",
@@ -519,6 +522,20 @@
           "date": "2026-02-10",
           "time": "01:00",
           "disciplineDetail": "여자 1인승 런1",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "CCS": {
+      "name": "크로스컨트리스키",
+      "games": [
+        {
+          "date": "2026-02-07",
+          "time": "21:00",
+          "disciplineDetail": "여자 20km 스키애슬론",
           "status": "예정",
           "players": null,
           "scores": null,
