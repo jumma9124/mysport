@@ -379,8 +379,8 @@ const InternationalSportsDetail = () => {
                             key={idx}
                             className="bg-white/5 rounded-lg p-3 border border-white/10"
                           >
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-white font-semibold">{game.discipline}</span>
+                            <div className="flex items-center justify-between">
+                              <span className="text-white font-semibold">{game.discipline} ({game.time})</span>
                               <span
                                 className="px-2 py-0.5 rounded text-xs"
                                 style={{
@@ -391,7 +391,6 @@ const InternationalSportsDetail = () => {
                                 {game.status}
                               </span>
                             </div>
-                            <div className="text-sm text-gray-400">{game.time}</div>
                             {game.players && game.players.length > 0 && (
                               <div className="text-sm text-gray-300 mt-1">{game.players.join(', ')}</div>
                             )}
@@ -419,12 +418,11 @@ const InternationalSportsDetail = () => {
                             key={idx}
                             className="bg-white/5 rounded-lg p-3 border border-white/10"
                           >
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-white font-semibold">{game.discipline}</span>
+                            <div className="flex items-center justify-between">
+                              <span className="text-white font-semibold">
+                                {game.discipline} ({new Date(game.date).toLocaleDateString('ko-KR', { month: 'numeric', day: 'numeric' })} {game.time})
+                              </span>
                               <span className="text-xs text-gray-400">{game.status}</span>
-                            </div>
-                            <div className="text-sm text-gray-400">
-                              {new Date(game.date).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })} {game.time}
                             </div>
                           </div>
                         ))}
