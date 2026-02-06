@@ -206,7 +206,7 @@ const InternationalSportsDetail = () => {
             </div>
 
             {/* 탭 콘텐츠 */}
-            <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <div>
               {winterOlympicsTab === 'medals' && (
                 <div className="space-y-6">
                   {/* 대한민국 메달 현황 */}
