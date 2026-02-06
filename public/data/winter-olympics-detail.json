@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-06T08:55:21.250Z",
+  "lastUpdate": "2026-02-06T13:17:06.505Z",
   "medals": {
     "gold": 0,
     "silver": 0,
@@ -21,7 +21,7 @@
     {
       "time": "17:55",
       "discipline": "피겨스케이팅",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "대한민국"
       ]
@@ -29,7 +29,7 @@
     {
       "time": "21:35",
       "discipline": "피겨스케이팅",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "대한민국"
       ]
@@ -47,15 +47,9 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-06",
-      "time": "17:55",
-      "discipline": "피겨스케이팅",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-06",
       "time": "21:35",
       "discipline": "피겨스케이팅",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-06",
@@ -72,6 +66,12 @@
     {
       "date": "2026-02-07",
       "time": "22:35",
+      "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-08",
+      "time": "03:05",
       "discipline": "컬링",
       "status": "예정"
     }
@@ -220,22 +220,26 @@
           "date": "2026-02-06",
           "time": "17:55",
           "disciplineDetail": "단체전 리듬댄스",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "4"
+          ],
           "result": null
         },
         {
           "date": "2026-02-06",
           "time": "21:35",
           "disciplineDetail": "단체전 여자 싱글 쇼트 프로그램",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "9"
+          ],
           "result": null
         },
         {
@@ -243,7 +247,9 @@
           "time": "03:45",
           "disciplineDetail": "단체전 남자 싱글 쇼트 프로그램",
           "status": "예정",
-          "players": null,
+          "players": [
+            "대한민국"
+          ],
           "scores": null,
           "result": null
         },
@@ -342,8 +348,8 @@
           "disciplineDetail": "믹스더블 라운드 로빈",
           "status": "예정",
           "players": [
-            "체코",
-            "대한민국"
+            "대한민국",
+            "체코"
           ],
           "scores": null,
           "result": null
