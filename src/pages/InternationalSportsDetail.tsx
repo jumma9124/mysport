@@ -228,7 +228,7 @@ const InternationalSportsDetail = () => {
                             className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
                             style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
-                            <div className="space-y-2 max-h-64 overflow-y-auto">
+                            <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').length > 0 ? (
                                 data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').map((medalist, idx) => (
                                   <div key={idx} className="bg-white/5 rounded p-2 text-xs">
@@ -260,7 +260,7 @@ const InternationalSportsDetail = () => {
                             className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
                             style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
-                            <div className="space-y-2 max-h-64 overflow-y-auto">
+                            <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').length > 0 ? (
                                 data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').map((medalist, idx) => (
                                   <div key={idx} className="bg-white/5 rounded p-2 text-xs">
@@ -292,7 +292,7 @@ const InternationalSportsDetail = () => {
                             className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
                             style={{ minWidth: '200px', maxWidth: '300px' }}
                           >
-                            <div className="space-y-2 max-h-64 overflow-y-auto">
+                            <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').length > 0 ? (
                                 data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').map((medalist, idx) => (
                                   <div key={idx} className="bg-white/5 rounded p-2 text-xs">
