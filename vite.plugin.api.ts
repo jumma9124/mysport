@@ -113,7 +113,7 @@ export function internationalSportsCrawlPlugin(): Plugin {
           console.log('[API] International sports crawl requested');
 
           // 크롤링 스크립트 실행
-          const scriptPath = path.resolve(process.cwd(), 'scripts/crawl-international.cjs');
+          const scriptPath = path.resolve(process.cwd(), 'scripts/crawl-winter-olympics.cjs');
           const { exec } = await import('child_process');
           const { promisify } = await import('util');
           const execAsync = promisify(exec);
@@ -132,9 +132,11 @@ export function internationalSportsCrawlPlugin(): Plugin {
           const dataDir = path.resolve(process.cwd(), 'public/data');
           const eventsPath = path.join(dataDir, 'major-events.json');
           const sportsJsonPath = path.join(dataDir, 'sports.json');
+          const winterOlympicsPath = path.join(dataDir, 'winter-olympics-detail.json');
 
           let events: any = [];
           let sportsData: any = {};
+          let winterOlympicsData: any = null;
 
           if (fs.existsSync(eventsPath)) {
             events = JSON.parse(fs.readFileSync(eventsPath, 'utf8'));
@@ -150,8 +152,16 @@ export function internationalSportsCrawlPlugin(): Plugin {
             console.warn('[API] sports.json not found');
           }
 
+          if (fs.existsSync(winterOlympicsPath)) {
+            winterOlympicsData = JSON.parse(fs.readFileSync(winterOlympicsPath, 'utf8'));
+            console.log('[API] Loaded winter-olympics-detail.json');
+          } else {
+            console.warn('[API] winter-olympics-detail.json not found');
+          }
+
           const result = {
             ...sportsData.international,
+            winterOlympics: winterOlympicsData,
             data: {
               events
             }
