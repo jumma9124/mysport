@@ -59,14 +59,8 @@
       "bronze": 0,
       "total": 0
     },
-    "todayGames": 4,
+    "todayGames": 3,
     "upcomingGames": [
-      {
-        "date": "2026-02-07",
-        "time": "04:00",
-        "discipline": "올림픽특집",
-        "status": "LIVE"
-      },
       {
         "date": "2026-02-07",
         "time": "21:00",
@@ -76,6 +70,12 @@
       {
         "date": "2026-02-07",
         "time": "22:35",
+        "discipline": "컬링",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-08",
+        "time": "03:05",
         "discipline": "컬링",
         "status": "예정"
       }
