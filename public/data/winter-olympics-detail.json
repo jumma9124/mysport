@@ -1,12 +1,29 @@
 {
-  "lastUpdate": "2026-02-07T08:42:08.857Z",
+  "lastUpdate": "2026-02-07T13:05:38.085Z",
   "medals": {
     "gold": 0,
     "silver": 0,
     "bronze": 0,
     "total": 0
   },
-  "allCountriesMedals": [],
+  "allCountriesMedals": [
+    {
+      "rank": 1,
+      "nation": "스위스",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "total": 0
+    },
+    {
+      "rank": 2,
+      "nation": "이탈리아",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "total": 0
+    }
+  ],
   "koreaMedalists": [],
   "todaySchedule": [
     {
@@ -18,7 +35,7 @@
     {
       "time": "21:00",
       "discipline": "크로스컨트리 스키",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "이의진",
         "한다솜"
@@ -39,7 +56,7 @@
       "date": "2026-02-07",
       "time": "21:00",
       "discipline": "크로스컨트리 스키",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-07",
@@ -526,7 +543,7 @@
           "date": "2026-02-07",
           "time": "21:00",
           "disciplineDetail": "여자 20km 스키애슬론",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "이의진",
             "한다솜"
