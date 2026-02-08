@@ -73,22 +73,22 @@ async function crawlMedals() {
       };
 
       if (koreaBox) {
-        // 메달 개수 추출
-        const medalNumbers = koreaBox.querySelectorAll('.OlympicMedal_medal_number__k\\+FvQ');
+        // 메달 개수 추출 - cell의 텍스트에서 직접 숫자 추출
+        const medalCells = koreaBox.querySelectorAll('.OlympicMedal_cell_medal__Wfc1U');
 
-        medalNumbers.forEach((el) => {
-          const parent = el.closest('.OlympicMedal_medal__XB68Z');
-          if (!parent) return;
+        medalCells.forEach((cell) => {
+          // 텍스트에서 숫자만 추출 (예: "<span class='blind'>금</span>1" -> "1")
+          const textContent = cell.textContent.replace(/[^0-9]/g, '');
+          const count = parseInt(textContent) || 0;
 
-          const count = parseInt(el.textContent.trim()) || 0;
-
-          if (parent.classList.contains('OlympicMedal_type_gold__4ubSW')) {
+          // cell 자체의 클래스로 메달 종류 판단
+          if (cell.classList.contains('OlympicMedal_type_gold__4ubSW')) {
             koreaMedals.gold = count;
-          } else if (parent.classList.contains('OlympicMedal_type_silver__70ph7')) {
+          } else if (cell.classList.contains('OlympicMedal_type_silver__70ph7')) {
             koreaMedals.silver = count;
-          } else if (parent.classList.contains('OlympicMedal_type_bronze__+HbZO')) {
+          } else if (cell.classList.contains('OlympicMedal_type_bronze__+HbZO')) {
             koreaMedals.bronze = count;
-          } else if (parent.classList.contains('OlympicMedal_type_total__ifDFM')) {
+          } else if (cell.classList.contains('OlympicMedal_type_total__ifDFM')) {
             koreaMedals.total = count;
           }
         });
@@ -115,24 +115,23 @@ async function crawlMedals() {
           const nationEl = item.querySelector('.OlympicMedal_nation__OrKUv');
           const nation = nationEl ? nationEl.textContent.trim() : '';
 
-          // 메달 개수들
+          // 메달 개수들 - cell의 텍스트에서 직접 숫자 추출
           const medalCells = item.querySelectorAll('.OlympicMedal_cell_medal__Wfc1U');
           let gold = 0, silver = 0, bronze = 0, total = 0;
 
           medalCells.forEach((cell) => {
-            const medalEl = cell.querySelector('.OlympicMedal_medal__XB68Z');
-            if (!medalEl) return;
+            // 텍스트에서 숫자만 추출 (예: "<span class='blind'>금</span>3" -> "3")
+            const textContent = cell.textContent.replace(/[^0-9]/g, '');
+            const count = parseInt(textContent) || 0;
 
-            const numberEl = medalEl.querySelector('.OlympicMedal_medal_number__k\\+FvQ');
-            const count = numberEl ? parseInt(numberEl.textContent.trim()) || 0 : 0;
-
-            if (medalEl.classList.contains('OlympicMedal_type_gold__4ubSW')) {
+            // cell 자체의 클래스로 메달 종류 판단
+            if (cell.classList.contains('OlympicMedal_type_gold__4ubSW')) {
               gold = count;
-            } else if (medalEl.classList.contains('OlympicMedal_type_silver__70ph7')) {
+            } else if (cell.classList.contains('OlympicMedal_type_silver__70ph7')) {
               silver = count;
-            } else if (medalEl.classList.contains('OlympicMedal_type_bronze__+HbZO')) {
+            } else if (cell.classList.contains('OlympicMedal_type_bronze__+HbZO')) {
               bronze = count;
-            } else if (medalEl.classList.contains('OlympicMedal_type_total__ifDFM')) {
+            } else if (cell.classList.contains('OlympicMedal_type_total__ifDFM')) {
               total = count;
             }
           });
