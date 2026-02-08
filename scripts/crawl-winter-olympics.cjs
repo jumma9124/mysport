@@ -151,9 +151,25 @@ async function crawlMedals() {
         }
       });
 
+      // allCountries 정렬
+      const sortedCountries = allCountries.sort((a, b) => a.rank - b.rank);
+
+      // 대한민국 전용 박스에서 추출 실패시, allCountries에서 대한민국 찾기
+      if (koreaMedals.total === 0) {
+        const koreaFromList = sortedCountries.find(c => c.nation === '대한민국');
+        if (koreaFromList) {
+          koreaMedals = {
+            gold: koreaFromList.gold,
+            silver: koreaFromList.silver,
+            bronze: koreaFromList.bronze,
+            total: koreaFromList.total
+          };
+        }
+      }
+
       return {
         korea: koreaMedals,
-        allCountries: allCountries.sort((a, b) => a.rank - b.rank)
+        allCountries: sortedCountries
       };
     });
 
