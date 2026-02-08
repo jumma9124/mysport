@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-08T13:06:42.904Z",
+  "lastUpdate": "2026-02-08T16:41:00.476Z",
   "medals": {
     "gold": 0,
     "silver": 0,
@@ -40,7 +40,23 @@
       "total": 0
     },
     {
-      "rank": 5,
+      "rank": 4,
+      "nation": "오스트리아",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "total": 0
+    },
+    {
+      "rank": 4,
+      "nation": "프랑스",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "total": 0
+    },
+    {
+      "rank": 7,
       "nation": "미국",
       "gold": 0,
       "silver": 0,
@@ -48,7 +64,7 @@
       "total": 0
     },
     {
-      "rank": 5,
+      "rank": 7,
       "nation": "스위스",
       "gold": 0,
       "silver": 0,
@@ -57,6 +73,14 @@
     },
     {
       "rank": 7,
+      "nation": "체코",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "total": 0
+    },
+    {
+      "rank": 10,
       "nation": "독일",
       "gold": 0,
       "silver": 0,
@@ -64,7 +88,15 @@
       "total": 0
     },
     {
-      "rank": 7,
+      "rank": 11,
+      "nation": "대한민국",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "total": 0
+    },
+    {
+      "rank": 11,
       "nation": "슬로베니아",
       "gold": 0,
       "silver": 0,
@@ -72,15 +104,15 @@
       "total": 0
     },
     {
-      "rank": 7,
-      "nation": "프랑스",
+      "rank": 13,
+      "nation": "불가리아",
       "gold": 0,
       "silver": 0,
       "bronze": 0,
       "total": 0
     },
     {
-      "rank": 10,
+      "rank": 13,
       "nation": "중국",
       "gold": 0,
       "silver": 0,
@@ -88,7 +120,7 @@
       "total": 0
     },
     {
-      "rank": 10,
+      "rank": 13,
       "nation": "캐나다",
       "gold": 0,
       "silver": 0,
@@ -183,31 +215,37 @@
     {
       "time": "22:00",
       "discipline": "스노보드",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "김상겸"
       ]
     },
     {
+      "time": "22:19",
+      "discipline": "스노보드",
+      "status": "종료",
+      "players": [
+        "김상겸"
+      ]
+    },
+    {
+      "time": "22:36",
+      "discipline": "스노보드",
+      "status": "종료",
+      "players": [
+        "벤야민 카를",
+        "김상겸",
+        "테르벨 잠피로프"
+      ]
+    },
+    {
       "time": "23:00",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-08",
-      "time": "22:00",
-      "discipline": "스노보드",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-08",
-      "time": "23:00",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-09",
       "time": "03:05",
@@ -223,6 +261,18 @@
     {
       "date": "2026-02-09",
       "time": "12:30",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-09",
+      "time": "18:05",
+      "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-09",
+      "time": "21:00",
       "discipline": "올림픽특집",
       "status": "예정"
     }
@@ -422,7 +472,10 @@
           "time": "02:30",
           "disciplineDetail": "남자 싱글 쇼트 프로그램",
           "status": "예정",
-          "players": null,
+          "players": [
+            "김현겸",
+            "차준환"
+          ],
           "scores": null,
           "result": null
         },
