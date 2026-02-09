@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-09T00:40:35.842Z",
+  "lastUpdate": "2026-02-09T02:51:01.739Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -416,6 +416,15 @@
           "date": "2026-02-18",
           "time": "02:45",
           "disciplineDetail": "여자 싱글 쇼트 프로그램",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-22",
+          "time": "04:00",
+          "disciplineDetail": "갈라쇼",
           "status": "예정",
           "players": null,
           "scores": null,
