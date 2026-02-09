@@ -217,79 +217,62 @@ async function crawlKoreaMedalists() {
     // React 렌더링 대기
     await new Promise(resolve => setTimeout(resolve, 3000));
 
-    // 메달리스트 데이터 추출
+    // 메달리스트 데이터 추출 - 네이버 스포츠 메달리스트 페이지 구조 기반
     const medalistsData = await page.evaluate(() => {
       const medalists = [];
 
-      // 메달리스트 아이템 선택자 찾기
-      const athleteItems = document.querySelectorAll('.OlympicMedal_medal_rank_item__KNY6g');
+      // 메달리스트 목록 아이템: li.OlympicMedal_medal_list_item__fOQcv
+      const listItems = document.querySelectorAll('.OlympicMedal_medal_list_item__fOQcv');
 
-      athleteItems.forEach((item) => {
+      console.log('[DEBUG] Found medalist items:', listItems.length);
+
+      listItems.forEach((item) => {
         try {
-          // 선수명
-          const nameEl = item.querySelector('.OlympicMedal_nation__OrKUv'); // 선수 이름도 같은 클래스 사용
+          // 선수명: strong.OlympicMedal_name__cCJ+U
+          const nameEl = item.querySelector('[class*="OlympicMedal_name"]');
           const name = nameEl ? nameEl.textContent.trim() : '';
 
-          // 국가 확인 (대한민국만)
-          const countryEl = item.querySelector('[class*="country"]') || item;
-          const itemText = item.textContent || '';
+          // 종목: em.OlympicMedal_discipline__T3wnb
+          const disciplineEl = item.querySelector('[class*="OlympicMedal_discipline"]');
+          const discipline = disciplineEl ? disciplineEl.textContent.trim() : '';
 
-          // "대한민국" 또는 "KOR"이 포함된 경우만
-          if (!itemText.includes('대한민국') && !itemText.includes('KOR')) {
-            return;
-          }
+          // 세부 종목/이벤트: em.OlympicMedal_event__I0Bzw (상세 펼침 시 표시)
+          const eventEl = item.querySelector('[class*="OlympicMedal_event"]');
+          const event = eventEl ? eventEl.textContent.trim() : '';
 
-          // 메달 정보
-          const medalCells = item.querySelectorAll('.OlympicMedal_cell_medal__Wfc1U');
+          // 메달 개수 추출
+          const medalArea = item.querySelector('[class*="OlympicMedal_medal_area"]');
+          if (!medalArea) return;
+
+          const medalSpans = medalArea.querySelectorAll('.OlympicMedal_medal__XB68Z');
           let gold = 0, silver = 0, bronze = 0;
 
-          medalCells.forEach((cell) => {
-            const medalEl = cell.querySelector('.OlympicMedal_medal__XB68Z');
-            if (!medalEl) return;
+          medalSpans.forEach((span) => {
+            // 숫자만 추출 (span 안에 "금0", "은1" 등의 텍스트)
+            const text = span.textContent.replace(/[^0-9]/g, '');
+            const count = parseInt(text) || 0;
 
-            const numberEl = medalEl.querySelector('.OlympicMedal_medal_number__k\\+FvQ');
-            const count = numberEl ? parseInt(numberEl.textContent.trim()) || 0 : 0;
-
-            if (medalEl.classList.contains('OlympicMedal_type_gold__4ubSW')) {
+            if (span.classList.contains('OlympicMedal_type_gold__4ubSW')) {
               gold = count;
-            } else if (medalEl.classList.contains('OlympicMedal_type_silver__70ph7')) {
+            } else if (span.classList.contains('OlympicMedal_type_silver__70ph7')) {
               silver = count;
-            } else if (medalEl.classList.contains('OlympicMedal_type_bronze__+HbZO')) {
+            } else if (span.className.includes('type_bronze')) {
               bronze = count;
             }
           });
 
+          // 메달이 있는 선수만 추가 (한국 선수만 표시되는 페이지이므로 국가 필터 불필요)
           if (name && (gold > 0 || silver > 0 || bronze > 0)) {
-            // 메달 종류별로 항목 추가
+            const fullDiscipline = event ? `${discipline} ${event}` : discipline;
+
             if (gold > 0) {
-              for (let i = 0; i < gold; i++) {
-                medalists.push({
-                  name,
-                  medalType: 'gold',
-                  discipline: '', // 종목은 다른 방법으로 가져와야 함
-                  date: '', // 날짜는 다른 방법으로 가져와야 함
-                });
-              }
+              medalists.push({ name, medalType: 'gold', discipline: fullDiscipline, date: '' });
             }
             if (silver > 0) {
-              for (let i = 0; i < silver; i++) {
-                medalists.push({
-                  name,
-                  medalType: 'silver',
-                  discipline: '',
-                  date: '',
-                });
-              }
+              medalists.push({ name, medalType: 'silver', discipline: fullDiscipline, date: '' });
             }
             if (bronze > 0) {
-              for (let i = 0; i < bronze; i++) {
-                medalists.push({
-                  name,
-                  medalType: 'bronze',
-                  discipline: '',
-                  date: '',
-                });
-              }
+              medalists.push({ name, medalType: 'bronze', discipline: fullDiscipline, date: '' });
             }
           }
         } catch (err) {
