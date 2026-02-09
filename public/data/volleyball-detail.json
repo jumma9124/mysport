@@ -1,24 +1,24 @@
 {
   "leagueStandings": [
     {
+      "name": "현대캐피탈",
+      "wins": 17,
+      "losses": 10,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.605,
+      "rank": 1,
+      "points": 54
+    },
+    {
       "name": "대한항공",
       "wins": 18,
       "losses": 8,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.538,
-      "rank": 1,
-      "points": 53
-    },
-    {
-      "name": "현대캐피탈",
-      "wins": 16,
-      "losses": 10,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.526,
       "rank": 2,
-      "points": 51
+      "points": 53
     },
     {
       "name": "한국전력",
@@ -43,10 +43,10 @@
     {
       "name": "KB손해보험",
       "wins": 13,
-      "losses": 13,
+      "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.981,
+      "setRate": 0.927,
       "rank": 5,
       "points": 40
     },
@@ -83,24 +83,24 @@
       "points": 55
     },
     {
-      "name": "흥국생명",
-      "wins": 15,
-      "losses": 12,
+      "name": "현대건설",
+      "wins": 16,
+      "losses": 11,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.229,
+      "setRate": 1.261,
       "rank": 2,
       "points": 48
     },
     {
-      "name": "현대건설",
+      "name": "흥국생명",
       "wins": 15,
-      "losses": 11,
+      "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.222,
+      "setRate": 1.176,
       "rank": 3,
-      "points": 45
+      "points": 48
     },
     {
       "name": "IBK기업은행",
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-02-09",
+      "opponent": "KB손해보험",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    },
+    {
       "date": "2026-02-06",
       "opponent": "우리카드",
       "venue": "천안유관순체육관",
@@ -158,14 +166,6 @@
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-0",
-      "sets": []
-    },
-    {
-      "date": "2026-01-29",
-      "opponent": "한국전력",
-      "venue": "천안유관순체육관",
-      "result": "loss",
-      "score": "2-3",
       "sets": []
     }
   ],
