@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-09T09:03:55.247Z",
+  "lastUpdate": "2026-02-09T13:26:22.606Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -24,7 +24,15 @@
       "total": 2
     },
     {
-      "rank": 3,
+      "rank": 2,
+      "nation": "스위스",
+      "gold": 2,
+      "silver": 0,
+      "bronze": 0,
+      "total": 2
+    },
+    {
+      "rank": 4,
       "nation": "이탈리아",
       "gold": 1,
       "silver": 2,
@@ -32,7 +40,7 @@
       "total": 9
     },
     {
-      "rank": 4,
+      "rank": 5,
       "nation": "일본",
       "gold": 1,
       "silver": 2,
@@ -40,7 +48,7 @@
       "total": 4
     },
     {
-      "rank": 5,
+      "rank": 6,
       "nation": "오스트리아",
       "gold": 1,
       "silver": 2,
@@ -48,7 +56,7 @@
       "total": 3
     },
     {
-      "rank": 6,
+      "rank": 7,
       "nation": "독일",
       "gold": 1,
       "silver": 1,
@@ -56,7 +64,7 @@
       "total": 3
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "스웨덴",
       "gold": 1,
       "silver": 1,
@@ -64,7 +72,7 @@
       "total": 2
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "체코",
       "gold": 1,
       "silver": 1,
@@ -72,7 +80,7 @@
       "total": 2
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "프랑스",
       "gold": 1,
       "silver": 1,
@@ -80,15 +88,15 @@
       "total": 2
     },
     {
-      "rank": 10,
-      "nation": "스위스",
-      "gold": 1,
-      "silver": 0,
-      "bronze": 0,
-      "total": 1
+      "rank": 11,
+      "nation": "중국",
+      "gold": 0,
+      "silver": 1,
+      "bronze": 1,
+      "total": 2
     },
     {
-      "rank": 11,
+      "rank": 12,
       "nation": "대한민국",
       "gold": 0,
       "silver": 1,
@@ -96,7 +104,7 @@
       "total": 1
     },
     {
-      "rank": 11,
+      "rank": 12,
       "nation": "슬로베니아",
       "gold": 0,
       "silver": 1,
@@ -104,24 +112,16 @@
       "total": 1
     },
     {
-      "rank": 13,
-      "nation": "불가리아",
-      "gold": 0,
-      "silver": 0,
-      "bronze": 1,
-      "total": 1
-    },
-    {
-      "rank": 13,
-      "nation": "중국",
-      "gold": 0,
-      "silver": 0,
-      "bronze": 1,
-      "total": 1
-    },
-    {
-      "rank": 13,
+      "rank": 14,
       "nation": "캐나다",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 2,
+      "total": 2
+    },
+    {
+      "rank": 15,
+      "nation": "불가리아",
       "gold": 0,
       "silver": 0,
       "bronze": 1,
@@ -163,32 +163,20 @@
     {
       "time": "18:05",
       "discipline": "컬링",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "노르웨이",
         "대한민국"
       ]
     },
     {
-      "time": "21:00",
+      "time": "21:10",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-09",
-      "time": "18:05",
-      "discipline": "컬링",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-09",
-      "time": "21:00",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-10",
       "time": "01:00",
@@ -205,6 +193,18 @@
       "date": "2026-02-10",
       "time": "03:20",
       "discipline": "피겨스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "03:30",
+      "discipline": "스노보드",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "12:30",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -568,13 +568,16 @@
           "date": "2026-02-09",
           "time": "18:05",
           "disciplineDetail": "믹스더블 라운드 로빈",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "노르웨이",
             "대한민국"
           ],
-          "scores": null,
-          "result": null
+          "scores": [
+            "8",
+            "5"
+          ],
+          "result": "노르웨이 승"
         },
         {
           "date": "2026-02-12",
