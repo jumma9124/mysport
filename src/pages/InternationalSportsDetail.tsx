@@ -16,6 +16,25 @@ interface Event {
   rank?: number;
 }
 
+// 모든 동계올림픽 종목 목록 (크롤러와 동일)
+const ALL_DISCIPLINES = [
+  { id: 'STK', name: '쇼트트랙' },
+  { id: 'SSK', name: '스피드스케이팅' },
+  { id: 'FSK', name: '피겨스케이팅' },
+  { id: 'CUR', name: '컬링' },
+  { id: 'ICH', name: '아이스하키' },
+  { id: 'BOB', name: '봅슬레이' },
+  { id: 'LUG', name: '루지' },
+  { id: 'SKE', name: '스켈레톤' },
+  { id: 'ALP', name: '알파인스키' },
+  { id: 'CCS', name: '크로스컨트리스키' },
+  { id: 'SKJ', name: '스키점프' },
+  { id: 'NCB', name: '노르딕복합' },
+  { id: 'FRS', name: '프리스타일스키' },
+  { id: 'SNB', name: '스노보드' },
+  { id: 'BIA', name: '바이애슬론' },
+];
+
 const InternationalSportsDetail = () => {
   const [data, setData] = useState<InternationalSportsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +42,7 @@ const InternationalSportsDetail = () => {
   const [expandedEvents, setExpandedEvents] = useState<{ [key: number]: boolean }>({});
   const [winterOlympicsTab, setWinterOlympicsTab] = useState<'medals' | 'schedule' | 'discipline'>('medals');
   const [expandedMedal, setExpandedMedal] = useState<'gold' | 'silver' | 'bronze' | 'total' | null>(null);
-  const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>(null);
+  const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>('STK');
   const medalContainerRef = useRef<HTMLDivElement>(null);
 
   const toggleEvent = (index: number) => {
@@ -440,107 +459,107 @@ const InternationalSportsDetail = () => {
 
               {winterOlympicsTab === 'discipline' && (
                 <div>
-                  {data.winterOlympics.disciplineSchedules && Object.keys(data.winterOlympics.disciplineSchedules).length > 0 ? (
-                    <>
-                      {/* 종목 선택 칩 */}
-                      <div style={{
-                        display: 'flex',
-                        gap: '8px',
-                        overflowX: 'auto',
-                        paddingBottom: '12px',
-                        marginBottom: '12px',
-                      }} className="hide-scrollbar">
-                        {Object.entries(data.winterOlympics.disciplineSchedules).map(([id, entry]) => (
-                          <button
-                            key={id}
-                            onClick={() => setSelectedDiscipline(id)}
-                            style={{
-                              padding: '6px 14px',
-                              border: 'none',
-                              borderRadius: '20px',
-                              cursor: 'pointer',
-                              fontWeight: 500,
-                              fontSize: '13px',
-                              whiteSpace: 'nowrap',
-                              flexShrink: 0,
-                              background: selectedDiscipline === id ? 'rgba(102, 126, 234, 0.4)' : 'rgba(255, 255, 255, 0.08)',
-                              color: selectedDiscipline === id ? 'white' : 'rgba(255,255,255,0.5)',
-                              transition: 'all 0.2s',
-                            }}
-                          >
-                            {entry.name}
-                          </button>
-                        ))}
-                      </div>
+                  {/* 종목 선택 칩 - 모든 종목 표시 */}
+                  <div style={{
+                    display: 'flex',
+                    gap: '8px',
+                    overflowX: 'auto',
+                    paddingBottom: '12px',
+                    marginBottom: '12px',
+                  }} className="hide-scrollbar">
+                    {ALL_DISCIPLINES.map((discipline) => {
+                      const hasData = data.winterOlympics?.disciplineSchedules?.[discipline.id];
+                      return (
+                        <button
+                          key={discipline.id}
+                          onClick={() => setSelectedDiscipline(discipline.id)}
+                          style={{
+                            padding: '6px 14px',
+                            border: 'none',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            fontWeight: 500,
+                            fontSize: '13px',
+                            whiteSpace: 'nowrap',
+                            flexShrink: 0,
+                            background: selectedDiscipline === discipline.id ? 'rgba(102, 126, 234, 0.4)' : 'rgba(255, 255, 255, 0.08)',
+                            color: selectedDiscipline === discipline.id ? 'white' : hasData ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.3)',
+                            transition: 'all 0.2s',
+                          }}
+                        >
+                          {discipline.name}
+                        </button>
+                      );
+                    })}
+                  </div>
 
-                      {/* 선택된 종목의 경기 리스트 */}
-                      {selectedDiscipline && data.winterOlympics.disciplineSchedules[selectedDiscipline] ? (
-                        <div className="space-y-2">
-                          {data.winterOlympics.disciplineSchedules[selectedDiscipline].games.map((game, idx) => (
-                            <div
-                              key={idx}
-                              className="bg-white/5 rounded-lg p-3 border border-white/10"
+                  {/* 선택된 종목의 경기 리스트 */}
+                  {selectedDiscipline && data.winterOlympics?.disciplineSchedules?.[selectedDiscipline] ? (
+                    <div className="space-y-2">
+                      {data.winterOlympics.disciplineSchedules[selectedDiscipline].games.map((game, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-white/5 rounded-lg p-3 border border-white/10"
+                        >
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-white font-semibold text-sm">{game.disciplineDetail || '-'}</span>
+                            <span
+                              className="px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2"
+                              style={{
+                                backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' :
+                                                game.status === '종료' ? 'rgba(107, 114, 128, 0.15)' :
+                                                'rgba(59, 130, 246, 0.15)',
+                                color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' :
+                                       game.status === '종료' ? 'rgba(107, 114, 128, 0.7)' :
+                                       'rgba(59, 130, 246, 0.7)'
+                              }}
                             >
-                              <div className="flex items-center justify-between mb-1">
-                                <span className="text-white font-semibold text-sm">{game.disciplineDetail || '-'}</span>
-                                <span
-                                  className="px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2"
-                                  style={{
-                                    backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' :
-                                                    game.status === '종료' ? 'rgba(107, 114, 128, 0.15)' :
-                                                    'rgba(59, 130, 246, 0.15)',
-                                    color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' :
-                                           game.status === '종료' ? 'rgba(107, 114, 128, 0.7)' :
-                                           'rgba(59, 130, 246, 0.7)'
-                                  }}
-                                >
-                                  {game.status}
-                                </span>
-                              </div>
-                              <div className="text-xs text-gray-500 mb-2">
-                                {game.date && (
-                                  <span className="mr-2">
-                                    {new Date(game.date).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })}
-                                  </span>
-                                )}
-                                {game.time}
-                              </div>
-                              {/* 팀 대결 (선수 2명 + 스코어) */}
-                              {game.players && game.players.length === 2 && game.scores && game.scores.length === 2 ? (
-                                <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 mt-1">
-                                  <span className={`text-sm font-medium ${game.result?.includes(game.players[0]) ? 'text-white' : 'text-gray-400'}`}>
-                                    {game.players[0]}
-                                  </span>
-                                  <span className="text-sm font-bold text-white mx-3">
-                                    {game.scores[0]} - {game.scores[1]}
-                                  </span>
-                                  <span className={`text-sm font-medium ${game.result?.includes(game.players[1]) ? 'text-white' : 'text-gray-400'}`}>
-                                    {game.players[1]}
-                                  </span>
-                                </div>
-                              ) : game.players && game.players.length === 2 ? (
-                                <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 mt-1">
-                                  <span className="text-sm text-gray-300">{game.players[0]}</span>
-                                  <span className="text-xs text-gray-500">vs</span>
-                                  <span className="text-sm text-gray-300">{game.players[1]}</span>
-                                </div>
-                              ) : game.players && game.players.length > 0 ? (
-                                <div className="text-sm text-gray-300 mt-1">
-                                  {game.players.join(', ')}
-                                </div>
-                              ) : null}
+                              {game.status}
+                            </span>
+                          </div>
+                          <div className="text-xs text-gray-500 mb-2">
+                            {game.date && (
+                              <span className="mr-2">
+                                {new Date(game.date).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })}
+                              </span>
+                            )}
+                            {game.time}
+                          </div>
+                          {/* 팀 대결 (선수 2명 + 스코어) */}
+                          {game.players && game.players.length === 2 && game.scores && game.scores.length === 2 ? (
+                            <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 mt-1">
+                              <span className={`text-sm font-medium ${game.result?.includes(game.players[0]) ? 'text-white' : 'text-gray-400'}`}>
+                                {game.players[0]}
+                              </span>
+                              <span className="text-sm font-bold text-white mx-3">
+                                {game.scores[0]} - {game.scores[1]}
+                              </span>
+                              <span className={`text-sm font-medium ${game.result?.includes(game.players[1]) ? 'text-white' : 'text-gray-400'}`}>
+                                {game.players[1]}
+                              </span>
                             </div>
-                          ))}
+                          ) : game.players && game.players.length === 2 ? (
+                            <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 mt-1">
+                              <span className="text-sm text-gray-300">{game.players[0]}</span>
+                              <span className="text-xs text-gray-500">vs</span>
+                              <span className="text-sm text-gray-300">{game.players[1]}</span>
+                            </div>
+                          ) : game.players && game.players.length > 0 ? (
+                            <div className="text-sm text-gray-300 mt-1">
+                              {game.players.join(', ')}
+                            </div>
+                          ) : null}
                         </div>
-                      ) : (
-                        <div className="text-center py-4 text-gray-400 text-sm">
-                          종목을 선택해주세요
-                        </div>
-                      )}
-                    </>
+                      ))}
+                    </div>
+                  ) : selectedDiscipline ? (
+                    <div className="text-center py-8 text-gray-400">
+                      <div className="text-lg mb-2">{ALL_DISCIPLINES.find(d => d.id === selectedDiscipline)?.name}</div>
+                      <div className="text-sm">한국 선수 경기 일정이 없습니다</div>
+                    </div>
                   ) : (
-                    <div className="text-center py-4 text-gray-400">
-                      종목별 일정 정보가 없습니다
+                    <div className="text-center py-4 text-gray-400 text-sm">
+                      종목을 선택해주세요
                     </div>
                   )}
                 </div>
