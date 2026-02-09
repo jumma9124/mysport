@@ -46,6 +46,7 @@ jobs:
           # 변경사항이 있을 때만 커밋 및 푸시
           if ! git diff --staged --quiet; then
             git commit -m "chore: update volleyball data"
+            git pull --rebase origin main
             git push
           else
             echo "No changes to commit"
