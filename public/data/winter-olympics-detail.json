@@ -1,10 +1,10 @@
 {
-  "lastUpdate": "2026-02-09T13:26:22.606Z",
+  "lastUpdate": "2026-02-09T20:52:56.940Z",
   "medals": {
     "gold": 0,
     "silver": 1,
-    "bronze": 0,
-    "total": 1
+    "bronze": 1,
+    "total": 2
   },
   "allCountriesMedals": [
     {
@@ -17,6 +17,30 @@
     },
     {
       "rank": 2,
+      "nation": "스위스",
+      "gold": 3,
+      "silver": 1,
+      "bronze": 1,
+      "total": 5
+    },
+    {
+      "rank": 3,
+      "nation": "일본",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 3,
+      "total": 7
+    },
+    {
+      "rank": 4,
+      "nation": "독일",
+      "gold": 2,
+      "silver": 1,
+      "bronze": 1,
+      "total": 4
+    },
+    {
+      "rank": 5,
       "nation": "미국",
       "gold": 2,
       "silver": 0,
@@ -24,15 +48,15 @@
       "total": 2
     },
     {
-      "rank": 2,
-      "nation": "스위스",
-      "gold": 2,
-      "silver": 0,
+      "rank": 6,
+      "nation": "오스트리아",
+      "gold": 1,
+      "silver": 3,
       "bronze": 0,
-      "total": 2
+      "total": 4
     },
     {
-      "rank": 4,
+      "rank": 7,
       "nation": "이탈리아",
       "gold": 1,
       "silver": 2,
@@ -40,28 +64,12 @@
       "total": 9
     },
     {
-      "rank": 5,
-      "nation": "일본",
-      "gold": 1,
-      "silver": 2,
-      "bronze": 1,
-      "total": 4
-    },
-    {
-      "rank": 6,
-      "nation": "오스트리아",
-      "gold": 1,
-      "silver": 2,
-      "bronze": 0,
-      "total": 3
-    },
-    {
-      "rank": 7,
-      "nation": "독일",
+      "rank": 8,
+      "nation": "네덜란드",
       "gold": 1,
       "silver": 1,
-      "bronze": 1,
-      "total": 3
+      "bronze": 0,
+      "total": 2
     },
     {
       "rank": 8,
@@ -88,7 +96,15 @@
       "total": 2
     },
     {
-      "rank": 11,
+      "rank": 12,
+      "nation": "대한민국",
+      "gold": 0,
+      "silver": 1,
+      "bronze": 1,
+      "total": 2
+    },
+    {
+      "rank": 12,
       "nation": "중국",
       "gold": 0,
       "silver": 1,
@@ -96,16 +112,8 @@
       "total": 2
     },
     {
-      "rank": 12,
-      "nation": "대한민국",
-      "gold": 0,
-      "silver": 1,
-      "bronze": 0,
-      "total": 1
-    },
-    {
-      "rank": 12,
-      "nation": "슬로베니아",
+      "rank": 14,
+      "nation": "뉴질랜드",
       "gold": 0,
       "silver": 1,
       "bronze": 0,
@@ -113,26 +121,24 @@
     },
     {
       "rank": 14,
-      "nation": "캐나다",
+      "nation": "슬로베니아",
       "gold": 0,
-      "silver": 0,
-      "bronze": 2,
-      "total": 2
-    },
-    {
-      "rank": 15,
-      "nation": "불가리아",
-      "gold": 0,
-      "silver": 0,
-      "bronze": 1,
+      "silver": 1,
+      "bronze": 0,
       "total": 1
     }
   ],
   "koreaMedalists": [
     {
+      "name": "유승은",
+      "medalType": "bronze",
+      "discipline": "스노보드 여자 스노보드 빅에어",
+      "date": ""
+    },
+    {
       "name": "김상겸",
       "medalType": "silver",
-      "discipline": "스노보드 남자 평행대회전",
+      "discipline": "스노보드",
       "date": ""
     }
   ],
@@ -179,32 +185,32 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-10",
-      "time": "01:00",
-      "discipline": "루지",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "01:30",
-      "discipline": "스피드스케이팅",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
       "time": "03:20",
       "discipline": "피겨스케이팅",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "03:30",
-      "discipline": "스노보드",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-10",
       "time": "12:30",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "17:15",
+      "discipline": "크로스컨트리 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "17:57",
+      "discipline": "크로스컨트리 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "18:30",
+      "discipline": "쇼트트랙",
       "status": "예정"
     }
   ],
@@ -249,6 +255,15 @@
         },
         {
           "date": "2026-02-15",
+          "time": "04:15",
+          "disciplineDetail": "남자 1500m 준준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-15",
           "time": "05:01",
           "disciplineDetail": "여자 1000m 예선",
           "status": "예정",
@@ -282,6 +297,15 @@
           "players": null,
           "scores": null,
           "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "04:15",
+          "disciplineDetail": "여자 1500m 준준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
         }
       ]
     },
@@ -292,12 +316,21 @@
           "date": "2026-02-10",
           "time": "01:30",
           "disciplineDetail": "여자 1000m",
-          "status": "예정",
+          "status": "종료",
           "players": [
-            "김민선",
-            "이나현"
+            "유타 레이르담",
+            "펨케 콕",
+            "다카기 미호",
+            "이나현",
+            "김민선"
           ],
-          "scores": null,
+          "scores": [
+            "1:12.31",
+            "1:12.59",
+            "1:13.95",
+            "1:15.76",
+            "1:16.24"
+          ],
           "result": null
         },
         {
@@ -402,11 +435,13 @@
           "date": "2026-02-10",
           "time": "03:20",
           "disciplineDetail": "아이스댄스 리듬 댄스",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "임해나콴예"
           ],
-          "scores": null,
+          "scores": [
+            "64.69"
+          ],
           "result": null
         },
         {
@@ -696,6 +731,32 @@
           "date": "2026-02-10",
           "time": "01:00",
           "disciplineDetail": "여자 1인승 런1",
+          "status": "종료",
+          "players": [
+            "정혜선"
+          ],
+          "scores": [
+            "+2.528"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "02:35",
+          "disciplineDetail": "여자 1인승 런2",
+          "status": "종료",
+          "players": [
+            "정혜선"
+          ],
+          "scores": [
+            "+4.399"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-11",
+          "time": "01:00",
+          "disciplineDetail": "여자 1인승 런3",
           "status": "예정",
           "players": [
             "정혜선"
@@ -744,6 +805,57 @@
             "+2.1",
             "+7:28.0"
           ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "17:15",
+          "disciplineDetail": "여자 스프린트 클래식 예선",
+          "status": "예정",
+          "players": [
+            "한다솜",
+            "이의진"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "17:57",
+          "disciplineDetail": "남자 스프린트 클래식 예선",
+          "status": "예정",
+          "players": [
+            "이준서"
+          ],
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "FRS": {
+      "name": "프리스타일스키",
+      "games": [
+        {
+          "date": "2026-02-10",
+          "time": "19:15",
+          "disciplineDetail": "남자 모글 예선 1",
+          "status": "예정",
+          "players": [
+            "정대윤",
+            "이윤승"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "22:15",
+          "disciplineDetail": "여자 모글 예선 1",
+          "status": "예정",
+          "players": [
+            "윤신이"
+          ],
+          "scores": null,
           "result": null
         }
       ]
