@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-10T03:15:38.955Z",
+  "lastUpdate": "2026-02-10T09:05:57.346Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -185,29 +185,29 @@
       "status": "종료",
       "players": [
         "무라세 코코모",
-        "조이 사도우스키-시노트",
+        "조이 사도우스키-시놋",
         "유승은"
       ]
     },
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
       "time": "17:15",
       "discipline": "크로스컨트리 스키",
-      "status": "예정",
+      "status": "종료",
       "players": [
-        "한다솜",
-        "이의진"
+        "이의진",
+        "한다솜"
       ]
     },
     {
       "time": "17:57",
       "discipline": "크로스컨트리 스키",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "이준서"
       ]
@@ -257,6 +257,12 @@
     },
     {
       "time": "22:15",
+      "discipline": "올림픽특집",
+      "status": "예정",
+      "players": null
+    },
+    {
+      "time": "22:15",
       "discipline": "프리스타일 스키",
       "status": "예정",
       "players": [
@@ -273,21 +279,9 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-10",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "17:15",
-      "discipline": "크로스컨트리 스키",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
       "time": "17:57",
       "discipline": "크로스컨트리 스키",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-10",
@@ -298,6 +292,18 @@
     {
       "date": "2026-02-10",
       "time": "19:10",
+      "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "19:15",
+      "discipline": "프리스타일 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "19:59",
       "discipline": "쇼트트랙",
       "status": "예정"
     }
@@ -883,7 +889,7 @@
           "status": "종료",
           "players": [
             "요하네스 회스플로트",
-            "마티스 데로주",
+            "마티스 델로즈",
             "마르틴 뢰브스트룀 뉘엔게트",
             "이준서"
           ],
@@ -899,19 +905,22 @@
           "date": "2026-02-10",
           "time": "17:15",
           "disciplineDetail": "여자 스프린트 클래식 예선",
-          "status": "예정",
+          "status": "종료",
           "players": [
-            "한다솜",
-            "이의진"
+            "이의진",
+            "한다솜"
           ],
-          "scores": null,
+          "scores": [
+            "+39.72",
+            "+41.41"
+          ],
           "result": null
         },
         {
           "date": "2026-02-10",
           "time": "17:57",
           "disciplineDetail": "남자 스프린트 클래식 예선",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "이준서"
           ],
