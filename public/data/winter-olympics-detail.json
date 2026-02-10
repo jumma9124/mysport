@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-10T09:05:57.346Z",
+  "lastUpdate": "2026-02-10T13:42:11.733Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 3,
+      "gold": 5,
       "silver": 1,
-      "bronze": 2,
-      "total": 6
+      "bronze": 3,
+      "total": 9
     },
     {
       "rank": 2,
@@ -25,6 +25,14 @@
     },
     {
       "rank": 3,
+      "nation": "이탈리아",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 6,
+      "total": 10
+    },
+    {
+      "rank": 4,
       "nation": "일본",
       "gold": 2,
       "silver": 2,
@@ -32,7 +40,23 @@
       "total": 7
     },
     {
-      "rank": 4,
+      "rank": 5,
+      "nation": "스웨덴",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 1,
+      "total": 5
+    },
+    {
+      "rank": 6,
+      "nation": "미국",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 0,
+      "total": 4
+    },
+    {
+      "rank": 7,
       "nation": "독일",
       "gold": 2,
       "silver": 1,
@@ -40,15 +64,7 @@
       "total": 4
     },
     {
-      "rank": 5,
-      "nation": "미국",
-      "gold": 2,
-      "silver": 0,
-      "bronze": 0,
-      "total": 2
-    },
-    {
-      "rank": 6,
+      "rank": 8,
       "nation": "오스트리아",
       "gold": 1,
       "silver": 3,
@@ -56,15 +72,7 @@
       "total": 4
     },
     {
-      "rank": 7,
-      "nation": "이탈리아",
-      "gold": 1,
-      "silver": 2,
-      "bronze": 6,
-      "total": 9
-    },
-    {
-      "rank": 8,
+      "rank": 9,
       "nation": "네덜란드",
       "gold": 1,
       "silver": 1,
@@ -72,15 +80,7 @@
       "total": 2
     },
     {
-      "rank": 8,
-      "nation": "스웨덴",
-      "gold": 1,
-      "silver": 1,
-      "bronze": 0,
-      "total": 2
-    },
-    {
-      "rank": 8,
+      "rank": 9,
       "nation": "체코",
       "gold": 1,
       "silver": 1,
@@ -88,7 +88,7 @@
       "total": 2
     },
     {
-      "rank": 8,
+      "rank": 9,
       "nation": "프랑스",
       "gold": 1,
       "silver": 1,
@@ -97,6 +97,14 @@
     },
     {
       "rank": 12,
+      "nation": "캐나다",
+      "gold": 0,
+      "silver": 1,
+      "bronze": 2,
+      "total": 3
+    },
+    {
+      "rank": 13,
       "nation": "대한민국",
       "gold": 0,
       "silver": 1,
@@ -104,28 +112,20 @@
       "total": 2
     },
     {
-      "rank": 12,
-      "nation": "중국",
+      "rank": 13,
+      "nation": "뉴질랜드",
       "gold": 0,
       "silver": 1,
       "bronze": 1,
       "total": 2
     },
     {
-      "rank": 14,
-      "nation": "뉴질랜드",
+      "rank": 13,
+      "nation": "중국",
       "gold": 0,
       "silver": 1,
-      "bronze": 0,
-      "total": 1
-    },
-    {
-      "rank": 14,
-      "nation": "슬로베니아",
-      "gold": 0,
-      "silver": 1,
-      "bronze": 0,
-      "total": 1
+      "bronze": 1,
+      "total": 2
     }
   ],
   "koreaMedalists": [
@@ -200,14 +200,14 @@
       "discipline": "크로스컨트리 스키",
       "status": "종료",
       "players": [
-        "이의진",
-        "한다솜"
+        "한다솜",
+        "이의진"
       ]
     },
     {
       "time": "17:57",
       "discipline": "크로스컨트리 스키",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "이준서"
       ]
@@ -215,7 +215,7 @@
     {
       "time": "18:30",
       "discipline": "쇼트트랙",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "최민정",
         "김길리",
@@ -225,7 +225,7 @@
     {
       "time": "19:10",
       "discipline": "쇼트트랙",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "황대헌",
         "임종언",
@@ -235,7 +235,7 @@
     {
       "time": "19:15",
       "discipline": "프리스타일 스키",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "정대윤",
         "이윤승"
@@ -244,13 +244,34 @@
     {
       "time": "19:59",
       "discipline": "쇼트트랙",
-      "status": "예정",
-      "players": null
+      "status": "종료",
+      "players": [
+        "대한민국"
+      ]
+    },
+    {
+      "time": "20:34",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "대한민국"
+      ]
+    },
+    {
+      "time": "21:03",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "이탈리아",
+        "캐나다",
+        "벨기에",
+        "대한민국"
+      ]
     },
     {
       "time": "21:30",
       "discipline": "바이애슬론",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "최두진"
       ]
@@ -258,13 +279,13 @@
     {
       "time": "22:15",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
       "time": "22:15",
       "discipline": "프리스타일 스키",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "윤신이"
       ]
@@ -279,32 +300,32 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-10",
-      "time": "17:57",
-      "discipline": "크로스컨트리 스키",
+      "time": "21:30",
+      "discipline": "바이애슬론",
       "status": "경기중"
     },
     {
       "date": "2026-02-10",
-      "time": "18:30",
-      "discipline": "쇼트트랙",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "19:10",
-      "discipline": "쇼트트랙",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "19:15",
+      "time": "22:15",
       "discipline": "프리스타일 스키",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-10",
-      "time": "19:59",
-      "discipline": "쇼트트랙",
+      "time": "23:00",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-11",
+      "time": "01:00",
+      "discipline": "루지",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-11",
+      "time": "02:30",
+      "discipline": "피겨스케이팅",
       "status": "예정"
     }
   ],
@@ -316,34 +337,99 @@
           "date": "2026-02-10",
           "time": "18:30",
           "disciplineDetail": "여자 500m 예선",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "최민정",
             "김길리",
             "이소연"
           ],
-          "scores": null,
+          "scores": [
+            "+0.022",
+            "+0.837",
+            "+0.714"
+          ],
           "result": null
         },
         {
           "date": "2026-02-10",
           "time": "19:10",
           "disciplineDetail": "남자 1000m 예선",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "황대헌",
             "임종언",
             "신동민"
           ],
-          "scores": null,
+          "scores": [
+            "+0.305",
+            "+0.136",
+            "+0.198"
+          ],
           "result": null
         },
         {
           "date": "2026-02-10",
           "time": "19:59",
           "disciplineDetail": "혼성 단체 계주 준준결승",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "2:39.337"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "20:34",
+          "disciplineDetail": "혼성 단체 계주 준결승",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "+6.947"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "21:03",
+          "disciplineDetail": "혼성 단체 계주 파이널",
+          "status": "종료",
+          "players": [
+            "이탈리아",
+            "캐나다",
+            "벨기에",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "04:15",
+          "disciplineDetail": "여자 500m 준준결승",
           "status": "예정",
-          "players": null,
+          "players": [
+            "최민정",
+            "이소연",
+            "김길리"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "04:28",
+          "disciplineDetail": "남자 1000m 준준결승",
+          "status": "예정",
+          "players": [
+            "신동민",
+            "황대헌",
+            "임종언"
+          ],
           "scores": null,
           "result": null
         },
@@ -907,24 +993,23 @@
           "disciplineDetail": "여자 스프린트 클래식 예선",
           "status": "종료",
           "players": [
-            "이의진",
-            "한다솜"
+            "한다솜",
+            "이의진"
           ],
-          "scores": [
-            "+39.72",
-            "+41.41"
-          ],
+          "scores": null,
           "result": null
         },
         {
           "date": "2026-02-10",
           "time": "17:57",
           "disciplineDetail": "남자 스프린트 클래식 예선",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "이준서"
           ],
-          "scores": null,
+          "scores": [
+            "+25.03"
+          ],
           "result": null
         }
       ]
@@ -936,21 +1021,35 @@
           "date": "2026-02-10",
           "time": "19:15",
           "disciplineDetail": "남자 모글 예선 1",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "정대윤",
             "이윤승"
           ],
-          "scores": null,
+          "scores": [
+            "65.51"
+          ],
           "result": null
         },
         {
           "date": "2026-02-10",
           "time": "22:15",
           "disciplineDetail": "여자 모글 예선 1",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "윤신이"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-12",
+          "time": "18:00",
+          "disciplineDetail": "남자 모글 예선 2",
+          "status": "예정",
+          "players": [
+            "정대윤",
+            "이윤승"
           ],
           "scores": null,
           "result": null
