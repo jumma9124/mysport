@@ -59,14 +59,8 @@
       "bronze": 1,
       "total": 2
     },
-    "todayGames": 5,
+    "todayGames": 15,
     "upcomingGames": [
-      {
-        "date": "2026-02-10",
-        "time": "03:20",
-        "discipline": "피겨스케이팅",
-        "status": "경기중"
-      },
       {
         "date": "2026-02-10",
         "time": "12:30",
@@ -76,6 +70,12 @@
       {
         "date": "2026-02-10",
         "time": "17:15",
+        "discipline": "크로스컨트리 스키",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-10",
+        "time": "17:57",
         "discipline": "크로스컨트리 스키",
         "status": "예정"
       }
