@@ -37,7 +37,8 @@
       "Bash(node scripts/crawl-years-smart.cjs:*)",
       "Bash(git rm:*)",
       "Bash(git stash:*)",
-      "Bash(npm run lint)"
+      "Bash(npm run lint)",
+      "Bash(node scripts/crawl-winter-olympics.cjs:*)"
     ]
   }
 }
