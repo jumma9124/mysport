@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-10T20:55:07.425Z",
+  "lastUpdate": "2026-02-10T23:33:49.124Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -303,12 +303,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-11",
-      "time": "02:30",
-      "discipline": "피겨스케이팅",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-11",
       "time": "18:30",
       "discipline": "스노보드",
       "status": "예정"
@@ -330,373 +324,18 @@
       "time": "22:15",
       "discipline": "바이애슬론",
       "status": "예정"
+    },
+    {
+      "date": "2026-02-12",
+      "time": "02:30",
+      "discipline": "스피드스케이팅",
+      "status": "예정"
     }
   ],
   "disciplineSchedules": {
-    "STK": {
-      "name": "쇼트트랙",
-      "games": [
-        {
-          "date": "2026-02-10",
-          "time": "18:30",
-          "disciplineDetail": "여자 500m 예선",
-          "status": "종료",
-          "players": [
-            "최민정",
-            "김길리",
-            "이소연"
-          ],
-          "scores": [
-            "+0.022",
-            "+0.837",
-            "+0.714"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-10",
-          "time": "19:10",
-          "disciplineDetail": "남자 1000m 예선",
-          "status": "종료",
-          "players": [
-            "황대헌",
-            "임종언",
-            "신동민"
-          ],
-          "scores": [
-            "+0.305",
-            "+0.136",
-            "+0.198"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-10",
-          "time": "19:59",
-          "disciplineDetail": "혼성 단체 계주 준준결승",
-          "status": "종료",
-          "players": [
-            "대한민국"
-          ],
-          "scores": [
-            "2:39.337"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-10",
-          "time": "20:34",
-          "disciplineDetail": "혼성 단체 계주 준결승",
-          "status": "종료",
-          "players": [
-            "대한민국"
-          ],
-          "scores": [
-            "+6.947"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-10",
-          "time": "21:03",
-          "disciplineDetail": "혼성 단체 계주 파이널",
-          "status": "종료",
-          "players": [
-            "이탈리아",
-            "캐나다",
-            "벨기에",
-            "대한민국"
-          ],
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-13",
-          "time": "04:15",
-          "disciplineDetail": "여자 500m 준준결승",
-          "status": "예정",
-          "players": [
-            "최민정",
-            "이소연",
-            "김길리"
-          ],
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-13",
-          "time": "04:28",
-          "disciplineDetail": "남자 1000m 준준결승",
-          "status": "예정",
-          "players": [
-            "신동민",
-            "황대헌",
-            "임종언"
-          ],
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-15",
-          "time": "04:15",
-          "disciplineDetail": "남자 1500m 준준결승",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-15",
-          "time": "05:01",
-          "disciplineDetail": "여자 1000m 예선",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-15",
-          "time": "06:05",
-          "disciplineDetail": "여자 3000m 계주 준결승",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-16",
-          "time": "19:17",
-          "disciplineDetail": "남자 500m 예선",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-16",
-          "time": "20:06",
-          "disciplineDetail": "남자 5000m 계주 준결승",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-21",
-          "time": "04:15",
-          "disciplineDetail": "여자 1500m 준준결승",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        }
-      ]
-    },
-    "SSK": {
-      "name": "스피드스케이팅",
-      "games": [
-        {
-          "date": "2026-02-10",
-          "time": "01:30",
-          "disciplineDetail": "여자 1000m",
-          "status": "종료",
-          "players": [
-            "유타 레이르담",
-            "펨케 콕",
-            "다카기 미호",
-            "이나현",
-            "김민선"
-          ],
-          "scores": [
-            "1:12.31",
-            "1:12.59",
-            "1:13.95",
-            "1:15.76",
-            "1:16.24"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-12",
-          "time": "02:30",
-          "disciplineDetail": "남자 1000m",
-          "status": "예정",
-          "players": [
-            "구경민"
-          ],
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-15",
-          "time": "01:00",
-          "disciplineDetail": "남자 500m",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-16",
-          "time": "01:03",
-          "disciplineDetail": "여자 500m",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-21",
-          "time": "00:30",
-          "disciplineDetail": "여자 1500m",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-21",
-          "time": "23:00",
-          "disciplineDetail": "남자 매스스타트 준결승",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-21",
-          "time": "23:50",
-          "disciplineDetail": "여자 매스스타트 준결승",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        }
-      ]
-    },
-    "FSK": {
-      "name": "피겨스케이팅",
-      "games": [
-        {
-          "date": "2026-02-06",
-          "time": "17:55",
-          "disciplineDetail": "단체전 리듬 댄스",
-          "status": "종료",
-          "players": [
-            "대한민국"
-          ],
-          "scores": [
-            "4"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-06",
-          "time": "21:35",
-          "disciplineDetail": "단체전 여자 쇼트 프로그램",
-          "status": "종료",
-          "players": [
-            "대한민국"
-          ],
-          "scores": [
-            "11"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-08",
-          "time": "03:45",
-          "disciplineDetail": "단체전 남자 쇼트 프로그램",
-          "status": "종료",
-          "players": [
-            "대한민국"
-          ],
-          "scores": [
-            "14"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-10",
-          "time": "03:20",
-          "disciplineDetail": "아이스댄스 리듬 댄스",
-          "status": "종료",
-          "players": [
-            "임해나콴예"
-          ],
-          "scores": [
-            "64.69"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-11",
-          "time": "02:30",
-          "disciplineDetail": "남자 싱글 쇼트 프로그램",
-          "status": "경기중",
-          "players": [
-            "차준환",
-            "김현겸"
-          ],
-          "scores": [
-            "92.72",
-            "69.30"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-18",
-          "time": "02:45",
-          "disciplineDetail": "여자 싱글 쇼트 프로그램",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-22",
-          "time": "04:00",
-          "disciplineDetail": "갈라쇼",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        }
-      ]
-    },
     "CUR": {
       "name": "컬링",
       "games": [
-        {
-          "date": "2026-02-05",
-          "time": "03:05",
-          "disciplineDetail": "믹스더블 라운드로빈",
-          "status": "종료",
-          "players": [
-            "스웨덴",
-            "대한민국"
-          ],
-          "scores": [
-            "10",
-            "3"
-          ],
-          "result": "스웨덴 승"
-        },
-        {
-          "date": "2026-02-05",
-          "time": "18:05",
-          "disciplineDetail": "믹스더블 라운드 로빈",
-          "status": "종료",
-          "players": [
-            "대한민국",
-            "이탈리아"
-          ],
-          "scores": [
-            "4",
-            "8"
-          ],
-          "result": "이탈리아 승"
-        },
         {
           "date": "2026-02-06",
           "time": "03:05",
@@ -912,6 +551,290 @@
         }
       ]
     },
+    "FSK": {
+      "name": "피겨스케이팅",
+      "games": [
+        {
+          "date": "2026-02-06",
+          "time": "17:55",
+          "disciplineDetail": "단체전 리듬 댄스",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "4"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-06",
+          "time": "21:35",
+          "disciplineDetail": "단체전 여자 쇼트 프로그램",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "11"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "03:45",
+          "disciplineDetail": "단체전 남자 쇼트 프로그램",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "14"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "03:20",
+          "disciplineDetail": "아이스댄스 리듬 댄스",
+          "status": "종료",
+          "players": [
+            "임해나콴예"
+          ],
+          "scores": [
+            "64.69"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-11",
+          "time": "02:30",
+          "disciplineDetail": "남자 싱글 쇼트 프로그램",
+          "status": "종료",
+          "players": [
+            "차준환",
+            "김현겸"
+          ],
+          "scores": [
+            "92.72",
+            "69.30"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-14",
+          "time": "03:00",
+          "disciplineDetail": "남자 싱글 프리 프로그램",
+          "status": "예정",
+          "players": [
+            "차준환"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-18",
+          "time": "02:45",
+          "disciplineDetail": "여자 싱글 쇼트 프로그램",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-22",
+          "time": "04:00",
+          "disciplineDetail": "갈라쇼",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "SNB": {
+      "name": "스노보드",
+      "games": [
+        {
+          "date": "2026-02-08",
+          "time": "17:00",
+          "disciplineDetail": "여자 평행대회전 진출결정전",
+          "status": "종료",
+          "players": [
+            "정해림"
+          ],
+          "scores": [
+            "+4.74"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "17:30",
+          "disciplineDetail": "남자 평행대회전 진출결정전",
+          "status": "종료",
+          "players": [
+            "이상호",
+            "조완희",
+            "김상겸"
+          ],
+          "scores": [
+            "43.21",
+            "43.72",
+            "43.74"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "18:00",
+          "disciplineDetail": "여자 평행대회전 탈락결정전",
+          "status": "종료",
+          "players": [
+            "정해림"
+          ],
+          "scores": [
+            "+9.76"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "18:30",
+          "disciplineDetail": "남자 평행대회전 탈락결정전",
+          "status": "종료",
+          "players": [
+            "이상호",
+            "김상겸",
+            "조완희"
+          ],
+          "scores": [
+            "+1.61",
+            "+2.05",
+            "+2.63"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "21:24",
+          "disciplineDetail": "남자 평행대회전 16강",
+          "status": "종료",
+          "players": [
+            "김상겸",
+            "이상호"
+          ],
+          "scores": [
+            "43.05",
+            "+0.17"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "22:00",
+          "disciplineDetail": "남자 평행대회전 준준결승",
+          "status": "종료",
+          "players": [
+            "김상겸"
+          ],
+          "scores": [
+            "43.24"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "22:19",
+          "disciplineDetail": "남자 평행대회전 준결승",
+          "status": "종료",
+          "players": [
+            "김상겸"
+          ],
+          "scores": [
+            "43.37"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-08",
+          "time": "22:36",
+          "disciplineDetail": "남자 평행대회전 파이널",
+          "status": "종료",
+          "players": [
+            "벤야민 칼",
+            "김상겸",
+            "테르벨 잠피로프"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-09",
+          "time": "03:30",
+          "disciplineDetail": "여자 스노보드 빅에어 예선",
+          "status": "종료",
+          "players": [
+            "유승은"
+          ],
+          "scores": [
+            "166.50"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "03:30",
+          "disciplineDetail": "여자 스노보드 빅에어 결승",
+          "status": "종료",
+          "players": [
+            "무라세 코코모",
+            "조이 사도우스키-시놋",
+            "유승은"
+          ],
+          "scores": [
+            "179.00",
+            "172.25",
+            "171.00"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-11",
+          "time": "18:30",
+          "disciplineDetail": "여자 스노보드 하프파이프 예선",
+          "status": "예정",
+          "players": [
+            "최가온",
+            "이나윤"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-12",
+          "time": "03:30",
+          "disciplineDetail": "남자 스노보드 하프파이프 예선",
+          "status": "예정",
+          "players": [
+            "김건희",
+            "이지오",
+            "이채운"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "18:30",
+          "disciplineDetail": "여자 스노보드 슬로프스타일 예선",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
     "LUG": {
       "name": "루지",
       "games": [
@@ -956,124 +879,291 @@
         }
       ]
     },
-    "CCS": {
-      "name": "크로스컨트리스키",
+    "SSK": {
+      "name": "스피드스케이팅",
       "games": [
         {
-          "date": "2026-02-07",
-          "time": "21:00",
-          "disciplineDetail": "여자 20km 스키애슬론",
-          "status": "종료",
-          "players": [
-            "프리다 칼손",
-            "에바 안데르손",
-            "하이디 벵",
-            "이의진",
-            "한다솜"
-          ],
-          "scores": [
-            "53:45.2",
-            "+51.0",
-            "+1:26.7"
-          ],
-          "result": null
-        },
-        {
-          "date": "2026-02-08",
-          "time": "20:30",
-          "disciplineDetail": "남자 20km 스키애슬론",
-          "status": "종료",
-          "players": [
-            "요하네스 회스플로트",
-            "마티스 델로즈",
-            "마르틴 뢰브스트룀 뉘엔게트",
-            "이준서"
-          ],
-          "scores": [
-            "46:11.0",
-            "+2.0",
-            "+2.1",
-            "+7:28.0"
-          ],
-          "result": null
-        },
-        {
           "date": "2026-02-10",
-          "time": "17:15",
-          "disciplineDetail": "여자 스프린트 클래식 예선",
+          "time": "01:30",
+          "disciplineDetail": "여자 1000m",
           "status": "종료",
           "players": [
-            "한다솜",
-            "이의진"
+            "유타 레이르담",
+            "펨케 콕",
+            "다카기 미호",
+            "이나현",
+            "김민선"
+          ],
+          "scores": [
+            "1:12.31",
+            "1:12.59",
+            "1:13.95",
+            "1:15.76",
+            "1:16.24"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-12",
+          "time": "02:30",
+          "disciplineDetail": "남자 1000m",
+          "status": "예정",
+          "players": [
+            "구경민"
           ],
           "scores": null,
           "result": null
         },
         {
-          "date": "2026-02-10",
-          "time": "17:57",
-          "disciplineDetail": "남자 스프린트 클래식 예선",
-          "status": "종료",
-          "players": [
-            "이준서"
-          ],
-          "scores": [
-            "+25.03"
-          ],
+          "date": "2026-02-15",
+          "time": "01:00",
+          "disciplineDetail": "남자 500m",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "01:03",
+          "disciplineDetail": "여자 500m",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "00:30",
+          "disciplineDetail": "여자 1500m",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "23:00",
+          "disciplineDetail": "남자 매스스타트 준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "23:50",
+          "disciplineDetail": "여자 매스스타트 준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
           "result": null
         }
       ]
     },
-    "FRS": {
-      "name": "프리스타일스키",
+    "STK": {
+      "name": "쇼트트랙",
       "games": [
         {
           "date": "2026-02-10",
-          "time": "19:15",
-          "disciplineDetail": "남자 모글 예선 1",
+          "time": "18:30",
+          "disciplineDetail": "여자 500m 예선",
           "status": "종료",
           "players": [
-            "정대윤",
-            "이윤승"
+            "최민정",
+            "김길리",
+            "이소연"
           ],
           "scores": [
-            "65.51"
+            "+0.022",
+            "+0.837",
+            "+0.714"
           ],
           "result": null
         },
         {
           "date": "2026-02-10",
-          "time": "22:15",
-          "disciplineDetail": "여자 모글 예선 1",
+          "time": "19:10",
+          "disciplineDetail": "남자 1000m 예선",
           "status": "종료",
           "players": [
-            "윤신이"
+            "황대헌",
+            "임종언",
+            "신동민"
           ],
           "scores": [
-            "59.40"
+            "+0.305",
+            "+0.136",
+            "+0.198"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "19:59",
+          "disciplineDetail": "혼성 단체 계주 준준결승",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "2:39.337"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "20:34",
+          "disciplineDetail": "혼성 단체 계주 준결승",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "+6.947"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-10",
+          "time": "21:03",
+          "disciplineDetail": "혼성 단체 계주 파이널",
+          "status": "종료",
+          "players": [
+            "이탈리아",
+            "캐나다",
+            "벨기에",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "04:15",
+          "disciplineDetail": "여자 500m 준준결승",
+          "status": "예정",
+          "players": [
+            "최민정",
+            "이소연",
+            "김길리"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "04:28",
+          "disciplineDetail": "남자 1000m 준준결승",
+          "status": "예정",
+          "players": [
+            "신동민",
+            "황대헌",
+            "임종언"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-15",
+          "time": "04:15",
+          "disciplineDetail": "남자 1500m 준준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-15",
+          "time": "05:01",
+          "disciplineDetail": "여자 1000m 예선",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-15",
+          "time": "06:05",
+          "disciplineDetail": "여자 3000m 계주 준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "19:17",
+          "disciplineDetail": "남자 500m 예선",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "20:06",
+          "disciplineDetail": "남자 5000m 계주 준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "04:15",
+          "disciplineDetail": "여자 1500m 준준결승",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        }
+      ]
+    },
+    "BIA": {
+      "name": "바이애슬론",
+      "games": [
+        {
+          "date": "2026-02-10",
+          "time": "21:30",
+          "disciplineDetail": "남자 개인 20km",
+          "status": "종료",
+          "players": [
+            "요한올라브 보트",
+            "에릭 페로",
+            "스툴라 홀름 레그레이",
+            "최두진"
+          ],
+          "scores": [
+            "51:31.5",
+            "+14.8",
+            "+48.3",
+            "+13:36.1"
           ],
           "result": null
         },
         {
           "date": "2026-02-11",
-          "time": "19:00",
-          "disciplineDetail": "여자 모글 예선 2",
+          "time": "22:15",
+          "disciplineDetail": "여자 개인 15km",
           "status": "예정",
           "players": [
-            "윤신이"
+            "예카테리나 아바쿠모바"
           ],
           "scores": null,
           "result": null
-        },
+        }
+      ]
+    },
+    "SKE": {
+      "name": "스켈레톤",
+      "games": [
         {
-          "date": "2026-02-12",
-          "time": "18:00",
-          "disciplineDetail": "남자 모글 예선 2",
+          "date": "2026-02-16",
+          "time": "02:00",
+          "disciplineDetail": "혼성 단체",
           "status": "예정",
-          "players": [
-            "정대윤",
-            "이윤승"
-          ],
+          "players": null,
           "scores": null,
           "result": null
         }
