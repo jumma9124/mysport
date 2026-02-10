@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-10T17:12:43.698Z",
+  "lastUpdate": "2026-02-10T20:55:07.425Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -11,12 +11,28 @@
       "rank": 1,
       "nation": "노르웨이",
       "gold": 6,
-      "silver": 1,
+      "silver": 2,
       "bronze": 4,
-      "total": 11
+      "total": 12
     },
     {
       "rank": 2,
+      "nation": "독일",
+      "gold": 3,
+      "silver": 2,
+      "bronze": 1,
+      "total": 6
+    },
+    {
+      "rank": 2,
+      "nation": "스웨덴",
+      "gold": 3,
+      "silver": 2,
+      "bronze": 1,
+      "total": 6
+    },
+    {
+      "rank": 4,
       "nation": "스위스",
       "gold": 3,
       "silver": 1,
@@ -24,7 +40,15 @@
       "total": 5
     },
     {
-      "rank": 3,
+      "rank": 5,
+      "nation": "미국",
+      "gold": 2,
+      "silver": 3,
+      "bronze": 2,
+      "total": 7
+    },
+    {
+      "rank": 6,
       "nation": "오스트리아",
       "gold": 2,
       "silver": 3,
@@ -32,7 +56,7 @@
       "total": 5
     },
     {
-      "rank": 4,
+      "rank": 7,
       "nation": "이탈리아",
       "gold": 2,
       "silver": 2,
@@ -40,36 +64,12 @@
       "total": 11
     },
     {
-      "rank": 5,
+      "rank": 8,
       "nation": "일본",
       "gold": 2,
       "silver": 2,
-      "bronze": 3,
-      "total": 7
-    },
-    {
-      "rank": 6,
-      "nation": "독일",
-      "gold": 2,
-      "silver": 2,
-      "bronze": 1,
-      "total": 5
-    },
-    {
-      "rank": 6,
-      "nation": "미국",
-      "gold": 2,
-      "silver": 2,
-      "bronze": 1,
-      "total": 5
-    },
-    {
-      "rank": 6,
-      "nation": "스웨덴",
-      "gold": 2,
-      "silver": 2,
-      "bronze": 1,
-      "total": 5
+      "bronze": 4,
+      "total": 8
     },
     {
       "rank": 9,
@@ -89,6 +89,14 @@
     },
     {
       "rank": 10,
+      "nation": "슬로베니아",
+      "gold": 1,
+      "silver": 1,
+      "bronze": 0,
+      "total": 2
+    },
+    {
+      "rank": 10,
       "nation": "체코",
       "gold": 1,
       "silver": 1,
@@ -96,7 +104,7 @@
       "total": 2
     },
     {
-      "rank": 12,
+      "rank": 13,
       "nation": "캐나다",
       "gold": 0,
       "silver": 1,
@@ -104,7 +112,7 @@
       "total": 3
     },
     {
-      "rank": 13,
+      "rank": 14,
       "nation": "대한민국",
       "gold": 0,
       "silver": 1,
@@ -112,16 +120,8 @@
       "total": 2
     },
     {
-      "rank": 13,
+      "rank": 14,
       "nation": "뉴질랜드",
-      "gold": 0,
-      "silver": 1,
-      "bronze": 1,
-      "total": 2
-    },
-    {
-      "rank": 13,
-      "nation": "중국",
       "gold": 0,
       "silver": 1,
       "bronze": 1,
@@ -305,7 +305,7 @@
       "date": "2026-02-11",
       "time": "02:30",
       "discipline": "피겨스케이팅",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-11",
@@ -633,12 +633,15 @@
           "date": "2026-02-11",
           "time": "02:30",
           "disciplineDetail": "남자 싱글 쇼트 프로그램",
-          "status": "예정",
+          "status": "경기중",
           "players": [
-            "김현겸",
-            "차준환"
+            "차준환",
+            "김현겸"
           ],
-          "scores": null,
+          "scores": [
+            "92.72",
+            "69.30"
+          ],
           "result": null
         },
         {
