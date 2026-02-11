@@ -62,12 +62,6 @@
     "todayGames": 7,
     "upcomingGames": [
       {
-        "date": "2026-02-11",
-        "time": "22:15",
-        "discipline": "바이애슬론",
-        "status": "경기중"
-      },
-      {
         "date": "2026-02-12",
         "time": "02:30",
         "discipline": "스피드스케이팅",
@@ -77,6 +71,12 @@
         "date": "2026-02-12",
         "time": "03:30",
         "discipline": "스노보드",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-12",
+        "time": "07:00",
+        "discipline": "올림픽특집",
         "status": "예정"
       }
     ]
