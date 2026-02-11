@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-10T23:54:24.592Z",
+  "lastUpdate": "2026-02-11T02:57:40.011Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -152,155 +152,59 @@
       ]
     },
     {
-      "time": "01:30",
-      "discipline": "스피드스케이팅",
-      "status": "종료",
-      "players": [
-        "유타 레이르담",
-        "펨케 콕",
-        "다카기 미호",
-        "이나현",
-        "김민선"
-      ]
-    },
-    {
-      "time": "02:35",
-      "discipline": "루지",
-      "status": "종료",
-      "players": [
-        "정혜선"
-      ]
-    },
-    {
-      "time": "03:20",
+      "time": "02:30",
       "discipline": "피겨스케이팅",
       "status": "종료",
       "players": [
-        "임해나콴예"
-      ]
-    },
-    {
-      "time": "03:30",
-      "discipline": "스노보드",
-      "status": "종료",
-      "players": [
-        "무라세 코코모",
-        "조이 사도우스키-시놋",
-        "유승은"
+        "차준환",
+        "김현겸"
       ]
     },
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "종료",
+      "status": "예정",
       "players": null
-    },
-    {
-      "time": "17:15",
-      "discipline": "크로스컨트리 스키",
-      "status": "종료",
-      "players": [
-        "한다솜",
-        "이의진"
-      ]
-    },
-    {
-      "time": "17:57",
-      "discipline": "크로스컨트리 스키",
-      "status": "종료",
-      "players": [
-        "이준서"
-      ]
     },
     {
       "time": "18:30",
-      "discipline": "쇼트트랙",
-      "status": "종료",
+      "discipline": "스노보드",
+      "status": "예정",
       "players": [
-        "최민정",
-        "김길리",
-        "이소연"
+        "최가온",
+        "이나윤"
       ]
     },
     {
-      "time": "19:10",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "황대헌",
-        "임종언",
-        "신동민"
-      ]
-    },
-    {
-      "time": "19:15",
+      "time": "19:00",
       "discipline": "프리스타일 스키",
-      "status": "종료",
-      "players": [
-        "정대윤",
-        "이윤승"
-      ]
-    },
-    {
-      "time": "19:59",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "대한민국"
-      ]
-    },
-    {
-      "time": "20:34",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "대한민국"
-      ]
-    },
-    {
-      "time": "21:03",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "이탈리아",
-        "캐나다",
-        "벨기에",
-        "대한민국"
-      ]
-    },
-    {
-      "time": "21:30",
-      "discipline": "바이애슬론",
-      "status": "종료",
-      "players": [
-        "요한올라브 보트",
-        "에릭 페로",
-        "스툴라 홀름 레그레이",
-        "최두진"
-      ]
-    },
-    {
-      "time": "22:15",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "22:15",
-      "discipline": "프리스타일 스키",
-      "status": "종료",
+      "status": "예정",
       "players": [
         "윤신이"
       ]
     },
     {
-      "time": "23:00",
+      "time": "20:40",
       "discipline": "올림픽특집",
-      "status": "종료",
+      "status": "예정",
       "players": null
+    },
+    {
+      "time": "22:15",
+      "discipline": "바이애슬론",
+      "status": "예정",
+      "players": [
+        "예카테리나 아바쿠모바"
+      ]
     }
   ],
   "upcomingSchedule": [
+    {
+      "date": "2026-02-11",
+      "time": "12:30",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
     {
       "date": "2026-02-11",
       "time": "18:30",
@@ -323,12 +227,6 @@
       "date": "2026-02-11",
       "time": "22:15",
       "discipline": "바이애슬론",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-12",
-      "time": "02:30",
-      "discipline": "스피드스케이팅",
       "status": "예정"
     }
   ],
