@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-11T02:57:40.011Z",
+  "lastUpdate": "2026-02-11T09:00:21.254Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -163,7 +163,7 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
@@ -201,12 +201,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-11",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-11",
       "time": "18:30",
       "discipline": "스노보드",
       "status": "예정"
@@ -227,6 +221,12 @@
       "date": "2026-02-11",
       "time": "22:15",
       "discipline": "바이애슬론",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-12",
+      "time": "02:30",
+      "discipline": "스피드스케이팅",
       "status": "예정"
     }
   ],
