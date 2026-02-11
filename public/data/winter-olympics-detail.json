@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-11T09:00:21.254Z",
+  "lastUpdate": "2026-02-11T13:28:22.299Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -17,6 +17,14 @@
     },
     {
       "rank": 2,
+      "nation": "스위스",
+      "gold": 4,
+      "silver": 1,
+      "bronze": 2,
+      "total": 7
+    },
+    {
+      "rank": 3,
       "nation": "독일",
       "gold": 3,
       "silver": 2,
@@ -24,7 +32,7 @@
       "total": 6
     },
     {
-      "rank": 2,
+      "rank": 3,
       "nation": "스웨덴",
       "gold": 3,
       "silver": 2,
@@ -32,20 +40,12 @@
       "total": 6
     },
     {
-      "rank": 4,
-      "nation": "스위스",
-      "gold": 3,
-      "silver": 1,
-      "bronze": 1,
-      "total": 5
-    },
-    {
       "rank": 5,
       "nation": "미국",
       "gold": 2,
-      "silver": 3,
+      "silver": 4,
       "bronze": 2,
-      "total": 7
+      "total": 8
     },
     {
       "rank": 6,
@@ -169,7 +169,7 @@
     {
       "time": "18:30",
       "discipline": "스노보드",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "최가온",
         "이나윤"
@@ -178,7 +178,7 @@
     {
       "time": "19:00",
       "discipline": "프리스타일 스키",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "윤신이"
       ]
@@ -186,13 +186,13 @@
     {
       "time": "20:40",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
       "time": "22:15",
       "discipline": "바이애슬론",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "예카테리나 아바쿠모바"
       ]
@@ -201,32 +201,32 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-11",
-      "time": "18:30",
-      "discipline": "스노보드",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "19:00",
-      "discipline": "프리스타일 스키",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "20:40",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-11",
       "time": "22:15",
       "discipline": "바이애슬론",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-12",
       "time": "02:30",
       "discipline": "스피드스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-12",
+      "time": "03:30",
+      "discipline": "스노보드",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-12",
+      "time": "07:00",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-12",
+      "time": "12:30",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -701,12 +701,15 @@
           "date": "2026-02-11",
           "time": "18:30",
           "disciplineDetail": "여자 스노보드 하프파이프 예선",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "최가온",
             "이나윤"
           ],
-          "scores": null,
+          "scores": [
+            "82.25",
+            "35.00"
+          ],
           "result": null
         },
         {
@@ -718,6 +721,17 @@
             "김건희",
             "이지오",
             "이채운"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "03:30",
+          "disciplineDetail": "여자 스노보드 하프파이프 결승",
+          "status": "예정",
+          "players": [
+            "최가온"
           ],
           "scores": null,
           "result": null
@@ -1044,7 +1058,7 @@
           "date": "2026-02-11",
           "time": "22:15",
           "disciplineDetail": "여자 개인 15km",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "예카테리나 아바쿠모바"
           ],
