@@ -63,20 +63,20 @@
     "upcomingGames": [
       {
         "date": "2026-02-12",
-        "time": "12:30",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-12",
         "time": "17:05",
         "discipline": "컬링",
-        "status": "예정"
+        "status": "경기중"
       },
       {
         "date": "2026-02-12",
         "time": "17:30",
         "discipline": "스켈레톤",
+        "status": "경기중"
+      },
+      {
+        "date": "2026-02-12",
+        "time": "18:00",
+        "discipline": "프리스타일 스키",
         "status": "예정"
       }
     ]
