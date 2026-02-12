@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-11T20:49:59.681Z",
+  "lastUpdate": "2026-02-12T02:53:20.467Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -19,9 +19,9 @@
       "rank": 2,
       "nation": "미국",
       "gold": 4,
-      "silver": 5,
+      "silver": 6,
       "bronze": 2,
-      "total": 11
+      "total": 12
     },
     {
       "rank": 3,
@@ -49,6 +49,14 @@
     },
     {
       "rank": 6,
+      "nation": "프랑스",
+      "gold": 3,
+      "silver": 3,
+      "bronze": 1,
+      "total": 7
+    },
+    {
+      "rank": 7,
       "nation": "스웨덴",
       "gold": 3,
       "silver": 2,
@@ -56,20 +64,12 @@
       "total": 6
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "오스트리아",
       "gold": 2,
       "silver": 5,
       "bronze": 1,
       "total": 8
-    },
-    {
-      "rank": 8,
-      "nation": "프랑스",
-      "gold": 2,
-      "silver": 3,
-      "bronze": 1,
-      "total": 6
     },
     {
       "rank": 9,
@@ -105,15 +105,15 @@
     },
     {
       "rank": 13,
-      "nation": "중국",
+      "nation": "캐나다",
       "gold": 0,
       "silver": 1,
-      "bronze": 2,
-      "total": 3
+      "bronze": 3,
+      "total": 4
     },
     {
-      "rank": 13,
-      "nation": "캐나다",
+      "rank": 14,
+      "nation": "중국",
       "gold": 0,
       "silver": 1,
       "bronze": 2,
@@ -144,70 +144,76 @@
   ],
   "todaySchedule": [
     {
-      "time": "01:00",
-      "discipline": "루지",
+      "time": "02:30",
+      "discipline": "스피드스케이팅",
       "status": "종료",
       "players": [
-        "정혜선"
+        "조던 스톨츠",
+        "예닝 더 보",
+        "닝중옌",
+        "구경민"
       ]
     },
     {
-      "time": "02:30",
-      "discipline": "피겨스케이팅",
+      "time": "03:30",
+      "discipline": "스노보드",
       "status": "종료",
       "players": [
-        "차준환",
-        "김현겸"
+        "이채운",
+        "이지오",
+        "김건희"
       ]
+    },
+    {
+      "time": "07:00",
+      "discipline": "올림픽특집",
+      "status": "종료",
+      "players": null
     },
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "종료",
+      "status": "예정",
       "players": null
     },
     {
-      "time": "18:30",
-      "discipline": "스노보드",
-      "status": "종료",
+      "time": "17:05",
+      "discipline": "컬링",
+      "status": "예정",
       "players": [
-        "최가온",
-        "이나윤"
+        "대한민국",
+        "미국"
       ]
     },
     {
-      "time": "19:00",
+      "time": "17:30",
+      "discipline": "스켈레톤",
+      "status": "예정",
+      "players": [
+        "정승기",
+        "김지수"
+      ]
+    },
+    {
+      "time": "18:00",
       "discipline": "프리스타일 스키",
-      "status": "종료",
+      "status": "예정",
       "players": [
-        "윤신이"
+        "정대윤",
+        "이윤승"
       ]
     },
     {
-      "time": "20:40",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "22:15",
-      "discipline": "바이애슬론",
-      "status": "종료",
+      "time": "21:00",
+      "discipline": "크로스컨트리 스키",
+      "status": "예정",
       "players": [
-        "율리아 사이먼",
-        "루 장모노-로랑",
-        "로라 흐리스토바",
-        "예카테리나 아바쿠모바"
+        "이의진",
+        "한다솜"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-12",
-      "time": "07:00",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-12",
       "time": "12:30",
@@ -230,6 +236,12 @@
       "date": "2026-02-12",
       "time": "18:00",
       "discipline": "프리스타일 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-12",
+      "time": "21:00",
+      "discipline": "크로스컨트리 스키",
       "status": "예정"
     }
   ],
@@ -703,7 +715,7 @@
         {
           "date": "2026-02-11",
           "time": "18:30",
-          "disciplineDetail": "여자 스노보드 하프파이프 예선",
+          "disciplineDetail": "여자 하프파이프 예선",
           "status": "종료",
           "players": [
             "최가온",
@@ -718,7 +730,7 @@
         {
           "date": "2026-02-12",
           "time": "03:30",
-          "disciplineDetail": "남자 스노보드 하프파이프 예선",
+          "disciplineDetail": "남자 하프파이프 예선",
           "status": "종료",
           "players": [
             "이채운",
@@ -735,7 +747,7 @@
         {
           "date": "2026-02-13",
           "time": "03:30",
-          "disciplineDetail": "여자 스노보드 하프파이프 결승",
+          "disciplineDetail": "여자 하프파이프 결승",
           "status": "예정",
           "players": [
             "최가온"
@@ -746,9 +758,11 @@
         {
           "date": "2026-02-14",
           "time": "03:30",
-          "disciplineDetail": "남자 스노보드 하프파이프 결승",
+          "disciplineDetail": "남자 하프파이프 결승",
           "status": "예정",
-          "players": null,
+          "players": [
+            "이채운"
+          ],
           "scores": null,
           "result": null
         },
