@@ -62,12 +62,6 @@
     "todayGames": 10,
     "upcomingGames": [
       {
-        "date": "2026-02-12",
-        "time": "21:00",
-        "discipline": "크로스컨트리 스키",
-        "status": "경기중"
-      },
-      {
         "date": "2026-02-13",
         "time": "03:05",
         "discipline": "컬링",
@@ -77,6 +71,12 @@
         "date": "2026-02-13",
         "time": "03:30",
         "discipline": "스노보드",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-13",
+        "time": "04:15",
+        "discipline": "쇼트트랙",
         "status": "예정"
       }
     ]

@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-12T13:26:47.349Z",
+  "lastUpdate": "2026-02-12T17:08:30.215Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -12,27 +12,35 @@
       "nation": "노르웨이",
       "gold": 7,
       "silver": 2,
-      "bronze": 4,
-      "total": 13
+      "bronze": 5,
+      "total": 14
     },
     {
       "rank": 2,
       "nation": "이탈리아",
-      "gold": 5,
+      "gold": 6,
       "silver": 2,
       "bronze": 7,
-      "total": 14
+      "total": 15
     },
     {
       "rank": 3,
       "nation": "미국",
       "gold": 4,
       "silver": 6,
-      "bronze": 2,
-      "total": 12
+      "bronze": 3,
+      "total": 13
     },
     {
       "rank": 4,
+      "nation": "스웨덴",
+      "gold": 4,
+      "silver": 3,
+      "bronze": 1,
+      "total": 8
+    },
+    {
+      "rank": 5,
       "nation": "스위스",
       "gold": 4,
       "silver": 1,
@@ -40,7 +48,15 @@
       "total": 7
     },
     {
-      "rank": 5,
+      "rank": 6,
+      "nation": "오스트리아",
+      "gold": 3,
+      "silver": 5,
+      "bronze": 3,
+      "total": 11
+    },
+    {
+      "rank": 7,
       "nation": "프랑스",
       "gold": 3,
       "silver": 4,
@@ -48,28 +64,12 @@
       "total": 8
     },
     {
-      "rank": 6,
+      "rank": 8,
       "nation": "독일",
       "gold": 3,
       "silver": 3,
       "bronze": 2,
       "total": 8
-    },
-    {
-      "rank": 7,
-      "nation": "스웨덴",
-      "gold": 3,
-      "silver": 2,
-      "bronze": 1,
-      "total": 6
-    },
-    {
-      "rank": 8,
-      "nation": "오스트리아",
-      "gold": 2,
-      "silver": 5,
-      "bronze": 2,
-      "total": 9
     },
     {
       "rank": 9,
@@ -83,9 +83,9 @@
       "rank": 10,
       "nation": "네덜란드",
       "gold": 1,
-      "silver": 2,
+      "silver": 3,
       "bronze": 0,
-      "total": 3
+      "total": 4
     },
     {
       "rank": 11,
@@ -115,9 +115,9 @@
       "rank": 14,
       "nation": "캐나다",
       "gold": 0,
-      "silver": 2,
+      "silver": 3,
       "bronze": 3,
-      "total": 5
+      "total": 6
     },
     {
       "rank": 15,
@@ -234,20 +234,17 @@
     {
       "time": "21:00",
       "discipline": "크로스컨트리 스키",
-      "status": "경기중",
+      "status": "종료",
       "players": [
+        "프리다 칼손",
+        "에바 안데르손",
+        "제시카 디긴스",
         "이의진",
         "한다솜"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-12",
-      "time": "21:00",
-      "discipline": "크로스컨트리 스키",
-      "status": "경기중"
-    },
     {
       "date": "2026-02-13",
       "time": "03:05",
@@ -270,6 +267,12 @@
       "date": "2026-02-13",
       "time": "04:28",
       "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-13",
+      "time": "06:50",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -787,6 +790,17 @@
           "result": null
         },
         {
+          "date": "2026-02-13",
+          "time": "18:00",
+          "disciplineDetail": "여자 스노보드 크로스 시드",
+          "status": "예정",
+          "players": [
+            "우수빈"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
           "date": "2026-02-14",
           "time": "03:30",
           "disciplineDetail": "남자 하프파이프 결승",
@@ -1140,6 +1154,17 @@
             "+1:04.5",
             "+6:02.6"
           ],
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "22:00",
+          "disciplineDetail": "남자 스프린트 10km",
+          "status": "예정",
+          "players": [
+            "최두진"
+          ],
+          "scores": null,
           "result": null
         }
       ]
