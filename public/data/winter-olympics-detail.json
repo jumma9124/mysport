@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-12T08:58:54.759Z",
+  "lastUpdate": "2026-02-12T13:26:47.349Z",
   "medals": {
     "gold": 0,
     "silver": 1,
@@ -17,19 +17,19 @@
     },
     {
       "rank": 2,
+      "nation": "이탈리아",
+      "gold": 5,
+      "silver": 2,
+      "bronze": 7,
+      "total": 14
+    },
+    {
+      "rank": 3,
       "nation": "미국",
       "gold": 4,
       "silver": 6,
       "bronze": 2,
       "total": 12
-    },
-    {
-      "rank": 3,
-      "nation": "이탈리아",
-      "gold": 4,
-      "silver": 2,
-      "bronze": 7,
-      "total": 13
     },
     {
       "rank": 4,
@@ -41,19 +41,19 @@
     },
     {
       "rank": 5,
+      "nation": "프랑스",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 1,
+      "total": 8
+    },
+    {
+      "rank": 6,
       "nation": "독일",
       "gold": 3,
       "silver": 3,
       "bronze": 2,
       "total": 8
-    },
-    {
-      "rank": 6,
-      "nation": "프랑스",
-      "gold": 3,
-      "silver": 3,
-      "bronze": 1,
-      "total": 7
     },
     {
       "rank": 7,
@@ -68,16 +68,16 @@
       "nation": "오스트리아",
       "gold": 2,
       "silver": 5,
-      "bronze": 1,
-      "total": 8
+      "bronze": 2,
+      "total": 9
     },
     {
       "rank": 9,
       "nation": "일본",
       "gold": 2,
       "silver": 2,
-      "bronze": 4,
-      "total": 8
+      "bronze": 5,
+      "total": 9
     },
     {
       "rank": 10,
@@ -105,14 +105,22 @@
     },
     {
       "rank": 13,
-      "nation": "캐나다",
-      "gold": 0,
-      "silver": 1,
-      "bronze": 3,
-      "total": 4
+      "nation": "호주",
+      "gold": 1,
+      "silver": 0,
+      "bronze": 0,
+      "total": 1
     },
     {
       "rank": 14,
+      "nation": "캐나다",
+      "gold": 0,
+      "silver": 2,
+      "bronze": 3,
+      "total": 5
+    },
+    {
+      "rank": 15,
       "nation": "중국",
       "gold": 0,
       "silver": 1,
@@ -120,7 +128,7 @@
       "total": 3
     },
     {
-      "rank": 15,
+      "rank": 16,
       "nation": "대한민국",
       "gold": 0,
       "silver": 1,
@@ -179,7 +187,7 @@
     {
       "time": "17:05",
       "discipline": "컬링",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "대한민국",
         "미국"
@@ -188,7 +196,7 @@
     {
       "time": "17:30",
       "discipline": "스켈레톤",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "정승기",
         "김지수"
@@ -197,16 +205,36 @@
     {
       "time": "18:00",
       "discipline": "프리스타일 스키",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "정대윤",
         "이윤승"
       ]
     },
     {
+      "time": "19:08",
+      "discipline": "스켈레톤",
+      "status": "종료",
+      "players": [
+        "정승기",
+        "김지수"
+      ]
+    },
+    {
+      "time": "20:15",
+      "discipline": "프리스타일 스키",
+      "status": "종료",
+      "players": [
+        "쿠퍼 우즈-토팔로비치",
+        "미카엘 킹스버리",
+        "호리시마 이쿠마",
+        "정대윤"
+      ]
+    },
+    {
       "time": "21:00",
       "discipline": "크로스컨트리 스키",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "이의진",
         "한다솜"
@@ -216,32 +244,32 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-12",
-      "time": "17:05",
-      "discipline": "컬링",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-12",
-      "time": "17:30",
-      "discipline": "스켈레톤",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-12",
-      "time": "18:00",
-      "discipline": "프리스타일 스키",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-12",
       "time": "21:00",
       "discipline": "크로스컨트리 스키",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-13",
       "time": "03:05",
       "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-13",
+      "time": "03:30",
+      "discipline": "스노보드",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-13",
+      "time": "04:15",
+      "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-13",
+      "time": "04:28",
+      "discipline": "쇼트트랙",
       "status": "예정"
     }
   ],
@@ -358,16 +386,16 @@
           "date": "2026-02-12",
           "time": "17:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "대한민국",
             "미국"
           ],
           "scores": [
-            "2",
-            "0"
+            "4",
+            "8"
           ],
-          "result": null
+          "result": "미국 승"
         },
         {
           "date": "2026-02-13",
@@ -1123,13 +1151,29 @@
           "date": "2026-02-12",
           "time": "17:30",
           "disciplineDetail": "남자 런1",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "정승기",
             "김지수"
           ],
           "scores": [
-            "+0.36"
+            "+0.36",
+            "+0.94"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-12",
+          "time": "19:08",
+          "disciplineDetail": "남자 런2",
+          "status": "종료",
+          "players": [
+            "정승기",
+            "김지수"
+          ],
+          "scores": [
+            "+1.13",
+            "+2.06"
           ],
           "result": null
         },
@@ -1140,6 +1184,18 @@
           "status": "예정",
           "players": [
             "홍수정"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-14",
+          "time": "03:30",
+          "disciplineDetail": "남자 런3",
+          "status": "예정",
+          "players": [
+            "정승기",
+            "김지수"
           ],
           "scores": null,
           "result": null
