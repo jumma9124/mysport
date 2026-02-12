@@ -54,29 +54,29 @@
   "winterOlympics": {
     "eventName": "밀라노-코르티나 2026",
     "medals": {
-      "gold": 0,
+      "gold": 1,
       "silver": 1,
       "bronze": 1,
-      "total": 2
+      "total": 3
     },
     "todayGames": 10,
     "upcomingGames": [
       {
         "date": "2026-02-13",
-        "time": "03:05",
-        "discipline": "컬링",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-13",
-        "time": "03:30",
-        "discipline": "스노보드",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-13",
-        "time": "04:15",
+        "time": "05:32",
         "discipline": "쇼트트랙",
+        "status": "경기중"
+      },
+      {
+        "date": "2026-02-13",
+        "time": "05:43",
+        "discipline": "쇼트트랙",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-13",
+        "time": "06:50",
+        "discipline": "올림픽특집",
         "status": "예정"
       }
     ]
