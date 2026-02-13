@@ -63,12 +63,6 @@
     "upcomingGames": [
       {
         "date": "2026-02-13",
-        "time": "12:30",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-13",
         "time": "18:00",
         "discipline": "스노보드",
         "status": "예정"
@@ -77,6 +71,12 @@
         "date": "2026-02-13",
         "time": "19:45",
         "discipline": "크로스컨트리 스키",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-13",
+        "time": "19:50",
+        "discipline": "올림픽특집",
         "status": "예정"
       }
     ]

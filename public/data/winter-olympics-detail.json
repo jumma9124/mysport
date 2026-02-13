@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-13T02:53:26.899Z",
+  "lastUpdate": "2026-02-13T08:55:32.506Z",
   "medals": {
     "gold": 1,
     "silver": 1,
@@ -248,7 +248,7 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
@@ -294,12 +294,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-13",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-13",
       "time": "18:00",
       "discipline": "스노보드",
       "status": "예정"
@@ -320,6 +314,12 @@
       "date": "2026-02-13",
       "time": "22:00",
       "discipline": "바이애슬론",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-13",
+      "time": "22:05",
+      "discipline": "컬링",
       "status": "예정"
     }
   ],
@@ -1209,7 +1209,9 @@
           "time": "06:05",
           "disciplineDetail": "여자 3000m 계주 준결승",
           "status": "예정",
-          "players": null,
+          "players": [
+            "대한민국"
+          ],
           "scores": null,
           "result": null
         },
