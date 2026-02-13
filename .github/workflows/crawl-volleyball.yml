@@ -32,6 +32,7 @@ jobs:
         run: node scripts/crawl-volleyball.cjs
 
       - name: Commit and push changes
+        id: commit
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "action@github.com"
@@ -48,8 +49,22 @@ jobs:
             git commit -m "chore: update volleyball data"
             git pull --rebase origin main
             git push
+            echo "changes=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to commit"
+            echo "changes=false" >> $GITHUB_OUTPUT
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger deploy
+        if: steps.commit.outputs.changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            });
