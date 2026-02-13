@@ -12,16 +12,11 @@
     "crawl:volleyball": "node scripts/crawl-volleyball.cjs",
     "crawl:events": "node scripts/crawl-major-events.cjs",
     "crawl:winter": "node scripts/crawl-winter-olympics.cjs",
-    "crawl:all": "npm run crawl:baseball && npm run crawl:volleyball && npm run crawl:events && npm run crawl:winter",
-    "notify:teams": "node scripts/send-teams-notification.cjs"
+    "crawl:all": "npm run crawl:baseball && npm run crawl:volleyball && npm run crawl:events && npm run crawl:winter"
   },
   "dependencies": {
     "cheerio": "^1.1.2",
-    "chromium": "^3.0.3",
-    "node-fetch": "^2.7.0",
-    "nodemailer": "^7.0.12",
     "puppeteer": "^24.35.0",
-    "puppeteer-core": "^24.35.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0"
