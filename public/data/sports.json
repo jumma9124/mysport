@@ -62,21 +62,21 @@
     "todayGames": 17,
     "upcomingGames": [
       {
-        "date": "2026-02-13",
-        "time": "22:00",
-        "discipline": "바이애슬론",
-        "status": "경기중"
-      },
-      {
-        "date": "2026-02-13",
-        "time": "22:05",
-        "discipline": "컬링",
+        "date": "2026-02-14",
+        "time": "01:48",
+        "discipline": "스켈레톤",
         "status": "경기중"
       },
       {
         "date": "2026-02-14",
-        "time": "00:00",
-        "discipline": "스켈레톤",
+        "time": "03:00",
+        "discipline": "피겨스케이팅",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-14",
+        "time": "03:20",
+        "discipline": "올림픽특집",
         "status": "예정"
       }
     ]
