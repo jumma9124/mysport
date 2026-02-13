@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-13T08:55:32.506Z",
+  "lastUpdate": "2026-02-13T13:18:33.146Z",
   "medals": {
     "gold": 1,
     "silver": 1,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 7,
+      "gold": 8,
       "silver": 2,
-      "bronze": 5,
-      "total": 14
+      "bronze": 6,
+      "total": 16
     },
     {
       "rank": 2,
@@ -67,9 +67,9 @@
       "rank": 8,
       "nation": "프랑스",
       "gold": 3,
-      "silver": 4,
+      "silver": 5,
       "bronze": 1,
-      "total": 8
+      "total": 9
     },
     {
       "rank": 9,
@@ -254,7 +254,7 @@
     {
       "time": "18:00",
       "discipline": "스노보드",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "우수빈"
       ]
@@ -262,21 +262,32 @@
     {
       "time": "19:45",
       "discipline": "크로스컨트리 스키",
-      "status": "예정",
+      "status": "종료",
       "players": [
+        "요하네스 회스플로트",
+        "마티스 델로즈",
+        "에이나르 헤데가르트",
         "이준서"
       ]
     },
     {
       "time": "19:50",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
+    },
+    {
+      "time": "21:30",
+      "discipline": "스노보드",
+      "status": "종료",
+      "players": [
+        "우수빈"
+      ]
     },
     {
       "time": "22:00",
       "discipline": "바이애슬론",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "최두진"
       ]
@@ -284,7 +295,7 @@
     {
       "time": "22:05",
       "discipline": "컬링",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "영국",
         "대한민국"
@@ -294,32 +305,32 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-13",
-      "time": "18:00",
-      "discipline": "스노보드",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-13",
-      "time": "19:45",
-      "discipline": "크로스컨트리 스키",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-13",
-      "time": "19:50",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-13",
       "time": "22:00",
       "discipline": "바이애슬론",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-13",
       "time": "22:05",
       "discipline": "컬링",
+      "status": "경기중"
+    },
+    {
+      "date": "2026-02-14",
+      "time": "00:00",
+      "discipline": "스켈레톤",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-14",
+      "time": "03:00",
+      "discipline": "피겨스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-14",
+      "time": "03:30",
+      "discipline": "스노보드",
       "status": "예정"
     }
   ],
@@ -466,12 +477,15 @@
           "date": "2026-02-13",
           "time": "22:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "영국",
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "0",
+            "0"
+          ],
           "result": null
         },
         {
@@ -849,7 +863,20 @@
           "date": "2026-02-13",
           "time": "18:00",
           "disciplineDetail": "여자 스노보드 크로스 시드",
-          "status": "예정",
+          "status": "종료",
+          "players": [
+            "우수빈"
+          ],
+          "scores": [
+            "1:17.82"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-13",
+          "time": "21:30",
+          "disciplineDetail": "여자 스노보드 크로스 16강",
+          "status": "종료",
           "players": [
             "우수빈"
           ],
@@ -963,15 +990,6 @@
             "1:07.34",
             "1:08.53"
           ],
-          "result": null
-        },
-        {
-          "date": "2026-02-15",
-          "time": "01:00",
-          "disciplineDetail": "남자 500m",
-          "status": "예정",
-          "players": null,
-          "scores": null,
           "result": null
         },
         {
@@ -1289,7 +1307,7 @@
           "date": "2026-02-13",
           "time": "22:00",
           "disciplineDetail": "남자 스프린트 10km",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "최두진"
           ],
