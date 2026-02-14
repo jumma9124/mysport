@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-13T20:51:27.798Z",
+  "lastUpdate": "2026-02-14T02:41:11.704Z",
   "medals": {
     "gold": 1,
     "silver": 1,
@@ -43,9 +43,9 @@
       "rank": 5,
       "nation": "독일",
       "gold": 4,
-      "silver": 3,
-      "bronze": 2,
-      "total": 9
+      "silver": 4,
+      "bronze": 3,
+      "total": 11
     },
     {
       "rank": 6,
@@ -73,19 +73,19 @@
     },
     {
       "rank": 9,
+      "nation": "일본",
+      "gold": 3,
+      "silver": 3,
+      "bronze": 8,
+      "total": 14
+    },
+    {
+      "rank": 10,
       "nation": "네덜란드",
       "gold": 3,
       "silver": 3,
       "bronze": 1,
       "total": 7
-    },
-    {
-      "rank": 10,
-      "nation": "일본",
-      "gold": 3,
-      "silver": 2,
-      "bronze": 7,
-      "total": 12
     },
     {
       "rank": 11,
@@ -121,11 +121,11 @@
     },
     {
       "rank": 15,
-      "nation": "캐나다",
-      "gold": 0,
-      "silver": 3,
-      "bronze": 4,
-      "total": 7
+      "nation": "영국",
+      "gold": 1,
+      "silver": 0,
+      "bronze": 0,
+      "total": 1
     }
   ],
   "koreaMedalists": [
@@ -156,174 +156,102 @@
   ],
   "todaySchedule": [
     {
-      "time": "03:05",
-      "discipline": "컬링",
+      "time": "00:00",
+      "discipline": "스켈레톤",
       "status": "종료",
       "players": [
-        "이탈리아",
-        "대한민국"
+        "홍수정"
       ]
+    },
+    {
+      "time": "01:48",
+      "discipline": "스켈레톤",
+      "status": "종료",
+      "players": [
+        "홍수정"
+      ]
+    },
+    {
+      "time": "03:00",
+      "discipline": "피겨스케이팅",
+      "status": "종료",
+      "players": [
+        "미하일 샤이도로프",
+        "카기야마 유마",
+        "사토 슌",
+        "차준환"
+      ]
+    },
+    {
+      "time": "03:20",
+      "discipline": "올림픽특집",
+      "status": "종료",
+      "players": null
     },
     {
       "time": "03:30",
       "discipline": "스노보드",
       "status": "종료",
       "players": [
-        "최가온",
-        "클로이 킴",
-        "오노 미츠키"
+        "도쓰카 유토",
+        "스코티 제임스",
+        "야마다 류세이",
+        "이채운"
       ]
     },
     {
-      "time": "04:15",
-      "discipline": "쇼트트랙",
+      "time": "03:30",
+      "discipline": "스켈레톤",
       "status": "종료",
       "players": [
-        "최민정",
-        "김길리",
-        "이소연"
+        "정승기",
+        "김지수"
       ]
     },
     {
-      "time": "04:28",
-      "discipline": "쇼트트랙",
+      "time": "05:05",
+      "discipline": "스켈레톤",
       "status": "종료",
       "players": [
-        "신동민",
-        "임종언",
-        "황대헌"
+        "맷 웨스턴",
+        "악셀 융크",
+        "크리스토퍼 그로이어",
+        "정승기",
+        "김지수"
       ]
     },
     {
-      "time": "05:03",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "최민정"
-      ]
-    },
-    {
-      "time": "05:07",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "임종언",
-        "신동민"
-      ]
-    },
-    {
-      "time": "05:32",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "잔드라 벨제부르",
-        "아리아나 폰타나",
-        "코트니 사로",
-        "최민정"
-      ]
-    },
-    {
-      "time": "05:43",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "옌스 판트바우트",
-        "쑨룽",
-        "임종언",
-        "신동민"
-      ]
-    },
-    {
-      "time": "06:50",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "07:50",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "12:30",
+      "time": "10:30",
       "discipline": "올림픽특집",
       "status": "종료",
       "players": null
     },
     {
       "time": "18:00",
-      "discipline": "스노보드",
-      "status": "종료",
+      "discipline": "알파인스키",
+      "status": "예정",
       "players": [
-        "우수빈"
+        "정동현"
       ]
     },
     {
-      "time": "19:45",
-      "discipline": "크로스컨트리 스키",
-      "status": "종료",
+      "time": "18:57",
+      "discipline": "프리스타일 스키",
+      "status": "예정",
       "players": [
-        "요하네스 회스플로트",
-        "마티스 델로즈",
-        "에이나르 헤데가르트",
-        "이준서"
+        "윤신이"
       ]
     },
     {
-      "time": "19:50",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "21:30",
-      "discipline": "스노보드",
-      "status": "종료",
-      "players": [
-        "우수빈"
-      ]
-    },
-    {
-      "time": "22:00",
+      "time": "22:45",
       "discipline": "바이애슬론",
-      "status": "종료",
+      "status": "예정",
       "players": [
-        "캉탱 피용 마이예",
-        "베틀레 샤스타드 크리스티안센",
-        "스툴라 홀름 레그레이",
-        "최두진"
-      ]
-    },
-    {
-      "time": "22:05",
-      "discipline": "컬링",
-      "status": "종료",
-      "players": [
-        "영국",
-        "대한민국"
+        "예카테리나 아바쿠모바"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-14",
-      "time": "03:00",
-      "discipline": "피겨스케이팅",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-14",
-      "time": "05:05",
-      "discipline": "스켈레톤",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-14",
-      "time": "10:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-14",
       "time": "18:00",
@@ -334,6 +262,24 @@
       "date": "2026-02-14",
       "time": "18:57",
       "discipline": "프리스타일 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-14",
+      "time": "22:45",
+      "discipline": "바이애슬론",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-15",
+      "time": "01:00",
+      "discipline": "스피드스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-15",
+      "time": "02:00",
+      "discipline": "스켈레톤",
       "status": "예정"
     }
   ],
@@ -639,11 +585,19 @@
           "date": "2026-02-14",
           "time": "03:00",
           "disciplineDetail": "남자 싱글 프리 프로그램",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "미하일 샤이도로프",
+            "카기야마 유마",
+            "사토 슌",
             "차준환"
           ],
-          "scores": null,
+          "scores": [
+            "291.58",
+            "280.06",
+            "274.90",
+            "273.92"
+          ],
           "result": null
         },
         {
@@ -1436,14 +1390,20 @@
           "date": "2026-02-14",
           "time": "05:05",
           "disciplineDetail": "남자 런4",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "맷 웨스턴",
+            "악셀 융크",
+            "크리스토퍼 그로이어",
             "정승기",
             "김지수"
           ],
           "scores": [
-            "+1.16",
-            "+3.37"
+            "3:43.33",
+            "+0.88",
+            "+1.07",
+            "+2.57",
+            "+4.78"
           ],
           "result": null
         },
