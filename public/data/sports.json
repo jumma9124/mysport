@@ -63,20 +63,20 @@
     "upcomingGames": [
       {
         "date": "2026-02-15",
-        "time": "01:00",
-        "discipline": "스피드스케이팅",
+        "time": "03:05",
+        "discipline": "컬링",
         "status": "경기중"
       },
       {
         "date": "2026-02-15",
-        "time": "02:00",
-        "discipline": "스켈레톤",
-        "status": "예정"
+        "time": "05:49",
+        "discipline": "쇼트트랙",
+        "status": "경기중"
       },
       {
         "date": "2026-02-15",
-        "time": "03:05",
-        "discipline": "컬링",
+        "time": "06:05",
+        "discipline": "쇼트트랙",
         "status": "예정"
       }
     ]
