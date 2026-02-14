@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-14T13:06:13.761Z",
+  "lastUpdate": "2026-02-14T16:40:51.236Z",
   "medals": {
     "gold": 1,
     "silver": 1,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 9,
+      "gold": 10,
       "silver": 3,
       "bronze": 7,
-      "total": 19
+      "total": 20
     },
     {
       "rank": 2,
@@ -35,9 +35,9 @@
       "rank": 4,
       "nation": "프랑스",
       "gold": 4,
-      "silver": 5,
-      "bronze": 1,
-      "total": 10
+      "silver": 6,
+      "bronze": 2,
+      "total": 12
     },
     {
       "rank": 5,
@@ -59,9 +59,9 @@
       "rank": 7,
       "nation": "스위스",
       "gold": 4,
-      "silver": 1,
-      "bronze": 2,
-      "total": 7
+      "silver": 2,
+      "bronze": 3,
+      "total": 9
     },
     {
       "rank": 8,
@@ -121,7 +121,7 @@
     },
     {
       "rank": 15,
-      "nation": "영국",
+      "nation": "브라질",
       "gold": 1,
       "silver": 0,
       "bronze": 0,
@@ -251,38 +251,32 @@
     {
       "time": "21:30",
       "discipline": "알파인스키",
-      "status": "경기중",
+      "status": "종료",
       "players": [
+        "루카스 피녜이루 브라텐",
+        "마르코 오더마트",
+        "로이크 메이야르",
         "정동현"
       ]
     },
     {
       "time": "22:45",
       "discipline": "바이애슬론",
-      "status": "예정",
+      "status": "종료",
       "players": [
+        "마렌 키르케이데",
+        "오세안 미셸롱",
+        "루 장모노-로랑",
         "예카테리나 아바쿠모바"
       ]
     }
   ],
   "upcomingSchedule": [
     {
-      "date": "2026-02-14",
-      "time": "21:30",
-      "discipline": "알파인스키",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-14",
-      "time": "22:45",
-      "discipline": "바이애슬론",
-      "status": "예정"
-    },
-    {
       "date": "2026-02-15",
       "time": "01:00",
       "discipline": "스피드스케이팅",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-15",
@@ -294,6 +288,18 @@
       "date": "2026-02-15",
       "time": "03:05",
       "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-15",
+      "time": "04:15",
+      "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-15",
+      "time": "05:01",
+      "discipline": "쇼트트랙",
       "status": "예정"
     }
   ],
@@ -975,12 +981,15 @@
           "date": "2026-02-15",
           "time": "01:00",
           "disciplineDetail": "남자 500m",
-          "status": "예정",
+          "status": "경기중",
           "players": [
-            "구경민",
-            "김준호"
+            "김준호",
+            "구경민"
           ],
-          "scores": null,
+          "scores": [
+            "34.68",
+            "34.80"
+          ],
           "result": null
         },
         {
@@ -1317,6 +1326,25 @@
           "date": "2026-02-14",
           "time": "22:45",
           "disciplineDetail": "여자 스프린트 7.5km",
+          "status": "종료",
+          "players": [
+            "마렌 키르케이데",
+            "오세안 미셸롱",
+            "루 장모노-로랑",
+            "예카테리나 아바쿠모바"
+          ],
+          "scores": [
+            "20:40.8",
+            "+3.8",
+            "+23.7",
+            "+2:37.5"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-15",
+          "time": "22:45",
+          "disciplineDetail": "여자 추적 10km",
           "status": "예정",
           "players": [
             "예카테리나 아바쿠모바"
@@ -1463,9 +1491,45 @@
           "date": "2026-02-14",
           "time": "21:30",
           "disciplineDetail": "남자 대회전 런2",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "루카스 피녜이루 브라텐",
+            "마르코 오더마트",
+            "로이크 메이야르",
             "정동현"
+          ],
+          "scores": [
+            "2:25.00",
+            "+0.58",
+            "+1.17",
+            "+10.41"
+          ],
+          "result": null
+        }
+      ]
+    },
+    "BOB": {
+      "name": "봅슬레이",
+      "games": [
+        {
+          "date": "2026-02-15",
+          "time": "18:00",
+          "disciplineDetail": "여자 모노봅 런1",
+          "status": "예정",
+          "players": [
+            "김유란"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "18:00",
+          "disciplineDetail": "남자 2인승 런1",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국"
           ],
           "scores": null,
           "result": null
