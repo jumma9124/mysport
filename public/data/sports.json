@@ -59,24 +59,24 @@
       "bronze": 2,
       "total": 4
     },
-    "todayGames": 11,
+    "todayGames": 13,
     "upcomingGames": [
       {
         "date": "2026-02-14",
-        "time": "18:00",
+        "time": "21:30",
         "discipline": "알파인스키",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-14",
-        "time": "18:57",
-        "discipline": "프리스타일 스키",
-        "status": "예정"
+        "status": "경기중"
       },
       {
         "date": "2026-02-14",
         "time": "22:45",
         "discipline": "바이애슬론",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-15",
+        "time": "01:00",
+        "discipline": "스피드스케이팅",
         "status": "예정"
       }
     ]
