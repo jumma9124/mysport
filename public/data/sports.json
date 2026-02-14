@@ -3,12 +3,20 @@
     "team": "현대캐피탈 스카이워커스",
     "currentRank": 1,
     "record": {
-      "wins": 17,
+      "wins": 18,
       "losses": 10,
-      "points": 54,
-      "setRate": 1.605
+      "points": 56,
+      "setRate": 1.6
     },
     "recentMatches": [
+      {
+        "date": "2026-02-14",
+        "opponent": "대한항공",
+        "venue": "천안유관순체육관",
+        "result": "win",
+        "score": "3-2",
+        "sets": []
+      },
       {
         "date": "2026-02-09",
         "opponent": "KB손해보험",
@@ -23,14 +31,6 @@
         "venue": "천안유관순체육관",
         "result": "loss",
         "score": "0-3",
-        "sets": []
-      },
-      {
-        "date": "2026-02-01",
-        "opponent": "OK저축은행",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-0",
         "sets": []
       }
     ],
