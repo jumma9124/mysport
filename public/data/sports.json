@@ -63,20 +63,20 @@
     "upcomingGames": [
       {
         "date": "2026-02-16",
-        "time": "01:03",
-        "discipline": "스피드스케이팅",
-        "status": "경기중"
-      },
-      {
-        "date": "2026-02-16",
-        "time": "02:20",
-        "discipline": "스켈레톤",
+        "time": "07:00",
+        "discipline": "올림픽특집",
         "status": "예정"
       },
       {
         "date": "2026-02-16",
-        "time": "07:00",
+        "time": "12:30",
         "discipline": "올림픽특집",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-16",
+        "time": "18:00",
+        "discipline": "알파인스키",
         "status": "예정"
       }
     ]

@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-15T16:41:27.575Z",
+  "lastUpdate": "2026-02-15T20:37:22.746Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 11,
-      "silver": 6,
+      "gold": 12,
+      "silver": 7,
       "bronze": 7,
-      "total": 24
+      "total": 26
     },
     {
       "rank": 2,
@@ -33,6 +33,14 @@
     },
     {
       "rank": 4,
+      "nation": "네덜란드",
+      "gold": 5,
+      "silver": 5,
+      "bronze": 1,
+      "total": 11
+    },
+    {
+      "rank": 4,
       "nation": "스웨덴",
       "gold": 5,
       "silver": 5,
@@ -40,7 +48,7 @@
       "total": 11
     },
     {
-      "rank": 5,
+      "rank": 6,
       "nation": "프랑스",
       "gold": 4,
       "silver": 7,
@@ -48,28 +56,20 @@
       "total": 15
     },
     {
-      "rank": 6,
+      "rank": 7,
+      "nation": "독일",
+      "gold": 4,
+      "silver": 6,
+      "bronze": 5,
+      "total": 15
+    },
+    {
+      "rank": 8,
       "nation": "오스트리아",
       "gold": 4,
       "silver": 6,
       "bronze": 3,
       "total": 13
-    },
-    {
-      "rank": 7,
-      "nation": "독일",
-      "gold": 4,
-      "silver": 5,
-      "bronze": 4,
-      "total": 13
-    },
-    {
-      "rank": 8,
-      "nation": "네덜란드",
-      "gold": 4,
-      "silver": 4,
-      "bronze": 1,
-      "total": 9
     },
     {
       "rank": 9,
@@ -84,8 +84,8 @@
       "nation": "일본",
       "gold": 3,
       "silver": 5,
-      "bronze": 8,
-      "total": 16
+      "bronze": 9,
+      "total": 17
     },
     {
       "rank": 11,
@@ -97,6 +97,14 @@
     },
     {
       "rank": 12,
+      "nation": "영국",
+      "gold": 3,
+      "silver": 0,
+      "bronze": 0,
+      "total": 3
+    },
+    {
+      "rank": 13,
       "nation": "체코",
       "gold": 2,
       "silver": 2,
@@ -104,20 +112,12 @@
       "total": 4
     },
     {
-      "rank": 13,
+      "rank": 14,
       "nation": "슬로베니아",
       "gold": 2,
       "silver": 1,
-      "bronze": 0,
-      "total": 3
-    },
-    {
-      "rank": 14,
-      "nation": "영국",
-      "gold": 2,
-      "silver": 0,
-      "bronze": 0,
-      "total": 2
+      "bronze": 1,
+      "total": 4
     },
     {
       "rank": 15,
@@ -362,18 +362,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-16",
-      "time": "01:03",
-      "discipline": "스피드스케이팅",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "02:20",
-      "discipline": "스켈레톤",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-16",
       "time": "07:00",
       "discipline": "올림픽특집",
       "status": "예정"
@@ -388,6 +376,18 @@
       "date": "2026-02-16",
       "time": "18:00",
       "discipline": "알파인스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-16",
+      "time": "18:00",
+      "discipline": "봅슬레이",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-16",
+      "time": "18:30",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -1114,14 +1114,20 @@
           "date": "2026-02-16",
           "time": "01:03",
           "disciplineDetail": "여자 500m",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "펨케 콕",
+            "유타 레이르담",
+            "다카기 미호",
             "이나현",
             "김민선"
           ],
           "scores": [
+            "36.49",
+            "37.15",
+            "37.27",
             "37.86",
-            "38.01"
+            "38.010"
           ],
           "result": null
         },
@@ -1685,11 +1691,19 @@
           "date": "2026-02-16",
           "time": "02:20",
           "disciplineDetail": "혼성 단체",
-          "status": "예정",
+          "status": "종료",
           "players": [
+            "영국",
+            "독일",
+            "독일",
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "1:59.36",
+            "+0.17",
+            "+0.18",
+            "+2.09"
+          ],
           "result": null
         }
       ]
