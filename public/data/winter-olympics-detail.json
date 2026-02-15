@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-15T13:08:07.647Z",
+  "lastUpdate": "2026-02-15T16:41:27.575Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -11,17 +11,17 @@
       "rank": 1,
       "nation": "노르웨이",
       "gold": 11,
-      "silver": 4,
+      "silver": 6,
       "bronze": 7,
-      "total": 22
+      "total": 24
     },
     {
       "rank": 2,
       "nation": "이탈리아",
-      "gold": 6,
-      "silver": 3,
+      "gold": 8,
+      "silver": 4,
       "bronze": 10,
-      "total": 19
+      "total": 22
     },
     {
       "rank": 3,
@@ -35,17 +35,17 @@
       "rank": 4,
       "nation": "스웨덴",
       "gold": 5,
-      "silver": 4,
+      "silver": 5,
       "bronze": 1,
-      "total": 10
+      "total": 11
     },
     {
       "rank": 5,
       "nation": "프랑스",
       "gold": 4,
       "silver": 7,
-      "bronze": 3,
-      "total": 14
+      "bronze": 4,
+      "total": 15
     },
     {
       "rank": 6,
@@ -113,6 +113,14 @@
     },
     {
       "rank": 14,
+      "nation": "영국",
+      "gold": 2,
+      "silver": 0,
+      "bronze": 0,
+      "total": 2
+    },
+    {
+      "rank": 15,
       "nation": "캐나다",
       "gold": 1,
       "silver": 3,
@@ -120,7 +128,7 @@
       "total": 9
     },
     {
-      "rank": 15,
+      "rank": 16,
       "nation": "대한민국",
       "gold": 1,
       "silver": 2,
@@ -308,21 +316,24 @@
     {
       "time": "21:30",
       "discipline": "알파인스키",
-      "status": "경기중",
+      "status": "종료",
       "players": [
+        "페데리카 브리고네",
+        "사라 헥터",
+        "테아 루이스 셰르네순드",
         "김소희"
       ]
     },
     {
       "time": "22:00",
       "discipline": "올림픽특집",
-      "status": "LIVE",
+      "status": "종료",
       "players": null
     },
     {
       "time": "22:05",
       "discipline": "컬링",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "일본",
         "대한민국"
@@ -331,7 +342,7 @@
     {
       "time": "22:15",
       "discipline": "스노보드",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "유승은"
       ]
@@ -339,41 +350,44 @@
     {
       "time": "22:45",
       "discipline": "바이애슬론",
-      "status": "예정",
+      "status": "종료",
       "players": [
+        "리사 비토지",
+        "마렌 키르케이데",
+        "수비 민키넨",
         "예카테리나 아바쿠모바"
       ]
     }
   ],
   "upcomingSchedule": [
     {
-      "date": "2026-02-15",
-      "time": "21:30",
-      "discipline": "알파인스키",
+      "date": "2026-02-16",
+      "time": "01:03",
+      "discipline": "스피드스케이팅",
       "status": "경기중"
     },
     {
-      "date": "2026-02-15",
-      "time": "22:00",
-      "discipline": "올림픽특집",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-15",
-      "time": "22:05",
-      "discipline": "컬링",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-15",
-      "time": "22:15",
-      "discipline": "스노보드",
+      "date": "2026-02-16",
+      "time": "02:20",
+      "discipline": "스켈레톤",
       "status": "예정"
     },
     {
-      "date": "2026-02-15",
-      "time": "22:45",
-      "discipline": "바이애슬론",
+      "date": "2026-02-16",
+      "time": "07:00",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-16",
+      "time": "12:30",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-16",
+      "time": "18:00",
+      "discipline": "알파인스키",
       "status": "예정"
     }
   ],
@@ -550,16 +564,16 @@
           "date": "2026-02-15",
           "time": "22:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "일본",
             "대한민국"
           ],
           "scores": [
-            "0",
-            "0"
+            "5",
+            "7"
           ],
-          "result": null
+          "result": "대한민국 승"
         },
         {
           "date": "2026-02-17",
@@ -705,7 +719,10 @@
           "time": "02:45",
           "disciplineDetail": "여자 싱글 쇼트 프로그램",
           "status": "예정",
-          "players": null,
+          "players": [
+            "신지아",
+            "이해인"
+          ],
           "scores": null,
           "result": null
         },
@@ -963,6 +980,19 @@
           "date": "2026-02-15",
           "time": "22:15",
           "disciplineDetail": "여자 스노보드 슬로프스타일 예선",
+          "status": "종료",
+          "players": [
+            "유승은"
+          ],
+          "scores": [
+            "76.80"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-17",
+          "time": "21:00",
+          "disciplineDetail": "여자 스노보드 슬로프스타일 결승",
           "status": "예정",
           "players": [
             "유승은"
@@ -1084,12 +1114,15 @@
           "date": "2026-02-16",
           "time": "01:03",
           "disciplineDetail": "여자 500m",
-          "status": "예정",
+          "status": "경기중",
           "players": [
-            "김민선",
-            "이나현"
+            "이나현",
+            "김민선"
           ],
-          "scores": null,
+          "scores": [
+            "37.86",
+            "38.01"
+          ],
           "result": null
         },
         {
@@ -1504,11 +1537,19 @@
           "date": "2026-02-15",
           "time": "22:45",
           "disciplineDetail": "여자 추적 10km",
-          "status": "예정",
+          "status": "종료",
           "players": [
+            "리사 비토지",
+            "마렌 키르케이데",
+            "수비 민키넨",
             "예카테리나 아바쿠모바"
           ],
-          "scores": null,
+          "scores": [
+            "30:11.8",
+            "+28.8",
+            "+34.3",
+            "+5:21.2"
+          ],
           "result": null
         }
       ]
@@ -1706,9 +1747,28 @@
           "date": "2026-02-15",
           "time": "21:30",
           "disciplineDetail": "여자 대회전 런2",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "페데리카 브리고네",
+            "사라 헥터",
+            "테아 루이스 셰르네순드",
             "김소희"
+          ],
+          "scores": [
+            "2:13.50",
+            "+0.62",
+            "+0.62",
+            "+12.92"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "18:00",
+          "disciplineDetail": "남자 회전 런1",
+          "status": "예정",
+          "players": [
+            "정동현"
           ],
           "scores": null,
           "result": null
