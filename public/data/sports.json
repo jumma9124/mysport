@@ -55,28 +55,28 @@
     "eventName": "밀라노-코르티나 2026",
     "medals": {
       "gold": 1,
-      "silver": 1,
+      "silver": 2,
       "bronze": 2,
-      "total": 4
+      "total": 5
     },
-    "todayGames": 13,
+    "todayGames": 17,
     "upcomingGames": [
       {
         "date": "2026-02-15",
-        "time": "03:05",
-        "discipline": "컬링",
-        "status": "경기중"
+        "time": "18:00",
+        "discipline": "알파인스키",
+        "status": "예정"
       },
       {
         "date": "2026-02-15",
-        "time": "05:49",
-        "discipline": "쇼트트랙",
-        "status": "경기중"
+        "time": "18:00",
+        "discipline": "봅슬레이",
+        "status": "예정"
       },
       {
         "date": "2026-02-15",
-        "time": "06:05",
-        "discipline": "쇼트트랙",
+        "time": "18:30",
+        "discipline": "프리스타일 스키",
         "status": "예정"
       }
     ]
