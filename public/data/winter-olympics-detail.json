@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-15T02:54:26.452Z",
+  "lastUpdate": "2026-02-15T08:43:08.892Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -299,7 +299,7 @@
     {
       "time": "22:15",
       "discipline": "스노보드",
-      "status": "일정변경",
+      "status": "예정",
       "players": [
         "유승은"
       ]
@@ -928,7 +928,7 @@
           "date": "2026-02-15",
           "time": "22:15",
           "disciplineDetail": "여자 스노보드 슬로프스타일 예선",
-          "status": "일정변경",
+          "status": "예정",
           "players": [
             "유승은"
           ],
@@ -1358,7 +1358,9 @@
           "time": "20:06",
           "disciplineDetail": "남자 5000m 계주 준결승",
           "status": "예정",
-          "players": null,
+          "players": [
+            "대한민국"
+          ],
           "scores": null,
           "result": null
         },
@@ -1608,7 +1610,9 @@
           "time": "02:00",
           "disciplineDetail": "혼성 단체",
           "status": "예정",
-          "players": null,
+          "players": [
+            "대한민국"
+          ],
           "scores": null,
           "result": null
         }
