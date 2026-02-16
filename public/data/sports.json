@@ -56,26 +56,26 @@
     "medals": {
       "gold": 1,
       "silver": 2,
-      "bronze": 2,
-      "total": 5
+      "bronze": 3,
+      "total": 6
     },
-    "todayGames": 10,
+    "todayGames": 13,
     "upcomingGames": [
       {
-        "date": "2026-02-16",
-        "time": "18:00",
-        "discipline": "알파인스키",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-16",
-        "time": "18:00",
+        "date": "2026-02-17",
+        "time": "03:00",
         "discipline": "봅슬레이",
         "status": "예정"
       },
       {
-        "date": "2026-02-16",
-        "time": "18:50",
+        "date": "2026-02-17",
+        "time": "03:05",
+        "discipline": "컬링",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-17",
+        "time": "07:30",
         "discipline": "올림픽특집",
         "status": "예정"
       }

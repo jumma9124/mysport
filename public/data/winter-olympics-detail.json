@@ -1,10 +1,10 @@
 {
-  "lastUpdate": "2026-02-16T08:59:57.485Z",
+  "lastUpdate": "2026-02-16T13:21:23.545Z",
   "medals": {
     "gold": 1,
     "silver": 2,
-    "bronze": 2,
-    "total": 5
+    "bronze": 3,
+    "total": 6
   },
   "allCountriesMedals": [
     {
@@ -25,6 +25,14 @@
     },
     {
       "rank": 3,
+      "nation": "네덜란드",
+      "gold": 6,
+      "silver": 5,
+      "bronze": 1,
+      "total": 12
+    },
+    {
+      "rank": 4,
       "nation": "미국",
       "gold": 5,
       "silver": 8,
@@ -32,15 +40,7 @@
       "total": 17
     },
     {
-      "rank": 4,
-      "nation": "네덜란드",
-      "gold": 5,
-      "silver": 5,
-      "bronze": 1,
-      "total": 11
-    },
-    {
-      "rank": 4,
+      "rank": 5,
       "nation": "스웨덴",
       "gold": 5,
       "silver": 5,
@@ -123,24 +123,30 @@
       "rank": 15,
       "nation": "캐나다",
       "gold": 1,
-      "silver": 3,
+      "silver": 4,
       "bronze": 5,
-      "total": 9
+      "total": 10
     },
     {
       "rank": 16,
       "nation": "대한민국",
       "gold": 1,
       "silver": 2,
-      "bronze": 2,
-      "total": 5
+      "bronze": 3,
+      "total": 6
     }
   ],
   "koreaMedalists": [
     {
+      "name": "김길리",
+      "medalType": "bronze",
+      "discipline": "쇼트트랙 여자 1000m",
+      "date": ""
+    },
+    {
       "name": "황대헌",
       "medalType": "silver",
-      "discipline": "쇼트트랙 남자 1500m",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
@@ -207,7 +213,7 @@
     {
       "time": "18:00",
       "discipline": "알파인스키",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "정동현"
       ]
@@ -215,22 +221,22 @@
     {
       "time": "18:00",
       "discipline": "봅슬레이",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "대한민국",
         "대한민국"
       ]
     },
     {
-      "time": "18:50",
+      "time": "19:00",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
       "time": "19:00",
       "discipline": "쇼트트랙",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "최민정",
         "김길리",
@@ -240,50 +246,79 @@
     {
       "time": "19:17",
       "discipline": "쇼트트랙",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "임종언",
         "황대헌"
       ]
     },
     {
+      "time": "19:57",
+      "discipline": "봅슬레이",
+      "status": "종료",
+      "players": [
+        "대한민국",
+        "대한민국"
+      ]
+    },
+    {
+      "time": "20:00",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "최민정",
+        "김길리"
+      ]
+    },
+    {
       "time": "20:06",
       "discipline": "쇼트트랙",
-      "status": "예정",
+      "status": "종료",
       "players": [
         "대한민국"
+      ]
+    },
+    {
+      "time": "20:41",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "잔드라 벨제부르",
+        "코트니 사로",
+        "김길리",
+        "최민정"
       ]
     }
   ],
   "upcomingSchedule": [
     {
-      "date": "2026-02-16",
-      "time": "18:00",
-      "discipline": "알파인스키",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "18:00",
+      "date": "2026-02-17",
+      "time": "03:00",
       "discipline": "봅슬레이",
       "status": "예정"
     },
     {
-      "date": "2026-02-16",
-      "time": "18:50",
+      "date": "2026-02-17",
+      "time": "03:05",
+      "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-17",
+      "time": "07:30",
       "discipline": "올림픽특집",
       "status": "예정"
     },
     {
-      "date": "2026-02-16",
-      "time": "19:00",
-      "discipline": "쇼트트랙",
+      "date": "2026-02-17",
+      "time": "12:30",
+      "discipline": "올림픽특집",
       "status": "예정"
     },
     {
-      "date": "2026-02-16",
-      "time": "19:17",
-      "discipline": "쇼트트랙",
+      "date": "2026-02-17",
+      "time": "19:50",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -1223,7 +1258,7 @@
           "disciplineDetail": "남자 1000m 파이널",
           "status": "종료",
           "players": [
-            "옌스 판트바우트",
+            "옌스 반트바우트",
             "쑨룽",
             "임종언",
             "신동민"
@@ -1299,7 +1334,7 @@
           "disciplineDetail": "남자 1500m 파이널",
           "status": "종료",
           "players": [
-            "옌스 판트바우트",
+            "옌스 반트바우트",
             "황대헌",
             "로버츠 크루즈버그",
             "신동민"
@@ -1311,34 +1346,71 @@
           "date": "2026-02-16",
           "time": "19:00",
           "disciplineDetail": "여자 1000m 준준결승",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "최민정",
             "김길리",
             "노도희"
           ],
-          "scores": null,
+          "scores": [
+            "+0.139",
+            "+0.082",
+            "+3.188"
+          ],
           "result": null
         },
         {
           "date": "2026-02-16",
           "time": "19:17",
           "disciplineDetail": "남자 500m 예선",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "임종언",
             "황대헌"
           ],
-          "scores": null,
+          "scores": [
+            "+0.153",
+            "+0.091"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "20:00",
+          "disciplineDetail": "여자 1000m 준결승",
+          "status": "종료",
+          "players": [
+            "최민정",
+            "김길리"
+          ],
+          "scores": [
+            "+0.310"
+          ],
           "result": null
         },
         {
           "date": "2026-02-16",
           "time": "20:06",
           "disciplineDetail": "남자 5000m 계주 준결승",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국"
+          ],
+          "scores": [
+            "6:52.708"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "20:41",
+          "disciplineDetail": "여자 1000m 파이널",
+          "status": "종료",
+          "players": [
+            "잔드라 벨제부르",
+            "코트니 사로",
+            "김길리",
+            "최민정"
           ],
           "scores": null,
           "result": null
@@ -1360,6 +1432,17 @@
           "disciplineDetail": "여자 1500m 준준결승",
           "status": "예정",
           "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "05:18",
+          "disciplineDetail": "남자 5000m 계주 파이널",
+          "status": "예정",
+          "players": [
+            "대한민국"
+          ],
           "scores": null,
           "result": null
         }
@@ -1685,7 +1768,7 @@
           "date": "2026-02-16",
           "time": "18:00",
           "disciplineDetail": "남자 회전 런1",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "정동현"
           ],
@@ -1727,12 +1810,30 @@
           "date": "2026-02-16",
           "time": "18:00",
           "disciplineDetail": "남자 2인승 런1",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국",
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "+0.85",
+            "+1.59"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-16",
+          "time": "19:57",
+          "disciplineDetail": "남자 2인승 런2",
+          "status": "종료",
+          "players": [
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": [
+            "+1.79",
+            "+2.60"
+          ],
           "result": null
         },
         {
@@ -1742,6 +1843,18 @@
           "status": "예정",
           "players": [
             "김유란"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-18",
+          "time": "03:00",
+          "disciplineDetail": "남자 2인승 런3",
+          "status": "예정",
+          "players": [
+            "대한민국",
+            "대한민국"
           ],
           "scores": null,
           "result": null
