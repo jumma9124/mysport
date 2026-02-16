@@ -59,14 +59,8 @@
       "bronze": 2,
       "total": 5
     },
-    "todayGames": 21,
+    "todayGames": 10,
     "upcomingGames": [
-      {
-        "date": "2026-02-16",
-        "time": "07:00",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
       {
         "date": "2026-02-16",
         "time": "12:30",
@@ -77,6 +71,12 @@
         "date": "2026-02-16",
         "time": "18:00",
         "discipline": "알파인스키",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-16",
+        "time": "18:00",
+        "discipline": "봅슬레이",
         "status": "예정"
       }
     ]
