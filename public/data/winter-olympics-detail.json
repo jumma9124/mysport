@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T02:50:16.495Z",
+  "lastUpdate": "2026-02-16T08:59:57.485Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -201,7 +201,7 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "time": "18:30",
+      "time": "18:50",
       "discipline": "올림픽특집",
       "status": "예정",
       "players": null
@@ -242,8 +242,8 @@
       "discipline": "쇼트트랙",
       "status": "예정",
       "players": [
-        "황대헌",
-        "임종언"
+        "임종언",
+        "황대헌"
       ]
     },
     {
@@ -258,12 +258,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-16",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-16",
       "time": "18:00",
       "discipline": "알파인스키",
       "status": "예정"
@@ -276,13 +270,19 @@
     },
     {
       "date": "2026-02-16",
-      "time": "18:30",
+      "time": "18:50",
       "discipline": "올림픽특집",
       "status": "예정"
     },
     {
       "date": "2026-02-16",
       "time": "19:00",
+      "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-16",
+      "time": "19:17",
       "discipline": "쇼트트랙",
       "status": "예정"
     }
@@ -1028,6 +1028,15 @@
           "result": null
         },
         {
+          "date": "2026-02-20",
+          "time": "00:30",
+          "disciplineDetail": "남자 1500m",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
           "date": "2026-02-21",
           "time": "00:30",
           "disciplineDetail": "여자 1500m",
@@ -1317,8 +1326,8 @@
           "disciplineDetail": "남자 500m 예선",
           "status": "예정",
           "players": [
-            "황대헌",
-            "임종언"
+            "임종언",
+            "황대헌"
           ],
           "scores": null,
           "result": null

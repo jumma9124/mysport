@@ -63,12 +63,6 @@
     "upcomingGames": [
       {
         "date": "2026-02-16",
-        "time": "12:30",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-16",
         "time": "18:00",
         "discipline": "알파인스키",
         "status": "예정"
@@ -77,6 +71,12 @@
         "date": "2026-02-16",
         "time": "18:00",
         "discipline": "봅슬레이",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-16",
+        "time": "18:50",
+        "discipline": "올림픽특집",
         "status": "예정"
       }
     ]
