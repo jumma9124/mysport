@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T16:56:38.478Z",
+  "lastUpdate": "2026-02-16T20:41:30.085Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -12,8 +12,8 @@
       "nation": "노르웨이",
       "gold": 12,
       "silver": 7,
-      "bronze": 8,
-      "total": 27
+      "bronze": 9,
+      "total": 28
     },
     {
       "rank": 2,
@@ -41,6 +41,14 @@
     },
     {
       "rank": 5,
+      "nation": "오스트리아",
+      "gold": 5,
+      "silver": 7,
+      "bronze": 3,
+      "total": 15
+    },
+    {
+      "rank": 6,
       "nation": "스웨덴",
       "gold": 5,
       "silver": 5,
@@ -48,7 +56,7 @@
       "total": 11
     },
     {
-      "rank": 6,
+      "rank": 7,
       "nation": "스위스",
       "gold": 5,
       "silver": 2,
@@ -56,20 +64,12 @@
       "total": 10
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "프랑스",
       "gold": 4,
       "silver": 7,
       "bronze": 4,
       "total": 15
-    },
-    {
-      "rank": 8,
-      "nation": "오스트리아",
-      "gold": 4,
-      "silver": 7,
-      "bronze": 3,
-      "total": 14
     },
     {
       "rank": 9,
@@ -293,15 +293,9 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-17",
-      "time": "03:00",
-      "discipline": "봅슬레이",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-17",
       "time": "03:05",
       "discipline": "컬링",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-17",
@@ -319,6 +313,12 @@
       "date": "2026-02-17",
       "time": "19:50",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-17",
+      "time": "21:00",
+      "discipline": "스노보드",
       "status": "예정"
     }
   ],
@@ -510,12 +510,15 @@
           "date": "2026-02-17",
           "time": "03:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "대한민국",
             "중국"
           ],
-          "scores": null,
+          "scores": [
+            "8",
+            "9"
+          ],
           "result": null
         },
         {
@@ -1840,11 +1843,13 @@
           "date": "2026-02-17",
           "time": "03:00",
           "disciplineDetail": "여자 모노봅 런3",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "김유란"
           ],
-          "scores": null,
+          "scores": [
+            "+4.10"
+          ],
           "result": null
         },
         {
