@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T08:58:24.489Z",
+  "lastUpdate": "2026-02-17T13:21:31.539Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -207,13 +207,13 @@
     {
       "time": "19:50",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
       "time": "21:00",
       "discipline": "스노보드",
-      "status": "예정",
+      "status": "연기",
       "players": [
         "유승은"
       ]
@@ -221,7 +221,7 @@
     {
       "time": "22:05",
       "discipline": "컬링",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "대한민국",
         "스위스"
@@ -231,21 +231,15 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-17",
-      "time": "19:50",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-17",
       "time": "21:00",
       "discipline": "스노보드",
-      "status": "예정"
+      "status": "연기"
     },
     {
       "date": "2026-02-17",
       "time": "22:05",
       "discipline": "컬링",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-18",
@@ -257,6 +251,12 @@
       "date": "2026-02-18",
       "time": "03:00",
       "discipline": "봅슬레이",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "07:30",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -463,12 +463,15 @@
           "date": "2026-02-17",
           "time": "22:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "대한민국",
             "스위스"
           ],
-          "scores": null,
+          "scores": [
+            "1",
+            "0"
+          ],
           "result": null
         },
         {
@@ -865,7 +868,7 @@
           "date": "2026-02-17",
           "time": "21:00",
           "disciplineDetail": "여자 스노보드 슬로프스타일 결승",
-          "status": "예정",
+          "status": "연기",
           "players": [
             "유승은"
           ],

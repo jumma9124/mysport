@@ -63,20 +63,20 @@
     "upcomingGames": [
       {
         "date": "2026-02-17",
-        "time": "19:50",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-17",
         "time": "21:00",
         "discipline": "스노보드",
-        "status": "예정"
+        "status": "연기"
       },
       {
         "date": "2026-02-17",
         "time": "22:05",
         "discipline": "컬링",
+        "status": "경기중"
+      },
+      {
+        "date": "2026-02-18",
+        "time": "02:45",
+        "discipline": "피겨스케이팅",
         "status": "예정"
       }
     ]
