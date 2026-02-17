@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T02:46:21.674Z",
+  "lastUpdate": "2026-02-17T08:58:24.489Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -201,7 +201,7 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
@@ -231,12 +231,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-17",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-17",
       "time": "19:50",
       "discipline": "올림픽특집",
       "status": "예정"
@@ -257,6 +251,12 @@
       "date": "2026-02-18",
       "time": "02:45",
       "discipline": "피겨스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "03:00",
+      "discipline": "봅슬레이",
       "status": "예정"
     }
   ],
