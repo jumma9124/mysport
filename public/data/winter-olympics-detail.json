@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T20:41:30.085Z",
+  "lastUpdate": "2026-02-17T02:46:21.674Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -20,24 +20,24 @@
       "nation": "이탈리아",
       "gold": 8,
       "silver": 4,
-      "bronze": 10,
-      "total": 22
+      "bronze": 11,
+      "total": 23
     },
     {
       "rank": 3,
+      "nation": "미국",
+      "gold": 6,
+      "silver": 8,
+      "bronze": 5,
+      "total": 19
+    },
+    {
+      "rank": 4,
       "nation": "네덜란드",
       "gold": 6,
       "silver": 5,
       "bronze": 1,
       "total": 12
-    },
-    {
-      "rank": 4,
-      "nation": "미국",
-      "gold": 5,
-      "silver": 8,
-      "bronze": 4,
-      "total": 17
     },
     {
       "rank": 5,
@@ -65,6 +65,14 @@
     },
     {
       "rank": 8,
+      "nation": "독일",
+      "gold": 4,
+      "silver": 7,
+      "bronze": 6,
+      "total": 17
+    },
+    {
+      "rank": 9,
       "nation": "프랑스",
       "gold": 4,
       "silver": 7,
@@ -72,20 +80,12 @@
       "total": 15
     },
     {
-      "rank": 9,
-      "nation": "독일",
-      "gold": 4,
-      "silver": 6,
-      "bronze": 5,
-      "total": 15
-    },
-    {
       "rank": 10,
       "nation": "일본",
-      "gold": 3,
+      "gold": 4,
       "silver": 5,
       "bronze": 9,
-      "total": 17
+      "total": 18
     },
     {
       "rank": 11,
@@ -105,6 +105,14 @@
     },
     {
       "rank": 13,
+      "nation": "캐나다",
+      "gold": 2,
+      "silver": 4,
+      "bronze": 5,
+      "total": 11
+    },
+    {
+      "rank": 14,
       "nation": "체코",
       "gold": 2,
       "silver": 2,
@@ -112,20 +120,12 @@
       "total": 4
     },
     {
-      "rank": 14,
+      "rank": 15,
       "nation": "슬로베니아",
       "gold": 2,
       "silver": 1,
       "bronze": 1,
       "total": 4
-    },
-    {
-      "rank": 15,
-      "nation": "캐나다",
-      "gold": 1,
-      "silver": 4,
-      "bronze": 5,
-      "total": 10
     },
     {
       "rank": 16,
@@ -176,30 +176,24 @@
   ],
   "todaySchedule": [
     {
-      "time": "01:03",
-      "discipline": "스피드스케이팅",
+      "time": "03:00",
+      "discipline": "봅슬레이",
       "status": "종료",
       "players": [
-        "펨케 콕",
-        "유타 레이르담",
-        "다카기 미호",
-        "이나현",
-        "김민선"
+        "김유란"
       ]
     },
     {
-      "time": "02:20",
-      "discipline": "스켈레톤",
+      "time": "03:05",
+      "discipline": "컬링",
       "status": "종료",
       "players": [
-        "영국",
-        "독일",
-        "독일",
-        "대한민국"
+        "대한민국",
+        "중국"
       ]
     },
     {
-      "time": "07:00",
+      "time": "07:30",
       "discipline": "올림픽특집",
       "status": "종료",
       "players": null
@@ -207,102 +201,34 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "종료",
+      "status": "예정",
       "players": null
     },
     {
-      "time": "18:00",
-      "discipline": "알파인스키",
-      "status": "종료",
-      "players": [
-        "정동현"
-      ]
-    },
-    {
-      "time": "18:00",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "대한민국",
-        "대한민국"
-      ]
-    },
-    {
-      "time": "19:00",
+      "time": "19:50",
       "discipline": "올림픽특집",
-      "status": "종료",
+      "status": "예정",
       "players": null
     },
     {
-      "time": "19:00",
-      "discipline": "쇼트트랙",
-      "status": "종료",
+      "time": "21:00",
+      "discipline": "스노보드",
+      "status": "예정",
       "players": [
-        "최민정",
-        "김길리",
-        "노도희"
+        "유승은"
       ]
     },
     {
-      "time": "19:17",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "임종언",
-        "황대헌"
-      ]
-    },
-    {
-      "time": "19:57",
-      "discipline": "봅슬레이",
-      "status": "종료",
+      "time": "22:05",
+      "discipline": "컬링",
+      "status": "예정",
       "players": [
         "대한민국",
-        "대한민국"
-      ]
-    },
-    {
-      "time": "20:00",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "최민정",
-        "김길리"
-      ]
-    },
-    {
-      "time": "20:06",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "대한민국"
-      ]
-    },
-    {
-      "time": "20:41",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "잔드라 벨제부르",
-        "코트니 사로",
-        "김길리",
-        "최민정"
+        "스위스"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-17",
-      "time": "03:05",
-      "discipline": "컬링",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "07:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-17",
       "time": "12:30",
@@ -319,6 +245,18 @@
       "date": "2026-02-17",
       "time": "21:00",
       "discipline": "스노보드",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-17",
+      "time": "22:05",
+      "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "02:45",
+      "discipline": "피겨스케이팅",
       "status": "예정"
     }
   ],
@@ -510,16 +448,16 @@
           "date": "2026-02-17",
           "time": "03:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "대한민국",
             "중국"
           ],
           "scores": [
-            "8",
+            "10",
             "9"
           ],
-          "result": null
+          "result": "대한민국 승"
         },
         {
           "date": "2026-02-17",

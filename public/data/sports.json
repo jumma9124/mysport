@@ -59,24 +59,24 @@
       "bronze": 3,
       "total": 6
     },
-    "todayGames": 13,
+    "todayGames": 7,
     "upcomingGames": [
       {
         "date": "2026-02-17",
-        "time": "03:05",
-        "discipline": "컬링",
-        "status": "경기중"
-      },
-      {
-        "date": "2026-02-17",
-        "time": "07:30",
+        "time": "12:30",
         "discipline": "올림픽특집",
         "status": "예정"
       },
       {
         "date": "2026-02-17",
-        "time": "12:30",
+        "time": "19:50",
         "discipline": "올림픽특집",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-17",
+        "time": "21:00",
+        "discipline": "스노보드",
         "status": "예정"
       }
     ]
