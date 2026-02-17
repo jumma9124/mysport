@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T13:21:31.539Z",
+  "lastUpdate": "2026-02-17T17:06:33.029Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -10,53 +10,61 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 12,
-      "silver": 7,
+      "gold": 13,
+      "silver": 8,
       "bronze": 9,
-      "total": 28
+      "total": 30
     },
     {
       "rank": 2,
       "nation": "이탈리아",
-      "gold": 8,
+      "gold": 9,
       "silver": 4,
       "bronze": 11,
-      "total": 23
+      "total": 24
     },
     {
       "rank": 3,
       "nation": "미국",
       "gold": 6,
-      "silver": 8,
+      "silver": 9,
       "bronze": 5,
-      "total": 19
+      "total": 20
     },
     {
       "rank": 4,
       "nation": "네덜란드",
       "gold": 6,
-      "silver": 5,
+      "silver": 6,
       "bronze": 1,
-      "total": 12
+      "total": 13
     },
     {
       "rank": 5,
       "nation": "오스트리아",
       "gold": 5,
-      "silver": 7,
+      "silver": 8,
       "bronze": 3,
-      "total": 15
+      "total": 16
     },
     {
       "rank": 6,
-      "nation": "스웨덴",
+      "nation": "프랑스",
       "gold": 5,
-      "silver": 5,
-      "bronze": 1,
-      "total": 11
+      "silver": 7,
+      "bronze": 4,
+      "total": 16
     },
     {
       "rank": 7,
+      "nation": "스웨덴",
+      "gold": 5,
+      "silver": 5,
+      "bronze": 2,
+      "total": 12
+    },
+    {
+      "rank": 8,
       "nation": "스위스",
       "gold": 5,
       "silver": 2,
@@ -64,7 +72,7 @@
       "total": 10
     },
     {
-      "rank": 8,
+      "rank": 9,
       "nation": "독일",
       "gold": 4,
       "silver": 7,
@@ -72,23 +80,23 @@
       "total": 17
     },
     {
-      "rank": 9,
-      "nation": "프랑스",
-      "gold": 4,
-      "silver": 7,
-      "bronze": 4,
-      "total": 15
-    },
-    {
       "rank": 10,
       "nation": "일본",
       "gold": 4,
       "silver": 5,
-      "bronze": 9,
-      "total": 18
+      "bronze": 10,
+      "total": 19
     },
     {
       "rank": 11,
+      "nation": "캐나다",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 5,
+      "total": 12
+    },
+    {
+      "rank": 12,
       "nation": "호주",
       "gold": 3,
       "silver": 1,
@@ -96,20 +104,12 @@
       "total": 5
     },
     {
-      "rank": 12,
+      "rank": 13,
       "nation": "영국",
       "gold": 3,
       "silver": 0,
       "bronze": 0,
       "total": 3
-    },
-    {
-      "rank": 13,
-      "nation": "캐나다",
-      "gold": 2,
-      "silver": 4,
-      "bronze": 5,
-      "total": 11
     },
     {
       "rank": 14,
@@ -211,17 +211,9 @@
       "players": null
     },
     {
-      "time": "21:00",
-      "discipline": "스노보드",
-      "status": "연기",
-      "players": [
-        "유승은"
-      ]
-    },
-    {
       "time": "22:05",
       "discipline": "컬링",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "대한민국",
         "스위스"
@@ -229,18 +221,6 @@
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-17",
-      "time": "21:00",
-      "discipline": "스노보드",
-      "status": "연기"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "22:05",
-      "discipline": "컬링",
-      "status": "경기중"
-    },
     {
       "date": "2026-02-18",
       "time": "02:45",
@@ -257,6 +237,18 @@
       "date": "2026-02-18",
       "time": "07:30",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "12:30",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "17:05",
+      "discipline": "컬링",
       "status": "예정"
     }
   ],
@@ -463,16 +455,16 @@
           "date": "2026-02-17",
           "time": "22:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "대한민국",
             "스위스"
           ],
           "scores": [
-            "1",
-            "0"
+            "5",
+            "7"
           ],
-          "result": null
+          "result": "스위스 승"
         },
         {
           "date": "2026-02-18",
@@ -865,10 +857,10 @@
           "result": null
         },
         {
-          "date": "2026-02-17",
-          "time": "21:00",
+          "date": "2026-02-18",
+          "time": "22:30",
           "disciplineDetail": "여자 스노보드 슬로프스타일 결승",
-          "status": "연기",
+          "status": "예정",
           "players": [
             "유승은"
           ],
@@ -1715,6 +1707,18 @@
           "status": "종료",
           "players": [
             "정동현"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-18",
+          "time": "18:00",
+          "disciplineDetail": "여자 회전 런1",
+          "status": "예정",
+          "players": [
+            "김소희",
+            "박서윤"
           ],
           "scores": null,
           "result": null
