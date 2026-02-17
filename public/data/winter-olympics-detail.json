@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T17:06:33.029Z",
+  "lastUpdate": "2026-02-17T20:50:02.253Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 13,
+      "gold": 14,
       "silver": 8,
       "bronze": 9,
-      "total": 30
+      "total": 31
     },
     {
       "rank": 2,
@@ -27,9 +27,9 @@
       "rank": 3,
       "nation": "미국",
       "gold": 6,
-      "silver": 9,
+      "silver": 10,
       "bronze": 5,
-      "total": 20
+      "total": 21
     },
     {
       "rank": 4,
@@ -44,8 +44,8 @@
       "nation": "오스트리아",
       "gold": 5,
       "silver": 8,
-      "bronze": 3,
-      "total": 16
+      "bronze": 4,
+      "total": 17
     },
     {
       "rank": 6,
@@ -225,13 +225,13 @@
       "date": "2026-02-18",
       "time": "02:45",
       "discipline": "피겨스케이팅",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-18",
-      "time": "03:00",
+      "time": "05:05",
       "discipline": "봅슬레이",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-18",
@@ -585,12 +585,15 @@
           "date": "2026-02-18",
           "time": "02:45",
           "disciplineDetail": "여자 싱글 쇼트 프로그램",
-          "status": "예정",
+          "status": "경기중",
           "players": [
-            "신지아",
-            "이해인"
+            "이해인",
+            "신지아"
           ],
-          "scores": null,
+          "scores": [
+            "70.07",
+            "65.66"
+          ],
           "result": null
         },
         {
@@ -1801,12 +1804,30 @@
           "date": "2026-02-18",
           "time": "03:00",
           "disciplineDetail": "남자 2인승 런3",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국",
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "+2.80",
+            "+3.74"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-18",
+          "time": "05:05",
+          "disciplineDetail": "남자 2인승 런4",
+          "status": "종료",
+          "players": [
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": [
+            "+3.90",
+            "+4.91"
+          ],
           "result": null
         }
       ]
