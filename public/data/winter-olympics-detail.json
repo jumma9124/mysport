@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-18T02:49:48.143Z",
+  "lastUpdate": "2026-02-18T08:57:53.122Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -214,13 +214,13 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
       "time": "17:05",
       "discipline": "컬링",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "스웨덴",
         "대한민국"
@@ -229,7 +229,7 @@
     {
       "time": "17:45",
       "discipline": "크로스컨트리 스키",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "대한민국"
       ]
@@ -255,21 +255,15 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-18",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-18",
       "time": "17:05",
       "discipline": "컬링",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-18",
       "time": "17:45",
       "discipline": "크로스컨트리 스키",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-18",
@@ -281,6 +275,12 @@
       "date": "2026-02-18",
       "time": "22:30",
       "discipline": "스노보드",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-19",
+      "time": "04:51",
+      "discipline": "쇼트트랙",
       "status": "예정"
     }
   ],
@@ -502,12 +502,15 @@
           "date": "2026-02-18",
           "time": "17:05",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "스웨덴",
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "0",
+            "4"
+          ],
           "result": null
         },
         {
@@ -626,6 +629,18 @@
             "70.07",
             "65.66"
           ],
+          "result": null
+        },
+        {
+          "date": "2026-02-20",
+          "time": "03:00",
+          "disciplineDetail": "여자 싱글 프리 프로그램",
+          "status": "예정",
+          "players": [
+            "이해인",
+            "신지아"
+          ],
+          "scores": null,
           "result": null
         },
         {
@@ -1031,6 +1046,24 @@
             "37.86",
             "38.010"
           ],
+          "result": null
+        },
+        {
+          "date": "2026-02-20",
+          "time": "00:30",
+          "disciplineDetail": "남자 1500m",
+          "status": "예정",
+          "players": null,
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "00:30",
+          "disciplineDetail": "여자 1500m",
+          "status": "예정",
+          "players": null,
+          "scores": null,
           "result": null
         },
         {
