@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T20:50:02.253Z",
+  "lastUpdate": "2026-02-18T02:49:48.143Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -41,6 +41,14 @@
     },
     {
       "rank": 5,
+      "nation": "독일",
+      "gold": 5,
+      "silver": 8,
+      "bronze": 7,
+      "total": 20
+    },
+    {
+      "rank": 6,
       "nation": "오스트리아",
       "gold": 5,
       "silver": 8,
@@ -48,7 +56,7 @@
       "total": 17
     },
     {
-      "rank": 6,
+      "rank": 7,
       "nation": "프랑스",
       "gold": 5,
       "silver": 7,
@@ -56,7 +64,7 @@
       "total": 16
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "스웨덴",
       "gold": 5,
       "silver": 5,
@@ -64,20 +72,12 @@
       "total": 12
     },
     {
-      "rank": 8,
+      "rank": 9,
       "nation": "스위스",
       "gold": 5,
       "silver": 2,
       "bronze": 3,
       "total": 10
-    },
-    {
-      "rank": 9,
-      "nation": "독일",
-      "gold": 4,
-      "silver": 7,
-      "bronze": 6,
-      "total": 17
     },
     {
       "rank": 10,
@@ -176,20 +176,33 @@
   ],
   "todaySchedule": [
     {
+      "time": "02:45",
+      "discipline": "피겨스케이팅",
+      "status": "종료",
+      "players": [
+        "이해인",
+        "신지아"
+      ]
+    },
+    {
       "time": "03:00",
       "discipline": "봅슬레이",
       "status": "종료",
       "players": [
-        "김유란"
+        "대한민국",
+        "대한민국"
       ]
     },
     {
-      "time": "03:05",
-      "discipline": "컬링",
+      "time": "05:05",
+      "discipline": "봅슬레이",
       "status": "종료",
       "players": [
+        "독일",
+        "독일",
+        "독일",
         "대한민국",
-        "중국"
+        "대한민국"
       ]
     },
     {
@@ -201,44 +214,45 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "종료",
+      "status": "예정",
       "players": null
     },
     {
-      "time": "19:50",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "22:05",
+      "time": "17:05",
       "discipline": "컬링",
-      "status": "종료",
+      "status": "예정",
       "players": [
-        "대한민국",
-        "스위스"
+        "스웨덴",
+        "대한민국"
+      ]
+    },
+    {
+      "time": "17:45",
+      "discipline": "크로스컨트리 스키",
+      "status": "예정",
+      "players": [
+        "대한민국"
+      ]
+    },
+    {
+      "time": "18:00",
+      "discipline": "알파인스키",
+      "status": "예정",
+      "players": [
+        "김소희",
+        "박서윤"
+      ]
+    },
+    {
+      "time": "22:30",
+      "discipline": "스노보드",
+      "status": "예정",
+      "players": [
+        "유승은"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-18",
-      "time": "02:45",
-      "discipline": "피겨스케이팅",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "05:05",
-      "discipline": "봅슬레이",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "07:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-18",
       "time": "12:30",
@@ -249,6 +263,24 @@
       "date": "2026-02-18",
       "time": "17:05",
       "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "17:45",
+      "discipline": "크로스컨트리 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "18:00",
+      "discipline": "알파인스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "22:30",
+      "discipline": "스노보드",
       "status": "예정"
     }
   ],
@@ -585,7 +617,7 @@
           "date": "2026-02-18",
           "time": "02:45",
           "disciplineDetail": "여자 싱글 쇼트 프로그램",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "이해인",
             "신지아"
@@ -999,24 +1031,6 @@
             "37.86",
             "38.010"
           ],
-          "result": null
-        },
-        {
-          "date": "2026-02-20",
-          "time": "00:30",
-          "disciplineDetail": "남자 1500m",
-          "status": "예정",
-          "players": null,
-          "scores": null,
-          "result": null
-        },
-        {
-          "date": "2026-02-21",
-          "time": "00:30",
-          "disciplineDetail": "여자 1500m",
-          "status": "예정",
-          "players": null,
-          "scores": null,
           "result": null
         },
         {
@@ -1821,10 +1835,16 @@
           "disciplineDetail": "남자 2인승 런4",
           "status": "종료",
           "players": [
+            "독일",
+            "독일",
+            "독일",
             "대한민국",
             "대한민국"
           ],
           "scores": [
+            "3:39.70",
+            "+1.34",
+            "+1.82",
             "+3.90",
             "+4.91"
           ],
