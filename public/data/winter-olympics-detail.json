@@ -1,10 +1,10 @@
 {
-  "lastUpdate": "2026-02-18T17:14:06.113Z",
+  "lastUpdate": "2026-02-18T20:52:14.181Z",
   "medals": {
-    "gold": 1,
+    "gold": 2,
     "silver": 2,
     "bronze": 3,
-    "total": 6
+    "total": 7
   },
   "allCountriesMedals": [
     {
@@ -19,9 +19,9 @@
       "rank": 2,
       "nation": "이탈리아",
       "gold": 9,
-      "silver": 4,
+      "silver": 5,
       "bronze": 12,
-      "total": 25
+      "total": 26
     },
     {
       "rank": 3,
@@ -41,19 +41,19 @@
     },
     {
       "rank": 5,
+      "nation": "네덜란드",
+      "gold": 6,
+      "silver": 7,
+      "bronze": 2,
+      "total": 15
+    },
+    {
+      "rank": 6,
       "nation": "스웨덴",
       "gold": 6,
       "silver": 6,
       "bronze": 3,
       "total": 15
-    },
-    {
-      "rank": 6,
-      "nation": "네덜란드",
-      "gold": 6,
-      "silver": 6,
-      "bronze": 1,
-      "total": 13
     },
     {
       "rank": 7,
@@ -90,10 +90,10 @@
     {
       "rank": 11,
       "nation": "캐나다",
-      "gold": 3,
+      "gold": 4,
       "silver": 4,
-      "bronze": 5,
-      "total": 12
+      "bronze": 6,
+      "total": 14
     },
     {
       "rank": 12,
@@ -121,34 +121,48 @@
     },
     {
       "rank": 15,
-      "nation": "체코",
-      "gold": 2,
-      "silver": 2,
-      "bronze": 0,
-      "total": 4
-    },
-    {
-      "rank": 16,
-      "nation": "슬로베니아",
-      "gold": 2,
-      "silver": 1,
-      "bronze": 1,
-      "total": 4
-    },
-    {
-      "rank": 17,
       "nation": "대한민국",
-      "gold": 1,
+      "gold": 2,
       "silver": 2,
       "bronze": 3,
-      "total": 6
+      "total": 7
     }
   ],
   "koreaMedalists": [
     {
       "name": "김길리",
+      "medalType": "gold",
+      "discipline": "쇼트트랙 여자 3000m 계주",
+      "date": ""
+    },
+    {
+      "name": "김길리",
       "medalType": "bronze",
-      "discipline": "쇼트트랙 여자 1000m",
+      "discipline": "쇼트트랙 여자 3000m 계주",
+      "date": ""
+    },
+    {
+      "name": "노도희",
+      "medalType": "gold",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "심석희",
+      "medalType": "gold",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "이소연",
+      "medalType": "gold",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "최민정",
+      "medalType": "gold",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
@@ -266,12 +280,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-19",
-      "time": "04:51",
-      "discipline": "쇼트트랙",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-19",
       "time": "07:00",
       "discipline": "올림픽특집",
       "status": "예정"
@@ -292,6 +300,12 @@
       "date": "2026-02-20",
       "time": "00:30",
       "discipline": "스피드스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "03:00",
+      "discipline": "피겨스케이팅",
       "status": "예정"
     }
   ],
@@ -1426,9 +1440,11 @@
           "date": "2026-02-19",
           "time": "04:51",
           "disciplineDetail": "여자 3000m 계주 파이널",
-          "status": "예정",
+          "status": "종료",
           "players": [
-            "대한민국"
+            "대한민국",
+            "이탈리아",
+            "캐나다"
           ],
           "scores": null,
           "result": null
