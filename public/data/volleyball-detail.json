@@ -12,13 +12,13 @@
     },
     {
       "name": "대한항공",
-      "wins": 18,
+      "wins": 19,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.4,
+      "setRate": 1.467,
       "rank": 2,
-      "points": 54
+      "points": 57
     },
     {
       "name": "KB손해보험",
@@ -33,10 +33,10 @@
     {
       "name": "OK저축은행",
       "wins": 15,
-      "losses": 14,
+      "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.033,
+      "setRate": 0.984,
       "rank": 4,
       "points": 45
     },
@@ -124,23 +124,23 @@
     },
     {
       "name": "페퍼저축은행",
-      "wins": 12,
+      "wins": 13,
       "losses": 17,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.787,
+      "setRate": 0.81,
       "rank": 6,
-      "points": 36
+      "points": 38
     },
     {
       "name": "정관장",
       "wins": 6,
-      "losses": 23,
+      "losses": 24,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.427,
+      "setRate": 0.436,
       "rank": 7,
-      "points": 19
+      "points": 20
     }
   ],
   "recentMatches": [
