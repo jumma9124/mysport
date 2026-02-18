@@ -62,12 +62,6 @@
     "todayGames": 9,
     "upcomingGames": [
       {
-        "date": "2026-02-18",
-        "time": "22:30",
-        "discipline": "스노보드",
-        "status": "경기중"
-      },
-      {
         "date": "2026-02-19",
         "time": "04:51",
         "discipline": "쇼트트랙",
@@ -75,8 +69,14 @@
       },
       {
         "date": "2026-02-19",
-        "time": "06:40",
+        "time": "07:00",
         "discipline": "올림픽특집",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-19",
+        "time": "18:30",
+        "discipline": "프리스타일 스키",
         "status": "예정"
       }
     ]

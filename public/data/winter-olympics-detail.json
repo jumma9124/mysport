@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-18T13:23:28.402Z",
+  "lastUpdate": "2026-02-18T17:14:06.113Z",
   "medals": {
     "gold": 1,
     "silver": 2,
@@ -12,8 +12,8 @@
       "nation": "노르웨이",
       "gold": 15,
       "silver": 8,
-      "bronze": 9,
-      "total": 32
+      "bronze": 10,
+      "total": 33
     },
     {
       "rank": 2,
@@ -26,13 +26,29 @@
     {
       "rank": 3,
       "nation": "미국",
-      "gold": 6,
+      "gold": 7,
       "silver": 11,
       "bronze": 6,
-      "total": 23
+      "total": 24
     },
     {
       "rank": 4,
+      "nation": "프랑스",
+      "gold": 6,
+      "silver": 7,
+      "bronze": 4,
+      "total": 17
+    },
+    {
+      "rank": 5,
+      "nation": "스웨덴",
+      "gold": 6,
+      "silver": 6,
+      "bronze": 3,
+      "total": 15
+    },
+    {
+      "rank": 6,
       "nation": "네덜란드",
       "gold": 6,
       "silver": 6,
@@ -40,15 +56,7 @@
       "total": 13
     },
     {
-      "rank": 5,
-      "nation": "스웨덴",
-      "gold": 6,
-      "silver": 5,
-      "bronze": 2,
-      "total": 13
-    },
-    {
-      "rank": 6,
+      "rank": 7,
       "nation": "독일",
       "gold": 5,
       "silver": 8,
@@ -56,7 +64,7 @@
       "total": 21
     },
     {
-      "rank": 7,
+      "rank": 8,
       "nation": "오스트리아",
       "gold": 5,
       "silver": 8,
@@ -64,28 +72,20 @@
       "total": 17
     },
     {
-      "rank": 8,
-      "nation": "프랑스",
-      "gold": 5,
-      "silver": 7,
-      "bronze": 4,
-      "total": 16
-    },
-    {
       "rank": 9,
-      "nation": "스위스",
+      "nation": "일본",
       "gold": 5,
-      "silver": 3,
-      "bronze": 3,
-      "total": 11
+      "silver": 6,
+      "bronze": 11,
+      "total": 22
     },
     {
       "rank": 10,
-      "nation": "일본",
-      "gold": 4,
-      "silver": 6,
-      "bronze": 10,
-      "total": 20
+      "nation": "스위스",
+      "gold": 5,
+      "silver": 4,
+      "bronze": 3,
+      "total": 12
     },
     {
       "rank": 11,
@@ -254,29 +254,20 @@
     {
       "time": "22:30",
       "discipline": "스노보드",
-      "status": "경기중",
+      "status": "종료",
       "players": [
+        "후카다 마리",
+        "조이 사도우스키-시놋",
+        "무라세 코코모",
         "유승은"
       ]
     }
   ],
   "upcomingSchedule": [
     {
-      "date": "2026-02-18",
-      "time": "22:30",
-      "discipline": "스노보드",
-      "status": "경기중"
-    },
-    {
       "date": "2026-02-19",
       "time": "04:51",
       "discipline": "쇼트트랙",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-19",
-      "time": "06:40",
-      "discipline": "올림픽특집",
       "status": "예정"
     },
     {
@@ -287,8 +278,20 @@
     },
     {
       "date": "2026-02-19",
+      "time": "18:30",
+      "discipline": "프리스타일 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-19",
       "time": "22:05",
       "discipline": "컬링",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "00:30",
+      "discipline": "스피드스케이팅",
       "status": "예정"
     }
   ],
@@ -918,11 +921,19 @@
           "date": "2026-02-18",
           "time": "22:30",
           "disciplineDetail": "여자 스노보드 슬로프스타일 결승",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "후카다 마리",
+            "조이 사도우스키-시놋",
+            "무라세 코코모",
             "유승은"
           ],
-          "scores": null,
+          "scores": [
+            "87.83",
+            "87.48",
+            "85.80",
+            "34.18"
+          ],
           "result": null
         }
       ]
@@ -1061,7 +1072,9 @@
           "time": "00:30",
           "disciplineDetail": "남자 1500m",
           "status": "예정",
-          "players": null,
+          "players": [
+            "정재원"
+          ],
           "scores": null,
           "result": null
         },
