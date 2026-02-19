@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-19T02:49:05.226Z",
+  "lastUpdate": "2026-02-19T08:57:15.384Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -138,61 +138,61 @@
     {
       "name": "김길리",
       "medalType": "bronze",
-      "discipline": "쇼트트랙 여자 1000m",
+      "discipline": "쇼트트랙 여자 3000m 계주",
       "date": ""
     },
     {
       "name": "노도희",
       "medalType": "gold",
-      "discipline": "쇼트트랙 여자 3000m 계주",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
       "name": "심석희",
       "medalType": "gold",
-      "discipline": "쇼트트랙 여자 3000m 계주",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
       "name": "이소연",
       "medalType": "gold",
-      "discipline": "쇼트트랙 여자 3000m 계주",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
       "name": "최민정",
       "medalType": "gold",
-      "discipline": "쇼트트랙 여자 3000m 계주",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
       "name": "황대헌",
       "medalType": "silver",
-      "discipline": "쇼트트랙 남자 1500m",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
       "name": "임종언",
       "medalType": "bronze",
-      "discipline": "쇼트트랙 남자 1000m",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
       "name": "최가온",
       "medalType": "gold",
-      "discipline": "스노보드 여자 하프파이프",
+      "discipline": "스노보드",
       "date": ""
     },
     {
       "name": "유승은",
       "medalType": "bronze",
-      "discipline": "스노보드 여자 빅에어",
+      "discipline": "스노보드",
       "date": ""
     },
     {
       "name": "김상겸",
       "medalType": "silver",
-      "discipline": "스노보드 남자 평행대회전",
+      "discipline": "스노보드",
       "date": ""
     }
   ],
@@ -216,7 +216,7 @@
     {
       "time": "18:30",
       "discipline": "프리스타일 스키",
-      "status": "예정",
+      "status": "연기",
       "players": [
         "이승훈",
         "문희성"
@@ -237,7 +237,7 @@
       "date": "2026-02-19",
       "time": "18:30",
       "discipline": "프리스타일 스키",
-      "status": "예정"
+      "status": "연기"
     },
     {
       "date": "2026-02-19",
