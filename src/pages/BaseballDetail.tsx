@@ -73,24 +73,14 @@ const BaseballDetail = () => {
         <header className="mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                background: 'rgba(76, 175, 80, 0.2)',
-                borderColor: 'rgba(76, 175, 80, 0.5)',
-                color: '#4caf50',
-                fontSize: '16px',
-                fontWeight: 700
-              }}>
+              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
                 ✓
               </div>
               <h1 className="text-3xl font-bold text-white">{data.team}</h1>
             </div>
             <Link
               to="/"
-              className="text-white hover:opacity-80 inline-flex items-center px-4 py-2 rounded-lg transition-opacity"
-              style={{
-                background: 'rgb(32, 34, 52)',
-                border: '1px solid rgba(255, 255, 255, 0.2)'
-              }}
+              className="text-white hover:opacity-80 inline-flex items-center px-4 py-2 rounded-lg transition-opacity bg-card border border-white/20"
             >
               ← 돌아가기
             </Link>
@@ -102,36 +92,24 @@ const BaseballDetail = () => {
           <RankChart />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-10 gap-6" style={{ alignItems: 'stretch' }}>
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-6 items-stretch">
           {/* 왼쪽: 리그 순위 (4:6 비율) */}
           <div className="md:col-span-4">
-            <div ref={leagueStandingsRef} className="w-full" style={{
-              background: 'rgb(32, 34, 52)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '15px',
-              padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}>
+            <div ref={leagueStandingsRef} className="w-full bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
               <div className="flex items-center mb-4">
-                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                  background: 'rgba(76, 175, 80, 0.2)',
-                  borderColor: 'rgba(76, 175, 80, 0.5)',
-                  color: '#4caf50',
-                  fontSize: '14px',
-                  fontWeight: 700
-                }}>
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
                   ✓
                 </div>
                 <h2 className="text-xl font-bold text-white">리그 순위</h2>
               </div>
 
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <table className="w-full border-collapse">
                   <thead>
-                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                      <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>팀</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>전적</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>승률</th>
+                    <tr className="border-b border-white/10">
+                      <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">순위</th>
+                      <th className="px-2 py-2.5 text-left text-white/70 text-sm font-semibold">팀</th>
+                      <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">전적</th>
+                      <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">승률</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -141,15 +119,12 @@ const BaseballDetail = () => {
                       return (
                         <tr
                           key={team.name}
-                          style={{
-                            background: isOurTeam ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
-                            borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-                          }}
+                          className={`border-b border-white/5 ${isOurTeam ? 'bg-accent-green/20' : ''}`}
                         >
-                          <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{team.rank}</td>
-                          <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{team.name}</td>
-                          <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.wins}-{team.losses}-{team.draws}</td>
-                          <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{team.winRate?.toFixed(3) || '0.000'}</td>
+                          <td className="px-2 py-3 text-center text-white text-sm font-semibold">{team.rank}</td>
+                          <td className="px-2 py-3 text-left text-white text-sm font-semibold">{team.name}</td>
+                          <td className="px-2 py-3 text-center text-white text-sm">{team.wins}-{team.losses}-{team.draws}</td>
+                          <td className="px-2 py-3 text-center text-white text-sm">{team.winRate?.toFixed(3) || '0.000'}</td>
                         </tr>
                       );
                     })}
@@ -159,41 +134,28 @@ const BaseballDetail = () => {
           </div>
 
           {/* 오른쪽: 투수/타자 기록 (4:6 비율) */}
-          <div className="md:col-span-6" style={{ display: 'flex' }}>
-            <div className="flex flex-col w-full" style={{
-              background: 'rgb(32, 34, 52)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '15px',
-              padding: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              height: playerRecordsHeight ? `${playerRecordsHeight}px` : 'auto'
-            }}>
+          <div className="md:col-span-6 flex">
+            <div
+              className="flex flex-col w-full bg-card backdrop-blur-card rounded-card p-5 border border-white/20"
+              style={playerRecordsHeight ? { height: `${playerRecordsHeight}px` } : {}}
+            >
               {/* 헤더 */}
               <div className="flex items-center mb-4">
-                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                  background: 'rgba(76, 175, 80, 0.2)',
-                  borderColor: 'rgba(76, 175, 80, 0.5)',
-                  color: '#4caf50',
-                  fontSize: '14px',
-                  fontWeight: 700
-                }}>
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
                   ✓
                 </div>
                 <h2 className="text-xl font-bold text-white">선수 기록</h2>
               </div>
 
               {/* 탭 */}
-              <div className="flex mb-4" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <div className="flex mb-4 border-b border-white/10">
                 <button
                   onClick={() => setActiveTab('pitcher')}
                   className={`px-4 py-2 font-semibold ${
                     activeTab === 'pitcher'
-                      ? 'text-white'
+                      ? 'text-white border-b-2 border-accent-green/50'
                       : 'text-gray-500'
                   }`}
-                  style={activeTab === 'pitcher' ? {
-                    borderBottom: '2px solid rgba(76, 175, 80, 0.5)'
-                  } : {}}
                 >
                   투수 기록
                 </button>
@@ -201,33 +163,30 @@ const BaseballDetail = () => {
                   onClick={() => setActiveTab('batter')}
                   className={`px-4 py-2 font-semibold ${
                     activeTab === 'batter'
-                      ? 'text-white'
+                      ? 'text-white border-b-2 border-accent-green/50'
                       : 'text-gray-500'
                   }`}
-                  style={activeTab === 'batter' ? {
-                    borderBottom: '2px solid rgba(76, 175, 80, 0.5)'
-                  } : {}}
                 >
                   타자 기록
                 </button>
               </div>
 
               {/* 탭 내용 */}
-              <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', minHeight: 0 }}>
+              <div className="flex-1 overflow-y-auto overflow-x-auto min-h-0">
                 {activeTab === 'pitcher' ? (
                   <div>
                     {data.pitchers.length > 0 ? (
                       <div>
-                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <table className="w-full border-collapse">
                           <thead>
-                            <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>순위</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>선수</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>평균자책</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>경기</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>승</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>패</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>탈삼진</th>
+                            <tr className="border-b border-white/10">
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">순위</th>
+                              <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">평균자책</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">경기</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">승</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">패</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">탈삼진</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -240,25 +199,22 @@ const BaseballDetail = () => {
                                 return (
                                   <tr
                                     key={idx}
-                                    style={{
-                                      background: isHanwha ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
-                                      borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-                                    }}
+                                    className={`border-b border-white/5 ${isHanwha ? 'bg-accent-green/20' : ''}`}
                                   >
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{idx + 1}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'left' }}>
-                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                                        <span style={{ color: isHanwha ? '#4caf50' : 'white', fontSize: '14px', fontWeight: 600 }}>{player.name}</span>
+                                    <td className="px-2 py-3 text-center text-white text-sm font-semibold">{idx + 1}</td>
+                                    <td className="px-2 py-3 text-left">
+                                      <div className="flex flex-col gap-0.5">
+                                        <span className={`text-sm font-semibold ${isHanwha ? 'text-accent-green' : 'text-white'}`}>{player.name}</span>
                                         {player.team && (
-                                          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px' }}>{player.team}</span>
+                                          <span className="text-white/50 text-[11px]">{player.team}</span>
                                         )}
                                       </div>
                                     </td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.era > 0 ? player.era.toFixed(2) : '-'}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>-</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.wins || 0}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.losses || 0}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.so || 0}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.era > 0 ? player.era.toFixed(2) : '-'}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">-</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.wins || 0}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.losses || 0}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.so || 0}</td>
                                   </tr>
                                 );
                               })}
@@ -266,7 +222,7 @@ const BaseballDetail = () => {
                         </table>
                       </div>
                     ) : (
-                      <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                      <div className="text-center py-8 text-white/50">
                         데이터 없음
                       </div>
                     )}
@@ -275,15 +231,15 @@ const BaseballDetail = () => {
                   <div>
                     {data.batters.length > 0 ? (
                       <div>
-                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <table className="w-full border-collapse">
                           <thead>
-                            <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>순위</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>선수</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>타율</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>안타</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>홈런</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>타점</th>
+                            <tr className="border-b border-white/10">
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">순위</th>
+                              <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타율</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">안타</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">홈런</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타점</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -295,24 +251,21 @@ const BaseballDetail = () => {
                                 return (
                                   <tr
                                     key={idx}
-                                    style={{
-                                      background: isHanwha ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
-                                      borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-                                    }}
+                                    className={`border-b border-white/5 ${isHanwha ? 'bg-accent-green/20' : ''}`}
                                   >
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{idx + 1}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'left' }}>
-                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                                        <span style={{ color: isHanwha ? '#4caf50' : 'white', fontSize: '14px', fontWeight: 600 }}>{player.name}</span>
+                                    <td className="px-2 py-3 text-center text-white text-sm font-semibold">{idx + 1}</td>
+                                    <td className="px-2 py-3 text-left">
+                                      <div className="flex flex-col gap-0.5">
+                                        <span className={`text-sm font-semibold ${isHanwha ? 'text-accent-green' : 'text-white'}`}>{player.name}</span>
                                         {player.team && (
-                                          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px' }}>{player.team}</span>
+                                          <span className="text-white/50 text-[11px]">{player.team}</span>
                                         )}
                                       </div>
                                     </td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.avg > 0 ? player.avg.toFixed(3) : '-'}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.hits || 0}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.hr || 0}</td>
-                                    <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{player.rbi || 0}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.avg > 0 ? player.avg.toFixed(3) : '-'}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.hits || 0}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.hr || 0}</td>
+                                    <td className="px-2 py-3 text-center text-white text-sm">{player.rbi || 0}</td>
                                   </tr>
                                 );
                               })}
@@ -320,7 +273,7 @@ const BaseballDetail = () => {
                         </table>
                       </div>
                     ) : (
-                      <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                      <div className="text-center py-8 text-white/50">
                         데이터 없음
                       </div>
                     )}
@@ -333,21 +286,9 @@ const BaseballDetail = () => {
 
         {/* 시즌 중: 지난 시리즈 경기결과 */}
         {isInSeason && (
-          <div className="mt-6" style={{
-            background: 'rgb(32, 34, 52)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '15px',
-            padding: '20px',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
-          }}>
+          <div className="mt-6 bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
             <div className="flex items-center mb-4">
-              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                background: 'rgba(76, 175, 80, 0.2)',
-                borderColor: 'rgba(76, 175, 80, 0.5)',
-                color: '#4caf50',
-                fontSize: '14px',
-                fontWeight: 700
-              }}>
+              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
                 ✓
               </div>
               <h2 className="text-xl font-bold text-white">한화 지난 시리즈 경기결과</h2>
@@ -355,7 +296,7 @@ const BaseballDetail = () => {
             {data.currentSeries && data.currentSeries.games && data.currentSeries.games.length > 0 ? (
               <div className="space-y-3">
                 {data.currentSeries.games.map((game, idx) => (
-                  <div key={idx} className="rounded-lg" style={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  <div key={idx} className="rounded-lg border border-white/10">
                     <button
                       onClick={() => toggleGame(idx)}
                       className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
@@ -363,11 +304,11 @@ const BaseballDetail = () => {
                       <div className="flex items-center gap-4">
                         <span className="text-white font-semibold">vs {data.currentSeries?.opponent}</span>
                         <span
-                          className="px-2 py-0.5 rounded text-sm"
-                          style={{
-                            backgroundColor: game.result === 'win' ? 'rgba(76, 175, 80, 0.15)' : game.result === 'loss' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(156, 163, 175, 0.15)',
-                            color: game.result === 'win' ? 'rgba(76, 175, 80, 0.7)' : game.result === 'loss' ? 'rgba(239, 68, 68, 0.7)' : 'rgba(156, 163, 175, 0.7)'
-                          }}
+                          className={`px-2 py-0.5 rounded text-sm ${
+                            game.result === 'win' ? 'bg-accent-green/[0.15] text-accent-green/70' :
+                            game.result === 'loss' ? 'bg-red-500/[0.15] text-red-500/70' :
+                            'bg-gray-400/[0.15] text-gray-400/70'
+                          }`}
                         >
                           {game.result === 'win' ? '승' : game.result === 'loss' ? '패' : '무'} ({game.score})
                         </span>
@@ -384,39 +325,39 @@ const BaseballDetail = () => {
                           {game.innings && game.innings.length > 0 && (
                             <div className="mb-4">
                               <h4 className="text-sm font-semibold text-white mb-2">이닝별 점수</h4>
-                              <div style={{ overflowX: 'auto' }}>
-                                <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse' }}>
+                              <div className="overflow-x-auto">
+                                <table className="w-full min-w-[500px] border-collapse">
                                   <thead>
-                                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                      <th style={{ padding: '8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>팀</th>
+                                    <tr className="border-b border-white/10">
+                                      <th className="p-2 text-left text-white/70 text-xs">팀</th>
                                       {game.innings.map((inning) => (
-                                        <th key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>
+                                        <th key={inning.inning} className="p-2 text-center text-white/70 text-xs">
                                           {inning.inning}
                                         </th>
                                       ))}
-                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px', fontWeight: 600 }}>R</th>
+                                      <th className="p-2 text-center text-white/70 text-xs font-semibold">R</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                      <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.team}</td>
+                                    <tr className="border-b border-white/5">
+                                      <td className="p-2 text-white text-[13px] font-semibold">{data.team}</td>
                                       {game.innings.map((inning) => (
-                                        <td key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>
+                                        <td key={inning.inning} className="p-2 text-center text-white text-[13px]">
                                           {inning.ourScore}
                                         </td>
                                       ))}
-                                      <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px', fontWeight: 600 }}>
+                                      <td className="p-2 text-center text-white text-[13px] font-semibold">
                                         {game.innings.reduce((sum, inning) => sum + inning.ourScore, 0)}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries?.opponent}</td>
+                                      <td className="p-2 text-white text-[13px] font-semibold">{data.currentSeries?.opponent}</td>
                                       {game.innings.map((inning) => (
-                                        <td key={inning.inning} style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>
+                                        <td key={inning.inning} className="p-2 text-center text-white text-[13px]">
                                           {inning.opponentScore}
                                         </td>
                                       ))}
-                                      <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px', fontWeight: 600 }}>
+                                      <td className="p-2 text-center text-white text-[13px] font-semibold">
                                         {game.innings.reduce((sum, inning) => sum + inning.opponentScore, 0)}
                                       </td>
                                     </tr>
@@ -430,31 +371,31 @@ const BaseballDetail = () => {
                           {(game.ourTeamStats || game.opponentStats) && (
                             <div>
                               <h4 className="text-sm font-semibold text-white mb-2">팀 기록</h4>
-                              <div style={{ overflowX: 'auto' }}>
-                                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                              <div className="overflow-x-auto">
+                                <table className="w-full border-collapse">
                                   <thead>
-                                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                      <th style={{ padding: '8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>팀</th>
-                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>안타</th>
-                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>홈런</th>
-                                      <th style={{ padding: '8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>실책</th>
+                                    <tr className="border-b border-white/10">
+                                      <th className="p-2 text-left text-white/70 text-xs">팀</th>
+                                      <th className="p-2 text-center text-white/70 text-xs">안타</th>
+                                      <th className="p-2 text-center text-white/70 text-xs">홈런</th>
+                                      <th className="p-2 text-center text-white/70 text-xs">실책</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     {game.ourTeamStats && (
-                                      <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                        <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.team}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.ourTeamStats.hits}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.ourTeamStats.homeRuns}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.ourTeamStats.errors}</td>
+                                      <tr className="border-b border-white/5">
+                                        <td className="p-2 text-white text-[13px] font-semibold">{data.team}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.hits}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.homeRuns}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.errors}</td>
                                       </tr>
                                     )}
                                     {game.opponentStats && (
                                       <tr>
-                                        <td style={{ padding: '8px', color: 'white', fontSize: '13px', fontWeight: 600 }}>{data.currentSeries?.opponent}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.hits}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.homeRuns}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center', color: 'white', fontSize: '13px' }}>{game.opponentStats.errors}</td>
+                                        <td className="p-2 text-white text-[13px] font-semibold">{data.currentSeries?.opponent}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.hits}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.homeRuns}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.errors}</td>
                                       </tr>
                                     )}
                                   </tbody>
@@ -469,7 +410,7 @@ const BaseballDetail = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <div className="text-center py-8 text-white/50">
                 데이터 없음
               </div>
             )}
@@ -477,38 +418,20 @@ const BaseballDetail = () => {
         )}
 
         {/* 상대전적 - 하단 */}
-        <div className="mt-6" style={{
-          background: 'rgb(32, 34, 52)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '15px',
-          padding: '20px',
-          border: '1px solid rgba(255, 255, 255, 0.2)'
-        }}>
+        <div className="mt-6 bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
           <div className="flex items-center mb-4">
-            <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-              background: 'rgba(76, 175, 80, 0.2)',
-              borderColor: 'rgba(76, 175, 80, 0.5)',
-              color: '#4caf50',
-              fontSize: '14px',
-              fontWeight: 700
-            }}>
+            <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
               ✓
             </div>
             <h2 className="text-xl font-bold text-white">상대전적</h2>
           </div>
           {data.headToHead.length > 0 ? (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
                 <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  <tr className="border-b border-white/10">
                     {data.headToHead.map((h2h, idx) => (
-                      <th key={idx} style={{
-                        padding: '10px 12px',
-                        textAlign: 'center',
-                        color: 'rgba(255,255,255,0.7)',
-                        fontSize: '14px',
-                        fontWeight: 600
-                      }}>
+                      <th key={idx} className="px-3 py-2.5 text-center text-white/70 text-sm font-semibold">
                         {h2h.opponent}
                       </th>
                     ))}
@@ -517,13 +440,7 @@ const BaseballDetail = () => {
                 <tbody>
                   <tr>
                     {data.headToHead.map((h2h, idx) => (
-                      <td key={idx} style={{
-                        padding: '12px',
-                        textAlign: 'center',
-                        color: 'white',
-                        fontSize: '14px',
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-                      }}>
+                      <td key={idx} className="p-3 text-center text-white text-sm border-b border-white/5">
                         {h2h.wins}-{h2h.losses}-{h2h.draws}
                       </td>
                     ))}
@@ -532,7 +449,7 @@ const BaseballDetail = () => {
               </table>
             </div>
           ) : (
-            <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            <div className="text-center py-8 text-white/50">
               데이터 없음
             </div>
           )}

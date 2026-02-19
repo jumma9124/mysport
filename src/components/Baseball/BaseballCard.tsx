@@ -45,19 +45,13 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
     };
   }, []);
 
-  const borderStyle = isInSeason
-    ? '2px solid #f97316' // 주황색 테두리
-    : '1px solid rgba(255, 255, 255, 0.2)';
+  const borderClass = isInSeason
+    ? 'border-2 border-orange-500'
+    : 'border border-white/20';
 
   if (loading || !data) {
     return (
-      <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
-        background: 'rgb(32, 34, 52)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '15px',
-        padding: '20px',
-        border: borderStyle
-      }}>
+      <div className={`animate-pulse h-full flex flex-col overflow-auto bg-card backdrop-blur-card rounded-card p-5 ${borderClass}`}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
       </div>
@@ -69,23 +63,11 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
 
   return (
     <Link to="/baseball" className="block h-full">
-      <div className="transition-colors cursor-pointer h-full flex flex-col overflow-auto" style={{
-        background: 'rgb(32, 34, 52)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '15px',
-        padding: '20px',
-        border: borderStyle
-      }}>
+      <div className={`transition-colors cursor-pointer h-full flex flex-col overflow-auto bg-card backdrop-blur-card rounded-card p-5 ${borderClass}`}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
-            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-              background: 'rgba(76, 175, 80, 0.2)',
-              borderColor: 'rgba(76, 175, 80, 0.5)',
-              color: '#4caf50',
-              fontSize: '16px',
-              fontWeight: 700
-            }}>
+            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
               ✓
             </div>
             <h2 className="text-xl font-bold text-white">
@@ -104,12 +86,12 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
         {/* 전적 정보 */}
         <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
           <div className="flex items-center justify-between">
-            <span className="text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <span className="text-base text-white/70">
               전적 / 승률{isOffSeason ? ' / 시즌 종료' : ''}
             </span>
             <span className="text-base text-white">
               {data.record.wins}승 {data.record.losses}패 {data.record.draws}무
-              <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.4)' }}>/</span>
+              <span className="mx-2 text-white/40">/</span>
               승률 .{(data.record.winRate * 1000).toFixed(0)}
             </span>
           </div>
@@ -125,11 +107,11 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
                   <div className="flex items-center gap-2">
                     <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
                     <span
-                      className="px-2 py-0.5 rounded text-sm"
-                      style={{
-                        backgroundColor: data.lastSeries.result === 'win' ? 'rgba(76, 175, 80, 0.15)' : data.lastSeries.result === 'loss' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(156, 163, 175, 0.15)',
-                        color: data.lastSeries.result === 'win' ? 'rgba(76, 175, 80, 0.7)' : data.lastSeries.result === 'loss' ? 'rgba(239, 68, 68, 0.7)' : 'rgba(156, 163, 175, 0.7)'
-                      }}
+                      className={`px-2 py-0.5 rounded text-sm ${
+                        data.lastSeries.result === 'win' ? 'bg-accent-green/[0.15] text-accent-green/70' :
+                        data.lastSeries.result === 'loss' ? 'bg-red-500/[0.15] text-red-500/70' :
+                        'bg-gray-400/[0.15] text-gray-400/70'
+                      }`}
                     >
                       {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
                     </span>
@@ -152,7 +134,7 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-base text-white">vs {data.currentSeries.opponent}</span>
-                    <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                    <span className="text-sm text-white/70">
                       {data.currentSeries.wins}승 {data.currentSeries.losses}패
                     </span>
                   </div>

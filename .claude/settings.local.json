@@ -39,7 +39,10 @@
       "Bash(git stash:*)",
       "Bash(npm run lint)",
       "Bash(node scripts/crawl-winter-olympics.cjs:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(del:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(git rebase:*)"
     ]
   }
 }

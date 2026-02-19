@@ -83,20 +83,10 @@ const RankChart = () => {
   };
 
   return (
-    <div className="rounded-lg p-6" style={{
-      background: 'rgb(32, 34, 52)',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.2)'
-    }}>
+    <div className="rounded-lg p-6 bg-card backdrop-blur-card border border-white/20">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
-          <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-            background: 'rgba(76, 175, 80, 0.2)',
-            borderColor: 'rgba(76, 175, 80, 0.5)',
-            color: '#4caf50',
-            fontSize: '14px',
-            fontWeight: 700
-          }}>
+          <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
             ✓
           </div>
           <h2 className="text-xl font-bold text-white">시즌 순위</h2>
@@ -113,7 +103,7 @@ const RankChart = () => {
         </div>
       </div>
 
-      <div className="relative" style={{ height: `${chartHeight}px` }}>
+      <div className="relative h-[200px]">
         <svg
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
           preserveAspectRatio="none"

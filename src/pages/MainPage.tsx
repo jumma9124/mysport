@@ -26,13 +26,7 @@ const MainPage = () => {
       area2={getCardComponent(sortedSports[1].sport, sortedSports[1].inSeason)}
       area3={getCardComponent(sortedSports[2].sport, sortedSports[2].inSeason)}
       area4={
-        <div className="h-full flex flex-col overflow-auto" style={{
-          background: 'rgb(32, 34, 52)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '15px',
-          padding: '20px',
-          border: '1px solid rgba(255, 255, 255, 0.2)'
-        }}>
+        <div className="h-full flex flex-col overflow-auto bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
           {/* 빈 영역 */}
         </div>
       }

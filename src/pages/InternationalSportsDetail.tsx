@@ -132,24 +132,14 @@ const InternationalSportsDetail = () => {
         <header className="mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                background: 'rgba(76, 175, 80, 0.2)',
-                borderColor: 'rgba(76, 175, 80, 0.5)',
-                color: '#4caf50',
-                fontSize: '16px',
-                fontWeight: 700
-              }}>
+              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
                 ✓
               </div>
               <h1 className="text-3xl font-bold text-white">주요 스포츠 이벤트</h1>
             </div>
             <Link
               to="/"
-              className="text-white hover:opacity-80 inline-flex items-center px-4 py-2 rounded-lg transition-opacity"
-              style={{
-                background: 'rgb(32, 34, 52)',
-                border: '1px solid rgba(255, 255, 255, 0.2)'
-              }}
+              className="text-white hover:opacity-80 inline-flex items-center px-4 py-2 rounded-lg transition-opacity bg-card border border-white/20"
             >
               ← 돌아가기
             </Link>
@@ -158,21 +148,9 @@ const InternationalSportsDetail = () => {
 
         {/* 동계올림픽 섹션 - 종료 전에만 상단에 표시 */}
         {data.winterOlympics && !isWinterOlympicsEnded && (
-          <div className="mb-4" style={{
-            background: 'rgb(32, 34, 52)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '15px',
-            padding: '20px',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
-          }}>
+          <div className="mb-4 bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
             <div className="flex items-center mb-4">
-              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                background: 'rgba(76, 175, 80, 0.2)',
-                borderColor: 'rgba(76, 175, 80, 0.5)',
-                color: '#4caf50',
-                fontSize: '14px',
-                fontWeight: 700
-              }}>
+              <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
                 ✓
               </div>
               <h2 className="text-xl font-bold text-white">밀라노-코르티나 2026 동계올림픽</h2>
@@ -182,33 +160,17 @@ const InternationalSportsDetail = () => {
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setWinterOlympicsTab('medals')}
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  background: winterOlympicsTab === 'medals' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                  color: winterOlympicsTab === 'medals' ? 'white' : 'rgba(255,255,255,0.6)',
-                  transition: 'all 0.2s'
-                }}
+                className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                  winterOlympicsTab === 'medals' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                }`}
               >
                 메달 순위
               </button>
               <button
                 onClick={() => setWinterOlympicsTab('schedule')}
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  background: winterOlympicsTab === 'schedule' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                  color: winterOlympicsTab === 'schedule' ? 'white' : 'rgba(255,255,255,0.6)',
-                  transition: 'all 0.2s'
-                }}
+                className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                  winterOlympicsTab === 'schedule' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                }`}
               >
                 경기 일정
               </button>
@@ -220,17 +182,9 @@ const InternationalSportsDetail = () => {
                     if (ids.length > 0) setSelectedDiscipline(ids[0]);
                   }
                 }}
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  background: winterOlympicsTab === 'discipline' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                  color: winterOlympicsTab === 'discipline' ? 'white' : 'rgba(255,255,255,0.6)',
-                  transition: 'all 0.2s'
-                }}
+                className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                  winterOlympicsTab === 'discipline' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                }`}
               >
                 종목별 일정
               </button>
@@ -256,8 +210,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'gold' && (
                           <div
-                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
-                            style={{ minWidth: '200px', maxWidth: '300px' }}
+                            className="absolute top-full left-0 mt-2 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50 min-w-[200px] max-w-[300px]"
                           >
                             <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').length > 0 ? (
@@ -288,8 +241,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'silver' && (
                           <div
-                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
-                            style={{ minWidth: '200px', maxWidth: '300px' }}
+                            className="absolute top-full left-0 mt-2 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50 min-w-[200px] max-w-[300px]"
                           >
                             <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').length > 0 ? (
@@ -320,8 +272,7 @@ const InternationalSportsDetail = () => {
                         </div>
                         {expandedMedal === 'bronze' && (
                           <div
-                            className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
-                            style={{ minWidth: '200px', maxWidth: '300px' }}
+                            className="absolute top-full left-0 mt-2 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50 min-w-[200px] max-w-[300px]"
                           >
                             <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').length > 0 ? (
@@ -353,16 +304,16 @@ const InternationalSportsDetail = () => {
                   <div>
                     <h4 className="text-sm font-semibold text-white mb-3">전체 국가 메달 순위</h4>
                     {data.winterOlympics.allCountriesMedals && data.winterOlympics.allCountriesMedals.length > 0 ? (
-                      <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                      <div className="overflow-x-auto">
+                        <table className="w-full border-collapse">
                           <thead>
-                            <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>국가</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥇</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥈</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥉</th>
-                              <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>합계</th>
+                            <tr className="border-b border-white/10">
+                              <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">순위</th>
+                              <th className="px-2 py-2.5 text-left text-white/70 text-sm font-semibold">국가</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">🥇</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">🥈</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">🥉</th>
+                              <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">합계</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -372,17 +323,14 @@ const InternationalSportsDetail = () => {
                               return (
                                 <tr
                                   key={country.nation}
-                                  style={{
-                                    background: isKorea ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
-                                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-                                  }}
+                                  className={`border-b border-white/5 ${isKorea ? 'bg-accent-green/20' : ''}`}
                                 >
-                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.rank}</td>
-                                  <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.nation}</td>
-                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.gold}</td>
-                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.silver}</td>
-                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.bronze}</td>
-                                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.total}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm font-semibold">{country.rank}</td>
+                                  <td className="px-2 py-3 text-left text-white text-sm font-semibold">{country.nation}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{country.gold}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{country.silver}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{country.bronze}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm font-semibold">{country.total}</td>
                                 </tr>
                               );
                             })}
@@ -413,11 +361,9 @@ const InternationalSportsDetail = () => {
                             <div className="flex items-center justify-between">
                               <span className="text-white font-semibold">{game.discipline} ({game.time})</span>
                               <span
-                                className="px-2 py-0.5 rounded text-xs"
-                                style={{
-                                  backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(59, 130, 246, 0.15)',
-                                  color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' : 'rgba(59, 130, 246, 0.7)'
-                                }}
+                                className={`px-2 py-0.5 rounded text-xs ${
+                                  game.status === 'LIVE' ? 'bg-red-500/[0.15] text-red-500/90' : 'bg-blue-500/[0.15] text-blue-500/70'
+                                }`}
                               >
                                 {game.status}
                               </span>
@@ -472,32 +418,18 @@ const InternationalSportsDetail = () => {
               {winterOlympicsTab === 'discipline' && (
                 <div>
                   {/* 종목 선택 칩 - 모든 종목 표시 */}
-                  <div style={{
-                    display: 'flex',
-                    gap: '8px',
-                    overflowX: 'auto',
-                    paddingBottom: '12px',
-                    marginBottom: '12px',
-                  }} className="hide-scrollbar">
+                  <div className="flex gap-2 overflow-x-auto pb-3 mb-3 hide-scrollbar">
                     {ALL_DISCIPLINES.map((discipline) => {
                       const hasData = data.winterOlympics?.disciplineSchedules?.[discipline.id];
                       return (
                         <button
                           key={discipline.id}
                           onClick={() => setSelectedDiscipline(discipline.id)}
-                          style={{
-                            padding: '6px 14px',
-                            border: 'none',
-                            borderRadius: '20px',
-                            cursor: 'pointer',
-                            fontWeight: 500,
-                            fontSize: '13px',
-                            whiteSpace: 'nowrap',
-                            flexShrink: 0,
-                            background: selectedDiscipline === discipline.id ? 'rgba(102, 126, 234, 0.4)' : 'rgba(255, 255, 255, 0.08)',
-                            color: selectedDiscipline === discipline.id ? 'white' : hasData ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.3)',
-                            transition: 'all 0.2s',
-                          }}
+                          className={`px-3.5 py-1.5 border-none rounded-full cursor-pointer font-medium text-[13px] whitespace-nowrap flex-shrink-0 transition-all ${
+                            selectedDiscipline === discipline.id
+                              ? 'bg-tab-active/40 text-white'
+                              : hasData ? 'bg-white/[0.08] text-white/50' : 'bg-white/[0.08] text-white/30'
+                          }`}
                         >
                           {discipline.name}
                         </button>
@@ -516,15 +448,11 @@ const InternationalSportsDetail = () => {
                           <div className="flex items-center justify-between mb-1">
                             <span className="text-white font-semibold text-sm">{game.disciplineDetail || '-'}</span>
                             <span
-                              className="px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2"
-                              style={{
-                                backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' :
-                                                game.status === '종료' ? 'rgba(107, 114, 128, 0.15)' :
-                                                'rgba(59, 130, 246, 0.15)',
-                                color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' :
-                                       game.status === '종료' ? 'rgba(107, 114, 128, 0.7)' :
-                                       'rgba(59, 130, 246, 0.7)'
-                              }}
+                              className={`px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2 ${
+                                game.status === 'LIVE' ? 'bg-red-500/[0.15] text-red-500/90' :
+                                game.status === '종료' ? 'bg-gray-500/[0.15] text-gray-500/70' :
+                                'bg-blue-500/[0.15] text-blue-500/70'
+                              }`}
                             >
                               {game.status}
                             </span>
@@ -584,38 +512,24 @@ const InternationalSportsDetail = () => {
         {events.filter(e => !e.name.includes('동계올림픽')).length > 0 ? (
           <div className="space-y-4">
             {events.filter(e => !e.name.includes('동계올림픽')).map((event, idx) => (
-              <div key={idx} style={{
-                background: 'rgb(32, 34, 52)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '15px',
-                padding: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.2)'
-              }}>
+              <div key={idx} className="bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
                 <div className="flex items-center mb-4">
-                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                    background: 'rgba(76, 175, 80, 0.2)',
-                    borderColor: 'rgba(76, 175, 80, 0.5)',
-                    color: '#4caf50',
-                    fontSize: '14px',
-                    fontWeight: 700
-                  }}>
+                  <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
                     ✓
                   </div>
                   <h2 className="text-xl font-bold text-white">{event.name}</h2>
                 </div>
 
-                <div className="rounded-lg" style={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                <div className="rounded-lg border border-white/10">
                   <button
                     onClick={() => toggleEvent(idx)}
                     className="w-full p-4 text-left flex justify-between items-center hover:bg-white/5"
                   >
                     <div className="flex items-center gap-4">
                       <span
-                        className="px-2 py-0.5 rounded text-sm"
-                        style={{
-                          backgroundColor: event.daysLeft === 0 ? 'rgba(76, 175, 80, 0.15)' : 'rgba(59, 130, 246, 0.15)',
-                          color: event.daysLeft === 0 ? 'rgba(76, 175, 80, 0.7)' : 'rgba(59, 130, 246, 0.7)'
-                        }}
+                        className={`px-2 py-0.5 rounded text-sm ${
+                          event.daysLeft === 0 ? 'bg-accent-green/[0.15] text-accent-green/70' : 'bg-blue-500/[0.15] text-blue-500/70'
+                        }`}
                       >
                         {event.daysLeft === 0 ? '진행 중' : `개막 D-${event.daysLeft}`}
                       </span>
@@ -676,40 +590,25 @@ const InternationalSportsDetail = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="text-center py-8 text-white/50">
             예정된 이벤트가 없습니다
           </div>
         )}
 
         {/* 동계올림픽 섹션 - 종료 후에는 하단에 토글로 표시 */}
         {data.winterOlympics && isWinterOlympicsEnded && (
-          <div className="mt-4" style={{
-            background: 'rgb(32, 34, 52)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '15px',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            overflow: 'hidden'
-          }}>
+          <div className="mt-4 bg-card backdrop-blur-card rounded-card border border-white/20 overflow-hidden">
             {/* 토글 헤더 */}
             <button
               onClick={() => setWinterOlympicsExpanded(!winterOlympicsExpanded)}
               className="w-full p-5 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
             >
               <div className="flex items-center">
-                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-                  background: 'rgba(107, 114, 128, 0.2)',
-                  borderColor: 'rgba(107, 114, 128, 0.5)',
-                  color: '#6b7280',
-                  fontSize: '14px',
-                  fontWeight: 700
-                }}>
+                <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-gray-500/20 border-gray-500/50 text-gray-500 text-sm font-bold">
                   ✓
                 </div>
                 <h2 className="text-xl font-bold text-white">밀라노-코르티나 2026 동계올림픽</h2>
-                <span className="ml-3 px-2 py-0.5 rounded text-xs" style={{
-                  backgroundColor: 'rgba(107, 114, 128, 0.15)',
-                  color: 'rgba(107, 114, 128, 0.9)'
-                }}>종료</span>
+                <span className="ml-3 px-2 py-0.5 rounded text-xs bg-gray-500/[0.15] text-gray-500/90">종료</span>
               </div>
               <span className="text-white text-lg">{winterOlympicsExpanded ? '▼' : '▶'}</span>
             </button>
@@ -721,33 +620,17 @@ const InternationalSportsDetail = () => {
                 <div className="flex gap-2 mb-4">
                   <button
                     onClick={() => setWinterOlympicsTab('medals')}
-                    style={{
-                      flex: 1,
-                      padding: '10px',
-                      border: 'none',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                      background: winterOlympicsTab === 'medals' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                      color: winterOlympicsTab === 'medals' ? 'white' : 'rgba(255,255,255,0.6)',
-                      transition: 'all 0.2s'
-                    }}
+                    className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                      winterOlympicsTab === 'medals' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                    }`}
                   >
                     메달 순위
                   </button>
                   <button
                     onClick={() => setWinterOlympicsTab('schedule')}
-                    style={{
-                      flex: 1,
-                      padding: '10px',
-                      border: 'none',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                      background: winterOlympicsTab === 'schedule' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                      color: winterOlympicsTab === 'schedule' ? 'white' : 'rgba(255,255,255,0.6)',
-                      transition: 'all 0.2s'
-                    }}
+                    className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                      winterOlympicsTab === 'schedule' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                    }`}
                   >
                     경기 일정
                   </button>
@@ -759,17 +642,9 @@ const InternationalSportsDetail = () => {
                         if (ids.length > 0) setSelectedDiscipline(ids[0]);
                       }
                     }}
-                    style={{
-                      flex: 1,
-                      padding: '10px',
-                      border: 'none',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                      background: winterOlympicsTab === 'discipline' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                      color: winterOlympicsTab === 'discipline' ? 'white' : 'rgba(255,255,255,0.6)',
-                      transition: 'all 0.2s'
-                    }}
+                    className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                      winterOlympicsTab === 'discipline' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                    }`}
                   >
                     종목별 일정
                   </button>
@@ -795,8 +670,7 @@ const InternationalSportsDetail = () => {
                             </div>
                             {expandedMedal === 'gold' && (
                               <div
-                                className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50"
-                                style={{ minWidth: '200px', maxWidth: '300px' }}
+                                className="absolute top-full left-0 mt-2 bg-gray-800 rounded-lg p-3 shadow-xl border border-yellow-500/30 z-50 min-w-[200px] max-w-[300px]"
                               >
                                 <div className="space-y-2 max-h-[500px] overflow-y-auto">
                                   {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').length > 0 ? (
@@ -827,8 +701,7 @@ const InternationalSportsDetail = () => {
                             </div>
                             {expandedMedal === 'silver' && (
                               <div
-                                className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50"
-                                style={{ minWidth: '200px', maxWidth: '300px' }}
+                                className="absolute top-full left-0 mt-2 bg-gray-800 rounded-lg p-3 shadow-xl border border-gray-400/30 z-50 min-w-[200px] max-w-[300px]"
                               >
                                 <div className="space-y-2 max-h-[500px] overflow-y-auto">
                                   {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').length > 0 ? (
@@ -859,8 +732,7 @@ const InternationalSportsDetail = () => {
                             </div>
                             {expandedMedal === 'bronze' && (
                               <div
-                                className="absolute left-2/3 top-1/2 -translate-y-1/2 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50"
-                                style={{ minWidth: '200px', maxWidth: '300px' }}
+                                className="absolute top-full left-0 mt-2 bg-gray-800 rounded-lg p-3 shadow-xl border border-orange-600/30 z-50 min-w-[200px] max-w-[300px]"
                               >
                                 <div className="space-y-2 max-h-[500px] overflow-y-auto">
                                   {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').length > 0 ? (
@@ -892,16 +764,16 @@ const InternationalSportsDetail = () => {
                       <div>
                         <h4 className="text-sm font-semibold text-white mb-3">전체 국가 메달 순위</h4>
                         {data.winterOlympics.allCountriesMedals && data.winterOlympics.allCountriesMedals.length > 0 ? (
-                          <div style={{ overflowX: 'auto' }}>
-                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                          <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
                               <thead>
-                                <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                  <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>순위</th>
-                                  <th style={{ padding: '10px 8px', textAlign: 'left', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>국가</th>
-                                  <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥇</th>
-                                  <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥈</th>
-                                  <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>🥉</th>
-                                  <th style={{ padding: '10px 8px', textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 600 }}>합계</th>
+                                <tr className="border-b border-white/10">
+                                  <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">순위</th>
+                                  <th className="px-2 py-2.5 text-left text-white/70 text-sm font-semibold">국가</th>
+                                  <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">🥇</th>
+                                  <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">🥈</th>
+                                  <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">🥉</th>
+                                  <th className="px-2 py-2.5 text-center text-white/70 text-sm font-semibold">합계</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -911,17 +783,14 @@ const InternationalSportsDetail = () => {
                                   return (
                                     <tr
                                       key={country.nation}
-                                      style={{
-                                        background: isKorea ? 'rgba(76, 175, 80, 0.2)' : 'transparent',
-                                        borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-                                      }}
+                                      className={`border-b border-white/5 ${isKorea ? 'bg-accent-green/20' : ''}`}
                                     >
-                                      <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.rank}</td>
-                                      <td style={{ padding: '12px 8px', textAlign: 'left', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.nation}</td>
-                                      <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.gold}</td>
-                                      <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.silver}</td>
-                                      <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px' }}>{country.bronze}</td>
-                                      <td style={{ padding: '12px 8px', textAlign: 'center', color: 'white', fontSize: '14px', fontWeight: 600 }}>{country.total}</td>
+                                      <td className="px-2 py-3 text-center text-white text-sm font-semibold">{country.rank}</td>
+                                      <td className="px-2 py-3 text-left text-white text-sm font-semibold">{country.nation}</td>
+                                      <td className="px-2 py-3 text-center text-white text-sm">{country.gold}</td>
+                                      <td className="px-2 py-3 text-center text-white text-sm">{country.silver}</td>
+                                      <td className="px-2 py-3 text-center text-white text-sm">{country.bronze}</td>
+                                      <td className="px-2 py-3 text-center text-white text-sm font-semibold">{country.total}</td>
                                     </tr>
                                   );
                                 })}
@@ -952,11 +821,9 @@ const InternationalSportsDetail = () => {
                                 <div className="flex items-center justify-between">
                                   <span className="text-white font-semibold">{game.discipline} ({game.time})</span>
                                   <span
-                                    className="px-2 py-0.5 rounded text-xs"
-                                    style={{
-                                      backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(59, 130, 246, 0.15)',
-                                      color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' : 'rgba(59, 130, 246, 0.7)'
-                                    }}
+                                    className={`px-2 py-0.5 rounded text-xs ${
+                                      game.status === 'LIVE' ? 'bg-red-500/[0.15] text-red-500/90' : 'bg-blue-500/[0.15] text-blue-500/70'
+                                    }`}
                                   >
                                     {game.status}
                                   </span>
@@ -1003,32 +870,18 @@ const InternationalSportsDetail = () => {
                   {winterOlympicsTab === 'discipline' && (
                     <div>
                       {/* 종목 선택 칩 - 모든 종목 표시 */}
-                      <div style={{
-                        display: 'flex',
-                        gap: '8px',
-                        overflowX: 'auto',
-                        paddingBottom: '12px',
-                        marginBottom: '12px',
-                      }} className="hide-scrollbar">
+                      <div className="flex gap-2 overflow-x-auto pb-3 mb-3 hide-scrollbar">
                         {ALL_DISCIPLINES.map((discipline) => {
                           const hasData = data.winterOlympics?.disciplineSchedules?.[discipline.id];
                           return (
                             <button
                               key={discipline.id}
                               onClick={() => setSelectedDiscipline(discipline.id)}
-                              style={{
-                                padding: '6px 14px',
-                                border: 'none',
-                                borderRadius: '20px',
-                                cursor: 'pointer',
-                                fontWeight: 500,
-                                fontSize: '13px',
-                                whiteSpace: 'nowrap',
-                                flexShrink: 0,
-                                background: selectedDiscipline === discipline.id ? 'rgba(102, 126, 234, 0.4)' : 'rgba(255, 255, 255, 0.08)',
-                                color: selectedDiscipline === discipline.id ? 'white' : hasData ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.3)',
-                                transition: 'all 0.2s',
-                              }}
+                              className={`px-3.5 py-1.5 border-none rounded-full cursor-pointer font-medium text-[13px] whitespace-nowrap flex-shrink-0 transition-all ${
+                                selectedDiscipline === discipline.id
+                                  ? 'bg-tab-active/40 text-white'
+                                  : hasData ? 'bg-white/[0.08] text-white/50' : 'bg-white/[0.08] text-white/30'
+                              }`}
                             >
                               {discipline.name}
                             </button>
@@ -1047,15 +900,11 @@ const InternationalSportsDetail = () => {
                               <div className="flex items-center justify-between mb-1">
                                 <span className="text-white font-semibold text-sm">{game.disciplineDetail || '-'}</span>
                                 <span
-                                  className="px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2"
-                                  style={{
-                                    backgroundColor: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.15)' :
-                                                    game.status === '종료' ? 'rgba(107, 114, 128, 0.15)' :
-                                                    'rgba(59, 130, 246, 0.15)',
-                                    color: game.status === 'LIVE' ? 'rgba(239, 68, 68, 0.9)' :
-                                           game.status === '종료' ? 'rgba(107, 114, 128, 0.7)' :
-                                           'rgba(59, 130, 246, 0.7)'
-                                  }}
+                                  className={`px-2 py-0.5 rounded text-xs flex-shrink-0 ml-2 ${
+                                    game.status === 'LIVE' ? 'bg-red-500/[0.15] text-red-500/90' :
+                                    game.status === '종료' ? 'bg-gray-500/[0.15] text-gray-500/70' :
+                                    'bg-blue-500/[0.15] text-blue-500/70'
+                                  }`}
                                 >
                                   {game.status}
                                 </span>

@@ -31,83 +31,34 @@ class ErrorBoundary extends React.Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: '#000',
-          padding: '20px',
-        }}>
-          <div style={{
-            background: 'rgb(32, 34, 52)',
-            borderRadius: '15px',
-            padding: '40px',
-            maxWidth: '500px',
-            width: '100%',
-            textAlign: 'center',
-            border: '1px solid rgba(239, 68, 68, 0.5)',
-          }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>
+        <div className="min-h-screen flex items-center justify-center bg-black p-5">
+          <div className="bg-card rounded-card p-10 max-w-[500px] w-full text-center border border-red-500/50">
+            <div className="text-5xl mb-4">
               &#x26A0;
             </div>
-            <h2 style={{
-              color: '#fff',
-              fontSize: '20px',
-              fontWeight: 'bold',
-              marginBottom: '12px',
-            }}>
+            <h2 className="text-white text-xl font-bold mb-3">
               오류가 발생했습니다
             </h2>
-            <p style={{
-              color: 'rgba(255, 255, 255, 0.6)',
-              fontSize: '14px',
-              marginBottom: '24px',
-              lineHeight: '1.5',
-            }}>
+            <p className="text-white/60 text-sm mb-6 leading-relaxed">
               데이터를 불러오는 중 문제가 발생했습니다.
               <br />
               다시 시도하거나 메인 페이지로 이동해주세요.
             </p>
             {this.state.error && (
-              <p style={{
-                color: 'rgba(239, 68, 68, 0.8)',
-                fontSize: '12px',
-                marginBottom: '24px',
-                padding: '8px 12px',
-                background: 'rgba(239, 68, 68, 0.1)',
-                borderRadius: '8px',
-                wordBreak: 'break-all',
-              }}>
+              <p className="text-red-500/80 text-xs mb-6 px-3 py-2 bg-red-500/10 rounded-lg break-all">
                 {this.state.error.message}
               </p>
             )}
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+            <div className="flex gap-3 justify-center">
               <button
                 onClick={this.handleReset}
-                style={{
-                  padding: '10px 24px',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  color: '#fff',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                }}
+                className="px-6 py-2.5 rounded-lg border border-white/20 bg-white/10 text-white cursor-pointer text-sm"
               >
                 다시 시도
               </button>
               <button
                 onClick={this.handleGoHome}
-                style={{
-                  padding: '10px 24px',
-                  borderRadius: '8px',
-                  border: 'none',
-                  background: 'rgba(102, 126, 234, 0.5)',
-                  color: '#fff',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                }}
+                className="px-6 py-2.5 rounded-lg border-none bg-tab-active/50 text-white cursor-pointer text-sm"
               >
                 메인으로
               </button>

@@ -47,19 +47,13 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
     loadData();
   }, []);
 
-  const borderStyle = isInSeason
-    ? '2px solid #f97316' // 주황색 테두리
-    : '1px solid rgba(255, 255, 255, 0.2)';
+  const borderClass = isInSeason
+    ? 'border-2 border-orange-500'
+    : 'border border-white/20';
 
   if (loading || !data) {
     return (
-      <div className="animate-pulse h-full flex flex-col overflow-auto" style={{
-        background: 'rgb(32, 34, 52)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '15px',
-        padding: '20px',
-        border: borderStyle
-      }}>
+      <div className={`animate-pulse h-full flex flex-col overflow-auto bg-card backdrop-blur-card rounded-card p-5 ${borderClass}`}>
         <div className="h-8 bg-gray-700 rounded w-1/2 mb-4"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4"></div>
       </div>
@@ -68,11 +62,7 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
 
   const getEventIcon = () => {
     return (
-      <div className="w-6 h-6 flex-shrink-0 inline-flex items-center justify-center" style={{
-        color: '#4caf50',
-        fontSize: '18px',
-        fontWeight: 700
-      }}>
+      <div className="w-6 h-6 flex-shrink-0 inline-flex items-center justify-center text-accent-green text-lg font-bold">
         ✓
       </div>
     );
@@ -80,23 +70,11 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
 
   return (
     <Link to="/international" className="block h-full">
-      <div className="transition-colors cursor-pointer h-full flex flex-col overflow-auto" style={{
-        background: 'rgb(32, 34, 52)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '15px',
-        padding: '20px',
-        border: borderStyle
-      }}>
+      <div className={`transition-colors cursor-pointer h-full flex flex-col overflow-auto bg-card backdrop-blur-card rounded-card p-5 ${borderClass}`}>
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
-            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2" style={{
-              background: 'rgba(76, 175, 80, 0.2)',
-              borderColor: 'rgba(76, 175, 80, 0.5)',
-              color: '#4caf50',
-              fontSize: '16px',
-              fontWeight: 700
-            }}>
+            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
               ✓
             </div>
             <h2 className="text-xl font-bold text-white">대한민국 대표팀</h2>

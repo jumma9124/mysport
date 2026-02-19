@@ -29,10 +29,7 @@ const MainLayout = ({ area1, area2, area3, area4 }: MainLayoutProps) => {
         </header>
 
         {/* 2×2 그리드 레이아웃 - 동일한 크기의 4개 영역 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1" style={{
-          gridTemplateRows: 'repeat(2, 1fr)',
-          gridAutoRows: '1fr'
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1 grid-rows-2 auto-rows-fr">
           {/* 영역 1 - 상단 좌측 */}
           <div className="min-h-[300px] md:min-h-0">
             {area1}
