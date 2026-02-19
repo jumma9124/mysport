@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-19T08:57:15.384Z",
+  "lastUpdate": "2026-02-19T13:25:07.757Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -35,9 +35,9 @@
       "rank": 4,
       "nation": "프랑스",
       "gold": 6,
-      "silver": 7,
+      "silver": 8,
       "bronze": 4,
-      "total": 17
+      "total": 18
     },
     {
       "rank": 5,
@@ -57,6 +57,14 @@
     },
     {
       "rank": 7,
+      "nation": "스위스",
+      "gold": 6,
+      "silver": 4,
+      "bronze": 3,
+      "total": 13
+    },
+    {
+      "rank": 8,
       "nation": "독일",
       "gold": 5,
       "silver": 8,
@@ -64,7 +72,7 @@
       "total": 21
     },
     {
-      "rank": 8,
+      "rank": 9,
       "nation": "오스트리아",
       "gold": 5,
       "silver": 8,
@@ -72,20 +80,12 @@
       "total": 17
     },
     {
-      "rank": 9,
+      "rank": 10,
       "nation": "일본",
       "gold": 5,
       "silver": 6,
       "bronze": 11,
       "total": 22
-    },
-    {
-      "rank": 10,
-      "nation": "스위스",
-      "gold": 5,
-      "silver": 4,
-      "bronze": 3,
-      "total": 12
     },
     {
       "rank": 11,
@@ -214,18 +214,9 @@
       "players": null
     },
     {
-      "time": "18:30",
-      "discipline": "프리스타일 스키",
-      "status": "연기",
-      "players": [
-        "이승훈",
-        "문희성"
-      ]
-    },
-    {
-      "time": "22:05",
+      "time": "22:30",
       "discipline": "컬링",
-      "status": "예정",
+      "status": "경기중",
       "players": [
         "캐나다",
         "대한민국"
@@ -235,15 +226,9 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-19",
-      "time": "18:30",
-      "discipline": "프리스타일 스키",
-      "status": "연기"
-    },
-    {
-      "date": "2026-02-19",
-      "time": "22:05",
+      "time": "22:30",
       "discipline": "컬링",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-20",
@@ -261,6 +246,12 @@
       "date": "2026-02-20",
       "time": "03:30",
       "discipline": "프리스타일 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "07:30",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -495,9 +486,9 @@
         },
         {
           "date": "2026-02-19",
-          "time": "22:05",
+          "time": "22:30",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "예정",
+          "status": "경기중",
           "players": [
             "캐나다",
             "대한민국"
