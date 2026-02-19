@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-19T13:25:07.757Z",
+  "lastUpdate": "2026-02-19T17:04:40.889Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 15,
+      "gold": 16,
       "silver": 8,
       "bronze": 10,
-      "total": 33
+      "total": 34
     },
     {
       "rank": 2,
@@ -27,25 +27,25 @@
       "rank": 3,
       "nation": "미국",
       "gold": 7,
-      "silver": 11,
+      "silver": 12,
       "bronze": 6,
-      "total": 24
+      "total": 25
     },
     {
       "rank": 4,
       "nation": "프랑스",
       "gold": 6,
       "silver": 8,
-      "bronze": 4,
-      "total": 18
+      "bronze": 5,
+      "total": 19
     },
     {
       "rank": 5,
       "nation": "네덜란드",
       "gold": 6,
       "silver": 7,
-      "bronze": 2,
-      "total": 15
+      "bronze": 3,
+      "total": 16
     },
     {
       "rank": 6,
@@ -60,8 +60,8 @@
       "nation": "스위스",
       "gold": 6,
       "silver": 4,
-      "bronze": 3,
-      "total": 13
+      "bronze": 4,
+      "total": 14
     },
     {
       "rank": 8,
@@ -76,8 +76,8 @@
       "nation": "오스트리아",
       "gold": 5,
       "silver": 8,
-      "bronze": 4,
-      "total": 17
+      "bronze": 5,
+      "total": 18
     },
     {
       "rank": 10,
@@ -97,6 +97,14 @@
     },
     {
       "rank": 12,
+      "nation": "중국",
+      "gold": 3,
+      "silver": 3,
+      "bronze": 4,
+      "total": 10
+    },
+    {
+      "rank": 13,
       "nation": "호주",
       "gold": 3,
       "silver": 2,
@@ -104,20 +112,12 @@
       "total": 6
     },
     {
-      "rank": 13,
+      "rank": 14,
       "nation": "영국",
       "gold": 3,
       "silver": 0,
       "bronze": 0,
       "total": 3
-    },
-    {
-      "rank": 14,
-      "nation": "중국",
-      "gold": 2,
-      "silver": 3,
-      "bronze": 4,
-      "total": 9
     },
     {
       "rank": 15,
@@ -216,7 +216,7 @@
     {
       "time": "22:30",
       "discipline": "컬링",
-      "status": "경기중",
+      "status": "종료",
       "players": [
         "캐나다",
         "대한민국"
@@ -224,18 +224,6 @@
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-19",
-      "time": "22:30",
-      "discipline": "컬링",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-20",
-      "time": "00:30",
-      "discipline": "스피드스케이팅",
-      "status": "예정"
-    },
     {
       "date": "2026-02-20",
       "time": "03:00",
@@ -252,6 +240,18 @@
       "date": "2026-02-20",
       "time": "07:30",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "12:30",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "18:30",
+      "discipline": "프리스타일 스키",
       "status": "예정"
     }
   ],
@@ -488,13 +488,16 @@
           "date": "2026-02-19",
           "time": "22:30",
           "disciplineDetail": "여자 라운드 로빈",
-          "status": "경기중",
+          "status": "종료",
           "players": [
             "캐나다",
             "대한민국"
           ],
-          "scores": null,
-          "result": null
+          "scores": [
+            "10",
+            "7"
+          ],
+          "result": "캐나다 승"
         }
       ]
     },
@@ -1031,11 +1034,19 @@
           "date": "2026-02-20",
           "time": "00:30",
           "disciplineDetail": "남자 1500m",
-          "status": "예정",
+          "status": "종료",
           "players": [
+            "닝중옌",
+            "조던 스톨츠",
+            "키엘트 누이스",
             "정재원"
           ],
-          "scores": null,
+          "scores": [
+            "1:41.98",
+            "1:42.75",
+            "1:42.82",
+            "1:45.80"
+          ],
           "result": null
         },
         {
@@ -1868,6 +1879,17 @@
             "+3.90",
             "+4.91"
           ],
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "02:00",
+          "disciplineDetail": "여자 2인승 런1",
+          "status": "예정",
+          "players": [
+            "대한민국"
+          ],
+          "scores": null,
           "result": null
         }
       ]
