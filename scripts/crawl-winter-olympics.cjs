@@ -9,6 +9,11 @@ const puppeteer = require('puppeteer');
 
 const DATA_DIR = path.join(__dirname, '../public/data');
 
+const isCI = !!process.env.CI;
+const PUPPETEER_ARGS = isCI
+  ? ['--no-sandbox', '--disable-setuid-sandbox']
+  : [];
+
 // 네이버 동계올림픽 URL
 const NAVER_URLS = {
   medals: 'https://m.sports.naver.com/milanocortina2026/medals?pageType=COUNTRY&sortType=goldMedal',
@@ -47,7 +52,7 @@ async function crawlMedals() {
     console.log('메달 정보 크롤링 시작...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -204,7 +209,7 @@ async function crawlKoreaMedalists() {
     console.log('대한민국 메달리스트 정보 크롤링 시작...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -305,7 +310,7 @@ async function crawlTodaySchedule() {
     console.log('오늘의 경기 일정 크롤링 시작...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -400,7 +405,7 @@ async function crawlUpcomingSchedule() {
     console.log('다가오는 경기 일정 크롤링 시작...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -492,7 +497,7 @@ async function crawlAllDisciplineSchedules() {
     console.log('종목별 경기 일정 크롤링 시작 (날짜별 크롤링 방식)...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();

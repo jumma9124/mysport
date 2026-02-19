@@ -24,6 +24,11 @@ const KBO_URLS = {
   headToHead: 'https://www.koreabaseball.com/Record/TeamRank/TeamRank.aspx',
 };
 
+const isCI = !!process.env.CI;
+const PUPPETEER_ARGS = isCI
+  ? ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--disable-gpu']
+  : ['--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--disable-gpu'];
+
 async function crawlStandings() {
   let browser;
   try {
@@ -31,13 +36,7 @@ async function crawlStandings() {
     try {
       browser = await puppeteer.launch({
         headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-2d-canvas',
-          '--disable-gpu'
-        ],
+        args: PUPPETEER_ARGS,
         timeout: 60000
       });
     } catch (launchError) {
@@ -150,13 +149,7 @@ async function crawlBatters() {
     try {
       browser = await puppeteer.launch({
         headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-2d-canvas',
-          '--disable-gpu'
-        ],
+        args: PUPPETEER_ARGS,
         timeout: 60000
       });
     } catch (launchError) {
@@ -349,13 +342,7 @@ async function crawlPitchers() {
     try {
       browser = await puppeteer.launch({
         headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-2d-canvas',
-          '--disable-gpu'
-        ],
+        args: PUPPETEER_ARGS,
         timeout: 60000
       });
     } catch (launchError) {
@@ -556,13 +543,7 @@ async function crawlHeadToHead() {
     try {
       browser = await puppeteer.launch({
         headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-2d-canvas',
-          '--disable-gpu'
-        ],
+        args: PUPPETEER_ARGS,
         timeout: 60000
       });
     } catch (launchError) {
@@ -705,13 +686,7 @@ async function crawlLastSeries() {
     console.log('Fetching last series data (off-season mode)...');
     browser = await puppeteer.launch({
       headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--disable-gpu'
-      ],
+      args: PUPPETEER_ARGS,
       timeout: 60000
     });
 

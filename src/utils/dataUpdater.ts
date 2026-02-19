@@ -3,8 +3,7 @@ import { getSeasonStatus } from './seasonManager';
 
 // 기본 URL 경로 설정
 const getBasePath = () => {
-  // 프로덕션 환경에서는 /mysport/, 개발 환경에서는 /
-  return window.location.pathname.includes('/mysport/') ? '/mysport/' : '/';
+  return import.meta.env.BASE_URL;
 };
 
 // 폴백 데이터
@@ -41,15 +40,14 @@ const getDefaultVolleyballData = (): VolleyballData => ({
 const getDefaultInternationalSportsData = (): InternationalSportsData => ({
   name: '주요 스포츠 이벤트',
   seasonStatus: getSeasonStatus('international'),
-  data: {},
+  data: { events: [] },
 });
 
 // 야구 데이터 로드 (실시간 크롤링 또는 JSON 파일)
 export const fetchBaseballData = async (useRealtime = true): Promise<BaseballData> => {
   try {
     // 개발 환경(localhost)에서만 실시간 크롤링 시도
-    const isDevelopment = window.location.hostname === 'localhost' ||
-                         window.location.hostname === '127.0.0.1';
+    const isDevelopment = import.meta.env.DEV;
 
     if (useRealtime && isDevelopment) {
       try {
@@ -118,8 +116,7 @@ export const fetchBaseballData = async (useRealtime = true): Promise<BaseballDat
 export const fetchVolleyballData = async (useRealtime = true): Promise<VolleyballData> => {
   try {
     // 개발 환경(localhost)에서만 실시간 크롤링 시도
-    const isDevelopment = window.location.hostname === 'localhost' || 
-                         window.location.hostname === '127.0.0.1';
+    const isDevelopment = import.meta.env.DEV;
     
     if (useRealtime && isDevelopment) {
       try {
@@ -187,8 +184,7 @@ export const fetchVolleyballData = async (useRealtime = true): Promise<Volleybal
 export const fetchInternationalSportsData = async (useRealtime = true): Promise<InternationalSportsData> => {
   try {
     // 개발 환경(localhost)에서만 실시간 크롤링 시도
-    const isDevelopment = window.location.hostname === 'localhost' ||
-                         window.location.hostname === '127.0.0.1';
+    const isDevelopment = import.meta.env.DEV;
 
     if (useRealtime && isDevelopment) {
       try {

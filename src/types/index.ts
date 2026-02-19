@@ -201,12 +201,20 @@ export interface WinterOlympicsData {
   }>;
 }
 
+// 국제스포츠 이벤트 타입
+export interface MajorEvent {
+  name: string;
+  date: string;
+  endDate?: string;
+  icon: string;
+}
+
 // 국제스포츠 타입
 export interface InternationalSportsData {
   name: string;
   seasonStatus: SeasonStatus;
   seasonStartDate?: string;
-  data: any; // 국제스포츠는 나중에 확장
+  data: { events: MajorEvent[] };
   winterOlympics?: WinterOlympicsData;
 }
 

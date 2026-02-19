@@ -20,13 +20,18 @@ const NAVER_URLS = {
   schedule: (date) => `https://m.sports.naver.com/volleyball/schedule/index?category=kovo&date=${date}`, // teamCode 제거
 };
 
+const isCI = !!process.env.CI;
+const PUPPETEER_ARGS = isCI
+  ? ['--no-sandbox', '--disable-setuid-sandbox']
+  : [];
+
 async function crawlStandings() {
   let browser;
   try {
     console.log('Launching browser for standings...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -117,7 +122,7 @@ async function crawlStandingsWomen() {
     console.log('Launching browser for women\'s standings...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -208,7 +213,7 @@ async function crawlRecentMatches() {
     console.log('Fetching recent matches with Puppeteer...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();
@@ -416,7 +421,7 @@ async function crawlUpcomingMatch() {
     console.log('Fetching upcoming match with Puppeteer...');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: PUPPETEER_ARGS
     });
 
     const page = await browser.newPage();

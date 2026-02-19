@@ -26,7 +26,7 @@ const DEFAULT_SEASON_DATES: Record<SportType, { start: Date; end: Date }> = {
 // season-config.json에서 시즌 설정 로드
 export const loadSeasonConfig = async (): Promise<void> => {
   try {
-    const baseUrl = window.location.pathname.includes('/mysport/') ? '/mysport/' : '/';
+    const baseUrl = import.meta.env.BASE_URL;
 
     // season-config.json 로드
     const response = await fetch(`${baseUrl}data/season-config.json`);
