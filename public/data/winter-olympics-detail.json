@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-19T17:04:40.889Z",
+  "lastUpdate": "2026-02-19T20:42:16.768Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -228,13 +228,7 @@
       "date": "2026-02-20",
       "time": "03:00",
       "discipline": "피겨스케이팅",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-20",
-      "time": "03:30",
-      "discipline": "프리스타일 스키",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-20",
@@ -252,6 +246,12 @@
       "date": "2026-02-20",
       "time": "18:30",
       "discipline": "프리스타일 스키",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "19:50",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -609,12 +609,14 @@
           "date": "2026-02-20",
           "time": "03:00",
           "disciplineDetail": "여자 싱글 프리 프로그램",
-          "status": "예정",
+          "status": "경기중",
           "players": [
-            "이해인",
-            "신지아"
+            "신지아",
+            "이해인"
           ],
-          "scores": null,
+          "scores": [
+            "206.68"
+          ],
           "result": null
         },
         {
@@ -1054,7 +1056,10 @@
           "time": "00:30",
           "disciplineDetail": "여자 1500m",
           "status": "예정",
-          "players": null,
+          "players": [
+            "임리원",
+            "박지우"
+          ],
           "scores": null,
           "result": null
         },
