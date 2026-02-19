@@ -59,14 +59,8 @@
       "bronze": 3,
       "total": 7
     },
-    "todayGames": 9,
+    "todayGames": 4,
     "upcomingGames": [
-      {
-        "date": "2026-02-19",
-        "time": "07:00",
-        "discipline": "올림픽특집",
-        "status": "예정"
-      },
       {
         "date": "2026-02-19",
         "time": "18:30",
@@ -77,6 +71,12 @@
         "date": "2026-02-19",
         "time": "22:05",
         "discipline": "컬링",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-20",
+        "time": "00:30",
+        "discipline": "스피드스케이팅",
         "status": "예정"
       }
     ]
