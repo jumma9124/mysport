@@ -1,54 +1,24 @@
 {
   "volleyball": {
     "team": "현대캐피탈 스카이워커스",
-    "currentRank": 1,
+    "currentRank": 2,
     "record": {
-      "wins": 19,
-      "losses": 10,
-      "points": 59,
-      "setRate": 1.675
+      "wins": 12,
+      "losses": 8,
+      "points": 44,
+      "setRate": 1.387
     },
-    "recentMatches": [
-      {
-        "date": "2026-02-17",
-        "opponent": "삼성화재",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-0",
-        "sets": []
-      },
-      {
-        "date": "2026-02-14",
-        "opponent": "대한항공",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-2",
-        "sets": []
-      },
-      {
-        "date": "2026-02-09",
-        "opponent": "KB손해보험",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-0",
-        "sets": []
-      }
-    ],
-    "upcomingMatch": {
-      "date": "2026-02-26",
-      "time": "19:00",
-      "opponent": "한국전력",
-      "venue": "천안유관순체육관"
-    }
+    "recentMatches": [],
+    "upcomingMatch": null
   },
   "baseball": {
     "team": "한화 이글스",
-    "currentRank": 8,
+    "currentRank": 2,
     "record": {
-      "wins": 66,
-      "losses": 76,
-      "draws": 2,
-      "winRate": 0.465
+      "wins": 83,
+      "losses": 57,
+      "draws": 4,
+      "winRate": 0.593
     }
   },
   "winterOlympics": {

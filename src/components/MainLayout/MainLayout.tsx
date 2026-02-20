@@ -77,12 +77,12 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
   ];
 
   return (
-    <div className="h-screen bg-black flex flex-col p-4 md:p-6 overflow-hidden">
-      <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1 min-h-0">
+    <div className="h-screen bg-black flex flex-col items-center justify-center p-4 md:p-6 overflow-hidden">
+      <div className="max-w-[800px] w-full flex flex-col h-[66vh]">
         {/* 헤더 */}
         <header className="mb-4 flex items-center justify-center relative shrink-0">
           <h1 className="text-3xl font-bold text-white">MY SPORT</h1>
-          <div className="text-sm text-white absolute right-0">
+          <div className="text-sm text-white absolute right-4">
             {getLastUpdateTime()}
           </div>
         </header>

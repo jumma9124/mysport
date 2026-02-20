@@ -1,178 +1,77 @@
 {
   "leagueStandings": [
     {
-      "name": "현대캐피탈",
-      "wins": 19,
-      "losses": 10,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.675,
-      "rank": 1,
-      "points": 59
-    },
-    {
-      "name": "대한항공",
-      "wins": 19,
-      "losses": 10,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.467,
-      "rank": 2,
-      "points": 57
-    },
-    {
-      "name": "KB손해보험",
-      "wins": 15,
-      "losses": 14,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.018,
-      "rank": 3,
-      "points": 46
-    },
-    {
       "name": "OK저축은행",
       "wins": 15,
-      "losses": 15,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.984,
-      "rank": 4,
-      "points": 45
-    },
-    {
-      "name": "한국전력",
-      "wins": 15,
-      "losses": 14,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.018,
-      "rank": 5,
-      "points": 43
-    },
-    {
-      "name": "우리카드",
-      "wins": 14,
-      "losses": 15,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.982,
-      "rank": 6,
-      "points": 41
-    },
-    {
-      "name": "삼성화재",
-      "wins": 5,
-      "losses": 24,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.392,
-      "rank": 7,
-      "points": 15
-    }
-  ],
-  "leagueStandingsWomen": [
-    {
-      "name": "도로공사",
-      "wins": 20,
-      "losses": 9,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.489,
+      "losses": 4,
+      "setWins": 47,
+      "setLosses": 18,
+      "setRate": 2.611,
       "rank": 1,
-      "points": 56
+      "points": 49
     },
     {
-      "name": "현대건설",
-      "wins": 18,
-      "losses": 11,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.306,
+      "name": "현대캐피탈 스카이워커스",
+      "wins": 12,
+      "losses": 8,
+      "setWins": 43,
+      "setLosses": 31,
+      "setRate": 1.387,
       "rank": 2,
-      "points": 53
-    },
-    {
-      "name": "흥국생명",
-      "wins": 17,
-      "losses": 13,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.245,
-      "rank": 3,
-      "points": 53
-    },
-    {
-      "name": "GS칼텍스",
-      "wins": 15,
-      "losses": 14,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.053,
-      "rank": 4,
-      "points": 45
-    },
-    {
-      "name": "IBK기업은행",
-      "wins": 14,
-      "losses": 15,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.036,
-      "rank": 5,
       "points": 44
     },
     {
-      "name": "페퍼저축은행",
-      "wins": 13,
-      "losses": 17,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.81,
+      "name": "삼성화재",
+      "wins": 11,
+      "losses": 8,
+      "setWins": 38,
+      "setLosses": 32,
+      "setRate": 1.188,
+      "rank": 3,
+      "points": 41
+    },
+    {
+      "name": "한국전력",
+      "wins": 10,
+      "losses": 9,
+      "setWins": 37,
+      "setLosses": 33,
+      "setRate": 1.121,
+      "rank": 4,
+      "points": 39
+    },
+    {
+      "name": "KB손해보험",
+      "wins": 9,
+      "losses": 10,
+      "setWins": 35,
+      "setLosses": 37,
+      "setRate": 0.946,
+      "rank": 5,
+      "points": 37
+    },
+    {
+      "name": "우리카드",
+      "wins": 7,
+      "losses": 12,
+      "setWins": 30,
+      "setLosses": 41,
+      "setRate": 0.732,
       "rank": 6,
-      "points": 38
+      "points": 33
     },
     {
-      "name": "정관장",
-      "wins": 6,
-      "losses": 24,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.436,
+      "name": "삼성화재블루팡스",
+      "wins": 4,
+      "losses": 15,
+      "setWins": 21,
+      "setLosses": 49,
+      "setRate": 0.429,
       "rank": 7,
-      "points": 20
+      "points": 27
     }
   ],
-  "recentMatches": [
-    {
-      "date": "2026-02-17",
-      "opponent": "삼성화재",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-0",
-      "sets": []
-    },
-    {
-      "date": "2026-02-14",
-      "opponent": "대한항공",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-2",
-      "sets": []
-    },
-    {
-      "date": "2026-02-09",
-      "opponent": "KB손해보험",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-0",
-      "sets": []
-    }
-  ],
-  "upcomingMatch": {
-    "date": "2026-02-26",
-    "time": "19:00",
-    "opponent": "한국전력",
-    "venue": "천안유관순체육관"
-  }
+  "leagueStandingsWomen": [],
+  "recentMatches": [],
+  "upcomingMatch": null
 }
