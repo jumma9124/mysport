@@ -13,6 +13,10 @@ permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: crawl-baseball
+  cancel-in-progress: false
+
 jobs:
   crawl:
     runs-on: ubuntu-latest

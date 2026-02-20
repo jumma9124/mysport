@@ -12,6 +12,10 @@ permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: crawl-international-sports
+  cancel-in-progress: false
+
 jobs:
   crawl:
     runs-on: ubuntu-latest

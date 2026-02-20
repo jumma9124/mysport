@@ -10,6 +10,10 @@ permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: crawl-major-events
+  cancel-in-progress: false
+
 jobs:
   crawl:
     runs-on: ubuntu-latest
