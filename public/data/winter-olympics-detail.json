@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-20T02:44:10.094Z",
+  "lastUpdate": "2026-02-20T04:22:24.637Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -238,7 +238,7 @@
     {
       "time": "12:30",
       "discipline": "올림픽특집",
-      "status": "예정",
+      "status": "종료",
       "players": null
     },
     {
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "time": "19:50",
+      "time": "21:40",
       "discipline": "올림픽특집",
       "status": "예정",
       "players": null
@@ -260,19 +260,13 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-20",
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-20",
       "time": "18:30",
       "discipline": "프리스타일 스키",
       "status": "예정"
     },
     {
       "date": "2026-02-20",
-      "time": "19:50",
+      "time": "21:40",
       "discipline": "올림픽특집",
       "status": "예정"
     },
@@ -286,6 +280,12 @@
       "date": "2026-02-21",
       "time": "02:00",
       "discipline": "봅슬레이",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "04:15",
+      "discipline": "쇼트트랙",
       "status": "예정"
     }
   ],

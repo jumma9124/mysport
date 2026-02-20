@@ -42,7 +42,12 @@
       "Bash(git checkout:*)",
       "Bash(del:*)",
       "Bash(npm uninstall:*)",
-      "Bash(git rebase:*)"
+      "Bash(git rebase:*)",
+      "Bash(gh api:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(cd:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm audit:*)"
     ]
   }
 }
