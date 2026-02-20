@@ -1,4 +1,9 @@
 {
+  "lastUpdate": "2026-02-20T06:46:23.611Z",
+  "crawlStatus": {
+    "status": "success",
+    "lastSuccessfulCrawl": "2026-02-20T06:46:23.612Z"
+  },
   "leagueStandings": [
     {
       "name": "LG",

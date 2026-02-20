@@ -95,6 +95,13 @@ export interface BaseballData {
     opponent: string;
     date: string;
   };
+  lastUpdate?: string;
+  crawlStatus?: {
+    status: 'success' | 'partial_failure' | 'failed';
+    lastSuccessfulCrawl?: string;
+    lastAttempt?: string;
+    failedItems?: string[];
+  };
 }
 
 // 배구 관련 타입

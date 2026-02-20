@@ -65,6 +65,32 @@ const PUPPETEER_ARGS = isCI
   ? ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--disable-gpu']
   : ['--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--disable-gpu'];
 
+// 재시도 로직
+const RETRY_COUNT = 3;
+const RETRY_DELAY = 5000; // 5초
+
+async function retryableCrawl(fn, name, retries = RETRY_COUNT) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      console.log(`[${name}] Attempt ${i + 1}/${retries}...`);
+      const result = await fn();
+      console.log(`✓ [${name}] Success on attempt ${i + 1}`);
+      return result;
+    } catch (error) {
+      console.error(`✗ [${name}] Attempt ${i + 1}/${retries} failed:`, error.message);
+
+      if (i === retries - 1) {
+        console.error(`✗ [${name}] All ${retries} attempts failed`);
+        throw error;
+      }
+
+      const delay = RETRY_DELAY * (i + 1);
+      console.log(`⏳ [${name}] Waiting ${delay}ms before retry...`);
+      await new Promise(r => setTimeout(r, delay));
+    }
+  }
+}
+
 async function crawlStandings() {
   let browser;
   try {
@@ -875,19 +901,78 @@ function getFallbackData() {
 }
 
 async function crawlBaseballData() {
+  const baseballDetailPath = path.join(DATA_DIR, 'baseball-detail.json');
+  const sportsJsonPath = path.join(DATA_DIR, 'sports.json');
+
   try {
     console.log('Starting baseball data crawl...');
 
-    // 모든 데이터 병렬로 크롤링
-    const [standings, batters, pitchers, headToHead, lastSeries] = await Promise.all([
-      crawlStandings(),
-      crawlBatters(),
-      crawlPitchers(),
-      crawlHeadToHead(),
-      crawlLastSeries(),
-    ]);
+    // 각 크롤링 함수를 재시도 로직으로 래핑
+    let standings, batters, pitchers, headToHead, lastSeries;
+    let failedCrawls = [];
 
-    // 크롤링 실패 시 폴백 데이터 사용
+    try {
+      standings = await retryableCrawl(crawlStandings, 'Standings');
+    } catch (error) {
+      failedCrawls.push('standings');
+      standings = null;
+    }
+
+    try {
+      batters = await retryableCrawl(crawlBatters, 'Batters');
+    } catch (error) {
+      failedCrawls.push('batters');
+      batters = null;
+    }
+
+    try {
+      pitchers = await retryableCrawl(crawlPitchers, 'Pitchers');
+    } catch (error) {
+      failedCrawls.push('pitchers');
+      pitchers = null;
+    }
+
+    try {
+      headToHead = await retryableCrawl(crawlHeadToHead, 'HeadToHead');
+    } catch (error) {
+      failedCrawls.push('headToHead');
+      headToHead = null;
+    }
+
+    try {
+      lastSeries = await retryableCrawl(crawlLastSeries, 'LastSeries');
+    } catch (error) {
+      failedCrawls.push('lastSeries');
+      lastSeries = null;
+    }
+
+    // 모든 크롤링이 실패한 경우
+    if (failedCrawls.length === 5) {
+      console.error('✗ All crawling attempts failed');
+
+      // 기존 파일이 있으면 상태만 업데이트
+      if (fs.existsSync(baseballDetailPath)) {
+        const existingData = JSON.parse(fs.readFileSync(baseballDetailPath, 'utf8'));
+        existingData.crawlStatus = {
+          status: 'failed',
+          lastAttempt: new Date().toISOString(),
+          failedItems: failedCrawls,
+        };
+
+        fs.writeFileSync(
+          baseballDetailPath,
+          JSON.stringify(existingData, null, 2),
+          'utf8'
+        );
+        console.log('⚠ Updated crawl status to "failed", keeping existing data');
+        return;
+      } else {
+        // 기존 파일도 없으면 에러
+        throw new Error('All crawls failed and no existing data found');
+      }
+    }
+
+    // 일부라도 성공한 경우
     const fallbackData = getFallbackData();
     const standingsData = standings || fallbackData.standings;
     const battersData = batters || fallbackData.batters;
@@ -897,6 +982,12 @@ async function crawlBaseballData() {
 
     // baseball-detail.json 생성
     const baseballDetail = {
+      lastUpdate: new Date().toISOString(),
+      crawlStatus: {
+        status: failedCrawls.length === 0 ? 'success' : 'partial_failure',
+        lastSuccessfulCrawl: new Date().toISOString(),
+        failedItems: failedCrawls.length > 0 ? failedCrawls : undefined,
+      },
       leagueStandings: standingsData,
       batters: battersData,
       pitchers: pitchersData,
@@ -905,9 +996,7 @@ async function crawlBaseballData() {
     };
 
     // sports.json 업데이트
-    const sportsJsonPath = path.join(DATA_DIR, 'sports.json');
     let sportsData = {};
-
     if (fs.existsSync(sportsJsonPath)) {
       sportsData = JSON.parse(fs.readFileSync(sportsJsonPath, 'utf8'));
     }
@@ -933,7 +1022,7 @@ async function crawlBaseballData() {
     }
 
     fs.writeFileSync(
-      path.join(DATA_DIR, 'baseball-detail.json'),
+      baseballDetailPath,
       JSON.stringify(baseballDetail, null, 2),
       'utf8'
     );
@@ -944,7 +1033,12 @@ async function crawlBaseballData() {
       'utf8'
     );
 
-    console.log('✓ Baseball data updated successfully');
+    if (failedCrawls.length > 0) {
+      console.log(`⚠ Baseball data updated with partial failures: ${failedCrawls.join(', ')}`);
+    } else {
+      console.log('✓ Baseball data updated successfully');
+    }
+
     if (currentTeam) {
       console.log(`  - Rank: ${currentTeam.rank}`);
       console.log(`  - Record: ${currentTeam.wins}W-${currentTeam.losses}L-${currentTeam.draws}D`);

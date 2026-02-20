@@ -66,15 +66,29 @@ const BaseballDetail = () => {
 
   const isInSeason = data.seasonStatus === 'in-season';
 
+  // 크롤링 상태 체크
+  const isCrawlFailed = data.crawlStatus?.status === 'failed' || data.crawlStatus?.status === 'partial_failure';
+
+  // 데이터 신선도 체크 (7일 이상 오래됨)
+  const isDataStale = data.lastUpdate
+    ? (Date.now() - new Date(data.lastUpdate).getTime()) / (1000 * 60 * 60 * 24) > 7
+    : false;
+
+  const showWarning = isCrawlFailed || isDataStale;
+
   return (
     <div className="min-h-screen bg-black flex flex-col p-4 md:p-6">
       <div className="max-w-7xl mx-auto w-full flex flex-col flex-1">
         {/* 헤더 */}
         <header className="mb-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="w-7 h-7 mr-3 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
-                ✓
+            <div className="flex items-center gap-3">
+              <div className={`w-7 h-7 flex-shrink-0 inline-flex items-center justify-center rounded border-2 text-base font-bold ${
+                showWarning
+                  ? 'bg-red-500/20 border-red-500/50 text-red-500'
+                  : 'bg-accent-green/20 border-accent-green/50 text-accent-green'
+              }`}>
+                {showWarning ? '!' : '✓'}
               </div>
               <h1 className="text-3xl font-bold text-white">{data.team}</h1>
             </div>
@@ -85,6 +99,30 @@ const BaseballDetail = () => {
               ← 돌아가기
             </Link>
           </div>
+
+          {/* 경고 메시지 */}
+          {showWarning && (
+            <div className="mt-4 bg-red-500/10 border border-red-500/30 rounded-lg p-3">
+              <div className="flex items-start gap-2">
+                <span className="text-red-500 text-lg">⚠️</span>
+                <div className="flex-1">
+                  <p className="text-red-500 font-medium text-sm">
+                    {isCrawlFailed && '데이터 업데이트에 실패했습니다.'}
+                    {isDataStale && !isCrawlFailed && '데이터가 7일 이상 업데이트되지 않았습니다.'}
+                  </p>
+                  <p className="text-red-500/70 text-xs mt-1">
+                    {data.lastUpdate && `마지막 업데이트: ${new Date(data.lastUpdate).toLocaleString('ko-KR')}`}
+                    {isCrawlFailed && data.crawlStatus?.failedItems &&
+                      ` (실패 항목: ${data.crawlStatus.failedItems.join(', ')})`
+                    }
+                  </p>
+                  <p className="text-white/60 text-xs mt-1">
+                    현재 표시된 데이터는 마지막으로 성공한 데이터입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </header>
 
         {/* 순위 변동 그래프 - 상단 전체 너비 */}
