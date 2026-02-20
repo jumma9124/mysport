@@ -83,7 +83,7 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
         </div>
 
         {/* 이벤트 리스트 */}
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-6">
           {events.length > 0 ? (
             events.map((event, index) => (
               <div key={index} className="flex items-center space-x-4">
