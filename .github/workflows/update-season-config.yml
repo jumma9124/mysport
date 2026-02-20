@@ -8,12 +8,11 @@ on:
     - cron: '0 1 15 9 *'  # UTC 기준 9월 15일 01:00 (KST 10:00)
   workflow_dispatch:  # 수동 실행 가능
 
-permissions:
-  contents: write
-
 jobs:
-  update:
+  crawl:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -34,8 +33,32 @@ jobs:
           echo "Season config updater will be implemented here"
           # TODO: 크롤링 스크립트 구현 후 활성화
 
+      - name: Upload crawl results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: season-config-data
+          path: public/data/season-config.json
+          retention-days: 1
+          if-no-files-found: ignore
+
+  commit:
+    needs: crawl
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Download crawl results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: season-config-data
+          path: public/data
+        continue-on-error: true
+
       - name: Commit and push changes
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

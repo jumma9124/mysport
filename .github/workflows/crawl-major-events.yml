@@ -6,10 +6,6 @@ on:
     - cron: '0 0 1 1 *'
   workflow_dispatch:  # 수동 실행 가능
 
-permissions:
-  contents: write
-  actions: write
-
 concurrency:
   group: crawl-major-events
   cancel-in-progress: false
@@ -17,6 +13,8 @@ concurrency:
 jobs:
   crawl:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -33,17 +31,38 @@ jobs:
       - name: Run major events crawler
         run: node scripts/crawl-major-events.cjs
 
+      - name: Upload crawl results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: major-events-data
+          path: public/data/major-events.json
+          retention-days: 1
+
+  commit:
+    needs: crawl
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Download crawl results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: major-events-data
+          path: public/data
+
       - name: Commit and push changes
         id: commit
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          # 파일이 존재하는 경우에만 add 시도
           if [ -f public/data/major-events.json ]; then
             git add public/data/major-events.json
           fi
-          # 변경사항이 있을 때만 커밋 및 푸시
           if ! git diff --staged --quiet; then
             git commit -m "chore: update major events data"
             git push
