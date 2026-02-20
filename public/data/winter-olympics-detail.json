@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-20T13:16:02.079Z",
+  "lastUpdate": "2026-02-20T16:53:24.591Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -10,10 +10,10 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 16,
-      "silver": 8,
+      "gold": 17,
+      "silver": 9,
       "bronze": 10,
-      "total": 34
+      "total": 36
     },
     {
       "rank": 2,
@@ -44,8 +44,8 @@
       "nation": "프랑스",
       "gold": 6,
       "silver": 8,
-      "bronze": 5,
-      "total": 19
+      "bronze": 6,
+      "total": 20
     },
     {
       "rank": 6,
@@ -64,12 +64,12 @@
       "total": 16
     },
     {
-      "rank": 8,
+      "rank": 7,
       "nation": "스위스",
       "gold": 6,
-      "silver": 5,
+      "silver": 6,
       "bronze": 4,
-      "total": 15
+      "total": 16
     },
     {
       "rank": 9,
@@ -98,10 +98,10 @@
     {
       "rank": 12,
       "nation": "중국",
-      "gold": 3,
+      "gold": 4,
       "silver": 3,
-      "bronze": 4,
-      "total": 10
+      "bronze": 5,
+      "total": 12
     },
     {
       "rank": 13,
@@ -253,23 +253,11 @@
     {
       "time": "21:40",
       "discipline": "올림픽특집",
-      "status": "LIVE",
+      "status": "종료",
       "players": null
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-20",
-      "time": "21:40",
-      "discipline": "올림픽특집",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-21",
-      "time": "00:30",
-      "discipline": "스피드스케이팅",
-      "status": "예정"
-    },
     {
       "date": "2026-02-21",
       "time": "02:00",
@@ -286,6 +274,18 @@
       "date": "2026-02-21",
       "time": "04:15",
       "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "05:18",
+      "discipline": "쇼트트랙",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "07:20",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -998,7 +998,7 @@
           "status": "종료",
           "players": [
             "유타 레이르담",
-            "펨케 콕",
+            "펨커 콕",
             "다카기 미호",
             "이나현",
             "김민선"
@@ -1058,7 +1058,7 @@
           "disciplineDetail": "여자 500m",
           "status": "종료",
           "players": [
-            "펨케 콕",
+            "펨커 콕",
             "유타 레이르담",
             "다카기 미호",
             "이나현",
@@ -1096,12 +1096,15 @@
           "date": "2026-02-21",
           "time": "00:30",
           "disciplineDetail": "여자 1500m",
-          "status": "예정",
+          "status": "종료",
           "players": [
-            "임리원",
-            "박지우"
+            "박지우",
+            "임리원"
           ],
-          "scores": null,
+          "scores": [
+            "1:58.26",
+            "1:59.73"
+          ],
           "result": null
         },
         {
