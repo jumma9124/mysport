@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-19T20:42:16.768Z",
+  "lastUpdate": "2026-02-20T02:44:10.094Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -17,19 +17,19 @@
     },
     {
       "rank": 2,
+      "nation": "미국",
+      "gold": 9,
+      "silver": 12,
+      "bronze": 6,
+      "total": 27
+    },
+    {
+      "rank": 3,
       "nation": "이탈리아",
       "gold": 9,
       "silver": 5,
       "bronze": 12,
       "total": 26
-    },
-    {
-      "rank": 3,
-      "nation": "미국",
-      "gold": 7,
-      "silver": 12,
-      "bronze": 6,
-      "total": 25
     },
     {
       "rank": 4,
@@ -83,17 +83,17 @@
       "rank": 10,
       "nation": "일본",
       "gold": 5,
-      "silver": 6,
-      "bronze": 11,
-      "total": 22
+      "silver": 7,
+      "bronze": 12,
+      "total": 24
     },
     {
       "rank": 11,
       "nation": "캐나다",
       "gold": 4,
-      "silver": 4,
+      "silver": 5,
       "bronze": 6,
-      "total": 14
+      "total": 15
     },
     {
       "rank": 12,
@@ -198,44 +198,66 @@
   ],
   "todaySchedule": [
     {
-      "time": "04:51",
-      "discipline": "쇼트트랙",
+      "time": "00:30",
+      "discipline": "스피드스케이팅",
       "status": "종료",
       "players": [
-        "대한민국",
-        "이탈리아",
-        "캐나다"
+        "닝중옌",
+        "조던 스톨츠",
+        "키엘트 누이스",
+        "정재원"
       ]
     },
     {
-      "time": "07:00",
+      "time": "03:00",
+      "discipline": "피겨스케이팅",
+      "status": "종료",
+      "players": [
+        "알리사 리우",
+        "사카모토 가오리",
+        "나카이 아미",
+        "이해인",
+        "신지아"
+      ]
+    },
+    {
+      "time": "03:30",
+      "discipline": "프리스타일 스키",
+      "status": "종료",
+      "players": [
+        "김다은",
+        "이소영"
+      ]
+    },
+    {
+      "time": "07:30",
       "discipline": "올림픽특집",
       "status": "종료",
       "players": null
     },
     {
-      "time": "22:30",
-      "discipline": "컬링",
-      "status": "종료",
+      "time": "12:30",
+      "discipline": "올림픽특집",
+      "status": "예정",
+      "players": null
+    },
+    {
+      "time": "18:30",
+      "discipline": "프리스타일 스키",
+      "status": "예정",
       "players": [
-        "캐나다",
-        "대한민국"
+        "이승훈",
+        "문희성"
       ]
+    },
+    {
+      "time": "19:50",
+      "discipline": "올림픽특집",
+      "status": "예정",
+      "players": null
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-20",
-      "time": "03:00",
-      "discipline": "피겨스케이팅",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-20",
-      "time": "07:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-20",
       "time": "12:30",
@@ -252,6 +274,18 @@
       "date": "2026-02-20",
       "time": "19:50",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "00:30",
+      "discipline": "스피드스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "02:00",
+      "discipline": "봅슬레이",
       "status": "예정"
     }
   ],
@@ -609,12 +643,19 @@
           "date": "2026-02-20",
           "time": "03:00",
           "disciplineDetail": "여자 싱글 프리 프로그램",
-          "status": "경기중",
+          "status": "종료",
           "players": [
-            "신지아",
-            "이해인"
+            "알리사 리우",
+            "사카모토 가오리",
+            "나카이 아미",
+            "이해인",
+            "신지아"
           ],
           "scores": [
+            "226.79",
+            "224.90",
+            "219.16",
+            "210.56",
             "206.68"
           ],
           "result": null

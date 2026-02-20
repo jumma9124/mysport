@@ -59,23 +59,23 @@
       "bronze": 3,
       "total": 7
     },
-    "todayGames": 3,
+    "todayGames": 7,
     "upcomingGames": [
       {
         "date": "2026-02-20",
-        "time": "03:00",
-        "discipline": "피겨스케이팅",
-        "status": "경기중"
-      },
-      {
-        "date": "2026-02-20",
-        "time": "07:30",
+        "time": "12:30",
         "discipline": "올림픽특집",
         "status": "예정"
       },
       {
         "date": "2026-02-20",
-        "time": "12:30",
+        "time": "18:30",
+        "discipline": "프리스타일 스키",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-20",
+        "time": "19:50",
         "discipline": "올림픽특집",
         "status": "예정"
       }
