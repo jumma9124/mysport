@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-20T16:53:24.591Z",
+  "lastUpdate": "2026-02-20T20:43:09.408Z",
   "medals": {
     "gold": 2,
     "silver": 2,
@@ -11,17 +11,17 @@
       "rank": 1,
       "nation": "노르웨이",
       "gold": 17,
-      "silver": 9,
+      "silver": 10,
       "bronze": 10,
-      "total": 36
+      "total": 37
     },
     {
       "rank": 2,
       "nation": "미국",
-      "gold": 9,
+      "gold": 10,
       "silver": 12,
       "bronze": 6,
-      "total": 27
+      "total": 28
     },
     {
       "rank": 3,
@@ -33,6 +33,14 @@
     },
     {
       "rank": 4,
+      "nation": "네덜란드",
+      "gold": 7,
+      "silver": 7,
+      "bronze": 3,
+      "total": 17
+    },
+    {
+      "rank": 5,
       "nation": "독일",
       "gold": 6,
       "silver": 8,
@@ -40,7 +48,7 @@
       "total": 22
     },
     {
-      "rank": 5,
+      "rank": 6,
       "nation": "프랑스",
       "gold": 6,
       "silver": 8,
@@ -48,24 +56,16 @@
       "total": 20
     },
     {
-      "rank": 6,
-      "nation": "네덜란드",
-      "gold": 6,
-      "silver": 7,
-      "bronze": 3,
-      "total": 16
-    },
-    {
-      "rank": 7,
-      "nation": "스웨덴",
-      "gold": 6,
-      "silver": 6,
-      "bronze": 4,
-      "total": 16
-    },
-    {
       "rank": 7,
       "nation": "스위스",
+      "gold": 6,
+      "silver": 6,
+      "bronze": 5,
+      "total": 17
+    },
+    {
+      "rank": 8,
+      "nation": "스웨덴",
       "gold": 6,
       "silver": 6,
       "bronze": 4,
@@ -92,8 +92,8 @@
       "nation": "캐나다",
       "gold": 4,
       "silver": 5,
-      "bronze": 6,
-      "total": 15
+      "bronze": 8,
+      "total": 17
     },
     {
       "rank": 12,
@@ -260,25 +260,13 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-21",
-      "time": "02:00",
-      "discipline": "봅슬레이",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-21",
-      "time": "03:30",
-      "discipline": "프리스타일 스키",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-21",
-      "time": "04:15",
+      "time": "05:28",
       "discipline": "쇼트트랙",
-      "status": "예정"
+      "status": "경기중"
     },
     {
       "date": "2026-02-21",
-      "time": "05:18",
+      "time": "06:00",
       "discipline": "쇼트트랙",
       "status": "예정"
     },
@@ -286,6 +274,18 @@
       "date": "2026-02-21",
       "time": "07:20",
       "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "10:30",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "18:00",
+      "discipline": "봅슬레이",
       "status": "예정"
     }
   ],
@@ -1098,10 +1098,16 @@
           "disciplineDetail": "여자 1500m",
           "status": "종료",
           "players": [
+            "앙투아네트 라이마 더 용",
+            "랑네 비클룬",
+            "발레리 말테",
             "박지우",
             "임리원"
           ],
           "scores": [
+            "1:54.09",
+            "1:54.15",
+            "1:54.40",
             "1:58.26",
             "1:59.73"
           ],
@@ -1112,7 +1118,10 @@
           "time": "23:00",
           "disciplineDetail": "남자 매스스타트 준결승",
           "status": "예정",
-          "players": null,
+          "players": [
+            "정재원",
+            "조승민"
+          ],
           "scores": null,
           "result": null
         },
@@ -1121,7 +1130,10 @@
           "time": "23:50",
           "disciplineDetail": "여자 매스스타트 준결승",
           "status": "예정",
-          "players": null,
+          "players": [
+            "박지우",
+            "임리원"
+          ],
           "scores": null,
           "result": null
         }
@@ -1459,22 +1471,54 @@
           "date": "2026-02-21",
           "time": "04:15",
           "disciplineDetail": "여자 1500m 준준결승",
-          "status": "예정",
+          "status": "종료",
+          "players": [
+            "김길리",
+            "최민정",
+            "노도희"
+          ],
+          "scores": [
+            "2:32.080",
+            "+0.973",
+            "+0.787"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "05:02",
+          "disciplineDetail": "여자 1500m 준결승",
+          "status": "종료",
           "players": [
             "최민정",
             "김길리",
             "노도희"
+          ],
+          "scores": [
+            "2:20.984",
+            "2:29.385"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "05:28",
+          "disciplineDetail": "남자 5000m 계주 파이널",
+          "status": "경기중",
+          "players": [
+            "대한민국"
           ],
           "scores": null,
           "result": null
         },
         {
           "date": "2026-02-21",
-          "time": "05:18",
-          "disciplineDetail": "남자 5000m 계주 파이널",
+          "time": "06:00",
+          "disciplineDetail": "여자 1500m 파이널",
           "status": "예정",
           "players": [
-            "대한민국"
+            "최민정",
+            "김길리"
           ],
           "scores": null,
           "result": null
@@ -1934,11 +1978,26 @@
           "date": "2026-02-21",
           "time": "02:00",
           "disciplineDetail": "여자 2인승 런1",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "+0.96"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "03:50",
+          "disciplineDetail": "여자 2인승 런2",
+          "status": "종료",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "+1.86"
+          ],
           "result": null
         },
         {
@@ -1948,6 +2007,17 @@
           "status": "예정",
           "players": [
             "대한민국",
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-22",
+          "time": "03:00",
+          "disciplineDetail": "여자 2인승 런3",
+          "status": "예정",
+          "players": [
             "대한민국"
           ],
           "scores": null,

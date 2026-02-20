@@ -63,20 +63,20 @@
     "upcomingGames": [
       {
         "date": "2026-02-21",
-        "time": "02:00",
-        "discipline": "봅슬레이",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-21",
-        "time": "03:30",
-        "discipline": "프리스타일 스키",
-        "status": "예정"
-      },
-      {
-        "date": "2026-02-21",
-        "time": "04:15",
+        "time": "05:28",
         "discipline": "쇼트트랙",
+        "status": "경기중"
+      },
+      {
+        "date": "2026-02-21",
+        "time": "06:00",
+        "discipline": "쇼트트랙",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-21",
+        "time": "07:20",
+        "discipline": "올림픽특집",
         "status": "예정"
       }
     ]
