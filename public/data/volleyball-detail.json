@@ -21,13 +21,23 @@
       "points": 57
     },
     {
+      "name": "한국전력",
+      "wins": 16,
+      "losses": 14,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.053,
+      "rank": 3,
+      "points": 46
+    },
+    {
       "name": "KB손해보험",
       "wins": 15,
       "losses": 14,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.018,
-      "rank": 3,
+      "rank": 4,
       "points": 46
     },
     {
@@ -37,18 +47,8 @@
       "setWins": 0,
       "setLosses": 0,
       "setRate": 0.984,
-      "rank": 4,
-      "points": 45
-    },
-    {
-      "name": "한국전력",
-      "wins": 15,
-      "losses": 14,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.018,
       "rank": 5,
-      "points": 43
+      "points": 45
     },
     {
       "name": "우리카드",
@@ -63,10 +63,10 @@
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 24,
+      "losses": 25,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.392,
+      "setRate": 0.39,
       "rank": 7,
       "points": 15
     }
@@ -74,13 +74,13 @@
   "leagueStandingsWomen": [
     {
       "name": "도로공사",
-      "wins": 20,
+      "wins": 21,
       "losses": 9,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.489,
+      "setRate": 1.521,
       "rank": 1,
-      "points": 56
+      "points": 59
     },
     {
       "name": "현대건설",
@@ -105,10 +105,10 @@
     {
       "name": "GS칼텍스",
       "wins": 15,
-      "losses": 14,
+      "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.053,
+      "setRate": 1.017,
       "rank": 4,
       "points": 45
     },
