@@ -12,11 +12,47 @@ const TEAM_FULL_NAME = '한화 이글스';
 const TEAM_CODE = 'HH';
 const DATA_DIR = path.join(__dirname, '../public/data');
 
+// 현재 시즌 년도 계산 (동적, season-config.json 기반)
+const getCurrentSeasonYear = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+
+  try {
+    // season-config.json 읽기
+    const configPath = path.join(__dirname, '../public/data/season-config.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      const seasonStart = new Date(config.baseball.start);
+
+      // 현재 날짜가 시즌 시작일 이전이면 이전 년도 시즌 데이터
+      if (now < seasonStart) {
+        console.log(`⚾ Season hasn't started yet (starts ${config.baseball.start}), using previous season data`);
+        return year - 1;
+      }
+
+      console.log(`⚾ Current season is active (started ${config.baseball.start})`);
+      return year;
+    }
+  } catch (error) {
+    console.warn('Failed to read season-config.json, using fallback logic:', error.message);
+  }
+
+  // 폴백: season-config.json 읽기 실패 시 월 기반 판별
+  const month = now.getMonth() + 1;
+  if (month >= 1 && month <= 2) {
+    return year - 1;
+  }
+  return year;
+};
+
+const SEASON_CODE = getCurrentSeasonYear();
+console.log(`🏟️  Current season year: ${SEASON_CODE}`);
+
 // 네이버 스포츠 모바일 URL
 const NAVER_URLS = {
-  standings: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=teamRank',
-  batters: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=hitter',
-  pitchers: 'https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=pitcher',
+  standings: `https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=${SEASON_CODE}&tab=teamRank`,
+  batters: `https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=${SEASON_CODE}&tab=hitter`,
+  pitchers: `https://m.sports.naver.com/kbaseball/record/kbo?seasonCode=${SEASON_CODE}&tab=pitcher`,
 };
 
 // KBO 공식 사이트 URL
@@ -695,8 +731,7 @@ async function crawlLastSeries() {
     await page.setViewport({ width: 375, height: 667 });
 
     // 시즌 종료 후: 10월부터 역순으로 한화 마지막 경기 찾기
-    const currentYear = new Date().getFullYear();
-    const seasonYear = currentYear > 2025 ? currentYear - 1 : 2025; // 오프시즌이면 이전 시즌
+    const seasonYear = getCurrentSeasonYear(); // 동적으로 시즌 년도 계산
 
     // 10월 마지막 날부터 시작해서 한화 마지막 경기 찾기
     for (let day = 31; day >= 1; day--) {

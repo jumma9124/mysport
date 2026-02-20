@@ -35,20 +35,20 @@
       }
     ],
     "upcomingMatch": {
-      "date": "2026-02-26",
-      "time": "19:00",
-      "opponent": "한국전력",
-      "venue": "천안유관순체육관"
+      "date": "2026-02-22",
+      "time": "14:00",
+      "opponent": "대한항공",
+      "venue": "원정"
     }
   },
   "baseball": {
     "team": "한화 이글스",
-    "currentRank": 8,
+    "currentRank": 2,
     "record": {
-      "wins": 66,
-      "losses": 76,
-      "draws": 2,
-      "winRate": 0.465
+      "wins": 83,
+      "losses": 57,
+      "draws": 4,
+      "winRate": 0.593
     }
   },
   "winterOlympics": {
