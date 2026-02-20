@@ -69,6 +69,17 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
     }
   }, [goNext, goPrev]);
 
+  // 키보드 네비게이션 (접근성)
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goPrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      goNext();
+    }
+  }, [goPrev, goNext]);
+
   // 렌더링용 슬라이드: [마지막클론, ...실제슬라이드, 첫번째클론]
   const renderSlides = [
     slides[count - 1], // 마지막 슬라이드의 클론 (앞에 배치)
@@ -92,6 +103,11 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
           className="flex-1 relative min-h-0 overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
+          onKeyDown={handleKeyDown}
+          role="region"
+          aria-label="스포츠 정보 슬라이더"
+          aria-live="polite"
+          tabIndex={0}
         >
           <div
             className={`flex h-full ${isTransitioning ? 'transition-transform duration-300 ease-in-out' : ''}`}
@@ -130,7 +146,7 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
         </div>
 
         {/* 하단 도트 인디케이터 */}
-        <div className="flex items-center justify-center gap-3 py-12 shrink-0">
+        <div className="flex items-center justify-center gap-3 py-12 shrink-0" role="tablist" aria-label="스포츠 종목 선택">
           {labels.map((label, index) => (
             <button
               key={index}
@@ -140,11 +156,16 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
                   ? 'bg-white/20 text-white'
                   : 'bg-transparent text-white/40 hover:text-white/60'
               }`}
+              role="tab"
+              aria-selected={index === realIndex}
+              aria-label={`${label} 보기`}
+              aria-controls={`slide-${index}`}
             >
               <span
                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
                   index === realIndex ? 'bg-orange-500' : 'bg-white/30'
                 }`}
+                aria-hidden="true"
               />
               {label}
             </button>

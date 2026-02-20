@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { BaseballData } from '@/types';
 import { fetchBaseballData } from '@/utils/dataUpdater';
@@ -8,12 +8,12 @@ interface BaseballCardProps {
   isInSeason?: boolean;
 }
 
-const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
+const BaseballCard = memo(({ isInSeason = false }: BaseballCardProps) => {
   const [data, setData] = useState<BaseballData | null>(null);
   const [loading, setLoading] = useState(true);
 
   // 날짜 형식 변환 함수 (YYYY-MM-DD → MM.DD)
-  const formatDate = (dateStr: string) => {
+  const formatDate = useCallback((dateStr: string) => {
     if (!dateStr) return '';
     // ISO 형식 (2025-10-02)
     if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
@@ -22,7 +22,7 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
     }
     // 이미 YY.MM.DD 형식이면 그대로 반환
     return dateStr;
-  };
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -161,6 +161,8 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
       </div>
     </Link>
   );
-};
+});
+
+BaseballCard.displayName = 'BaseballCard';
 
 export default BaseballCard;
