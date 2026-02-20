@@ -67,29 +67,29 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
-            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
+            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-xl font-bold">
               ✓
             </div>
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-3xl font-bold text-white">
               {data.team}
               {daysUntilStart !== null && (
-                <span className="text-sm font-normal ml-2">(D-{daysUntilStart})</span>
+                <span className="text-lg font-normal ml-2">(D-{daysUntilStart})</span>
               )}
             </h2>
           </div>
-          <span className="text-sm text-gray-400">KBO 리그</span>
+          <span className="text-lg text-gray-400">KBO 리그</span>
         </div>
 
         {/* 순위 */}
-        <div className="text-5xl font-bold text-white mb-6 text-center">{data.currentRank}위</div>
+        <div className="text-7xl font-bold text-white mb-6 text-center">{data.currentRank}위</div>
 
         {/* 전적 정보 */}
         <div className="bg-gray-800/50 rounded-lg p-3 mb-6">
           <div className="flex items-center justify-between">
-            <span className="text-base text-white/70">
+            <span className="text-xl text-white/70">
               전적 / 승률{isOffSeason ? ' / 시즌 종료' : ''}
             </span>
-            <span className="text-base text-white">
+            <span className="text-xl text-white">
               {data.record.wins}승 {data.record.losses}패 {data.record.draws}무
               <span className="mx-2 text-white/40">/</span>
               승률 .{(data.record.winRate * 1000).toFixed(0)}
@@ -100,14 +100,14 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
         {/* 오프시즌 - 마지막 시리즈 */}
         {isOffSeason && (
           <>
-            <h4 className="text-sm text-white mb-2">마지막 시리즈</h4>
+            <h4 className="text-lg text-white mb-2">마지막 시리즈</h4>
             <div className="bg-gray-800/50 rounded-lg p-3">
               {data.lastSeries ? (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-base text-white">vs {data.lastSeries.opponent}</span>
+                    <span className="text-xl text-white">vs {data.lastSeries.opponent}</span>
                     <span
-                      className={`px-2 py-0.5 rounded text-sm ${
+                      className={`px-2 py-0.5 rounded text-lg ${
                         data.lastSeries.result === 'win' ? 'bg-accent-green/[0.15] text-accent-green/70' :
                         data.lastSeries.result === 'loss' ? 'bg-red-500/[0.15] text-red-500/70' :
                         'bg-gray-400/[0.15] text-gray-400/70'
@@ -116,10 +116,10 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
                       {data.lastSeries.result === 'win' ? '승' : data.lastSeries.result === 'loss' ? '패' : '무'}
                     </span>
                   </div>
-                  <span className="text-sm text-gray-400">{formatDate(data.lastSeries.date)}</span>
+                  <span className="text-lg text-gray-400">{formatDate(data.lastSeries.date)}</span>
                 </div>
               ) : (
-                <div className="text-base text-gray-400">로딩 중...</div>
+                <div className="text-xl text-gray-400">로딩 중...</div>
               )}
             </div>
           </>
@@ -128,32 +128,32 @@ const BaseballCard = ({ isInSeason = false }: BaseballCardProps) => {
         {/* 시즌 중 - 현재 시리즈 및 다음 시리즈 */}
         {!isOffSeason && (
           <>
-            <h4 className="text-sm text-white mb-2">현재 시리즈</h4>
+            <h4 className="text-lg text-white mb-2">현재 시리즈</h4>
             <div className="bg-gray-800/50 rounded-lg p-3 mb-3">
               {data.currentSeries ? (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-base text-white">vs {data.currentSeries.opponent}</span>
-                    <span className="text-sm text-white/70">
+                    <span className="text-xl text-white">vs {data.currentSeries.opponent}</span>
+                    <span className="text-lg text-white/70">
                       {data.currentSeries.wins}승 {data.currentSeries.losses}패
                     </span>
                   </div>
-                  <span className="text-sm text-gray-400">{formatDate(data.currentSeries.date)}</span>
+                  <span className="text-lg text-gray-400">{formatDate(data.currentSeries.date)}</span>
                 </div>
               ) : (
-                <div className="text-base text-gray-400">진행 중인 시리즈 없음</div>
+                <div className="text-xl text-gray-400">진행 중인 시리즈 없음</div>
               )}
             </div>
 
-            <h4 className="text-sm text-white mb-2">다음 시리즈</h4>
+            <h4 className="text-lg text-white mb-2">다음 시리즈</h4>
             <div className="bg-gray-800/50 rounded-lg p-3">
               {data.nextSeries ? (
                 <div className="flex items-center justify-between">
-                  <span className="text-base text-white">vs {data.nextSeries.opponent}</span>
-                  <span className="text-sm text-gray-400">{formatDate(data.nextSeries.date)}</span>
+                  <span className="text-xl text-white">vs {data.nextSeries.opponent}</span>
+                  <span className="text-lg text-gray-400">{formatDate(data.nextSeries.date)}</span>
                 </div>
               ) : (
-                <div className="text-base text-gray-400">예정된 시리즈 없음</div>
+                <div className="text-xl text-gray-400">예정된 시리즈 없음</div>
               )}
             </div>
           </>

@@ -74,12 +74,12 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
-            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-base font-bold">
+            <div className="w-7 h-7 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-xl font-bold">
               ✓
             </div>
-            <h2 className="text-xl font-bold text-white">대한민국 대표팀</h2>
+            <h2 className="text-3xl font-bold text-white">대한민국 대표팀</h2>
           </div>
-          <span className="text-sm text-gray-400">국제 스포츠대회</span>
+          <span className="text-lg text-gray-400">국제 스포츠대회</span>
         </div>
 
         {/* 이벤트 리스트 */}
@@ -91,13 +91,13 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
                   {getEventIcon()}
                 </div>
                 <div className="flex-1">
-                  <div className="text-base text-white font-medium">{event.name}</div>
-                  <div className="text-sm text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
+                  <div className="text-xl text-white font-medium">{event.name}</div>
+                  <div className="text-lg text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
                 </div>
               </div>
             ))
           ) : (
-            <div className="text-sm text-gray-400">로딩 중...</div>
+            <div className="text-lg text-gray-400">로딩 중...</div>
           )}
         </div>
       </div>
