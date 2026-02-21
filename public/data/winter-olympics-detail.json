@@ -1,10 +1,10 @@
 {
-  "lastUpdate": "2026-02-20T20:43:09.408Z",
+  "lastUpdate": "2026-02-21T02:37:16.150Z",
   "medals": {
-    "gold": 2,
-    "silver": 2,
+    "gold": 3,
+    "silver": 4,
     "bronze": 3,
-    "total": 7
+    "total": 10
   },
   "allCountriesMedals": [
     {
@@ -20,24 +20,24 @@
       "nation": "미국",
       "gold": 10,
       "silver": 12,
-      "bronze": 6,
-      "total": 28
+      "bronze": 7,
+      "total": 29
     },
     {
       "rank": 3,
       "nation": "이탈리아",
       "gold": 9,
       "silver": 5,
-      "bronze": 12,
-      "total": 26
+      "bronze": 13,
+      "total": 27
     },
     {
       "rank": 4,
       "nation": "네덜란드",
-      "gold": 7,
+      "gold": 8,
       "silver": 7,
       "bronze": 3,
-      "total": 17
+      "total": 18
     },
     {
       "rank": 5,
@@ -105,6 +105,14 @@
     },
     {
       "rank": 13,
+      "nation": "대한민국",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 3,
+      "total": 10
+    },
+    {
+      "rank": 14,
       "nation": "호주",
       "gold": 3,
       "silver": 2,
@@ -112,33 +120,73 @@
       "total": 6
     },
     {
-      "rank": 14,
+      "rank": 15,
       "nation": "영국",
       "gold": 3,
       "silver": 0,
       "bronze": 0,
       "total": 3
-    },
-    {
-      "rank": 15,
-      "nation": "대한민국",
-      "gold": 2,
-      "silver": 2,
-      "bronze": 3,
-      "total": 7
     }
   ],
   "koreaMedalists": [
     {
       "name": "김길리",
       "medalType": "gold",
-      "discipline": "쇼트트랙 여자 3000m 계주",
+      "discipline": "쇼트트랙 여자 1500m",
       "date": ""
     },
     {
       "name": "김길리",
       "medalType": "bronze",
-      "discipline": "쇼트트랙 여자 3000m 계주",
+      "discipline": "쇼트트랙 여자 1500m",
+      "date": ""
+    },
+    {
+      "name": "최민정",
+      "medalType": "gold",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "최민정",
+      "medalType": "silver",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "신동민",
+      "medalType": "silver",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "이정민",
+      "medalType": "silver",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "이준서",
+      "medalType": "silver",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "임종언",
+      "medalType": "silver",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "임종언",
+      "medalType": "bronze",
+      "discipline": "쇼트트랙",
+      "date": ""
+    },
+    {
+      "name": "황대헌",
+      "medalType": "silver",
+      "discipline": "쇼트트랙",
       "date": ""
     },
     {
@@ -156,24 +204,6 @@
     {
       "name": "이소연",
       "medalType": "gold",
-      "discipline": "쇼트트랙",
-      "date": ""
-    },
-    {
-      "name": "최민정",
-      "medalType": "gold",
-      "discipline": "쇼트트랙",
-      "date": ""
-    },
-    {
-      "name": "황대헌",
-      "medalType": "silver",
-      "discipline": "쇼트트랙",
-      "date": ""
-    },
-    {
-      "name": "임종언",
-      "medalType": "bronze",
       "discipline": "쇼트트랙",
       "date": ""
     },
@@ -202,22 +232,19 @@
       "discipline": "스피드스케이팅",
       "status": "종료",
       "players": [
-        "닝중옌",
-        "조던 스톨츠",
-        "키엘트 누이스",
-        "정재원"
+        "앙투아네트 라이마 더 용",
+        "랑네 비클룬",
+        "발레리 말테",
+        "박지우",
+        "임리원"
       ]
     },
     {
-      "time": "03:00",
-      "discipline": "피겨스케이팅",
+      "time": "02:00",
+      "discipline": "봅슬레이",
       "status": "종료",
       "players": [
-        "알리사 리우",
-        "사카모토 가오리",
-        "나카이 아미",
-        "이해인",
-        "신지아"
+        "대한민국"
       ]
     },
     {
@@ -225,67 +252,129 @@
       "discipline": "프리스타일 스키",
       "status": "종료",
       "players": [
-        "김다은",
-        "이소영"
+        "알렉스 페레이라",
+        "헨리 실다루",
+        "브렌던 매카이",
+        "이승훈"
       ]
     },
     {
-      "time": "07:30",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "12:30",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "18:30",
-      "discipline": "프리스타일 스키",
+      "time": "03:50",
+      "discipline": "봅슬레이",
       "status": "종료",
       "players": [
-        "이승훈",
-        "문희성"
+        "대한민국"
       ]
     },
     {
-      "time": "21:40",
+      "time": "04:15",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "김길리",
+        "최민정",
+        "노도희"
+      ]
+    },
+    {
+      "time": "05:02",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "최민정",
+        "김길리",
+        "노도희"
+      ]
+    },
+    {
+      "time": "05:18",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "네덜란드",
+        "대한민국",
+        "이탈리아"
+      ]
+    },
+    {
+      "time": "06:00",
+      "discipline": "쇼트트랙",
+      "status": "종료",
+      "players": [
+        "김길리",
+        "최민정",
+        "코린 스토다드"
+      ]
+    },
+    {
+      "time": "07:20",
       "discipline": "올림픽특집",
       "status": "종료",
       "players": null
+    },
+    {
+      "time": "10:30",
+      "discipline": "올림픽특집",
+      "status": "종료",
+      "players": null
+    },
+    {
+      "time": "18:00",
+      "discipline": "봅슬레이",
+      "status": "예정",
+      "players": [
+        "대한민국",
+        "대한민국"
+      ]
+    },
+    {
+      "time": "23:00",
+      "discipline": "스피드스케이팅",
+      "status": "예정",
+      "players": [
+        "정재원",
+        "조승민"
+      ]
+    },
+    {
+      "time": "23:50",
+      "discipline": "스피드스케이팅",
+      "status": "예정",
+      "players": [
+        "박지우",
+        "임리원"
+      ]
     }
   ],
   "upcomingSchedule": [
     {
       "date": "2026-02-21",
-      "time": "05:28",
-      "discipline": "쇼트트랙",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-21",
-      "time": "06:00",
-      "discipline": "쇼트트랙",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-21",
-      "time": "07:20",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-21",
-      "time": "10:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-21",
       "time": "18:00",
       "discipline": "봅슬레이",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "23:00",
+      "discipline": "스피드스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "23:50",
+      "discipline": "스피드스케이팅",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "03:00",
+      "discipline": "봅슬레이",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "04:00",
+      "discipline": "올림픽특집",
       "status": "예정"
     }
   ],
@@ -658,15 +747,6 @@
             "210.56",
             "206.68"
           ],
-          "result": null
-        },
-        {
-          "date": "2026-02-22",
-          "time": "04:00",
-          "disciplineDetail": "갈라쇼",
-          "status": "예정",
-          "players": null,
-          "scores": null,
           "result": null
         }
       ]
@@ -1502,11 +1582,13 @@
         },
         {
           "date": "2026-02-21",
-          "time": "05:28",
+          "time": "05:18",
           "disciplineDetail": "남자 5000m 계주 파이널",
-          "status": "경기중",
+          "status": "종료",
           "players": [
-            "대한민국"
+            "네덜란드",
+            "대한민국",
+            "이탈리아"
           ],
           "scores": null,
           "result": null
@@ -1515,10 +1597,11 @@
           "date": "2026-02-21",
           "time": "06:00",
           "disciplineDetail": "여자 1500m 파이널",
-          "status": "예정",
+          "status": "종료",
           "players": [
+            "김길리",
             "최민정",
-            "김길리"
+            "코린 스토다드"
           ],
           "scores": null,
           "result": null
