@@ -21,22 +21,22 @@
       "points": 57
     },
     {
+      "name": "KB손해보험",
+      "wins": 15,
+      "losses": 15,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1,
+      "rank": 3,
+      "points": 47
+    },
+    {
       "name": "한국전력",
       "wins": 16,
       "losses": 14,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.053,
-      "rank": 3,
-      "points": 46
-    },
-    {
-      "name": "KB손해보험",
-      "wins": 15,
-      "losses": 14,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.018,
       "rank": 4,
       "points": 46
     },
@@ -52,13 +52,13 @@
     },
     {
       "name": "우리카드",
-      "wins": 14,
+      "wins": 15,
       "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.982,
+      "setRate": 1,
       "rank": 6,
-      "points": 41
+      "points": 43
     },
     {
       "name": "삼성화재",
@@ -84,13 +84,13 @@
     },
     {
       "name": "현대건설",
-      "wins": 18,
+      "wins": 19,
       "losses": 11,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.306,
+      "setRate": 1.34,
       "rank": 2,
-      "points": 53
+      "points": 56
     },
     {
       "name": "흥국생명",
@@ -115,10 +115,10 @@
     {
       "name": "IBK기업은행",
       "wins": 14,
-      "losses": 15,
+      "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.036,
+      "setRate": 1,
       "rank": 5,
       "points": 44
     },
