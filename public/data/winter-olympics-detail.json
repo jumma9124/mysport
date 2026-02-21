@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-21T08:42:11.945Z",
+  "lastUpdate": "2026-02-21T13:05:39.399Z",
   "medals": {
     "gold": 3,
     "silver": 4,
@@ -10,26 +10,26 @@
     {
       "rank": 1,
       "nation": "노르웨이",
-      "gold": 17,
-      "silver": 10,
-      "bronze": 10,
-      "total": 37
+      "gold": 18,
+      "silver": 11,
+      "bronze": 11,
+      "total": 40
     },
     {
       "rank": 2,
       "nation": "미국",
-      "gold": 10,
+      "gold": 11,
       "silver": 12,
       "bronze": 7,
-      "total": 29
+      "total": 30
     },
     {
       "rank": 3,
       "nation": "이탈리아",
-      "gold": 9,
-      "silver": 5,
+      "gold": 10,
+      "silver": 6,
       "bronze": 13,
-      "total": 27
+      "total": 29
     },
     {
       "rank": 4,
@@ -59,9 +59,9 @@
       "rank": 7,
       "nation": "스위스",
       "gold": 6,
-      "silver": 6,
-      "bronze": 5,
-      "total": 17
+      "silver": 7,
+      "bronze": 6,
+      "total": 19
     },
     {
       "rank": 8,
@@ -100,8 +100,8 @@
       "nation": "중국",
       "gold": 4,
       "silver": 3,
-      "bronze": 5,
-      "total": 12
+      "bronze": 6,
+      "total": 13
     },
     {
       "rank": 13,
@@ -321,7 +321,16 @@
     {
       "time": "18:00",
       "discipline": "봅슬레이",
-      "status": "예정",
+      "status": "종료",
+      "players": [
+        "대한민국",
+        "대한민국"
+      ]
+    },
+    {
+      "time": "19:57",
+      "discipline": "봅슬레이",
+      "status": "종료",
       "players": [
         "대한민국",
         "대한민국"
@@ -349,12 +358,6 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-21",
-      "time": "18:00",
-      "discipline": "봅슬레이",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-21",
       "time": "23:00",
       "discipline": "스피드스케이팅",
       "status": "예정"
@@ -374,6 +377,12 @@
     {
       "date": "2026-02-22",
       "time": "04:00",
+      "discipline": "올림픽특집",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "10:30",
       "discipline": "올림픽특집",
       "status": "예정"
     }
@@ -2087,12 +2096,30 @@
           "date": "2026-02-21",
           "time": "18:00",
           "disciplineDetail": "남자 4인승 런1",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국",
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "+0.69",
+            "+1.60"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-21",
+          "time": "19:57",
+          "disciplineDetail": "남자 4인승 런2",
+          "status": "종료",
+          "players": [
+            "대한민국",
+            "대한민국"
+          ],
+          "scores": [
+            "+0.89",
+            "+2.12"
+          ],
           "result": null
         },
         {
@@ -2101,6 +2128,18 @@
           "disciplineDetail": "여자 2인승 런3",
           "status": "예정",
           "players": [
+            "대한민국"
+          ],
+          "scores": null,
+          "result": null
+        },
+        {
+          "date": "2026-02-22",
+          "time": "18:00",
+          "disciplineDetail": "남자 4인승 런3",
+          "status": "예정",
+          "players": [
+            "대한민국",
             "대한민국"
           ],
           "scores": null,

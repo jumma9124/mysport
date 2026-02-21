@@ -59,14 +59,8 @@
       "bronze": 3,
       "total": 10
     },
-    "todayGames": 13,
+    "todayGames": 14,
     "upcomingGames": [
-      {
-        "date": "2026-02-21",
-        "time": "18:00",
-        "discipline": "봅슬레이",
-        "status": "예정"
-      },
       {
         "date": "2026-02-21",
         "time": "23:00",
@@ -77,6 +71,12 @@
         "date": "2026-02-21",
         "time": "23:50",
         "discipline": "스피드스케이팅",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-22",
+        "time": "03:00",
+        "discipline": "봅슬레이",
         "status": "예정"
       }
     ]
