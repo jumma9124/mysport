@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-21T16:40:22.630Z",
+  "lastUpdate": "2026-02-21T20:35:36.209Z",
   "medals": {
     "gold": 3,
     "silver": 4,
@@ -358,15 +358,15 @@
   "upcomingSchedule": [
     {
       "date": "2026-02-22",
-      "time": "03:00",
-      "discipline": "봅슬레이",
-      "status": "예정"
+      "time": "04:00",
+      "discipline": "피겨스케이팅",
+      "status": "LIVE"
     },
     {
       "date": "2026-02-22",
-      "time": "04:00",
-      "discipline": "피겨스케이팅",
-      "status": "예정"
+      "time": "05:05",
+      "discipline": "봅슬레이",
+      "status": "경기중"
     },
     {
       "date": "2026-02-22",
@@ -762,7 +762,7 @@
           "date": "2026-02-22",
           "time": "04:00",
           "disciplineDetail": "갈라쇼",
-          "status": "예정",
+          "status": "LIVE",
           "players": null,
           "scores": null,
           "result": null
@@ -2176,11 +2176,26 @@
           "date": "2026-02-22",
           "time": "03:00",
           "disciplineDetail": "여자 2인승 런3",
-          "status": "예정",
+          "status": "종료",
           "players": [
             "대한민국"
           ],
-          "scores": null,
+          "scores": [
+            "+2.75"
+          ],
+          "result": null
+        },
+        {
+          "date": "2026-02-22",
+          "time": "05:05",
+          "disciplineDetail": "여자 2인승 런4",
+          "status": "경기중",
+          "players": [
+            "대한민국"
+          ],
+          "scores": [
+            "+1.55"
+          ],
           "result": null
         },
         {
