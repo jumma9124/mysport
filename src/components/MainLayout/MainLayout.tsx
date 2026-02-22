@@ -127,7 +127,7 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
           {/* 좌우 화살표 버튼 */}
           <button
             onClick={goPrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:bg-white/20 transition-colors z-10"
+            className="absolute left-2 top-3/4 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:bg-white/20 transition-colors z-10"
             aria-label="이전"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -136,7 +136,7 @@ const MainLayout = ({ slides, labels }: MainLayoutProps) => {
           </button>
           <button
             onClick={goNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:bg-white/20 transition-colors z-10"
+            className="absolute right-2 top-3/4 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:bg-white/20 transition-colors z-10"
             aria-label="다음"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
