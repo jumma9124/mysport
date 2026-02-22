@@ -1,24 +1,24 @@
 {
   "leagueStandings": [
     {
-      "name": "현대캐피탈",
-      "wins": 19,
+      "name": "대한항공",
+      "wins": 20,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.675,
+      "setRate": 1.533,
       "rank": 1,
-      "points": 59
+      "points": 60
     },
     {
-      "name": "대한항공",
+      "name": "현대캐피탈",
       "wins": 19,
-      "losses": 10,
+      "losses": 11,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.467,
+      "setRate": 1.558,
       "rank": 2,
-      "points": 57
+      "points": 59
     },
     {
       "name": "KB손해보험",
@@ -95,10 +95,10 @@
     {
       "name": "흥국생명",
       "wins": 17,
-      "losses": 13,
+      "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.245,
+      "setRate": 1.196,
       "rank": 3,
       "points": 53
     },
@@ -134,16 +134,24 @@
     },
     {
       "name": "정관장",
-      "wins": 6,
+      "wins": 7,
       "losses": 24,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.436,
+      "setRate": 0.468,
       "rank": 7,
-      "points": 20
+      "points": 23
     }
   ],
   "recentMatches": [
+    {
+      "date": "2026-02-22",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "0-3",
+      "sets": []
+    },
     {
       "date": "2026-02-17",
       "opponent": "삼성화재",
@@ -158,14 +166,6 @@
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-2",
-      "sets": []
-    },
-    {
-      "date": "2026-02-09",
-      "opponent": "KB손해보험",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-0",
       "sets": []
     }
   ],
