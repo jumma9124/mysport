@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-22T02:50:26.003Z",
+  "lastUpdate": "2026-02-22T08:43:18.650Z",
   "medals": {
     "gold": 3,
     "silver": 4,
@@ -288,6 +288,12 @@
         "대한민국",
         "대한민국"
       ]
+    },
+    {
+      "time": "19:00",
+      "discipline": "올림픽특집",
+      "status": "예정",
+      "players": null
     }
   ],
   "upcomingSchedule": [
@@ -295,6 +301,12 @@
       "date": "2026-02-22",
       "time": "18:00",
       "discipline": "봅슬레이",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "19:00",
+      "discipline": "올림픽특집",
       "status": "예정"
     },
     {
@@ -311,12 +323,6 @@
     },
     {
       "date": "2026-02-25",
-      "time": "04:00",
-      "discipline": "동계올림픽",
-      "status": "예정"
-    },
-    {
-      "date": "2026-02-26",
       "time": "04:00",
       "discipline": "동계올림픽",
       "status": "예정"
