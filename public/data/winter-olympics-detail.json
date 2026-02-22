@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-22T16:42:03.445Z",
+  "lastUpdate": "2026-02-22T20:37:48.014Z",
   "medals": {
     "gold": 3,
     "silver": 4,
@@ -312,31 +312,31 @@
       "date": "2026-02-23",
       "time": "04:30",
       "discipline": "동계올림픽",
-      "status": "예정"
+      "status": "LIVE"
     },
     {
       "date": "2026-02-24",
       "time": "04:30",
       "discipline": "동계올림픽",
-      "status": "예정"
+      "status": "LIVE"
     },
     {
       "date": "2026-02-25",
       "time": "04:30",
       "discipline": "동계올림픽",
-      "status": "예정"
+      "status": "LIVE"
     },
     {
       "date": "2026-02-26",
       "time": "04:30",
       "discipline": "동계올림픽",
-      "status": "예정"
+      "status": "LIVE"
     },
     {
       "date": "2026-02-27",
       "time": "04:30",
       "discipline": "동계올림픽",
-      "status": "예정"
+      "status": "LIVE"
     }
   ],
   "disciplineSchedules": {
