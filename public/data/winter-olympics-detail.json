@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-21T20:35:36.209Z",
+  "lastUpdate": "2026-02-22T02:50:26.003Z",
   "medals": {
     "gold": 3,
     "silver": 4,
@@ -20,8 +20,8 @@
       "nation": "미국",
       "gold": 11,
       "silver": 12,
-      "bronze": 8,
-      "total": 31
+      "bronze": 9,
+      "total": 32
     },
     {
       "rank": 3,
@@ -50,10 +50,10 @@
     {
       "rank": 6,
       "nation": "독일",
-      "gold": 6,
-      "silver": 8,
+      "gold": 7,
+      "silver": 9,
       "bronze": 8,
-      "total": 22
+      "total": 24
     },
     {
       "rank": 7,
@@ -90,10 +90,10 @@
     {
       "rank": 11,
       "nation": "캐나다",
-      "gold": 4,
+      "gold": 5,
       "silver": 6,
       "bronze": 9,
-      "total": 19
+      "total": 20
     },
     {
       "rank": 12,
@@ -123,9 +123,9 @@
       "rank": 15,
       "nation": "영국",
       "gold": 3,
-      "silver": 0,
+      "silver": 1,
       "bronze": 0,
-      "total": 3
+      "total": 4
     }
   ],
   "koreaMedalists": [
@@ -228,19 +228,29 @@
   ],
   "todaySchedule": [
     {
-      "time": "00:30",
+      "time": "00:40",
       "discipline": "스피드스케이팅",
       "status": "종료",
       "players": [
-        "앙투아네트 라이마 더 용",
-        "랑네 비클룬",
-        "발레리 말테",
-        "박지우",
-        "임리원"
+        "요릿 베르흐스마",
+        "빅토르 할 토루프",
+        "안드레아 조반니니",
+        "정재원"
       ]
     },
     {
-      "time": "02:00",
+      "time": "01:15",
+      "discipline": "스피드스케이팅",
+      "status": "종료",
+      "players": [
+        "마레이커 흐루네바우트",
+        "이바니 블롱댕",
+        "미아 망가넬로",
+        "박지우"
+      ]
+    },
+    {
+      "time": "03:00",
       "discipline": "봅슬레이",
       "status": "종료",
       "players": [
@@ -248,69 +258,21 @@
       ]
     },
     {
-      "time": "03:30",
-      "discipline": "프리스타일 스키",
-      "status": "종료",
-      "players": [
-        "알렉스 페레이라",
-        "헨리 실다루",
-        "브렌던 매카이",
-        "이승훈"
-      ]
-    },
-    {
-      "time": "03:50",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "대한민국"
-      ]
-    },
-    {
-      "time": "04:15",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "김길리",
-        "최민정",
-        "노도희"
-      ]
-    },
-    {
-      "time": "05:02",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "최민정",
-        "김길리",
-        "노도희"
-      ]
-    },
-    {
-      "time": "05:18",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "네덜란드",
-        "대한민국",
-        "이탈리아"
-      ]
-    },
-    {
-      "time": "06:00",
-      "discipline": "쇼트트랙",
-      "status": "종료",
-      "players": [
-        "김길리",
-        "최민정",
-        "코린 스토다드"
-      ]
-    },
-    {
-      "time": "07:20",
-      "discipline": "올림픽특집",
+      "time": "04:00",
+      "discipline": "피겨스케이팅",
       "status": "종료",
       "players": null
+    },
+    {
+      "time": "05:05",
+      "discipline": "봅슬레이",
+      "status": "종료",
+      "players": [
+        "독일",
+        "독일",
+        "미국",
+        "대한민국"
+      ]
     },
     {
       "time": "10:30",
@@ -321,59 +283,14 @@
     {
       "time": "18:00",
       "discipline": "봅슬레이",
-      "status": "종료",
+      "status": "예정",
       "players": [
         "대한민국",
         "대한민국"
-      ]
-    },
-    {
-      "time": "19:57",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "대한민국",
-        "대한민국"
-      ]
-    },
-    {
-      "time": "23:00",
-      "discipline": "스피드스케이팅",
-      "status": "종료",
-      "players": [
-        "정재원",
-        "조승민"
-      ]
-    },
-    {
-      "time": "23:50",
-      "discipline": "스피드스케이팅",
-      "status": "종료",
-      "players": [
-        "박지우",
-        "임리원"
       ]
     }
   ],
   "upcomingSchedule": [
-    {
-      "date": "2026-02-22",
-      "time": "04:00",
-      "discipline": "피겨스케이팅",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-22",
-      "time": "05:05",
-      "discipline": "봅슬레이",
-      "status": "경기중"
-    },
-    {
-      "date": "2026-02-22",
-      "time": "10:30",
-      "discipline": "올림픽특집",
-      "status": "예정"
-    },
     {
       "date": "2026-02-22",
       "time": "18:00",
@@ -382,6 +299,24 @@
     },
     {
       "date": "2026-02-23",
+      "time": "04:00",
+      "discipline": "동계올림픽",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-24",
+      "time": "04:00",
+      "discipline": "동계올림픽",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-25",
+      "time": "04:00",
+      "discipline": "동계올림픽",
+      "status": "예정"
+    },
+    {
+      "date": "2026-02-26",
       "time": "04:00",
       "discipline": "동계올림픽",
       "status": "예정"
@@ -762,7 +697,7 @@
           "date": "2026-02-22",
           "time": "04:00",
           "disciplineDetail": "갈라쇼",
-          "status": "LIVE",
+          "status": "종료",
           "players": null,
           "scores": null,
           "result": null
@@ -2189,12 +2124,18 @@
           "date": "2026-02-22",
           "time": "05:05",
           "disciplineDetail": "여자 2인승 런4",
-          "status": "경기중",
+          "status": "종료",
           "players": [
+            "독일",
+            "독일",
+            "미국",
             "대한민국"
           ],
           "scores": [
-            "+1.55"
+            "3:48.46",
+            "+0.53",
+            "+0.75",
+            "+3.58"
           ],
           "result": null
         },

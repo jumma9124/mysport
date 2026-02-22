@@ -59,24 +59,24 @@
       "bronze": 3,
       "total": 10
     },
-    "todayGames": 14,
+    "todayGames": 7,
     "upcomingGames": [
       {
         "date": "2026-02-22",
-        "time": "04:00",
-        "discipline": "피겨스케이팅",
-        "status": "LIVE"
-      },
-      {
-        "date": "2026-02-22",
-        "time": "05:05",
+        "time": "18:00",
         "discipline": "봅슬레이",
-        "status": "경기중"
+        "status": "예정"
       },
       {
-        "date": "2026-02-22",
-        "time": "10:30",
-        "discipline": "올림픽특집",
+        "date": "2026-02-23",
+        "time": "04:00",
+        "discipline": "동계올림픽",
+        "status": "예정"
+      },
+      {
+        "date": "2026-02-24",
+        "time": "04:00",
+        "discipline": "동계올림픽",
         "status": "예정"
       }
     ]
