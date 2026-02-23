@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-22T20:37:48.014Z",
+  "lastUpdate": "2026-02-23T00:29:16.569Z",
   "medals": {
     "gold": 3,
     "silver": 4,
@@ -137,74 +137,74 @@
     },
     {
       "name": "김길리",
-      "medalType": "bronze",
-      "discipline": "쇼트트랙 여자 1500m",
+      "medalType": "gold",
+      "discipline": "쇼트트랙 여자 3000m 계주",
       "date": ""
     },
     {
       "name": "최민정",
       "medalType": "gold",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 여자 3000m 계주",
       "date": ""
     },
     {
       "name": "최민정",
       "medalType": "silver",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 (개인종목)",
       "date": ""
     },
     {
       "name": "신동민",
       "medalType": "silver",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 남자 5000m 계주",
       "date": ""
     },
     {
       "name": "이정민",
       "medalType": "silver",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 남자 5000m 계주",
       "date": ""
     },
     {
       "name": "이준서",
       "medalType": "silver",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 남자 5000m 계주",
       "date": ""
     },
     {
       "name": "임종언",
       "medalType": "silver",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 남자 5000m 계주",
       "date": ""
     },
     {
       "name": "임종언",
       "medalType": "bronze",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 남자 1000m",
       "date": ""
     },
     {
       "name": "황대헌",
       "medalType": "silver",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 남자 1500m",
       "date": ""
     },
     {
       "name": "노도희",
       "medalType": "gold",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 여자 3000m 계주",
       "date": ""
     },
     {
       "name": "심석희",
       "medalType": "gold",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 여자 3000m 계주",
       "date": ""
     },
     {
       "name": "이소연",
       "medalType": "gold",
-      "discipline": "쇼트트랙",
+      "discipline": "쇼트트랙 여자 3000m 계주",
       "date": ""
     },
     {
@@ -228,117 +228,13 @@
   ],
   "todaySchedule": [
     {
-      "time": "00:40",
-      "discipline": "스피드스케이팅",
-      "status": "종료",
-      "players": [
-        "요릿 베르흐스마",
-        "빅토르 할 토루프",
-        "안드레아 조반니니",
-        "정재원"
-      ]
-    },
-    {
-      "time": "01:15",
-      "discipline": "스피드스케이팅",
-      "status": "종료",
-      "players": [
-        "마레이커 흐루네바우트",
-        "이바니 블롱댕",
-        "미아 망가넬로",
-        "박지우"
-      ]
-    },
-    {
-      "time": "03:00",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "대한민국"
-      ]
-    },
-    {
-      "time": "04:00",
-      "discipline": "피겨스케이팅",
+      "time": "04:30",
+      "discipline": "동계올림픽",
       "status": "종료",
       "players": null
-    },
-    {
-      "time": "05:05",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "독일",
-        "독일",
-        "미국",
-        "대한민국"
-      ]
-    },
-    {
-      "time": "10:30",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "18:00",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "대한민국",
-        "대한민국"
-      ]
-    },
-    {
-      "time": "19:00",
-      "discipline": "올림픽특집",
-      "status": "종료",
-      "players": null
-    },
-    {
-      "time": "20:15",
-      "discipline": "봅슬레이",
-      "status": "종료",
-      "players": [
-        "독일",
-        "독일",
-        "스위스",
-        "대한민국"
-      ]
     }
   ],
-  "upcomingSchedule": [
-    {
-      "date": "2026-02-23",
-      "time": "04:30",
-      "discipline": "동계올림픽",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-24",
-      "time": "04:30",
-      "discipline": "동계올림픽",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-25",
-      "time": "04:30",
-      "discipline": "동계올림픽",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-26",
-      "time": "04:30",
-      "discipline": "동계올림픽",
-      "status": "LIVE"
-    },
-    {
-      "date": "2026-02-27",
-      "time": "04:30",
-      "discipline": "동계올림픽",
-      "status": "LIVE"
-    }
-  ],
+  "upcomingSchedule": [],
   "disciplineSchedules": {
     "CUR": {
       "name": "컬링",
