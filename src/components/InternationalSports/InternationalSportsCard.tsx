@@ -27,17 +27,20 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
       
       // major-events.json에서 이벤트 데이터 로드
       if (result.data?.events) {
-        const eventsWithDays = result.data.events.map((event: Event) => {
-          const eventDate = new Date(event.date);
-          const now = new Date();
-          const diffTime = eventDate.getTime() - now.getTime();
-          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-          
-          return {
-            ...event,
-            daysLeft: diffDays > 0 ? diffDays : 0,
-          };
-        });
+        const eventsWithDays = result.data.events
+          .map((event: Event) => {
+            const eventDate = new Date(event.date);
+            const now = new Date();
+            const diffTime = eventDate.getTime() - now.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            return {
+              ...event,
+              daysLeft: diffDays,
+            };
+          })
+          // 동계올림픽 끝났으니 메인에서는 끝난 이벤트 제외
+          .filter((event: Event) => (event.daysLeft ?? 0) > 0);
         setEvents(eventsWithDays);
       }
       

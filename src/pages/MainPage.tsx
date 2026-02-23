@@ -14,14 +14,6 @@ const SPORT_LABELS: Record<SportType, string> = {
 const MainPage = () => {
   const sortedSports = getSortedSports();
 
-  // 동계올림픽 끝났으니 off-season인 국제대회는 메인에서 제외
-  const filteredSports = sortedSports.filter(s => {
-    if (s.sport === 'international' && !s.inSeason) {
-      return false;
-    }
-    return true;
-  });
-
   const getCardComponent = (sport: SportType, isInSeason: boolean) => {
     switch (sport) {
       case 'baseball':
@@ -33,8 +25,8 @@ const MainPage = () => {
     }
   };
 
-  const slides = filteredSports.map(s => getCardComponent(s.sport, s.inSeason));
-  const labels = filteredSports.map(s => SPORT_LABELS[s.sport]);
+  const slides = sortedSports.map(s => getCardComponent(s.sport, s.inSeason));
+  const labels = sortedSports.map(s => SPORT_LABELS[s.sport]);
 
   return (
     <MainLayout
