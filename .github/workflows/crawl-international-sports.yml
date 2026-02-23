@@ -60,15 +60,27 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          if [ -f public/data/winter-olympics-detail.json ]; then
+
+          # 크롤링한 파일을 임시 저장
+          cp public/data/winter-olympics-detail.json /tmp/winter-olympics-detail.json 2>/dev/null || true
+          cp public/data/sports.json /tmp/sports.json 2>/dev/null || true
+
+          # 리모트 최신 상태로 리셋 (충돌 방지)
+          git fetch origin main
+          git reset --hard origin/main
+
+          # 크롤링 데이터 복원 및 스테이징
+          if [ -f /tmp/winter-olympics-detail.json ]; then
+            cp /tmp/winter-olympics-detail.json public/data/winter-olympics-detail.json
             git add public/data/winter-olympics-detail.json
           fi
-          if [ -f public/data/sports.json ]; then
+          if [ -f /tmp/sports.json ]; then
+            cp /tmp/sports.json public/data/sports.json
             git add public/data/sports.json
           fi
+
           if ! git diff --staged --quiet; then
             git commit -m "chore: update international sports data"
-            git pull --rebase origin main
             git push
             echo "changes=true" >> $GITHUB_OUTPUT
           else
