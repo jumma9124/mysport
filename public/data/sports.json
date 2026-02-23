@@ -59,26 +59,7 @@
       "bronze": 3,
       "total": 10
     },
-    "todayGames": 9,
-    "upcomingGames": [
-      {
-        "date": "2026-02-23",
-        "time": "04:30",
-        "discipline": "동계올림픽",
-        "status": "LIVE"
-      },
-      {
-        "date": "2026-02-24",
-        "time": "04:30",
-        "discipline": "동계올림픽",
-        "status": "LIVE"
-      },
-      {
-        "date": "2026-02-25",
-        "time": "04:30",
-        "discipline": "동계올림픽",
-        "status": "LIVE"
-      }
-    ]
+    "todayGames": 1,
+    "upcomingGames": []
   }
 }
