@@ -173,6 +173,8 @@ index.html
 - **레이아웃:** `grid-cols-1` (모바일) → `md:grid-cols-2` (데스크탑)
 - **최대 너비:** 1400px, 중앙 정렬
 - **카드 최소 높이:** 모바일 300px, 데스크탑 자동
+- **슬라이드 네비게이션 화살표:** `top-3/4` 위치 (하단 1/4 지점)
+- **접근성:** 키보드 네비게이션 (←/→ 키), ARIA 속성 (`aria-label`, `role`) 적용
 
 ### BaseballCard (`src/components/Baseball/BaseballCard.tsx`)
 메인 페이지 야구 위젯. 클릭 시 `/baseball`로 이동.
@@ -182,6 +184,7 @@ index.html
 - 프리시즌: "개막까지 D-N" 카운트다운
 - 순위를 크게 표시 (text-5xl), 전적/승률 하단에 배치
 - 로딩 중: `animate-pulse` 스켈레톤 UI
+- **React.memo 적용** - 불필요한 리렌더링 방지
 
 ### RankChart (`src/components/Baseball/RankChart.tsx`)
 SVG 기반 시즌 순위 트렌드 차트.
@@ -205,10 +208,24 @@ SVG 기반 시즌 순위 트렌드 차트.
 - 헤더: "대한민국 대표팀 / 국제 스포츠대회"
 - 등록된 이벤트 목록 + "개막 D-N" 카운트다운
 - 이벤트별 녹색 체크마크 아이콘
+- **종료된 이벤트 자동 필터링** - `daysLeft <= 0`인 이벤트는 목록에서 제외 (카드 자체는 유지)
 
 ---
 
 ## 크롤러 스크립트
+
+### 공통 Puppeteer 설정
+모든 크롤러에서 동일하게 사용하는 설정:
+
+```javascript
+browser = await puppeteer.launch({
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
+});
+
+// User-Agent: iPhone으로 모바일 페이지 접근
+await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+```
 
 ### crawl-baseball.cjs
 KBO 야구 데이터 크롤링. 네이버 스포츠 + KBO 공식 사이트.
@@ -225,6 +242,8 @@ KBO 야구 데이터 크롤링. 네이버 스포츠 + KBO 공식 사이트.
 - public/data/baseball-detail.json
 - public/data/sports.json (야구 섹션 업데이트)
 ```
+
+**재시도 로직:** 각 크롤링 작업은 최대 3회 재시도 (지수 백오프: 5s → 10s → 15s). 3회 모두 실패 시 `crawlStatus: 'failed'` 기록, 마지막 성공 데이터는 유지. BaseballDetail 페이지에서 7일 이상 오래된 데이터일 경우 빨간 경고 아이콘 표시.
 
 ### crawl-volleyball.cjs
 V리그 배구 데이터 크롤링. 네이버 스포츠.
@@ -316,18 +335,20 @@ V리그 배구 데이터 크롤링. 네이버 스포츠.
 ```
 
 ### winter-olympics-detail.json
-동계올림픽 상세 데이터 (가장 큰 파일, ~23KB).
+동계올림픽 상세 데이터 (대회 종료 후 최종 데이터 유지).
 
 ```json
 {
-  "lastUpdate": "2026-02-11T13:04:00Z",
-  "medals": { "gold": 0, "silver": 1, "bronze": 1, "total": 2 },
+  "lastUpdate": "2026-02-23T04:00:00Z",
+  "medals": { "gold": 3, "silver": 4, "bronze": 3, "total": 10 },
   "allCountriesMedals": [
-    { "rank": 1, "nation": "노르웨이", "gold": 10, ... }
+    { "rank": 1, "nation": "노르웨이", "gold": 18, ... },
+    { "rank": 13, "nation": "대한민국", "gold": 3, ... }
   ],
   "koreaMedalists": [
-    { "name": "유승은", "medalType": "bronze", "discipline": "스노보드 여자 빅에어", "date": "..." },
-    { "name": "김상겸", "medalType": "silver", "discipline": "스노보드", "date": "..." }
+    { "name": "김길리", "medalType": "gold", "discipline": "쇼트트랙 여자 1500m", "date": "" },
+    { "name": "김길리", "medalType": "gold", "discipline": "쇼트트랙 여자 3000m 계주", "date": "" },
+    ...
   ],
   "todaySchedule": [...],
   "upcomingSchedule": [...],
@@ -361,6 +382,8 @@ V리그 배구 데이터 크롤링. 네이버 스포츠.
   └─ 순위 0, 전적 0-0-0 등
 ```
 
+**크롤 상태 추적:** `crawlStatus` 필드로 데이터 신뢰도 표시 (`success` / `partial_failure` / `failed`). 7일 이상 오래된 데이터는 UI에 경고 아이콘 표시.
+
 **메모리 누수 방지:** 모든 컴포넌트에서 `isMounted` 패턴 사용. 비동기 데이터 로드 완료 전 컴포넌트가 언마운트되면 state 업데이트를 건너뜁니다.
 
 ---
@@ -386,8 +409,8 @@ V리그 배구 데이터 크롤링. 네이버 스포츠.
 ### 3. crawl-international-sports.yml - 동계올림픽 크롤링
 | 항목 | 내용 |
 |------|------|
-| 실행 시점 | 하루 5회 (한국시간 09:00, 17:00, 21:00, 01:00, 05:00) |
-| cron | `0 0,8,12,16,20 * * *` |
+| 실행 시점 | ~~하루 5회~~ **비활성화** (2026-02-22 동계올림픽 종료) |
+| 수동 실행 | `workflow_dispatch`로 수동 실행만 가능 |
 | 커밋 메시지 | `chore: update international sports data` |
 | 충돌 방지 | `git pull --rebase origin main` 후 push |
 
@@ -422,9 +445,11 @@ V리그 배구 데이터 크롤링. 네이버 스포츠.
 #### 야구 (KBO)
 | URL | 용도 |
 |-----|------|
-| `m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=teamRank` | 팀 순위 |
-| `m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=hitter` | 타자 순위 |
-| `m.sports.naver.com/kbaseball/record/kbo?seasonCode=2025&tab=pitcher` | 투수 순위 |
+| `m.sports.naver.com/kbaseball/record/kbo?seasonCode={year}&tab=teamRank` | 팀 순위 |
+| `m.sports.naver.com/kbaseball/record/kbo?seasonCode={year}&tab=hitter` | 타자 순위 |
+| `m.sports.naver.com/kbaseball/record/kbo?seasonCode={year}&tab=pitcher` | 투수 순위 |
+
+> `seasonCode`는 매 시즌 시작 전 업데이트 필요 (현재: 2026)
 
 #### 배구 (V리그)
 | URL | 용도 |
@@ -469,18 +494,6 @@ EMAIL_APP_PASSWORD=your-app-password    # Gmail 앱 비밀번호 (선택)
 EMAIL_TO=recipient@gmail.com            # 알림 수신자 (선택)
 ```
 
-### Puppeteer 설정
-```javascript
-// 모든 크롤러에서 동일하게 사용
-browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-});
-
-// User-Agent: iPhone으로 모바일 페이지 접근
-await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
-```
-
 > **중요:** 별도의 API 키, 인증 토큰, 유료 API는 사용하지 않습니다. 모든 데이터는 네이버 스포츠 공개 페이지에서 Puppeteer로 크롤링합니다.
 
 ---
@@ -505,12 +518,8 @@ await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) 
 1. 시즌 중인 스포츠가 먼저 (국제대회 > 야구 > 배구)
 2. 비시즌 스포츠는 뒤로 (야구 > 배구 > 국제대회)
 
-### 데이터 업데이트 주기
-| 스포츠 | 시즌 중 | 비시즌 |
-|--------|---------|--------|
-| 야구 | 하루 2회 (10시, 22시) | 주 1회 (월요일) |
-| 배구 | 하루 2회 (10시, 22시) | 주 1회 (월요일) |
-| 동계올림픽 | 하루 5회 | - |
+
+> 데이터 업데이트 주기는 [GitHub Actions 워크플로우](#github-actions-워크플로우) 섹션 참고.
 
 ---
 
@@ -640,6 +649,7 @@ npm run crawl:all
 SeasonStatus = 'in-season' | 'off-season' | 'pre-season'
 SportType = 'baseball' | 'volleyball' | 'international'
 AreaPosition = 1 | 2 | 3 | 4
+CrawlStatus = 'success' | 'partial_failure' | 'failed'  // 크롤러 상태 추적
 
 // 야구 타입
 BaseballData         ← 전체 야구 데이터 (팀, 시즌, 순위, 전적)
@@ -688,12 +698,24 @@ InternationalSportsData  ← 국제대회 전체
 - [x] 자동 커밋 + 자동 배포 (GitHub Pages)
 - [x] git pull --rebase로 워크플로우 충돌 방지
 
-### 동계올림픽 관련 (최근 작업)
+### 동계올림픽 관련
 - [x] 15개 종목 전체 UI에 표시 (데이터 없는 종목도 "한국 선수 경기 일정이 없습니다" 표시)
 - [x] 날짜 기반 크롤링으로 전환 (isKorean=Y 파라미터 활용)
 - [x] 순차 실행으로 타임아웃 방지 (Promise.all → for loop)
 - [x] 메달리스트 정보 표시 (금/은/동 클릭 시 말풍선)
 - [x] 올림픽 종료 후 하단 토글로 이동 (2026-02-22 이후)
+- [x] 동일 선수 복수 메달 그룹핑 표시 (예: 김길리 금메달 2개 → 종목명 나열)
+- [x] 대회 종료 후 크롤링 워크플로우 스케줄 비활성화
+
+### 안정성 / 성능 / 접근성
+- [x] 크롤러 재시도 로직 (3회, 지수 백오프 5s → 10s → 15s)
+- [x] 크롤러 실패 시 UI 경고 아이콘 (빨간 느낌표, 7일 이상 오래된 데이터)
+- [x] CrawlStatus 타입 추가 (success / partial_failure / failed)
+- [x] PWA 지원 (vite-plugin-pwa, Stale While Revalidate 캐싱 전략)
+- [x] React.memo 적용 (BaseballCard 불필요한 리렌더링 방지)
+- [x] lazy loading / Suspense (App.tsx 코드 스플리팅)
+- [x] 키보드 네비게이션 (←/→ 키), ARIA 속성 접근성 개선 (MainLayout)
+- [x] 종료된 국제대회 이벤트 자동 필터링 (InternationalSportsCard)
 
 ---
 
@@ -701,8 +723,8 @@ InternationalSportsData  ← 국제대회 전체
 
 ### 필수
 - [ ] `update-season-config.yml` 크롤링 스크립트 구현 (시즌 날짜 자동 업데이트)
-- [ ] 동계올림픽 크롤링 워크플로우 종료 후 비활성화 (올림픽 끝난 후)
-- [ ] 야구 시즌 시작 시 `seasonCode=2026` 확인 및 업데이트
+- [x] ~~동계올림픽 크롤링 워크플로우 종료 후 비활성화~~ (완료)
+- [ ] 야구 시즌 시작 시 crawl-baseball.cjs의 `seasonCode` 값 확인 및 업데이트
 
 ### 개선
 - [ ] 야구 일별 순위 크롤링 자동화 (현재 수동)
@@ -751,18 +773,18 @@ InternationalSportsData  ← 국제대회 전체
 | react | ^18.2.0 | UI 프레임워크 |
 | react-dom | ^18.2.0 | React DOM 렌더러 |
 | react-router-dom | ^6.20.0 | 클라이언트 라우팅 |
-| puppeteer | ^24.35.0 | 웹 크롤링 (headless Chrome) |
-| cheerio | ^1.1.2 | HTML 파싱 |
-| node-fetch | ^2.7.0 | HTTP 요청 |
-| nodemailer | ^7.0.12 | 이메일 알림 (미사용) |
 
 ### 개발 의존성
 | 패키지 | 버전 | 용도 |
 |--------|------|------|
 | vite | ^5.0.0 | 빌드 도구 |
+| vite-plugin-pwa | ^1.2.0 | PWA 지원 (Service Worker, 오프라인 캐싱) |
+| workbox-window | ^7.4.0 | PWA 캐싱 전략 (Stale While Revalidate) |
 | typescript | ^5.2.2 | 타입 체크 |
 | tailwindcss | ^3.3.5 | CSS 프레임워크 |
 | @vitejs/plugin-react | ^4.2.0 | React HMR |
+| puppeteer | ^24.35.0 | 웹 크롤링 (headless Chrome) |
+| cheerio | ^1.1.2 | HTML 파싱 |
 | eslint | ^8.53.0 | 코드 린팅 |
 | autoprefixer | ^10.4.16 | CSS 벤더 프리픽스 |
 | postcss | ^8.4.31 | CSS 후처리 |
