@@ -214,13 +214,32 @@ const InternationalSportsDetail = () => {
                           >
                             <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').length > 0 ? (
-                                data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').map((medalist, idx) => (
-                                  <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                    <div className="text-white font-semibold">{medalist.name}</div>
-                                    {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                    {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                  </div>
-                                ))
+                                (() => {
+                                  const goldMedalists = data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold');
+                                  // 선수별로 그룹화
+                                  const grouped = goldMedalists.reduce((acc: any, medalist) => {
+                                    const key = medalist.name;
+                                    if (!acc[key]) {
+                                      acc[key] = [];
+                                    }
+                                    acc[key].push(medalist);
+                                    return acc;
+                                  }, {});
+
+                                  return Object.entries(grouped).map(([name, medals]: [string, any]) => (
+                                    <div key={name} className="bg-white/5 rounded p-2 text-xs">
+                                      <div className="text-white font-semibold">{name}</div>
+                                      <div className="text-gray-400">
+                                        {medals.map((m: any, idx: number) => (
+                                          <span key={idx}>
+                                            {m.discipline}
+                                            {idx < medals.length - 1 && ', '}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ));
+                                })()
                               ) : (
                                 <div className="text-center py-2 text-gray-400 text-xs">없음</div>
                               )}
@@ -245,13 +264,32 @@ const InternationalSportsDetail = () => {
                           >
                             <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').length > 0 ? (
-                                data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').map((medalist, idx) => (
-                                  <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                    <div className="text-white font-semibold">{medalist.name}</div>
-                                    {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                    {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                  </div>
-                                ))
+                                (() => {
+                                  const silverMedalists = data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver');
+                                  // 선수별로 그룹화
+                                  const grouped = silverMedalists.reduce((acc: any, medalist) => {
+                                    const key = medalist.name;
+                                    if (!acc[key]) {
+                                      acc[key] = [];
+                                    }
+                                    acc[key].push(medalist);
+                                    return acc;
+                                  }, {});
+
+                                  return Object.entries(grouped).map(([name, medals]: [string, any]) => (
+                                    <div key={name} className="bg-white/5 rounded p-2 text-xs">
+                                      <div className="text-white font-semibold">{name}</div>
+                                      <div className="text-gray-400">
+                                        {medals.map((m: any, idx: number) => (
+                                          <span key={idx}>
+                                            {m.discipline}
+                                            {idx < medals.length - 1 && ', '}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ));
+                                })()
                               ) : (
                                 <div className="text-center py-2 text-gray-400 text-xs">없음</div>
                               )}
@@ -276,13 +314,32 @@ const InternationalSportsDetail = () => {
                           >
                             <div className="space-y-2 max-h-[500px] overflow-y-auto">
                               {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').length > 0 ? (
-                                data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').map((medalist, idx) => (
-                                  <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                    <div className="text-white font-semibold">{medalist.name}</div>
-                                    {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                    {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                  </div>
-                                ))
+                                (() => {
+                                  const bronzeMedalists = data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze');
+                                  // 선수별로 그룹화
+                                  const grouped = bronzeMedalists.reduce((acc: any, medalist) => {
+                                    const key = medalist.name;
+                                    if (!acc[key]) {
+                                      acc[key] = [];
+                                    }
+                                    acc[key].push(medalist);
+                                    return acc;
+                                  }, {});
+
+                                  return Object.entries(grouped).map(([name, medals]: [string, any]) => (
+                                    <div key={name} className="bg-white/5 rounded p-2 text-xs">
+                                      <div className="text-white font-semibold">{name}</div>
+                                      <div className="text-gray-400">
+                                        {medals.map((m: any, idx: number) => (
+                                          <span key={idx}>
+                                            {m.discipline}
+                                            {idx < medals.length - 1 && ', '}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ));
+                                })()
                               ) : (
                                 <div className="text-center py-2 text-gray-400 text-xs">없음</div>
                               )}
@@ -674,13 +731,32 @@ const InternationalSportsDetail = () => {
                               >
                                 <div className="space-y-2 max-h-[500px] overflow-y-auto">
                                   {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').length > 0 ? (
-                                    data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold').map((medalist, idx) => (
-                                      <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                        <div className="text-white font-semibold">{medalist.name}</div>
-                                        {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                        {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                      </div>
-                                    ))
+                                    (() => {
+                                      const goldMedalists = data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'gold');
+                                      // 선수별로 그룹화
+                                      const grouped = goldMedalists.reduce((acc: any, medalist) => {
+                                        const key = medalist.name;
+                                        if (!acc[key]) {
+                                          acc[key] = [];
+                                        }
+                                        acc[key].push(medalist);
+                                        return acc;
+                                      }, {});
+
+                                      return Object.entries(grouped).map(([name, medals]: [string, any]) => (
+                                        <div key={name} className="bg-white/5 rounded p-2 text-xs">
+                                          <div className="text-white font-semibold">{name}</div>
+                                          <div className="text-gray-400">
+                                            {medals.map((m: any, idx: number) => (
+                                              <span key={idx}>
+                                                {m.discipline}
+                                                {idx < medals.length - 1 && ', '}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      ));
+                                    })()
                                   ) : (
                                     <div className="text-center py-2 text-gray-400 text-xs">없음</div>
                                   )}
@@ -705,13 +781,32 @@ const InternationalSportsDetail = () => {
                               >
                                 <div className="space-y-2 max-h-[500px] overflow-y-auto">
                                   {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').length > 0 ? (
-                                    data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver').map((medalist, idx) => (
-                                      <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                        <div className="text-white font-semibold">{medalist.name}</div>
-                                        {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                        {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                      </div>
-                                    ))
+                                    (() => {
+                                      const silverMedalists = data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'silver');
+                                      // 선수별로 그룹화
+                                      const grouped = silverMedalists.reduce((acc: any, medalist) => {
+                                        const key = medalist.name;
+                                        if (!acc[key]) {
+                                          acc[key] = [];
+                                        }
+                                        acc[key].push(medalist);
+                                        return acc;
+                                      }, {});
+
+                                      return Object.entries(grouped).map(([name, medals]: [string, any]) => (
+                                        <div key={name} className="bg-white/5 rounded p-2 text-xs">
+                                          <div className="text-white font-semibold">{name}</div>
+                                          <div className="text-gray-400">
+                                            {medals.map((m: any, idx: number) => (
+                                              <span key={idx}>
+                                                {m.discipline}
+                                                {idx < medals.length - 1 && ', '}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      ));
+                                    })()
                                   ) : (
                                     <div className="text-center py-2 text-gray-400 text-xs">없음</div>
                                   )}
@@ -736,13 +831,32 @@ const InternationalSportsDetail = () => {
                               >
                                 <div className="space-y-2 max-h-[500px] overflow-y-auto">
                                   {data.winterOlympics.koreaMedalists && data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').length > 0 ? (
-                                    data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze').map((medalist, idx) => (
-                                      <div key={idx} className="bg-white/5 rounded p-2 text-xs">
-                                        <div className="text-white font-semibold">{medalist.name}</div>
-                                        {medalist.discipline && <div className="text-gray-400">{medalist.discipline}</div>}
-                                        {medalist.date && <div className="text-gray-500">{medalist.date}</div>}
-                                      </div>
-                                    ))
+                                    (() => {
+                                      const bronzeMedalists = data.winterOlympics.koreaMedalists.filter(m => m.medalType === 'bronze');
+                                      // 선수별로 그룹화
+                                      const grouped = bronzeMedalists.reduce((acc: any, medalist) => {
+                                        const key = medalist.name;
+                                        if (!acc[key]) {
+                                          acc[key] = [];
+                                        }
+                                        acc[key].push(medalist);
+                                        return acc;
+                                      }, {});
+
+                                      return Object.entries(grouped).map(([name, medals]: [string, any]) => (
+                                        <div key={name} className="bg-white/5 rounded p-2 text-xs">
+                                          <div className="text-white font-semibold">{name}</div>
+                                          <div className="text-gray-400">
+                                            {medals.map((m: any, idx: number) => (
+                                              <span key={idx}>
+                                                {m.discipline}
+                                                {idx < medals.length - 1 && ', '}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      ));
+                                    })()
                                   ) : (
                                     <div className="text-center py-2 text-gray-400 text-xs">없음</div>
                                   )}
