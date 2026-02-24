@@ -22,13 +22,13 @@
     },
     {
       "name": "KB손해보험",
-      "wins": 15,
+      "wins": 16,
       "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1,
+      "setRate": 1.033,
       "rank": 3,
-      "points": 47
+      "points": 50
     },
     {
       "name": "한국전력",
@@ -63,10 +63,10 @@
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 25,
+      "losses": 26,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.39,
+      "setRate": 0.388,
       "rank": 7,
       "points": 15
     }
@@ -75,22 +75,22 @@
     {
       "name": "도로공사",
       "wins": 21,
-      "losses": 9,
+      "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.521,
+      "setRate": 1.471,
       "rank": 1,
-      "points": 59
+      "points": 60
     },
     {
       "name": "현대건설",
-      "wins": 19,
+      "wins": 20,
       "losses": 11,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.34,
+      "setRate": 1.346,
       "rank": 2,
-      "points": 56
+      "points": 58
     },
     {
       "name": "흥국생명",
