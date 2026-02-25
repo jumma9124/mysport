@@ -41,24 +41,24 @@
       "points": 46
     },
     {
-      "name": "OK저축은행",
-      "wins": 15,
+      "name": "우리카드",
+      "wins": 16,
       "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.984,
+      "setRate": 1.034,
       "rank": 5,
-      "points": 45
+      "points": 46
     },
     {
-      "name": "우리카드",
+      "name": "OK저축은행",
       "wins": 15,
-      "losses": 15,
+      "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1,
+      "setRate": 0.955,
       "rank": 6,
-      "points": 43
+      "points": 45
     },
     {
       "name": "삼성화재",
@@ -103,32 +103,32 @@
       "points": 53
     },
     {
+      "name": "IBK기업은행",
+      "wins": 15,
+      "losses": 16,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.033,
+      "rank": 4,
+      "points": 47
+    },
+    {
       "name": "GS칼텍스",
       "wins": 15,
       "losses": 15,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.017,
-      "rank": 4,
-      "points": 45
-    },
-    {
-      "name": "IBK기업은행",
-      "wins": 14,
-      "losses": 16,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1,
       "rank": 5,
-      "points": 44
+      "points": 45
     },
     {
       "name": "페퍼저축은행",
       "wins": 13,
-      "losses": 17,
+      "losses": 18,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.81,
+      "setRate": 0.788,
       "rank": 6,
       "points": 38
     },
