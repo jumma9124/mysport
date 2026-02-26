@@ -13,10 +13,10 @@
     {
       "name": "현대캐피탈",
       "wins": 19,
-      "losses": 11,
+      "losses": 12,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.558,
+      "setRate": 1.478,
       "rank": 2,
       "points": 59
     },
@@ -32,13 +32,13 @@
     },
     {
       "name": "한국전력",
-      "wins": 16,
+      "wins": 17,
       "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.053,
+      "setRate": 1.086,
       "rank": 4,
-      "points": 46
+      "points": 49
     },
     {
       "name": "우리카드",
@@ -95,12 +95,22 @@
     {
       "name": "흥국생명",
       "wins": 17,
-      "losses": 14,
+      "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.196,
+      "setRate": 1.136,
       "rank": 3,
       "points": 53
+    },
+    {
+      "name": "GS칼텍스",
+      "wins": 16,
+      "losses": 15,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 1.067,
+      "rank": 4,
+      "points": 48
     },
     {
       "name": "IBK기업은행",
@@ -109,18 +119,8 @@
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.033,
-      "rank": 4,
-      "points": 47
-    },
-    {
-      "name": "GS칼텍스",
-      "wins": 15,
-      "losses": 15,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.017,
       "rank": 5,
-      "points": 45
+      "points": 47
     },
     {
       "name": "페퍼저축은행",
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-02-26",
+      "opponent": "한국전력",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "1-3",
+      "sets": []
+    },
+    {
       "date": "2026-02-22",
       "opponent": "대한항공",
       "venue": "천안유관순체육관",
@@ -158,14 +166,6 @@
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-0",
-      "sets": []
-    },
-    {
-      "date": "2026-02-14",
-      "opponent": "대한항공",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-2",
       "sets": []
     }
   ],

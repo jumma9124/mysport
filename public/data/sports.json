@@ -4,11 +4,19 @@
     "currentRank": 2,
     "record": {
       "wins": 19,
-      "losses": 11,
+      "losses": 12,
       "points": 59,
-      "setRate": 1.558
+      "setRate": 1.478
     },
     "recentMatches": [
+      {
+        "date": "2026-02-26",
+        "opponent": "한국전력",
+        "venue": "천안유관순체육관",
+        "result": "loss",
+        "score": "1-3",
+        "sets": []
+      },
       {
         "date": "2026-02-22",
         "opponent": "대한항공",
@@ -23,14 +31,6 @@
         "venue": "천안유관순체육관",
         "result": "win",
         "score": "3-0",
-        "sets": []
-      },
-      {
-        "date": "2026-02-14",
-        "opponent": "대한항공",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-2",
         "sets": []
       }
     ],
