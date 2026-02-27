@@ -2,13 +2,13 @@
   "leagueStandings": [
     {
       "name": "대한항공",
-      "wins": 20,
+      "wins": 21,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.533,
+      "setRate": 1.6,
       "rank": 1,
-      "points": 60
+      "points": 63
     },
     {
       "name": "현대캐피탈",
@@ -63,10 +63,10 @@
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 26,
+      "losses": 27,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.388,
+      "setRate": 0.375,
       "rank": 7,
       "points": 15
     }
@@ -74,13 +74,13 @@
   "leagueStandingsWomen": [
     {
       "name": "도로공사",
-      "wins": 21,
+      "wins": 22,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.471,
+      "setRate": 1.529,
       "rank": 1,
-      "points": 60
+      "points": 63
     },
     {
       "name": "현대건설",
@@ -135,10 +135,10 @@
     {
       "name": "정관장",
       "wins": 7,
-      "losses": 24,
+      "losses": 25,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.468,
+      "setRate": 0.451,
       "rank": 7,
       "points": 23
     }
