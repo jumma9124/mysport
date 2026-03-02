@@ -2,13 +2,13 @@
   "leagueStandings": [
     {
       "name": "대한항공",
-      "wins": 21,
+      "wins": 22,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.6,
+      "setRate": 1.63,
       "rank": 1,
-      "points": 63
+      "points": 66
     },
     {
       "name": "현대캐피탈",
@@ -33,10 +33,10 @@
     {
       "name": "한국전력",
       "wins": 17,
-      "losses": 14,
+      "losses": 15,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.086,
+      "setRate": 1.049,
       "rank": 4,
       "points": 49
     },
@@ -105,10 +105,10 @@
     {
       "name": "GS칼텍스",
       "wins": 16,
-      "losses": 15,
+      "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.067,
+      "setRate": 1.016,
       "rank": 4,
       "points": 48
     },
@@ -134,13 +134,13 @@
     },
     {
       "name": "정관장",
-      "wins": 7,
+      "wins": 8,
       "losses": 25,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.451,
+      "setRate": 0.488,
       "rank": 7,
-      "points": 23
+      "points": 26
     }
   ],
   "recentMatches": [
