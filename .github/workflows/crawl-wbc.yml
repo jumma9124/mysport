@@ -1,0 +1,105 @@
+name: Crawl WBC Data
+
+on:
+  schedule:
+    # 3월 전체: 매일 10시, 22시 KST (UTC 1:00, 13:00)
+    - cron: '0 1,13 * 3 *'
+  workflow_dispatch:  # 수동 실행 가능
+
+concurrency:
+  group: crawl-wbc
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run WBC crawler
+        run: node scripts/crawl-wbc.cjs
+
+      - name: Upload crawl results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: wbc-data
+          path: |
+            public/data/wbc-detail.json
+            public/data/sports.json
+          retention-days: 1
+
+  commit:
+    needs: crawl
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Download crawl results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: wbc-data
+          path: public/data
+
+      - name: Commit and push changes
+        id: commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # 크롤링한 파일을 임시 저장
+          cp public/data/wbc-detail.json /tmp/wbc-detail.json 2>/dev/null || true
+          cp public/data/sports.json /tmp/sports.json 2>/dev/null || true
+
+          # 리모트 최신 상태로 리셋 (충돌 방지)
+          git fetch origin main
+          git reset --hard origin/main
+
+          # 크롤링 데이터 복원 및 스테이징
+          if [ -f /tmp/wbc-detail.json ]; then
+            cp /tmp/wbc-detail.json public/data/wbc-detail.json
+            git add public/data/wbc-detail.json
+          fi
+          if [ -f /tmp/sports.json ]; then
+            cp /tmp/sports.json public/data/sports.json
+            git add public/data/sports.json
+          fi
+
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update WBC data"
+            git push
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes to commit"
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger deploy
+        if: steps.commit.outputs.changes == 'true'
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            });

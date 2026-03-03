@@ -12,7 +12,8 @@
     "crawl:volleyball": "node scripts/crawl-volleyball.cjs",
     "crawl:events": "node scripts/crawl-major-events.cjs",
     "crawl:winter": "node scripts/crawl-winter-olympics.cjs",
-    "crawl:all": "npm run crawl:baseball && npm run crawl:volleyball && npm run crawl:events && npm run crawl:winter"
+    "crawl:wbc": "node scripts/crawl-wbc.cjs",
+    "crawl:all": "npm run crawl:baseball && npm run crawl:volleyball && npm run crawl:events && npm run crawl:winter && npm run crawl:wbc"
   },
   "dependencies": {
     "react": "^18.2.0",

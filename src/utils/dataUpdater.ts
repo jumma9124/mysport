@@ -1,4 +1,4 @@
-import { BaseballData, VolleyballData, InternationalSportsData } from '@/types';
+import { BaseballData, VolleyballData, InternationalSportsData, WBCData } from '@/types';
 import { getSeasonStatus } from './seasonManager';
 
 // 기본 URL 경로 설정
@@ -233,11 +233,27 @@ export const fetchInternationalSportsData = async (useRealtime = true): Promise<
       console.warn('Winter olympics data not found:', winterError);
     }
 
+    // WBC 데이터 로드
+    let wbc: WBCData | undefined = undefined;
+    try {
+      const wbcResponse = await fetch(`${getBasePath()}data/wbc-detail.json`);
+      if (wbcResponse.ok) {
+        wbc = await wbcResponse.json();
+        console.log('[DATA] Loaded WBC data:', {
+          koreaRecord: wbc?.koreaRecord,
+          games: wbc?.koreaGames?.length || 0,
+        });
+      }
+    } catch (wbcError) {
+      console.warn('WBC data not found:', wbcError);
+    }
+
     return {
       name: '주요 스포츠 이벤트',
       seasonStatus: getSeasonStatus('international'),
       data: { events },
       winterOlympics,
+      wbc,
     };
   } catch (error) {
     console.error('Failed to fetch international sports data:', error);

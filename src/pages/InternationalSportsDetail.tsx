@@ -38,6 +38,10 @@ const ALL_DISCIPLINES = [
 // 동계올림픽 종료일
 const WINTER_OLYMPICS_END_DATE = new Date('2026-02-22T23:59:59');
 
+// WBC 기간
+const WBC_START_DATE = new Date('2026-03-05T00:00:00+09:00');
+const WBC_END_DATE   = new Date('2026-03-17T23:59:59+09:00');
+
 const InternationalSportsDetail = () => {
   const [data, setData] = useState<InternationalSportsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -47,10 +51,17 @@ const InternationalSportsDetail = () => {
   const [expandedMedal, setExpandedMedal] = useState<'gold' | 'silver' | 'bronze' | 'total' | null>(null);
   const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>('STK');
   const [winterOlympicsExpanded, setWinterOlympicsExpanded] = useState(true);
+  const [wbcTab, setWbcTab] = useState<'games' | 'standings'>('games');
+  const [wbcExpanded, setWbcExpanded] = useState(true);
   const medalContainerRef = useRef<HTMLDivElement>(null);
 
   // 동계올림픽 종료 여부 확인
   const isWinterOlympicsEnded = new Date() > WINTER_OLYMPICS_END_DATE;
+
+  // WBC 날짜 상태
+  const now = new Date();
+  const isWBCEnded  = now > WBC_END_DATE;
+  const isWBCActive = now >= WBC_START_DATE && now <= WBC_END_DATE;
 
   const toggleEvent = (index: number) => {
     setExpandedEvents(prev => ({
@@ -145,6 +156,125 @@ const InternationalSportsDetail = () => {
             </Link>
           </div>
         </header>
+
+        {/* WBC 섹션 - 대회 기간 전후로 상단에 표시 (종료 전까지) */}
+        {data.wbc && !isWBCEnded && (
+          <div className="mb-4 bg-card backdrop-blur-card rounded-card p-5 border-2" style={{ borderColor: '#f97316' }}>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">⚾</span>
+                <div>
+                  <h2 className="text-xl font-bold text-white">2026 월드 베이스볼 클래식</h2>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    {isWBCActive ? (
+                      <span className="px-2 py-0.5 rounded text-xs font-bold" style={{ background: 'rgba(239,68,68,0.2)', color: 'rgba(239,68,68,0.9)' }}>진행중</span>
+                    ) : (
+                      <span className="px-2 py-0.5 rounded text-xs" style={{ background: 'rgba(59,130,246,0.15)', color: 'rgba(59,130,246,0.8)' }}>
+                        개막 D-{Math.max(0, Math.ceil((WBC_START_DATE.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)))}
+                      </span>
+                    )}
+                    <span className="text-sm text-white/60">
+                      한국 {data.wbc.koreaRecord.wins}승 {data.wbc.koreaRecord.losses}패
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 탭 버튼 */}
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setWbcTab('games')}
+                className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                  wbcTab === 'games' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                }`}
+              >
+                경기 일정/결과
+              </button>
+              <button
+                onClick={() => setWbcTab('standings')}
+                className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                  wbcTab === 'standings' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                }`}
+              >
+                조별 순위
+              </button>
+            </div>
+
+            {/* 경기 일정/결과 탭 */}
+            {wbcTab === 'games' && (
+              <div className="space-y-2">
+                {data.wbc.koreaGames.length > 0 ? data.wbc.koreaGames.map((game, idx) => (
+                  <div key={idx} className="flex items-center justify-between p-3 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                    <div className="flex items-center gap-3">
+                      {game.status === 'completed' ? (
+                        <span className="px-2 py-0.5 rounded text-xs font-bold min-w-[28px] text-center" style={{
+                          background: game.result === 'win' ? 'rgba(76,175,80,0.2)' : 'rgba(239,68,68,0.2)',
+                          color:      game.result === 'win' ? 'rgba(76,175,80,0.9)' : 'rgba(239,68,68,0.9)',
+                        }}>
+                          {game.result === 'win' ? '승' : '패'}
+                        </span>
+                      ) : game.status === 'live' ? (
+                        <span className="px-2 py-0.5 rounded text-xs font-bold" style={{ background: 'rgba(239,68,68,0.2)', color: 'rgba(239,68,68,0.9)' }}>LIVE</span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-xs" style={{ background: 'rgba(59,130,246,0.15)', color: 'rgba(59,130,246,0.8)' }}>예정</span>
+                      )}
+                      <div>
+                        <div className="text-white font-semibold">vs {game.opponent}</div>
+                        <div className="text-white/50 text-xs">{game.date} {game.time && `${game.time}`} {game.venue && `· ${game.venue}`}</div>
+                      </div>
+                    </div>
+                    {game.score && (
+                      <span className="text-white font-bold text-lg">{game.score}</span>
+                    )}
+                  </div>
+                )) : (
+                  <div className="text-center py-4 text-white/40 text-sm">경기 정보가 없습니다</div>
+                )}
+              </div>
+            )}
+
+            {/* 조별 순위 탭 */}
+            {wbcTab === 'standings' && (
+              <div>
+                {data.wbc.groupStandings.map((group, gIdx) => (
+                  <div key={gIdx} className="mb-4">
+                    <div className="text-white/60 text-sm font-semibold mb-2">{group.group}조</div>
+                    <table className="w-full">
+                      <thead>
+                        <tr className="text-white/40 text-xs">
+                          <th className="text-left py-1">순위</th>
+                          <th className="text-left py-1">팀</th>
+                          <th className="text-right py-1">승</th>
+                          <th className="text-right py-1">패</th>
+                          <th className="text-right py-1">승률</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {group.teams.map((team, tIdx) => (
+                          <tr
+                            key={tIdx}
+                            className={`text-sm border-t border-white/5 ${
+                              team.name.includes('한국') || team.name.includes('대한민국')
+                                ? 'bg-orange-500/10'
+                                : ''
+                            }`}
+                          >
+                            <td className="py-2 text-white/60">{team.rank}</td>
+                            <td className="py-2 text-white font-semibold">{team.name}</td>
+                            <td className="py-2 text-right text-white">{team.wins}</td>
+                            <td className="py-2 text-right text-white">{team.losses}</td>
+                            <td className="py-2 text-right text-white/70">{team.winRate.toFixed(3)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* 동계올림픽 섹션 - 종료 전에만 상단에 표시 */}
         {data.winterOlympics && !isWinterOlympicsEnded && (
@@ -565,10 +695,10 @@ const InternationalSportsDetail = () => {
           </div>
         )}
 
-        {/* 이벤트 리스트 (동계올림픽은 위에 전용 섹션이 있으므로 제외) */}
-        {events.filter(e => !e.name.includes('동계올림픽')).length > 0 ? (
+        {/* 이벤트 리스트 (동계올림픽, WBC는 위에 전용 섹션이 있으므로 제외) */}
+        {events.filter(e => !e.name.includes('동계올림픽') && !e.name.includes('베이스볼 클래식')).length > 0 ? (
           <div className="space-y-4">
-            {events.filter(e => !e.name.includes('동계올림픽')).map((event, idx) => (
+            {events.filter(e => !e.name.includes('동계올림픽') && !e.name.includes('베이스볼 클래식')).map((event, idx) => (
               <div key={idx} className="bg-card backdrop-blur-card rounded-card p-5 border border-white/20">
                 <div className="flex items-center mb-4">
                   <div className="w-6 h-6 mr-2 flex-shrink-0 inline-flex items-center justify-center rounded border-2 bg-accent-green/20 border-accent-green/50 text-accent-green text-sm font-bold">
@@ -1071,6 +1201,104 @@ const InternationalSportsDetail = () => {
                     </div>
                   )}
                 </div>
+              </div>
+            )}
+          </div>
+        )}
+        {/* WBC 섹션 - 종료 후에는 하단에 토글로 표시 */}
+        {data.wbc && isWBCEnded && (
+          <div className="mt-4 bg-card backdrop-blur-card rounded-card border border-white/20 overflow-hidden">
+            <button
+              onClick={() => setWbcExpanded(!wbcExpanded)}
+              className="w-full p-5 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+            >
+              <div className="flex items-center">
+                <span className="text-xl mr-2">⚾</span>
+                <h2 className="text-xl font-bold text-white">2026 월드 베이스볼 클래식</h2>
+                <span className="ml-3 px-2 py-0.5 rounded text-xs bg-gray-500/[0.15] text-gray-500/90">종료</span>
+                <span className="ml-2 text-white/50 text-sm">한국 {data.wbc.koreaRecord.wins}승 {data.wbc.koreaRecord.losses}패</span>
+              </div>
+              <span className="text-white text-lg">{wbcExpanded ? '▼' : '▶'}</span>
+            </button>
+
+            {wbcExpanded && (
+              <div className="px-5 pb-5">
+                <div className="flex gap-2 mb-4">
+                  <button
+                    onClick={() => setWbcTab('games')}
+                    className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                      wbcTab === 'games' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                    }`}
+                  >
+                    경기 결과
+                  </button>
+                  <button
+                    onClick={() => setWbcTab('standings')}
+                    className={`flex-1 p-2.5 border-none rounded-lg cursor-pointer font-semibold transition-all ${
+                      wbcTab === 'standings' ? 'bg-tab-active/30 text-white' : 'bg-white/10 text-white/60'
+                    }`}
+                  >
+                    조별 순위
+                  </button>
+                </div>
+
+                {wbcTab === 'games' && (
+                  <div className="space-y-2">
+                    {data.wbc.koreaGames.map((game, idx) => (
+                      <div key={idx} className="flex items-center justify-between p-3 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                        <div className="flex items-center gap-3">
+                          {game.status === 'completed' ? (
+                            <span className="px-2 py-0.5 rounded text-xs font-bold min-w-[28px] text-center" style={{
+                              background: game.result === 'win' ? 'rgba(76,175,80,0.2)' : 'rgba(239,68,68,0.2)',
+                              color:      game.result === 'win' ? 'rgba(76,175,80,0.9)' : 'rgba(239,68,68,0.9)',
+                            }}>
+                              {game.result === 'win' ? '승' : '패'}
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded text-xs bg-gray-500/[0.15] text-gray-500/90">종료</span>
+                          )}
+                          <div>
+                            <div className="text-white font-semibold">vs {game.opponent}</div>
+                            <div className="text-white/50 text-xs">{game.date}</div>
+                          </div>
+                        </div>
+                        {game.score && <span className="text-white font-bold">{game.score}</span>}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {wbcTab === 'standings' && (
+                  <div>
+                    {data.wbc.groupStandings.map((group, gIdx) => (
+                      <div key={gIdx} className="mb-4">
+                        <div className="text-white/60 text-sm font-semibold mb-2">{group.group}조</div>
+                        <table className="w-full">
+                          <thead>
+                            <tr className="text-white/40 text-xs">
+                              <th className="text-left py-1">순위</th>
+                              <th className="text-left py-1">팀</th>
+                              <th className="text-right py-1">승</th>
+                              <th className="text-right py-1">패</th>
+                              <th className="text-right py-1">승률</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {group.teams.map((team, tIdx) => (
+                              <tr key={tIdx} className={`text-sm border-t border-white/5 ${team.name.includes('한국') || team.name.includes('대한민국') ? 'bg-orange-500/10' : ''}`}>
+                                <td className="py-2 text-white/60">{team.rank}</td>
+                                <td className="py-2 text-white font-semibold">{team.name}</td>
+                                <td className="py-2 text-right text-white">{team.wins}</td>
+                                <td className="py-2 text-right text-white">{team.losses}</td>
+                                <td className="py-2 text-right text-white/70">{team.winRate.toFixed(3)}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>

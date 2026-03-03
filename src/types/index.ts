@@ -216,6 +216,42 @@ export interface MajorEvent {
   icon: string;
 }
 
+// WBC 타입
+export interface WBCGame {
+  date: string;
+  time?: string;
+  opponent: string;
+  venue?: string;
+  status: 'scheduled' | 'live' | 'completed';
+  result?: 'win' | 'loss' | 'draw' | null;
+  score?: string | null;
+}
+
+export interface WBCGroupTeam {
+  rank: number;
+  name: string;
+  wins: number;
+  losses: number;
+  winRate: number;
+}
+
+export interface WBCGroupStanding {
+  group: string;
+  teams: WBCGroupTeam[];
+}
+
+export interface WBCData {
+  lastUpdate?: string;
+  crawlStatus?: {
+    status: 'success' | 'partial_failure' | 'failed';
+    lastSuccessfulCrawl?: string;
+    failedItems?: string[];
+  };
+  koreaRecord: { wins: number; losses: number };
+  groupStandings: WBCGroupStanding[];
+  koreaGames: WBCGame[];
+}
+
 // 국제스포츠 타입
 export interface InternationalSportsData {
   name: string;
@@ -223,6 +259,7 @@ export interface InternationalSportsData {
   seasonStartDate?: string;
   data: { events: MajorEvent[] };
   winterOlympics?: WinterOlympicsData;
+  wbc?: WBCData;
 }
 
 // 영역 위치 타입

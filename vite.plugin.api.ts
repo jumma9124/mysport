@@ -119,16 +119,19 @@ export function internationalSportsCrawlPlugin(): Plugin {
           console.log('[API] International sports crawl requested');
 
           await runCrawlScript('crawl-winter-olympics.cjs');
+          await runCrawlScript('crawl-wbc.cjs');
 
           // 업데이트된 데이터 읽기
           const dataDir = path.resolve(process.cwd(), 'public/data');
           const eventsPath = path.join(dataDir, 'major-events.json');
           const sportsJsonPath = path.join(dataDir, 'sports.json');
           const winterOlympicsPath = path.join(dataDir, 'winter-olympics-detail.json');
+          const wbcDetailPath = path.join(dataDir, 'wbc-detail.json');
 
           let events: any = [];
           let sportsData: any = {};
           let winterOlympicsData: any = null;
+          let wbcData: any = null;
 
           if (fs.existsSync(eventsPath)) {
             events = JSON.parse(fs.readFileSync(eventsPath, 'utf8'));
@@ -151,9 +154,17 @@ export function internationalSportsCrawlPlugin(): Plugin {
             console.warn('[API] winter-olympics-detail.json not found');
           }
 
+          if (fs.existsSync(wbcDetailPath)) {
+            wbcData = JSON.parse(fs.readFileSync(wbcDetailPath, 'utf8'));
+            console.log('[API] Loaded wbc-detail.json');
+          } else {
+            console.warn('[API] wbc-detail.json not found');
+          }
+
           const result = {
             ...sportsData.international,
             winterOlympics: winterOlympicsData,
+            wbc: wbcData,
             data: {
               events
             }

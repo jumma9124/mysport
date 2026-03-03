@@ -1,0 +1,28 @@
+{
+  "lastUpdate": "2026-03-03T00:00:00.000Z",
+  "crawlStatus": {
+    "status": "success",
+    "lastSuccessfulCrawl": "2026-03-03T00:00:00.000Z"
+  },
+  "koreaRecord": {
+    "wins": 0,
+    "losses": 0
+  },
+  "groupStandings": [
+    {
+      "group": "C",
+      "teams": [
+        { "rank": 1, "name": "일본",     "wins": 0, "losses": 0, "winRate": 0 },
+        { "rank": 2, "name": "대한민국", "wins": 0, "losses": 0, "winRate": 0 },
+        { "rank": 3, "name": "대만",     "wins": 0, "losses": 0, "winRate": 0 },
+        { "rank": 4, "name": "호주",     "wins": 0, "losses": 0, "winRate": 0 }
+      ]
+    }
+  ],
+  "koreaGames": [
+    { "date": "2026-03-05", "time": "19:00", "opponent": "체코", "venue": "도쿄돔", "status": "scheduled", "result": null, "score": null },
+    { "date": "2026-03-07", "time": "19:00", "opponent": "일본", "venue": "도쿄돔", "status": "scheduled", "result": null, "score": null },
+    { "date": "2026-03-08", "time": "12:00", "opponent": "대만", "venue": "도쿄돔", "status": "scheduled", "result": null, "score": null },
+    { "date": "2026-03-09", "time": "19:00", "opponent": "호주", "venue": "도쿄돔", "status": "scheduled", "result": null, "score": null }
+  ]
+}
