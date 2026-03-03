@@ -61,12 +61,5 @@
     },
     "todayGames": 1,
     "upcomingGames": []
-  },
-  "wbc": {
-    "tournament": "2026 WBC",
-    "koreaRecord": {
-      "wins": 0,
-      "losses": 0
-    }
   }
 }
