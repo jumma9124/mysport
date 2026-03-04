@@ -2,8 +2,8 @@ name: Crawl WBC Data
 
 on:
   schedule:
-    # 3월 전체: 매일 10시, 22시 KST (UTC 1:00, 13:00)
-    - cron: '0 1,13 * 3 *'
+    # 3월 전체: 매일 18시, 00시 KST (UTC 9:00, 15:00) - 경기 종료 후 결과 수집
+    - cron: '0 9,15 * 3 *'
   workflow_dispatch:  # 수동 실행 가능
 
 concurrency:
