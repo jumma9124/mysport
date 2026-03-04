@@ -52,35 +52,35 @@
     },
     {
       "name": "OK저축은행",
-      "wins": 15,
+      "wins": 16,
       "losses": 17,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.913,
+      "setRate": 0.93,
       "rank": 6,
-      "points": 45
+      "points": 47
     },
     {
       "name": "삼성화재",
       "wins": 5,
-      "losses": 27,
+      "losses": 28,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.375,
+      "setRate": 0.385,
       "rank": 7,
-      "points": 15
+      "points": 16
     }
   ],
   "leagueStandingsWomen": [
     {
       "name": "도로공사",
-      "wins": 22,
+      "wins": 23,
       "losses": 10,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.529,
+      "setRate": 1.588,
       "rank": 1,
-      "points": 63
+      "points": 66
     },
     {
       "name": "현대건설",
@@ -125,10 +125,10 @@
     {
       "name": "페퍼저축은행",
       "wins": 14,
-      "losses": 18,
+      "losses": 19,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.821,
+      "setRate": 0.786,
       "rank": 6,
       "points": 41
     },
