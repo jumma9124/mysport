@@ -6,8 +6,10 @@ import { fetchInternationalSportsData } from '@/utils/dataUpdater';
 interface Event {
   name: string;
   date: string;
+  endDate?: string;
   icon: string;
   daysLeft?: number;
+  isOngoing?: boolean;
 }
 
 interface InternationalSportsCardProps {
@@ -27,20 +29,26 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
       
       // major-events.json에서 이벤트 데이터 로드
       if (result.data?.events) {
+        const now = new Date();
         const eventsWithDays = result.data.events
           .map((event: Event) => {
-            const eventDate = new Date(event.date);
-            const now = new Date();
-            const diffTime = eventDate.getTime() - now.getTime();
+            const startDate = new Date(event.date);
+            const endDate = event.endDate ? new Date(event.endDate) : null;
+            const diffTime = startDate.getTime() - now.getTime();
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const isOngoing = now >= startDate && (!endDate || now <= endDate);
 
             return {
               ...event,
               daysLeft: diffDays,
+              isOngoing,
             };
           })
-          // 동계올림픽 끝났으니 메인에서는 끝난 이벤트 제외
-          .filter((event: Event) => (event.daysLeft ?? 0) > 0);
+          // 종료된 이벤트 제외 (endDate 지난 것)
+          .filter((event: Event) => {
+            const endDate = event.endDate ? new Date(event.endDate) : null;
+            return !endDate || now <= endDate;
+          });
         setEvents(eventsWithDays);
       }
       
@@ -95,7 +103,11 @@ const InternationalSportsCard = ({ isInSeason = false }: InternationalSportsCard
                 </div>
                 <div className="flex-1">
                   <div className="text-xl text-white font-medium">{event.name}</div>
-                  <div className="text-lg text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
+                  {event.isOngoing ? (
+                    <div className="text-lg mt-1" style={{ color: 'rgba(249,115,22,0.9)' }}>진행중</div>
+                  ) : (
+                    <div className="text-lg text-gray-400 mt-1">개막 D-{event.daysLeft || 0}</div>
+                  )}
                 </div>
               </div>
             ))
