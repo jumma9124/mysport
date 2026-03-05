@@ -313,6 +313,41 @@ function getFallbackData() {
 }
 
 // ──────────────────────────────────────────
+// 크롤된 데이터 유효성 검증
+// ──────────────────────────────────────────
+
+// WBC 이외 리그 팀명 패턴 (MLB, KBO 등)
+const INVALID_TEAM_PATTERNS = [
+  /토론토|클리블랜드|시애틀|뉴욕|필라델피아|밀워키|시카고|보스턴|휴스턴|탬파베이/,
+  /애틀랜타|마이애미|신시내티|피츠버그|세인트루이스|샌디에이고|샌프란시스코|콜로라도/,
+  /두산|삼성|기아|롯데|한화|NC|키움|KT|SSG|LG/,
+  /^1위/, // "1위토론토" 같은 패턴
+];
+
+function isValidWBCStandings(standings) {
+  if (!standings || standings.length === 0) return false;
+  for (const group of standings) {
+    for (const team of group.teams) {
+      if (INVALID_TEAM_PATTERNS.some(p => p.test(team.name))) {
+        console.warn(`⚠️  Invalid team name detected: "${team.name}" → using fallback`);
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function isValidKoreaGames(games) {
+  if (!games || games.length === 0) return false;
+  // 시간 필드에 레이블이 포함된 경우 ("경기 시간19:00") → 파싱 실패로 판단
+  for (const g of games) {
+    if (g.time && g.time.length > 10) return false;
+    if (!g.opponent || g.opponent.length === 0) return false;
+  }
+  return true;
+}
+
+// ──────────────────────────────────────────
 // 한국 전적 계산 (koreaGames에서)
 // ──────────────────────────────────────────
 function calcKoreaRecord(games) {
@@ -344,9 +379,11 @@ async function crawlWBCData() {
     // 경기 일정/결과
     try {
       const crawled = await retryableCrawl(crawlKoreaGames, 'KoreaGames');
-      koreaGames = crawled && crawled.length > 0 ? crawled : fallback.koreaGames;
-      if (!crawled || crawled.length === 0) {
-        console.warn('⚠️  No games parsed, using fallback schedule');
+      if (isValidKoreaGames(crawled)) {
+        koreaGames = crawled;
+      } else {
+        console.warn('⚠️  Games data invalid or empty, using fallback schedule');
+        koreaGames = fallback.koreaGames;
       }
     } catch (err) {
       console.error('✗ KoreaGames crawl failed:', err.message);
@@ -357,9 +394,11 @@ async function crawlWBCData() {
     // 조별 순위
     try {
       const crawled = await retryableCrawl(crawlGroupStandings, 'GroupStandings');
-      groupStandings = crawled && crawled.length > 0 ? crawled : fallback.groupStandings;
-      if (!crawled || crawled.length === 0) {
-        console.warn('⚠️  No standings parsed, using fallback');
+      if (isValidWBCStandings(crawled)) {
+        groupStandings = crawled;
+      } else {
+        console.warn('⚠️  Standings data invalid or empty, using fallback');
+        groupStandings = fallback.groupStandings;
       }
     } catch (err) {
       console.error('✗ GroupStandings crawl failed:', err.message);
