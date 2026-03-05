@@ -12,21 +12,21 @@
     },
     {
       "name": "현대캐피탈",
-      "wins": 20,
+      "wins": 21,
       "losses": 12,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.543,
+      "setRate": 1.609,
       "rank": 2,
-      "points": 62
+      "points": 65
     },
     {
       "name": "KB손해보험",
       "wins": 17,
-      "losses": 15,
+      "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.048,
+      "setRate": 1,
       "rank": 3,
       "points": 52
     },
@@ -85,22 +85,22 @@
     {
       "name": "현대건설",
       "wins": 21,
-      "losses": 11,
+      "losses": 12,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.377,
+      "setRate": 1.339,
       "rank": 2,
-      "points": 61
+      "points": 62
     },
     {
       "name": "흥국생명",
-      "wins": 17,
+      "wins": 18,
       "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.097,
+      "setRate": 1.109,
       "rank": 3,
-      "points": 53
+      "points": 55
     },
     {
       "name": "GS칼텍스",
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-03-05",
+      "opponent": "KB손해보험",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    },
+    {
       "date": "2026-03-01",
       "opponent": "OK저축은행",
       "venue": "천안유관순체육관",
@@ -158,14 +166,6 @@
       "venue": "천안유관순체육관",
       "result": "loss",
       "score": "1-3",
-      "sets": []
-    },
-    {
-      "date": "2026-02-22",
-      "opponent": "대한항공",
-      "venue": "천안유관순체육관",
-      "result": "loss",
-      "score": "0-3",
       "sets": []
     }
   ],
