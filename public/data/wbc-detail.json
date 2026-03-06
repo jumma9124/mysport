@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-06T09:43:05.719Z",
+  "lastUpdate": "2026-03-06T15:40:43.734Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-06T09:43:05.720Z"
+    "lastSuccessfulCrawl": "2026-03-06T15:40:43.735Z"
   },
   "koreaRecord": {
     "wins": 0,
@@ -45,37 +45,10 @@
   ],
   "koreaGames": [
     {
-      "date": "2026-03-05",
-      "time": "19:00",
-      "opponent": "체코",
-      "venue": "도쿄돔",
-      "status": "scheduled",
-      "result": null,
-      "score": null
-    },
-    {
-      "date": "2026-03-07",
-      "time": "19:00",
-      "opponent": "일본",
-      "venue": "도쿄돔",
-      "status": "scheduled",
-      "result": null,
-      "score": null
-    },
-    {
-      "date": "2026-03-08",
-      "time": "12:00",
-      "opponent": "대만",
-      "venue": "도쿄돔",
-      "status": "scheduled",
-      "result": null,
-      "score": null
-    },
-    {
-      "date": "2026-03-09",
-      "time": "19:00",
-      "opponent": "호주",
-      "venue": "도쿄돔",
+      "date": "",
+      "time": "경기 시간19:00",
+      "opponent": "일본홈",
+      "venue": "",
       "status": "scheduled",
       "result": null,
       "score": null
