@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-06T15:40:43.734Z",
+  "lastUpdate": "2026-03-07T09:32:40.894Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-06T15:40:43.735Z"
+    "lastSuccessfulCrawl": "2026-03-07T09:32:40.894Z"
   },
   "koreaRecord": {
     "wins": 0,
@@ -47,7 +47,7 @@
     {
       "date": "",
       "time": "경기 시간19:00",
-      "opponent": "일본홈",
+      "opponent": "일본홈Y.기쿠치",
       "venue": "",
       "status": "scheduled",
       "result": null,
