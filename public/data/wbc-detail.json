@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-07T09:32:40.894Z",
+  "lastUpdate": "2026-03-07T15:27:24.473Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-07T09:32:40.894Z"
+    "lastSuccessfulCrawl": "2026-03-07T15:27:24.473Z"
   },
   "koreaRecord": {
     "wins": 0,
@@ -46,8 +46,8 @@
   "koreaGames": [
     {
       "date": "",
-      "time": "경기 시간19:00",
-      "opponent": "일본홈Y.기쿠치",
+      "time": "경기 시간12:00",
+      "opponent": "차이니스 타이베이",
       "venue": "",
       "status": "scheduled",
       "result": null,
