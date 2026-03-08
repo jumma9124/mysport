@@ -1,12 +1,12 @@
 {
-  "lastUpdate": "2026-03-08T09:33:18.698Z",
+  "lastUpdate": "2026-03-08T15:27:57.308Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-08T09:33:18.699Z"
+    "lastSuccessfulCrawl": "2026-03-08T15:27:57.308Z"
   },
   "koreaRecord": {
     "wins": 0,
-    "losses": 1
+    "losses": 0
   },
   "groupStandings": [
     {
@@ -46,12 +46,12 @@
   "koreaGames": [
     {
       "date": "",
-      "time": "경기 시간12:00",
-      "opponent": "차이니스 타이베이승장이",
+      "time": "경기 시간19:00",
+      "opponent": "호주홈",
       "venue": "",
-      "status": "completed",
-      "result": "loss",
-      "score": "4-5"
+      "status": "scheduled",
+      "result": null,
+      "score": null
     }
   ]
 }
