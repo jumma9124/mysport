@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-11T03:20:27.310Z",
+  "lastUpdate": "2026-03-11T13:58:41.951Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-11T03:20:27.310Z"
+    "lastSuccessfulCrawl": "2026-03-11T13:58:41.951Z"
   },
   "leagueStandings": [
     {
@@ -457,9 +457,18 @@
       "rbi": 44
     },
     {
+      "name": "최원준",
+      "team": "KIA",
+      "rank": 42,
+      "avg": 0.229,
+      "hits": 52,
+      "hr": 4,
+      "rbi": 28
+    },
+    {
       "name": "이주형",
       "team": "키움",
-      "rank": 42,
+      "rank": 43,
       "avg": 0.24,
       "hits": 107,
       "hr": 11,
@@ -468,7 +477,7 @@
     {
       "name": "위즈덤",
       "team": "KIA",
-      "rank": 43,
+      "rank": 44,
       "avg": 0.236,
       "hits": 100,
       "hr": 35,
@@ -477,7 +486,7 @@
     {
       "name": "김준태",
       "team": "LG",
-      "rank": 44,
+      "rank": 45,
       "avg": 0,
       "hits": 2,
       "hr": 3,
@@ -486,7 +495,7 @@
     {
       "name": "이승현",
       "team": "한화",
-      "rank": 45,
+      "rank": 46,
       "avg": 0,
       "hits": 2,
       "hr": 3,
@@ -495,7 +504,7 @@
     {
       "name": "장규현",
       "team": "한화",
-      "rank": 46,
+      "rank": 47,
       "avg": 0,
       "hits": 2,
       "hr": 3,
@@ -504,7 +513,7 @@
     {
       "name": "박건우",
       "team": "롯데",
-      "rank": 47,
+      "rank": 48,
       "avg": 0.667,
       "hits": 3,
       "hr": 1,
@@ -513,7 +522,7 @@
     {
       "name": "김태윤",
       "team": "SSG",
-      "rank": 48,
+      "rank": 49,
       "avg": 0.5,
       "hits": 3,
       "hr": 1,
@@ -522,20 +531,11 @@
     {
       "name": "이재상",
       "team": "키움",
-      "rank": 49,
+      "rank": 50,
       "avg": 0.5,
       "hits": 3,
       "hr": 1,
       "rbi": 4
-    },
-    {
-      "name": "정현승",
-      "team": "SSG",
-      "rank": 50,
-      "avg": 0.5,
-      "hits": 1,
-      "hr": 3,
-      "rbi": 5
     }
   ],
   "pitchers": [
@@ -882,9 +882,18 @@
       "so": 20
     },
     {
+      "name": "임준형",
+      "team": "LG",
+      "rank": 39,
+      "era": 1.93,
+      "wins": 0,
+      "losses": 0,
+      "so": 2
+    },
+    {
       "name": "백정현",
       "team": "삼성",
-      "rank": 39,
+      "rank": 40,
       "era": 1.95,
       "wins": 2,
       "losses": 0,
@@ -893,7 +902,7 @@
     {
       "name": "이로운",
       "team": "SSG",
-      "rank": 40,
+      "rank": 41,
       "era": 1.99,
       "wins": 6,
       "losses": 5,
@@ -902,7 +911,7 @@
     {
       "name": "최용준",
       "team": "KT",
-      "rank": 41,
+      "rank": 42,
       "era": 2,
       "wins": 1,
       "losses": 0,
@@ -911,7 +920,7 @@
     {
       "name": "노경은",
       "team": "SSG",
-      "rank": 42,
+      "rank": 43,
       "era": 2.14,
       "wins": 3,
       "losses": 6,
@@ -920,7 +929,7 @@
     {
       "name": "김범수",
       "team": "한화",
-      "rank": 43,
+      "rank": 44,
       "era": 2.25,
       "wins": 2,
       "losses": 1,
@@ -929,7 +938,7 @@
     {
       "name": "한승혁",
       "team": "한화",
-      "rank": 44,
+      "rank": 45,
       "era": 2.25,
       "wins": 3,
       "losses": 3,
@@ -938,7 +947,7 @@
     {
       "name": "김영우",
       "team": "LG",
-      "rank": 45,
+      "rank": 46,
       "era": 2.4,
       "wins": 3,
       "losses": 2,
@@ -947,7 +956,7 @@
     {
       "name": "우규민",
       "team": "KT",
-      "rank": 46,
+      "rank": 47,
       "era": 2.44,
       "wins": 1,
       "losses": 2,
@@ -956,7 +965,7 @@
     {
       "name": "김현수",
       "team": "KIA",
-      "rank": 47,
+      "rank": 48,
       "era": 2.45,
       "wins": 0,
       "losses": 0,
@@ -965,7 +974,7 @@
     {
       "name": "주승우",
       "team": "키움",
-      "rank": 48,
+      "rank": 49,
       "era": 2.45,
       "wins": 2,
       "losses": 2,
@@ -974,20 +983,11 @@
     {
       "name": "이상동",
       "team": "KT",
-      "rank": 49,
+      "rank": 50,
       "era": 2.49,
       "wins": 3,
       "losses": 0,
       "so": 34
-    },
-    {
-      "name": "구창모",
-      "team": "NC",
-      "rank": 50,
-      "era": 2.51,
-      "wins": 1,
-      "losses": 0,
-      "so": 18
     }
   ],
   "headToHead": [
