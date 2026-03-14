@@ -1,12 +1,12 @@
 {
-  "lastUpdate": "2026-03-14T09:36:45.886Z",
+  "lastUpdate": "2026-03-14T15:31:28.912Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-14T09:36:45.887Z"
+    "lastSuccessfulCrawl": "2026-03-14T15:31:28.912Z"
   },
   "koreaRecord": {
     "wins": 0,
-    "losses": 1
+    "losses": 0
   },
   "groupStandings": [
     {
@@ -45,13 +45,40 @@
   ],
   "koreaGames": [
     {
-      "date": "",
-      "time": "경기 시간07:30",
-      "opponent": "도미니카홈패류현진",
-      "venue": "",
-      "status": "completed",
-      "result": "loss",
-      "score": "0-10"
+      "date": "2026-03-05",
+      "time": "19:00",
+      "opponent": "체코",
+      "venue": "도쿄돔",
+      "status": "scheduled",
+      "result": null,
+      "score": null
+    },
+    {
+      "date": "2026-03-07",
+      "time": "19:00",
+      "opponent": "일본",
+      "venue": "도쿄돔",
+      "status": "scheduled",
+      "result": null,
+      "score": null
+    },
+    {
+      "date": "2026-03-08",
+      "time": "12:00",
+      "opponent": "대만",
+      "venue": "도쿄돔",
+      "status": "scheduled",
+      "result": null,
+      "score": null
+    },
+    {
+      "date": "2026-03-09",
+      "time": "19:00",
+      "opponent": "호주",
+      "venue": "도쿄돔",
+      "status": "scheduled",
+      "result": null,
+      "score": null
     }
   ]
 }
