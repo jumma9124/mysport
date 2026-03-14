@@ -23,12 +23,12 @@
     {
       "name": "한국전력",
       "wins": 19,
-      "losses": 15,
+      "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.148,
+      "setRate": 1.125,
       "rank": 3,
-      "points": 55
+      "points": 56
     },
     {
       "name": "KB손해보험",
@@ -42,13 +42,13 @@
     },
     {
       "name": "우리카드",
-      "wins": 18,
+      "wins": 19,
       "losses": 16,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.062,
+      "setRate": 1.075,
       "rank": 5,
-      "points": 52
+      "points": 54
     },
     {
       "name": "OK저축은행",
@@ -105,22 +105,22 @@
     {
       "name": "GS칼텍스",
       "wins": 18,
-      "losses": 16,
+      "losses": 17,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.111,
+      "setRate": 1.061,
       "rank": 4,
       "points": 54
     },
     {
       "name": "IBK기업은행",
-      "wins": 16,
+      "wins": 17,
       "losses": 18,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.03,
+      "setRate": 1.076,
       "rank": 5,
-      "points": 51
+      "points": 54
     },
     {
       "name": "페퍼저축은행",
