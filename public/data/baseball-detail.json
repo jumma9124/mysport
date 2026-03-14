@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-14T03:20:57.563Z",
+  "lastUpdate": "2026-03-14T13:38:53.543Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-14T03:20:57.564Z"
+    "lastSuccessfulCrawl": "2026-03-14T13:38:53.543Z"
   },
   "leagueStandings": [
     {
@@ -1042,7 +1042,7 @@
     {
       "opponent": "SSG(승-패-무)",
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "draws": 0
     }
   ],
