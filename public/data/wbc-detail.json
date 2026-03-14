@@ -1,12 +1,12 @@
 {
-  "lastUpdate": "2026-03-13T15:45:49.336Z",
+  "lastUpdate": "2026-03-14T09:36:45.886Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-13T15:45:49.337Z"
+    "lastSuccessfulCrawl": "2026-03-14T09:36:45.887Z"
   },
   "koreaRecord": {
     "wins": 0,
-    "losses": 0
+    "losses": 1
   },
   "groupStandings": [
     {
@@ -47,11 +47,11 @@
     {
       "date": "",
       "time": "경기 시간07:30",
-      "opponent": "도미니카홈C.산체스",
+      "opponent": "도미니카홈패류현진",
       "venue": "",
-      "status": "scheduled",
-      "result": null,
-      "score": null
+      "status": "completed",
+      "result": "loss",
+      "score": "0-10"
     }
   ]
 }
