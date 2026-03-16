@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-16T03:53:35.245Z",
+  "lastUpdate": "2026-03-16T14:13:34.775Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-16T03:53:35.245Z"
+    "lastSuccessfulCrawl": "2026-03-16T14:13:34.775Z"
   },
   "leagueStandings": [
     {
@@ -994,7 +994,7 @@
     {
       "opponent": "두산(승-패-무)",
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "draws": 0
     },
     {
