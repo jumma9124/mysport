@@ -34,12 +34,7 @@
         "sets": []
       }
     ],
-    "upcomingMatch": {
-      "date": "2026-03-19",
-      "time": "19:00",
-      "opponent": "대한항공",
-      "venue": "천안유관순체육관"
-    }
+    "upcomingMatch": null
   },
   "baseball": {
     "team": "한화 이글스",
