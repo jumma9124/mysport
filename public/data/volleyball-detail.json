@@ -3,22 +3,22 @@
     {
       "name": "대한항공",
       "wins": 23,
-      "losses": 12,
+      "losses": 13,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.538,
+      "setRate": 1.473,
       "rank": 1,
       "points": 69
     },
     {
       "name": "현대캐피탈",
-      "wins": 21,
+      "wins": 22,
       "losses": 14,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.481,
+      "setRate": 1.509,
       "rank": 2,
-      "points": 66
+      "points": 69
     },
     {
       "name": "KB손해보험",
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-03-19",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-1",
+      "sets": []
+    },
+    {
       "date": "2026-03-13",
       "opponent": "삼성화재",
       "venue": "천안유관순체육관",
@@ -159,15 +167,12 @@
       "result": "loss",
       "score": "2-3",
       "sets": []
-    },
-    {
-      "date": "2026-03-05",
-      "opponent": "KB손해보험",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-0",
-      "sets": []
     }
   ],
-  "upcomingMatch": null
+  "upcomingMatch": {
+    "date": "2026-03-27",
+    "time": "19:00",
+    "opponent": "준PO승",
+    "venue": "천안유관순체육관"
+  }
 }
