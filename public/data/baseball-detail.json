@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-20T03:26:41.562Z",
+  "lastUpdate": "2026-03-20T13:53:51.761Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-20T03:26:41.562Z"
+    "lastSuccessfulCrawl": "2026-03-20T13:53:51.761Z"
   },
   "leagueStandings": [
     {
@@ -1017,7 +1017,7 @@
     },
     {
       "opponent": "KIA(승-패-무)",
-      "wins": 1,
+      "wins": 2,
       "losses": 0,
       "draws": 0
     },
