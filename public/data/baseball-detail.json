@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-22T03:35:24.824Z",
+  "lastUpdate": "2026-03-22T13:37:55.965Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-22T03:35:24.824Z"
+    "lastSuccessfulCrawl": "2026-03-22T13:37:55.965Z"
   },
   "leagueStandings": [
     {
@@ -1000,7 +1000,7 @@
     {
       "opponent": "롯데(승-패-무)",
       "wins": 0,
-      "losses": 1,
+      "losses": 2,
       "draws": 0
     },
     {
