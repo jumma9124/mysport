@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-03-25T14:12:48.451Z",
+  "lastUpdate": "2026-03-26T03:45:51.883Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-03-25T14:12:48.451Z"
+    "lastSuccessfulCrawl": "2026-03-26T03:45:51.883Z"
   },
   "leagueStandings": [
     {
@@ -308,9 +308,9 @@
       "team": "롯데",
       "rank": 25,
       "avg": 0,
-      "hits": 2,
-      "hr": 3,
-      "rbi": 2
+      "hits": 0,
+      "hr": 0,
+      "rbi": 0
     },
     {
       "name": "김성윤",
@@ -344,9 +344,9 @@
       "team": "LG",
       "rank": 29,
       "avg": 0.5,
-      "hits": 3,
-      "hr": 1,
-      "rbi": 8
+      "hits": 0,
+      "hr": 0,
+      "rbi": 0
     },
     {
       "name": "최재훈",
