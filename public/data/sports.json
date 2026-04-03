@@ -45,10 +45,10 @@
     "team": "한화 이글스",
     "currentRank": 5,
     "record": {
-      "wins": 2,
+      "wins": 3,
       "losses": 3,
       "draws": 0,
-      "winRate": 0.4
+      "winRate": 0.5
     }
   },
   "winterOlympics": {
