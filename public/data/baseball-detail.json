@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-04-03T13:58:15.765Z",
+  "lastUpdate": "2026-04-04T03:31:28.018Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-03T13:58:15.765Z"
+    "lastSuccessfulCrawl": "2026-04-04T03:31:28.018Z"
   },
   "leagueStandings": [
     {
@@ -992,12 +992,6 @@
   ],
   "headToHead": [
     {
-      "opponent": "KT(승-패-무)",
-      "wins": 0,
-      "losses": 3,
-      "draws": 0
-    },
-    {
       "opponent": "SSG(승-패-무)",
       "wins": 0,
       "losses": 0,
@@ -1007,6 +1001,12 @@
       "opponent": "NC(승-패-무)",
       "wins": 0,
       "losses": 0,
+      "draws": 0
+    },
+    {
+      "opponent": "KT(승-패-무)",
+      "wins": 0,
+      "losses": 3,
       "draws": 0
     },
     {
@@ -1028,6 +1028,12 @@
       "draws": 0
     },
     {
+      "opponent": "키움(승-패-무)",
+      "wins": 2,
+      "losses": 0,
+      "draws": 0
+    },
+    {
       "opponent": "두산(승-패-무)",
       "wins": 1,
       "losses": 0,
@@ -1036,12 +1042,6 @@
     {
       "opponent": "KIA(승-패-무)",
       "wins": 0,
-      "losses": 0,
-      "draws": 0
-    },
-    {
-      "opponent": "키움(승-패-무)",
-      "wins": 2,
       "losses": 0,
       "draws": 0
     }
