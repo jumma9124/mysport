@@ -10,6 +10,14 @@
     },
     "recentMatches": [
       {
+        "date": "2026-04-04",
+        "opponent": "대한항공",
+        "venue": "천안유관순체육관",
+        "result": "loss",
+        "score": "2-3",
+        "sets": []
+      },
+      {
         "date": "2026-04-02",
         "opponent": "대한항공",
         "venue": "천안유관순체육관",
@@ -19,14 +27,6 @@
       },
       {
         "date": "2026-03-29",
-        "opponent": "우리카드",
-        "venue": "천안유관순체육관",
-        "result": "win",
-        "score": "3-2",
-        "sets": []
-      },
-      {
-        "date": "2026-03-27",
         "opponent": "우리카드",
         "venue": "천안유관순체육관",
         "result": "win",
