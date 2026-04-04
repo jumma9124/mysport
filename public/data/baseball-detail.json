@@ -1,88 +1,88 @@
 {
-  "lastUpdate": "2026-04-04T03:31:28.018Z",
+  "lastUpdate": "2026-04-04T13:47:34.386Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-04T03:31:28.018Z"
+    "lastSuccessfulCrawl": "2026-04-04T13:47:34.386Z"
   },
   "leagueStandings": [
     {
       "name": "SSG",
-      "wins": 5,
+      "wins": 6,
       "losses": 1,
       "draws": 0,
-      "winRate": 0.833,
+      "winRate": 0.857,
       "rank": 1
     },
     {
       "name": "NC",
-      "wins": 5,
+      "wins": 6,
       "losses": 1,
       "draws": 0,
-      "winRate": 0.833,
+      "winRate": 0.857,
       "rank": 1
     },
     {
       "name": "KT",
       "wins": 5,
-      "losses": 1,
+      "losses": 2,
       "draws": 0,
-      "winRate": 0.833,
-      "rank": 1
+      "winRate": 0.714,
+      "rank": 3
     },
     {
       "name": "삼성",
-      "wins": 3,
+      "wins": 4,
       "losses": 2,
       "draws": 1,
-      "winRate": 0.6,
+      "winRate": 0.667,
       "rank": 4
     },
     {
       "name": "한화",
-      "wins": 3,
+      "wins": 4,
       "losses": 3,
       "draws": 0,
-      "winRate": 0.5,
+      "winRate": 0.571,
       "rank": 5
     },
     {
       "name": "LG",
-      "wins": 2,
+      "wins": 3,
       "losses": 4,
       "draws": 0,
-      "winRate": 0.333,
+      "winRate": 0.429,
       "rank": 6
     },
     {
       "name": "롯데",
       "wins": 2,
-      "losses": 4,
+      "losses": 5,
       "draws": 0,
-      "winRate": 0.333,
-      "rank": 6
+      "winRate": 0.286,
+      "rank": 7
     },
     {
       "name": "키움",
       "wins": 2,
-      "losses": 4,
+      "losses": 5,
       "draws": 0,
-      "winRate": 0.333,
-      "rank": 6
+      "winRate": 0.286,
+      "rank": 7
     },
     {
       "name": "두산",
       "wins": 1,
-      "losses": 4,
+      "losses": 5,
       "draws": 1,
-      "winRate": 0.2,
+      "winRate": 0.167,
       "rank": 9
     },
     {
       "name": "KIA",
       "wins": 1,
-      "losses": 5,
+      "losses": 6,
       "draws": 0,
-      "winRate": 0.167,
+      "winRate": 0.143,
       "rank": 10
     }
   ],
@@ -91,124 +91,142 @@
       "name": "박성한",
       "team": "SSG",
       "rank": 1,
-      "avg": 0.571,
+      "avg": 0.538,
       "hits": 2,
-      "hr": 6,
-      "rbi": 1
+      "hr": 7,
+      "rbi": 8
     },
     {
       "name": "고명준",
       "team": "SSG",
       "rank": 2,
-      "avg": 0.522,
+      "avg": 0.519,
       "hits": 3,
-      "hr": 2,
-      "rbi": 3
-    },
-    {
-      "name": "페라자",
-      "team": "한화",
-      "rank": 3,
-      "avg": 0.462,
-      "hits": 12,
-      "hr": 1,
-      "rbi": 7
-    },
-    {
-      "name": "박찬혁",
-      "team": "키움",
-      "rank": 4,
-      "avg": 0.45,
-      "hits": 9,
-      "hr": 2,
-      "rbi": 2
-    },
-    {
-      "name": "브룩스",
-      "team": "키움",
-      "rank": 5,
-      "avg": 0.444,
-      "hits": 12,
-      "hr": 2,
-      "rbi": 2
-    },
-    {
-      "name": "문성주",
-      "team": "LG",
-      "rank": 6,
-      "avg": 0.429,
-      "hits": 9,
-      "hr": 2,
-      "rbi": 3
-    },
-    {
-      "name": "박건우",
-      "team": "NC",
-      "rank": 6,
-      "avg": 0.429,
-      "hits": 9,
       "hr": 2,
       "rbi": 4
     },
     {
-      "name": "최원준",
-      "team": "KT",
-      "rank": 6,
-      "avg": 0.429,
-      "hits": 12,
-      "hr": 2,
-      "rbi": 6
-    },
-    {
-      "name": "노진혁",
-      "team": "롯데",
-      "rank": 9,
-      "avg": 0.421,
-      "hits": 8,
-      "hr": 2,
-      "rbi": 3
-    },
-    {
-      "name": "박민우",
-      "team": "NC",
-      "rank": 10,
-      "avg": 0.417,
-      "hits": 10,
-      "hr": 1,
-      "rbi": 7
-    },
-    {
       "name": "오스틴",
       "team": "LG",
-      "rank": 10,
-      "avg": 0.417,
-      "hits": 10,
-      "hr": 1,
-      "rbi": 6
-    },
-    {
-      "name": "최정원",
-      "team": "NC",
-      "rank": 10,
-      "avg": 0.417,
-      "hits": 5,
+      "rank": 3,
+      "avg": 0.5,
+      "hits": 3,
       "hr": 2,
       "rbi": 4
     },
     {
       "name": "류지혁",
       "team": "삼성",
-      "rank": 13,
-      "avg": 0.412,
-      "hits": 7,
+      "rank": 4,
+      "avg": 0.476,
+      "hits": 10,
       "hr": 1,
       "rbi": 5
     },
     {
-      "name": "김성윤",
+      "name": "페라자",
+      "team": "한화",
+      "rank": 5,
+      "avg": 0.469,
+      "hits": 15,
+      "hr": 1,
+      "rbi": 10
+    },
+    {
+      "name": "박찬혁",
+      "team": "키움",
+      "rank": 6,
+      "avg": 0.458,
+      "hits": 11,
+      "hr": 2,
+      "rbi": 3
+    },
+    {
+      "name": "박민우",
+      "team": "NC",
+      "rank": 7,
+      "avg": 0.444,
+      "hits": 12,
+      "hr": 1,
+      "rbi": 9
+    },
+    {
+      "name": "최정원",
+      "team": "NC",
+      "rank": 8,
+      "avg": 0.438,
+      "hits": 7,
+      "hr": 2,
+      "rbi": 5
+    },
+    {
+      "name": "장성우",
+      "team": "KT",
+      "rank": 9,
+      "avg": 0.417,
+      "hits": 10,
+      "hr": 3,
+      "rbi": 7
+    },
+    {
+      "name": "노진혁",
+      "team": "롯데",
+      "rank": 10,
+      "avg": 0.409,
+      "hits": 9,
+      "hr": 3,
+      "rbi": 4
+    },
+    {
+      "name": "하주석",
+      "team": "한화",
+      "rank": 11,
+      "avg": 0.407,
+      "hits": 11,
+      "hr": 2,
+      "rbi": 2
+    },
+    {
+      "name": "박건우",
+      "team": "NC",
+      "rank": 12,
+      "avg": 0.4,
+      "hits": 10,
+      "hr": 2,
+      "rbi": 4
+    },
+    {
+      "name": "안현민",
+      "team": "KT",
+      "rank": 12,
+      "avg": 0.4,
+      "hits": 12,
+      "hr": 2,
+      "rbi": 8
+    },
+    {
+      "name": "디아즈",
       "team": "삼성",
       "rank": 14,
-      "avg": 0.4,
+      "avg": 0.393,
+      "hits": 11,
+      "hr": 2,
+      "rbi": 6
+    },
+    {
+      "name": "채은성",
+      "team": "한화",
+      "rank": 14,
+      "avg": 0.393,
+      "hits": 11,
+      "hr": 1,
+      "rbi": 6
+    },
+    {
+      "name": "김성윤",
+      "team": "삼성",
+      "rank": 16,
+      "avg": 0.385,
       "hits": 10,
       "hr": 2,
       "rbi": 6
@@ -216,98 +234,89 @@
     {
       "name": "이강민",
       "team": "KT",
-      "rank": 15,
-      "avg": 0.391,
-      "hits": 9,
-      "hr": 2,
-      "rbi": 1
-    },
-    {
-      "name": "장성우",
-      "team": "KT",
-      "rank": 15,
-      "avg": 0.391,
-      "hits": 9,
-      "hr": 3,
-      "rbi": 6
-    },
-    {
-      "name": "하주석",
-      "team": "한화",
-      "rank": 15,
-      "avg": 0.391,
-      "hits": 9,
-      "hr": 2,
-      "rbi": 417
-    },
-    {
-      "name": "문현빈",
-      "team": "한화",
-      "rank": 18,
+      "rank": 16,
       "avg": 0.385,
       "hits": 10,
       "hr": 2,
-      "rbi": 6
-    },
-    {
-      "name": "김휘집",
-      "team": "NC",
-      "rank": 19,
-      "avg": 0.381,
-      "hits": 8,
-      "hr": 2,
       "rbi": 1
     },
     {
-      "name": "채은성",
-      "team": "한화",
-      "rank": 20,
+      "name": "브룩스",
+      "team": "키움",
+      "rank": 18,
       "avg": 0.375,
-      "hits": 9,
-      "hr": 1,
-      "rbi": 5
+      "hits": 12,
+      "hr": 2,
+      "rbi": 2
     },
     {
-      "name": "안현민",
-      "team": "KT",
-      "rank": 21,
-      "avg": 0.36,
+      "name": "최정",
+      "team": "SSG",
+      "rank": 18,
+      "avg": 0.375,
       "hits": 9,
       "hr": 1,
       "rbi": 7
     },
     {
-      "name": "데일",
-      "team": "KIA",
-      "rank": 22,
-      "avg": 0.353,
-      "hits": 6,
+      "name": "문현빈",
+      "team": "한화",
+      "rank": 20,
+      "avg": 0.367,
+      "hits": 11,
       "hr": 2,
-      "rbi": 3
+      "rbi": 8
     },
     {
-      "name": "최정",
+      "name": "최원준",
+      "team": "KT",
+      "rank": 21,
+      "avg": 0.364,
+      "hits": 12,
+      "hr": 2,
+      "rbi": 6
+    },
+    {
+      "name": "문성주",
+      "team": "LG",
+      "rank": 22,
+      "avg": 0.36,
+      "hits": 9,
+      "hr": 2,
+      "rbi": 1
+    },
+    {
+      "name": "에레디아",
       "team": "SSG",
       "rank": 23,
-      "avg": 0.35,
+      "avg": 0.344,
+      "hits": 11,
+      "hr": 3,
+      "rbi": 6
+    },
+    {
+      "name": "데일",
+      "team": "KIA",
+      "rank": 24,
+      "avg": 0.333,
       "hits": 7,
-      "hr": 1,
-      "rbi": 5
+      "hr": 2,
+      "rbi": 3
     },
     {
       "name": "안치홍",
       "team": "키움",
       "rank": 24,
-      "avg": 0.348,
-      "hits": 8,
+      "avg": 0.333,
+      "hits": 9,
       "hr": 2,
-      "rbi": 6
+      "rbi": 7
     },
     {
-      "name": "김선빈",
-      "team": "KIA",
-      "rank": 25,
-      "avg": 0.333,
+      "name": "김건희",
+      "team": "키움",
+      "rank": 26,
+      "avg": 0.318,
       "hits": 7,
       "hr": 2,
       "rbi": 5
@@ -315,227 +324,218 @@
     {
       "name": "김현수",
       "team": "KT",
-      "rank": 25,
-      "avg": 0.333,
-      "hits": 9,
+      "rank": 27,
+      "avg": 0.313,
+      "hits": 10,
       "hr": 2,
       "rbi": 5
     },
     {
-      "name": "에레디아",
-      "team": "SSG",
-      "rank": 25,
-      "avg": 0.333,
-      "hits": 9,
-      "hr": 3,
+      "name": "김휘집",
+      "team": "NC",
+      "rank": 28,
+      "avg": 0.308,
+      "hits": 8,
+      "hr": 2,
       "rbi": 1
+    },
+    {
+      "name": "데이비슨",
+      "team": "NC",
+      "rank": 28,
+      "avg": 0.308,
+      "hits": 8,
+      "hr": 1,
+      "rbi": 3
+    },
+    {
+      "name": "강백호",
+      "team": "한화",
+      "rank": 30,
+      "avg": 0.303,
+      "hits": 10,
+      "hr": 2,
+      "rbi": 8
     },
     {
       "name": "오재원",
       "team": "한화",
-      "rank": 25,
-      "avg": 0.333,
-      "hits": 9,
+      "rank": 30,
+      "avg": 0.303,
+      "hits": 10,
       "hr": 2,
       "rbi": 3
-    },
-    {
-      "name": "최형우",
-      "team": "삼성",
-      "rank": 29,
-      "avg": 0.318,
-      "hits": 7,
-      "hr": 1,
-      "rbi": 3
-    },
-    {
-      "name": "카메론",
-      "team": "두산",
-      "rank": 29,
-      "avg": 0.318,
-      "hits": 7,
-      "hr": 1,
-      "rbi": 3
-    },
-    {
-      "name": "김건희",
-      "team": "키움",
-      "rank": 31,
-      "avg": 0.316,
-      "hits": 6,
-      "hr": 2,
-      "rbi": 5
-    },
-    {
-      "name": "한태양",
-      "team": "롯데",
-      "rank": 32,
-      "avg": 0.313,
-      "hits": 5,
-      "hr": 2,
-      "rbi": 1
-    },
-    {
-      "name": "구자욱",
-      "team": "삼성",
-      "rank": 33,
-      "avg": 0.304,
-      "hits": 7,
-      "hr": 1,
-      "rbi": 2
-    },
-    {
-      "name": "디아즈",
-      "team": "삼성",
-      "rank": 33,
-      "avg": 0.304,
-      "hits": 7,
-      "hr": 1,
-      "rbi": 5
     },
     {
       "name": "심우준",
       "team": "한화",
-      "rank": 35,
+      "rank": 32,
       "avg": 0.3,
       "hits": 6,
       "hr": 2,
       "rbi": 6
     },
     {
-      "name": "박동원",
-      "team": "LG",
-      "rank": 36,
-      "avg": 0.294,
-      "hits": 5,
-      "hr": 1,
-      "rbi": 4
-    },
-    {
-      "name": "김상수",
-      "team": "KT",
-      "rank": 37,
-      "avg": 0.286,
-      "hits": 6,
+      "name": "최형우",
+      "team": "삼성",
+      "rank": 33,
+      "avg": 0.296,
+      "hits": 8,
       "hr": 2,
       "rbi": 3
     },
     {
-      "name": "데이비슨",
-      "team": "NC",
-      "rank": 37,
-      "avg": 0.286,
-      "hits": 6,
+      "name": "김상수",
+      "team": "KT",
+      "rank": 34,
+      "avg": 0.292,
+      "hits": 7,
       "hr": 2,
       "rbi": 4
     },
     {
-      "name": "카스트로",
+      "name": "안재석",
+      "team": "두산",
+      "rank": 34,
+      "avg": 0.292,
+      "hits": 7,
+      "hr": 1,
+      "rbi": 7
+    },
+    {
+      "name": "최지훈",
+      "team": "SSG",
+      "rank": 34,
+      "avg": 0.292,
+      "hits": 7,
+      "hr": 2,
+      "rbi": 8
+    },
+    {
+      "name": "구자욱",
+      "team": "삼성",
+      "rank": 37,
+      "avg": 0.286,
+      "hits": 8,
+      "hr": 1,
+      "rbi": 4
+    },
+    {
+      "name": "김선빈",
       "team": "KIA",
-      "rank": 39,
+      "rank": 38,
       "avg": 0.28,
       "hits": 7,
+      "hr": 2,
+      "rbi": 5
+    },
+    {
+      "name": "전민재",
+      "team": "롯데",
+      "rank": 39,
+      "avg": 0.278,
+      "hits": 5,
+      "hr": 2,
+      "rbi": 4
+    },
+    {
+      "name": "박동원",
+      "team": "LG",
+      "rank": 40,
+      "avg": 0.273,
+      "hits": 6,
       "hr": 1,
       "rbi": 5
     },
     {
+      "name": "카메론",
+      "team": "두산",
+      "rank": 41,
+      "avg": 0.269,
+      "hits": 7,
+      "hr": 1,
+      "rbi": 3
+    },
+    {
       "name": "강승호",
       "team": "두산",
-      "rank": 40,
-      "avg": 0.278,
+      "rank": 42,
+      "avg": 0.263,
       "hits": 5,
       "hr": 2,
       "rbi": 1
     },
     {
-      "name": "강백호",
-      "team": "한화",
-      "rank": 41,
-      "avg": 0.276,
-      "hits": 8,
-      "hr": 2,
-      "rbi": 6
-    },
-    {
-      "name": "김도영",
-      "team": "KIA",
+      "name": "한태양",
+      "team": "롯데",
       "rank": 42,
-      "avg": 0.273,
-      "hits": 6,
-      "hr": 1,
-      "rbi": 4
+      "avg": 0.263,
+      "hits": 5,
+      "hr": 2,
+      "rbi": 5
     },
     {
       "name": "이주형",
       "team": "키움",
-      "rank": 43,
-      "avg": 0.269,
-      "hits": 7,
+      "rank": 44,
+      "avg": 0.258,
+      "hits": 8,
       "hr": 2,
       "rbi": 1
     },
     {
       "name": "힐리어드",
       "team": "KT",
-      "rank": 43,
-      "avg": 0.269,
-      "hits": 7,
+      "rank": 44,
+      "avg": 0.258,
+      "hits": 8,
       "hr": 2,
       "rbi": 7
     },
     {
-      "name": "안재석",
-      "team": "두산",
-      "rank": 45,
-      "avg": 0.25,
-      "hits": 5,
+      "name": "카스트로",
+      "team": "KIA",
+      "rank": 46,
+      "avg": 0.241,
+      "hits": 7,
       "hr": 1,
       "rbi": 5
     },
     {
-      "name": "윤동희",
-      "team": "롯데",
-      "rank": 45,
-      "avg": 0.25,
+      "name": "김도영",
+      "team": "KIA",
+      "rank": 47,
+      "avg": 0.24,
+      "hits": 6,
+      "hr": 1,
+      "rbi": 4
+    },
+    {
+      "name": "정수빈",
+      "team": "두산",
+      "rank": 47,
+      "avg": 0.24,
       "hits": 6,
       "hr": 2,
-      "rbi": 2
+      "rbi": 6
     },
     {
-      "name": "최지훈",
-      "team": "SSG",
-      "rank": 45,
-      "avg": 0.25,
-      "hits": 5,
-      "hr": 2,
-      "rbi": 7
-    },
-    {
-      "name": "전준우",
-      "team": "롯데",
-      "rank": 48,
-      "avg": 0.238,
-      "hits": 5,
-      "hr": 1,
-      "rbi": 3
-    },
-    {
-      "name": "문보경",
-      "team": "LG",
+      "name": "어준서",
+      "team": "키움",
       "rank": 49,
-      "avg": 0.235,
-      "hits": 4,
+      "avg": 0.231,
+      "hits": 6,
       "hr": 2,
-      "rbi": 3
+      "rbi": 1
     },
     {
-      "name": "레이예스",
-      "team": "롯데",
+      "name": "류현인",
+      "team": "KT",
       "rank": 50,
       "avg": 0.227,
       "hits": 5,
-      "hr": 3,
-      "rbi": 5
+      "hr": 2,
+      "rbi": 1
     }
   ],
   "pitchers": [
@@ -549,81 +549,45 @@
       "so": 9
     },
     {
-      "name": "올러",
-      "team": "KIA",
-      "rank": 1,
-      "era": 0,
-      "wins": 1,
-      "losses": 0,
-      "so": 3
-    },
-    {
-      "name": "최민석",
-      "team": "두산",
-      "rank": 1,
-      "era": 0,
-      "wins": 0,
-      "losses": 0,
-      "so": 4
-    },
-    {
-      "name": "오원석",
-      "team": "KT",
-      "rank": 4,
-      "era": 1.5,
-      "wins": 1,
-      "losses": 0,
-      "so": 7
-    },
-    {
-      "name": "웰스",
-      "team": "LG",
-      "rank": 4,
-      "era": 1.5,
-      "wins": 1,
-      "losses": 0,
-      "so": 2
-    },
-    {
       "name": "네일",
       "team": "KIA",
-      "rank": 6,
+      "rank": 2,
       "era": 1.64,
       "wins": 0,
       "losses": 1,
       "so": 10
     },
     {
+      "name": "테일러",
+      "team": "NC",
+      "rank": 3,
+      "era": 1.8,
+      "wins": 1,
+      "losses": 0,
+      "so": 10
+    },
+    {
+      "name": "왕옌청",
+      "team": "한화",
+      "rank": 4,
+      "era": 2.31,
+      "wins": 2,
+      "losses": 0,
+      "so": 9
+    },
+    {
       "name": "잭로그",
       "team": "두산",
-      "rank": 7,
+      "rank": 5,
       "era": 2.57,
       "wins": 0,
       "losses": 0,
       "so": 5
     },
     {
-      "name": "와일스",
-      "team": "키움",
-      "rank": 8,
-      "era": 3,
-      "wins": 0,
-      "losses": 1,
-      "so": 4
-    },
-    {
-      "name": "최원태",
-      "team": "삼성",
-      "rank": 8,
-      "era": 3,
-      "wins": 0,
-      "losses": 1,
-      "so": 5
-    },
-    {
       "name": "후라도",
       "team": "삼성",
-      "rank": 8,
+      "rank": 6,
       "era": 3,
       "wins": 1,
       "losses": 1,
@@ -632,29 +596,65 @@
     {
       "name": "알칸타라",
       "team": "키움",
-      "rank": 11,
+      "rank": 7,
       "era": 3.09,
       "wins": 1,
       "losses": 0,
       "so": 12
     },
     {
+      "name": "하영민",
+      "team": "키움",
+      "rank": 8,
+      "era": 3.86,
+      "wins": 0,
+      "losses": 1,
+      "so": 7
+    },
+    {
       "name": "사우어",
       "team": "KT",
-      "rank": 12,
+      "rank": 9,
       "era": 4.09,
       "wins": 1,
       "losses": 1,
       "so": 4
     },
     {
+      "name": "임찬규",
+      "team": "LG",
+      "rank": 10,
+      "era": 5.4,
+      "wins": 0,
+      "losses": 0,
+      "so": 4
+    },
+    {
+      "name": "최원태",
+      "team": "삼성",
+      "rank": 11,
+      "era": 5.73,
+      "wins": 0,
+      "losses": 1,
+      "so": 13
+    },
+    {
       "name": "화이트",
       "team": "SSG",
-      "rank": 13,
+      "rank": 11,
       "era": 5.73,
       "wins": 1,
       "losses": 0,
       "so": 8
+    },
+    {
+      "name": "비슬리",
+      "team": "롯데",
+      "rank": 13,
+      "era": 6,
+      "wins": 1,
+      "losses": 0,
+      "so": 9
     },
     {
       "name": "에르난데스",
@@ -666,36 +666,54 @@
       "so": 6
     },
     {
+      "name": "곽빈",
+      "team": "두산",
+      "rank": 15,
+      "era": 7.27,
+      "wins": 0,
+      "losses": 1,
+      "so": 9
+    },
+    {
       "name": "로드리게스",
       "team": "롯데",
-      "rank": 15,
+      "rank": 16,
       "era": 8,
       "wins": 1,
       "losses": 1,
       "so": 4
     },
     {
-      "name": "치리노스",
-      "team": "LG",
-      "rank": 16,
-      "era": 15,
+      "name": "소형준",
+      "team": "KT",
+      "rank": 17,
+      "era": 9,
       "wins": 0,
-      "losses": 2,
-      "so": 6
+      "losses": 0,
+      "so": 8
     },
     {
       "name": "김민수",
       "team": "KT",
-      "rank": 17,
+      "rank": 18,
       "era": 0,
       "wins": 0,
       "losses": 0,
       "so": 3
     },
     {
+      "name": "김정우",
+      "team": "두산",
+      "rank": 19,
+      "era": 0,
+      "wins": 0,
+      "losses": 0,
+      "so": 1
+    },
+    {
       "name": "김택연",
       "team": "두산",
-      "rank": 18,
+      "rank": 20,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -704,25 +722,34 @@
     {
       "name": "노경은",
       "team": "SSG",
-      "rank": 19,
+      "rank": 21,
       "era": 0,
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
-      "so": 0
+      "so": 2
     },
     {
       "name": "류진욱",
       "team": "NC",
-      "rank": 20,
+      "rank": 22,
       "era": 0,
       "wins": 1,
       "losses": 0,
       "so": 1
     },
     {
+      "name": "목지훈",
+      "team": "NC",
+      "rank": 23,
+      "era": 0,
+      "wins": 0,
+      "losses": 0,
+      "so": 0
+    },
+    {
       "name": "문승원",
       "team": "SSG",
-      "rank": 21,
+      "rank": 24,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -731,7 +758,7 @@
     {
       "name": "박세웅",
       "team": "롯데",
-      "rank": 22,
+      "rank": 25,
       "era": 0,
       "wins": 0,
       "losses": 1,
@@ -740,7 +767,7 @@
     {
       "name": "박시원",
       "team": "LG",
-      "rank": 23,
+      "rank": 26,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -749,25 +776,16 @@
     {
       "name": "박영현",
       "team": "KT",
-      "rank": 24,
+      "rank": 27,
       "era": 0,
       "wins": 1,
       "losses": 0,
       "so": 2
     },
     {
-      "name": "박윤성",
-      "team": "키움",
-      "rank": 25,
-      "era": 0,
-      "wins": 0,
-      "losses": 0,
-      "so": 1
-    },
-    {
       "name": "박재규",
       "team": "한화",
-      "rank": 26,
+      "rank": 28,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -776,16 +794,25 @@
     {
       "name": "박정민",
       "team": "롯데",
-      "rank": 27,
+      "rank": 29,
       "era": 0,
       "wins": 0,
       "losses": 0,
       "so": 5
     },
     {
+      "name": "박정수",
+      "team": "두산",
+      "rank": 30,
+      "era": 0,
+      "wins": 0,
+      "losses": 0,
+      "so": 0
+    },
+    {
       "name": "박준우",
       "team": "롯데",
-      "rank": 28,
+      "rank": 31,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -794,7 +821,7 @@
     {
       "name": "박치국",
       "team": "두산",
-      "rank": 29,
+      "rank": 32,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -803,7 +830,7 @@
     {
       "name": "배재환",
       "team": "NC",
-      "rank": 30,
+      "rank": 33,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -812,7 +839,7 @@
     {
       "name": "백승건",
       "team": "SSG",
-      "rank": 31,
+      "rank": 34,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -821,7 +848,7 @@
     {
       "name": "백정현",
       "team": "삼성",
-      "rank": 32,
+      "rank": 35,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -830,43 +857,43 @@
     {
       "name": "보쉴리",
       "team": "KT",
-      "rank": 33,
+      "rank": 36,
       "era": 0,
       "wins": 1,
       "losses": 0,
       "so": 7
     },
     {
-      "name": "비슬리",
-      "team": "롯데",
-      "rank": 34,
-      "era": 0,
-      "wins": 1,
-      "losses": 0,
-      "so": 5
-    },
-    {
       "name": "성영탁",
       "team": "KIA",
-      "rank": 35,
+      "rank": 37,
       "era": 0,
       "wins": 0,
       "losses": 0,
       "so": 1
     },
     {
+      "name": "올러",
+      "team": "KIA",
+      "rank": 38,
+      "era": 0,
+      "wins": 1,
+      "losses": 0,
+      "so": 3
+    },
+    {
       "name": "우강훈",
       "team": "LG",
-      "rank": 36,
+      "rank": 39,
       "era": 0,
       "wins": 0,
       "losses": 0,
-      "so": 4
+      "so": 7
     },
     {
       "name": "원종해",
       "team": "NC",
-      "rank": 37,
+      "rank": 40,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -875,7 +902,7 @@
     {
       "name": "윤태호",
       "team": "두산",
-      "rank": 38,
+      "rank": 41,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -884,7 +911,7 @@
     {
       "name": "이로운",
       "team": "SSG",
-      "rank": 39,
+      "rank": 42,
       "era": 0,
       "wins": 1,
       "losses": 0,
@@ -893,25 +920,25 @@
     {
       "name": "이승민",
       "team": "삼성",
-      "rank": 40,
+      "rank": 43,
       "era": 0,
       "wins": 0,
       "losses": 0,
-      "so": 3
+      "so": 4
     },
     {
       "name": "이승현",
       "team": "삼성",
-      "rank": 41,
+      "rank": 44,
       "era": 0,
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
-      "so": 0
+      "so": 2
     },
     {
       "name": "이우찬",
       "team": "LG",
-      "rank": 42,
+      "rank": 45,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -920,16 +947,16 @@
     {
       "name": "이준혁",
       "team": "NC",
-      "rank": 43,
+      "rank": 46,
       "era": 0,
       "wins": 0,
       "losses": 0,
-      "so": 2
+      "so": 3
     },
     {
       "name": "장찬희",
       "team": "삼성",
-      "rank": 44,
+      "rank": 47,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -938,7 +965,7 @@
     {
       "name": "장현식",
       "team": "LG",
-      "rank": 45,
+      "rank": 48,
       "era": 0,
       "wins": 0,
       "losses": 0,
@@ -947,47 +974,20 @@
     {
       "name": "전상현",
       "team": "KIA",
-      "rank": 46,
+      "rank": 49,
       "era": 0,
       "wins": 0,
-      "losses": 0,
-      "so": 3
-    },
-    {
-      "name": "전영준",
-      "team": "SSG",
-      "rank": 47,
-      "era": 0,
-      "wins": 0,
-      "losses": 0,
-      "so": 5
-    },
-    {
-      "name": "전용주",
-      "team": "KT",
-      "rank": 48,
-      "era": 0,
-      "wins": 1,
       "losses": 0,
       "so": 3
     },
     {
       "name": "조동욱",
       "team": "한화",
-      "rank": 49,
-      "era": 0,
-      "wins": 0,
-      "losses": 0,
-      "so": 1
-    },
-    {
-      "name": "조병현",
-      "team": "SSG",
       "rank": 50,
       "era": 0,
       "wins": 0,
       "losses": 0,
-      "so": 1
+      "so": 2
     }
   ],
   "headToHead": [
@@ -1035,7 +1035,7 @@
     },
     {
       "opponent": "두산(승-패-무)",
-      "wins": 1,
+      "wins": 2,
       "losses": 0,
       "draws": 0
     },
