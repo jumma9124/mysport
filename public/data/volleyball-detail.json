@@ -143,6 +143,36 @@
       "points": 26
     }
   ],
-  "recentMatches": [],
-  "upcomingMatch": null
+  "recentMatches": [
+    {
+      "date": "2026-04-08",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-0",
+      "sets": []
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "2-3",
+      "sets": []
+    }
+  ],
+  "upcomingMatch": {
+    "date": "2026-04-10",
+    "time": "19:00",
+    "opponent": "대한항공",
+    "venue": "원정"
+  }
 }
