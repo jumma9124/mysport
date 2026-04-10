@@ -34,12 +34,7 @@
         "sets": []
       }
     ],
-    "upcomingMatch": {
-      "date": "2026-04-10",
-      "time": "19:00",
-      "opponent": "대한항공",
-      "venue": "원정"
-    }
+    "upcomingMatch": null
   },
   "baseball": {
     "team": "한화 이글스",
