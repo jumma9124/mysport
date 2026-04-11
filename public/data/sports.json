@@ -41,9 +41,9 @@
     "currentRank": 5,
     "record": {
       "wins": 6,
-      "losses": 5,
+      "losses": 6,
       "draws": 0,
-      "winRate": 0.545
+      "winRate": 0.5
     }
   },
   "winterOlympics": {
