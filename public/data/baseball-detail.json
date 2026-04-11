@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-04-10T14:12:04.948Z",
+  "lastUpdate": "2026-04-11T03:34:53.250Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-10T14:12:04.948Z"
+    "lastSuccessfulCrawl": "2026-04-11T03:34:53.250Z"
   },
   "leagueStandings": [
     {
@@ -992,6 +992,12 @@
   ],
   "headToHead": [
     {
+      "opponent": "LG(승-패-무)",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
       "opponent": "SSG(승-패-무)",
       "wins": 2,
       "losses": 0,
@@ -1004,19 +1010,13 @@
       "draws": 0
     },
     {
-      "opponent": "LG(승-패-무)",
+      "opponent": "삼성(승-패-무)",
       "wins": 0,
       "losses": 0,
       "draws": 0
     },
     {
       "opponent": "NC(승-패-무)",
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    },
-    {
-      "opponent": "삼성(승-패-무)",
       "wins": 0,
       "losses": 0,
       "draws": 0
