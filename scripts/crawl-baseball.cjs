@@ -836,6 +836,160 @@ async function crawlLastSeries() {
   }
 }
 
+async function crawlSeries() {
+  let browser;
+  try {
+    console.log('Fetching current/next series data...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: PUPPETEER_ARGS,
+      timeout: 60000
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15');
+    await page.setViewport({ width: 375, height: 667 });
+
+    const today = new Date();
+    const toDateStr = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const todayStr = toDateStr(today);
+    const allGames = [];
+
+    // 오늘 기준 -5일 ~ +10일 범위 스캔
+    for (let offset = -5; offset <= 10; offset++) {
+      const date = new Date(today);
+      date.setDate(date.getDate() + offset);
+      const dateStr = toDateStr(date);
+
+      try {
+        await page.goto(`https://m.sports.naver.com/kbaseball/schedule/index?date=${dateStr}`, {
+          waitUntil: 'networkidle2',
+          timeout: 30000
+        });
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(`Failed to load schedule for ${dateStr}:`, e.message);
+        continue;
+      }
+
+      const dayGames = await page.evaluate((dateStr) => {
+        const matchItems = document.querySelectorAll('[class*="MatchBox_match_item"]');
+        const results = [];
+
+        for (const item of matchItems) {
+          const itemText = item.textContent || '';
+          if (!itemText.includes('한화')) continue;
+
+          const statusEl = item.querySelector('[class*="MatchBox_status"]');
+          const statusText = statusEl ? statusEl.textContent.trim() : '';
+          if (statusText.includes('취소') || statusText.includes('우천')) continue;
+
+          const teamEls = item.querySelectorAll('[class*="MatchBoxHeadToHeadArea_team__"]');
+          const scoreEls = item.querySelectorAll('[class*="MatchBoxHeadToHeadArea_score__"]');
+          if (teamEls.length < 2) continue;
+
+          const team1 = teamEls[0].textContent.trim();
+          const team2 = teamEls[1].textContent.trim();
+          const isHanwha1 = team1.includes('한화');
+          const opponent = isHanwha1 ? team2 : team1;
+          if (!opponent) continue;
+
+          const isCompleted = statusText.includes('종료');
+          let result = null;
+          let score = null;
+
+          if (isCompleted && scoreEls.length >= 2) {
+            const s1 = parseInt(scoreEls[0].textContent.trim()) || 0;
+            const s2 = parseInt(scoreEls[1].textContent.trim()) || 0;
+            const ours = isHanwha1 ? s1 : s2;
+            const theirs = isHanwha1 ? s2 : s1;
+            result = ours > theirs ? 'win' : ours < theirs ? 'loss' : 'draw';
+            score = `${ours}-${theirs}`;
+          }
+
+          results.push({ date: dateStr, opponent, isCompleted, result, score });
+        }
+        return results;
+      }, dateStr);
+
+      allGames.push(...dayGames);
+    }
+
+    await browser.close();
+
+    if (allGames.length === 0) {
+      console.log('No Hanwha games found in range');
+      return { currentSeries: null, nextSeries: null };
+    }
+
+    allGames.sort((a, b) => a.date.localeCompare(b.date));
+
+    // 날짜 간격 2일 이하 + 같은 상대팀이면 같은 시리즈로 그룹핑
+    const seriesGroups = [];
+    let group = [allGames[0]];
+    for (let i = 1; i < allGames.length; i++) {
+      const game = allGames[i];
+      const prev = group[group.length - 1];
+      const dayDiff = (new Date(game.date) - new Date(prev.date)) / 86400000;
+      if (dayDiff <= 2 && game.opponent === prev.opponent) {
+        group.push(game);
+      } else {
+        seriesGroups.push([...group]);
+        group = [game];
+      }
+    }
+    seriesGroups.push([...group]);
+
+    let currentSeriesIdx = -1;
+    let nextSeriesIdx = -1;
+
+    for (let i = 0; i < seriesGroups.length; i++) {
+      const s = seriesGroups[i];
+      const start = s[0].date;
+      const end = s[s.length - 1].date;
+
+      if (start <= todayStr && end >= todayStr) {
+        currentSeriesIdx = i;
+        nextSeriesIdx = i + 1 < seriesGroups.length ? i + 1 : -1;
+        break;
+      } else if (end < todayStr) {
+        currentSeriesIdx = i;
+      } else if (start > todayStr) {
+        if (nextSeriesIdx < 0) nextSeriesIdx = i;
+        break;
+      }
+    }
+
+    let currentSeries = null;
+    let nextSeries = null;
+
+    if (currentSeriesIdx >= 0) {
+      const s = seriesGroups[currentSeriesIdx];
+      const completed = s.filter(g => g.isCompleted);
+      currentSeries = {
+        opponent: s[0].opponent,
+        date: s[0].date,
+        wins: completed.filter(g => g.result === 'win').length,
+        losses: completed.filter(g => g.result === 'loss').length,
+        games: completed.map(g => ({ date: g.date, result: g.result, score: g.score }))
+      };
+    }
+
+    if (nextSeriesIdx >= 0 && nextSeriesIdx < seriesGroups.length) {
+      const s = seriesGroups[nextSeriesIdx];
+      nextSeries = { opponent: s[0].opponent, date: s[0].date };
+    }
+
+    console.log(`✓ Series: current=${currentSeries ? `vs ${currentSeries.opponent} (${currentSeries.wins}W-${currentSeries.losses}L)` : 'none'}, next=${nextSeries ? `vs ${nextSeries.opponent} on ${nextSeries.date}` : 'none'}`);
+    return { currentSeries, nextSeries };
+
+  } catch (error) {
+    if (browser) await browser.close();
+    console.error('⚠ Series crawl error:', error.message);
+    return { currentSeries: null, nextSeries: null };
+  }
+}
+
 function getFallbackData() {
   console.log('Using fallback data (previous season stats)...');
 
@@ -908,7 +1062,7 @@ async function crawlBaseballData() {
     console.log('Starting baseball data crawl...');
 
     // 각 크롤링 함수를 재시도 로직으로 래핑
-    let standings, batters, pitchers, headToHead, lastSeries;
+    let standings, batters, pitchers, headToHead, lastSeries, series;
     let failedCrawls = [];
 
     try {
@@ -946,8 +1100,15 @@ async function crawlBaseballData() {
       lastSeries = null;
     }
 
+    try {
+      series = await crawlSeries();
+    } catch (error) {
+      failedCrawls.push('series');
+      series = { currentSeries: null, nextSeries: null };
+    }
+
     // 모든 크롤링이 실패한 경우
-    if (failedCrawls.length === 5) {
+    if (failedCrawls.length === 6) {
       console.error('✗ All crawling attempts failed');
 
       // 기존 파일이 있으면 상태만 업데이트
@@ -979,6 +1140,8 @@ async function crawlBaseballData() {
     const pitchersData = pitchers || fallbackData.pitchers;
     const headToHeadData = headToHead || fallbackData.headToHead;
     const lastSeriesData = lastSeries || fallbackData.lastSeries;
+    const currentSeriesData = series?.currentSeries || null;
+    const nextSeriesData = series?.nextSeries || null;
 
     // baseball-detail.json 생성
     const baseballDetail = {
@@ -993,6 +1156,8 @@ async function crawlBaseballData() {
       pitchers: pitchersData,
       headToHead: headToHeadData,
       lastSeries: lastSeriesData,
+      currentSeries: currentSeriesData,
+      nextSeries: nextSeriesData,
     };
 
     // sports.json 업데이트
