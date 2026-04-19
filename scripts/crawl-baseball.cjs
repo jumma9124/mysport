@@ -334,33 +334,24 @@ async function crawlBatters() {
           }
         }
         
-        // 안타, 홈런, 타점 추출 - 각 셀에서 숫자 추출
+        // 안타, 홈런, 타점 추출
+        // 네이버 KBO 타자 셀 순서: 0=순위, 1=타율, 2=경기, 3=타수, 4=안타, 5=2루타, 6=3루타, 7=홈런, 8=타점, 9=득점, ...
         let hits = 0, hr = 0, rbi = 0;
 
-        // 각 셀에서 모든 숫자 추출
-        const cellNumbers = [];
-        cells.forEach(cell => {
-          const text = cell.textContent.trim();
-          const numbers = text.match(/\d+/g);
-          if (numbers) {
-            numbers.forEach(num => {
-              const val = parseInt(num);
-              // 유효한 통계 범위의 숫자만 수집
-              if (val > 0 && val < 500) {
-                cellNumbers.push(val);
-              }
-            });
-          }
+        const cellTexts = cells.map(cell => {
+          const textEl = cell.querySelector('[class*="TextInfo_text"], [class*="TextInfo_highlight"]') || cell;
+          return textEl.textContent.trim();
         });
 
-        // 네이버 KBO 타자 기록 실제 순서: [순위, 타율숫자, 경기, 타수, 안타, 홈런, 2루타, 3루타, 타점, 득점, ...]
-        // cellNumbers 배열의 실제 인덱스: [0:순위, 1:타율숫자, 2:경기, 3:타수, 4:안타, 5:홈런, 6:2루타번호, 7:2루타, 8:3루타번호, 9:3루타, 10:타점, 11:득점, ...]
+        const parseCell = (idx) => {
+          if (cellTexts.length <= idx) return 0;
+          const match = cellTexts[idx].match(/(\d+)/);
+          return match ? parseInt(match[1]) : 0;
+        };
 
-        if (cellNumbers.length >= 11) {
-          hits = cellNumbers[4];   // 안타
-          hr = cellNumbers[5];     // 홈런
-          rbi = cellNumbers[10];   // 타점
-        }
+        hits = parseCell(4);  // 안타
+        hr   = parseCell(7);  // 홈런
+        rbi  = parseCell(8);  // 타점
         
         // 모든 선수 추가 (순위 정보 포함)
         if (name) {
