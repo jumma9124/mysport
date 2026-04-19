@@ -7,7 +7,7 @@ import RankChart from '@/components/Baseball/RankChart';
 const BaseballDetail = () => {
   const [data, setData] = useState<BaseballData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'pitcher' | 'batter'>('pitcher');
+  const [activeTab, setActiveTab] = useState<'pitcher' | 'batter' | 'hanwha-pitcher' | 'hanwha-batter'>('pitcher');
   const [playerRecordsHeight, setPlayerRecordsHeight] = useState<number | null>(null);
   const [expandedGames, setExpandedGames] = useState<{ [key: number]: boolean }>({});
   const leagueStandingsRef = useRef<HTMLDivElement>(null);
@@ -186,10 +186,10 @@ const BaseballDetail = () => {
               </div>
 
               {/* 탭 */}
-              <div className="flex mb-4 border-b border-white/10">
+              <div className="flex mb-4 border-b border-white/10 flex-wrap">
                 <button
                   onClick={() => setActiveTab('pitcher')}
-                  className={`px-4 py-2 font-semibold ${
+                  className={`px-3 py-2 text-sm font-semibold ${
                     activeTab === 'pitcher'
                       ? 'text-white border-b-2 border-accent-green/50'
                       : 'text-gray-500'
@@ -199,7 +199,7 @@ const BaseballDetail = () => {
                 </button>
                 <button
                   onClick={() => setActiveTab('batter')}
-                  className={`px-4 py-2 font-semibold ${
+                  className={`px-3 py-2 text-sm font-semibold ${
                     activeTab === 'batter'
                       ? 'text-white border-b-2 border-accent-green/50'
                       : 'text-gray-500'
@@ -207,116 +207,190 @@ const BaseballDetail = () => {
                 >
                   타자 기록
                 </button>
+                <button
+                  onClick={() => setActiveTab('hanwha-pitcher')}
+                  className={`px-3 py-2 text-sm font-semibold ${
+                    activeTab === 'hanwha-pitcher'
+                      ? 'text-accent-green border-b-2 border-accent-green/50'
+                      : 'text-gray-500'
+                  }`}
+                >
+                  한화 투수
+                </button>
+                <button
+                  onClick={() => setActiveTab('hanwha-batter')}
+                  className={`px-3 py-2 text-sm font-semibold ${
+                    activeTab === 'hanwha-batter'
+                      ? 'text-accent-green border-b-2 border-accent-green/50'
+                      : 'text-gray-500'
+                  }`}
+                >
+                  한화 타자
+                </button>
               </div>
 
               {/* 탭 내용 */}
               <div className="flex-1 overflow-y-auto overflow-x-auto min-h-0">
-                {activeTab === 'pitcher' ? (
+                {activeTab === 'pitcher' && (
                   <div>
                     {data.pitchers.length > 0 ? (
-                      <div>
-                        <table className="w-full border-collapse">
-                          <thead>
-                            <tr className="border-b border-white/10">
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">순위</th>
-                              <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">평균자책</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">경기</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">승</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">패</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">탈삼진</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {[...data.pitchers]
-                              .filter(p => p.era > 0)
-                              .sort((a, b) => (a.rank || 999) - (b.rank || 999))
-                              .slice(0, 10)
-                              .map((player: BaseballPitcher, idx) => {
-                                const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
-                                return (
-                                  <tr
-                                    key={idx}
-                                    className={`border-b border-white/5 ${isHanwha ? 'bg-accent-green/20' : ''}`}
-                                  >
-                                    <td className="px-2 py-3 text-center text-white text-sm font-semibold">{idx + 1}</td>
-                                    <td className="px-2 py-3 text-left">
-                                      <div className="flex flex-col gap-0.5">
-                                        <span className={`text-sm font-semibold ${isHanwha ? 'text-accent-green' : 'text-white'}`}>{player.name}</span>
-                                        {player.team && (
-                                          <span className="text-white/50 text-[11px]">{player.team}</span>
-                                        )}
-                                      </div>
-                                    </td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.era > 0 ? player.era.toFixed(2) : '-'}</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">-</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.wins || 0}</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.losses || 0}</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.so || 0}</td>
-                                  </tr>
-                                );
-                              })}
-                          </tbody>
-                        </table>
-                      </div>
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="border-b border-white/10">
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">순위</th>
+                            <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">평균자책</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">승</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">패</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">탈삼진</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[...data.pitchers]
+                            .filter(p => p.era > 0)
+                            .sort((a, b) => (a.rank || 999) - (b.rank || 999))
+                            .slice(0, 10)
+                            .map((player: BaseballPitcher, idx) => {
+                              const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
+                              return (
+                                <tr key={idx} className={`border-b border-white/5 ${isHanwha ? 'bg-accent-green/20' : ''}`}>
+                                  <td className="px-2 py-3 text-center text-white text-sm font-semibold">{idx + 1}</td>
+                                  <td className="px-2 py-3 text-left">
+                                    <div className="flex flex-col gap-0.5">
+                                      <span className={`text-sm font-semibold ${isHanwha ? 'text-accent-green' : 'text-white'}`}>{player.name}</span>
+                                      {player.team && <span className="text-white/50 text-[11px]">{player.team}</span>}
+                                    </div>
+                                  </td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.era > 0 ? player.era.toFixed(2) : '-'}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.wins || 0}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.losses || 0}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.so || 0}</td>
+                                </tr>
+                              );
+                            })}
+                        </tbody>
+                      </table>
                     ) : (
-                      <div className="text-center py-8 text-white/50">
-                        데이터 없음
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div>
-                    {data.batters.length > 0 ? (
-                      <div>
-                        <table className="w-full border-collapse">
-                          <thead>
-                            <tr className="border-b border-white/10">
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">순위</th>
-                              <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타율</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">안타</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">홈런</th>
-                              <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타점</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {[...data.batters]
-                              .sort((a, b) => (a.rank || 999) - (b.rank || 999))
-                              .slice(0, 10)
-                              .map((player: BaseballBatter, idx) => {
-                                const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
-                                return (
-                                  <tr
-                                    key={idx}
-                                    className={`border-b border-white/5 ${isHanwha ? 'bg-accent-green/20' : ''}`}
-                                  >
-                                    <td className="px-2 py-3 text-center text-white text-sm font-semibold">{idx + 1}</td>
-                                    <td className="px-2 py-3 text-left">
-                                      <div className="flex flex-col gap-0.5">
-                                        <span className={`text-sm font-semibold ${isHanwha ? 'text-accent-green' : 'text-white'}`}>{player.name}</span>
-                                        {player.team && (
-                                          <span className="text-white/50 text-[11px]">{player.team}</span>
-                                        )}
-                                      </div>
-                                    </td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.avg > 0 ? player.avg.toFixed(3) : '-'}</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.hits || 0}</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.hr || 0}</td>
-                                    <td className="px-2 py-3 text-center text-white text-sm">{player.rbi || 0}</td>
-                                  </tr>
-                                );
-                              })}
-                          </tbody>
-                        </table>
-                      </div>
-                    ) : (
-                      <div className="text-center py-8 text-white/50">
-                        데이터 없음
-                      </div>
+                      <div className="text-center py-8 text-white/50">데이터 없음</div>
                     )}
                   </div>
                 )}
+
+                {activeTab === 'batter' && (
+                  <div>
+                    {data.batters.length > 0 ? (
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="border-b border-white/10">
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">순위</th>
+                            <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타율</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">안타</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">홈런</th>
+                            <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타점</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[...data.batters]
+                            .sort((a, b) => (a.rank || 999) - (b.rank || 999))
+                            .slice(0, 10)
+                            .map((player: BaseballBatter, idx) => {
+                              const isHanwha = player.team && (player.team.includes('한화') || player.team.includes('HH'));
+                              return (
+                                <tr key={idx} className={`border-b border-white/5 ${isHanwha ? 'bg-accent-green/20' : ''}`}>
+                                  <td className="px-2 py-3 text-center text-white text-sm font-semibold">{idx + 1}</td>
+                                  <td className="px-2 py-3 text-left">
+                                    <div className="flex flex-col gap-0.5">
+                                      <span className={`text-sm font-semibold ${isHanwha ? 'text-accent-green' : 'text-white'}`}>{player.name}</span>
+                                      {player.team && <span className="text-white/50 text-[11px]">{player.team}</span>}
+                                    </div>
+                                  </td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.avg > 0 ? player.avg.toFixed(3) : '-'}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.hits || 0}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.hr || 0}</td>
+                                  <td className="px-2 py-3 text-center text-white text-sm">{player.rbi || 0}</td>
+                                </tr>
+                              );
+                            })}
+                        </tbody>
+                      </table>
+                    ) : (
+                      <div className="text-center py-8 text-white/50">데이터 없음</div>
+                    )}
+                  </div>
+                )}
+
+                {activeTab === 'hanwha-pitcher' && (() => {
+                  const hanwhaPitchers = [...data.pitchers]
+                    .filter(p => p.team && (p.team.includes('한화') || p.team.includes('HH')))
+                    .sort((a, b) => (a.rank || 999) - (b.rank || 999));
+                  return hanwhaPitchers.length > 0 ? (
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="border-b border-white/10">
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">리그순위</th>
+                          <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">평균자책</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">승</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">패</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">탈삼진</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {hanwhaPitchers.map((player: BaseballPitcher, idx) => (
+                          <tr key={idx} className="border-b border-white/5 bg-accent-green/10">
+                            <td className="px-2 py-3 text-center text-accent-green text-sm font-semibold">{player.rank || '-'}</td>
+                            <td className="px-2 py-3 text-left">
+                              <span className="text-sm font-semibold text-accent-green">{player.name}</span>
+                            </td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.era > 0 ? player.era.toFixed(2) : '-'}</td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.wins || 0}</td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.losses || 0}</td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.so || 0}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <div className="text-center py-8 text-white/50">데이터 없음</div>
+                  );
+                })()}
+
+                {activeTab === 'hanwha-batter' && (() => {
+                  const hanwhaBatters = [...data.batters]
+                    .filter(b => b.team && (b.team.includes('한화') || b.team.includes('HH')))
+                    .sort((a, b) => (a.rank || 999) - (b.rank || 999));
+                  return hanwhaBatters.length > 0 ? (
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="border-b border-white/10">
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">리그순위</th>
+                          <th className="px-2 py-2.5 text-left text-white/70 text-xs font-semibold">선수</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타율</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">안타</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">홈런</th>
+                          <th className="px-2 py-2.5 text-center text-white/70 text-xs font-semibold">타점</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {hanwhaBatters.map((player: BaseballBatter, idx) => (
+                          <tr key={idx} className="border-b border-white/5 bg-accent-green/10">
+                            <td className="px-2 py-3 text-center text-accent-green text-sm font-semibold">{player.rank || '-'}</td>
+                            <td className="px-2 py-3 text-left">
+                              <span className="text-sm font-semibold text-accent-green">{player.name}</span>
+                            </td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.avg > 0 ? player.avg.toFixed(3) : '-'}</td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.hits || 0}</td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.hr || 0}</td>
+                            <td className="px-2 py-3 text-center text-white text-sm">{player.rbi || 0}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <div className="text-center py-8 text-white/50">데이터 없음</div>
+                  );
+                })()}
               </div>
             </div>
           </div>
