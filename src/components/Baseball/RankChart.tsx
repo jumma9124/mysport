@@ -190,7 +190,7 @@ const RankChart = () => {
       </div>
 
       <div className="mt-3 text-xs text-gray-400 text-center">
-        2025
+        {data.season}
       </div>
     </div>
   );

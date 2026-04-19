@@ -990,6 +990,56 @@ async function crawlSeries() {
   }
 }
 
+function updateDailyRank(currentRank) {
+  const dailyRankPath = path.join(DATA_DIR, 'baseball-daily-rank.json');
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  const currentSeason = String(SEASON_CODE);
+
+  let rankData = {
+    team: TEAM_NAME,
+    season: currentSeason,
+    dailyRanks: [],
+    bestRank: currentRank,
+    worstRank: currentRank,
+    currentRank,
+    lastUpdated: new Date().toISOString(),
+  };
+
+  if (fs.existsSync(dailyRankPath)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(dailyRankPath, 'utf8'));
+      // 시즌이 바뀌면 초기화
+      if (existing.season !== currentSeason) {
+        console.log(`📅 New season detected (${existing.season} → ${currentSeason}), resetting daily rank data`);
+      } else {
+        rankData = existing;
+      }
+    } catch (e) {
+      console.warn('Failed to read daily rank file, resetting:', e.message);
+    }
+  }
+
+  // 오늘 날짜 데이터가 이미 있으면 업데이트, 없으면 추가
+  const existingIdx = rankData.dailyRanks.findIndex(r => r.date === todayStr);
+  if (existingIdx >= 0) {
+    rankData.dailyRanks[existingIdx].rank = currentRank;
+  } else {
+    rankData.dailyRanks.push({ date: todayStr, rank: currentRank });
+    rankData.dailyRanks.sort((a, b) => a.date.localeCompare(b.date));
+  }
+
+  const ranks = rankData.dailyRanks.map(r => r.rank);
+  rankData.bestRank = Math.min(...ranks);
+  rankData.worstRank = Math.max(...ranks);
+  rankData.currentRank = currentRank;
+  rankData.season = currentSeason;
+  rankData.lastUpdated = new Date().toISOString();
+
+  fs.writeFileSync(dailyRankPath, JSON.stringify(rankData, null, 2), 'utf8');
+  console.log(`✓ Daily rank updated: ${todayStr} → ${currentRank}위`);
+}
+
 function getFallbackData() {
   console.log('Using fallback data (previous season stats)...');
 
@@ -1197,6 +1247,11 @@ async function crawlBaseballData() {
       JSON.stringify(sportsData, null, 2),
       'utf8'
     );
+
+    // 일별 순위 업데이트
+    if (currentTeam) {
+      updateDailyRank(currentTeam.rank);
+    }
 
     if (failedCrawls.length > 0) {
       console.log(`⚠ Baseball data updated with partial failures: ${failedCrawls.join(', ')}`);
