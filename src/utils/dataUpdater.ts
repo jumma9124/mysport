@@ -95,6 +95,7 @@ export const fetchBaseballData = async (useRealtime = true): Promise<BaseballDat
       headToHead: detailData.headToHead || [],
       lastSeries: detailData.lastSeries,
       currentSeries: detailData.currentSeries,
+      nextSeries: detailData.nextSeries,
       seasonStatus: getSeasonStatus('baseball'),
       seasonStartDate: detailData.seasonStartDate,
     };
