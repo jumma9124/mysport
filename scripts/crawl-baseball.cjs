@@ -914,6 +914,8 @@ async function crawlSeries() {
     }
 
     allGames.sort((a, b) => a.date.localeCompare(b.date));
+    console.log(`📊 Total games found: ${allGames.length}`);
+    console.log(`📊 Games: ${allGames.map(g => `${g.date}vs${g.opponent}`).join(', ')}`);
 
     // 날짜 간격 2일 이하 + 같은 상대팀이면 같은 시리즈로 그룹핑
     const seriesGroups = [];
