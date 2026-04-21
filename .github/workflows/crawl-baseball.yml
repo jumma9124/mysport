@@ -3,7 +3,7 @@ name: Crawl Baseball Data
 on:
   schedule:
     # 시즌 중 (3월~10월): 매일 10시, 22시 KST
-    - cron: '0 1,13 * 3-10 *'  # UTC 기준 (KST -9시간)
+    - cron: '0 1,14 * 3-10 *'  # UTC 기준 (KST -9시간)
     # 비시즌 (11월~2월): 매주 월요일 10시 KST
     - cron: '0 1 * 11-12,1-2 *'  # UTC 기준 (KST -9시간)
     - cron: '0 1 * * 1'  # 매주 월요일 01:00 UTC (KST 10:00)
