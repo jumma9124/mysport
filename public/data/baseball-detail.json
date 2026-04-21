@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-04-20T14:31:16.603Z",
+  "lastUpdate": "2026-04-21T03:21:37.459Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-20T14:31:16.603Z"
+    "lastSuccessfulCrawl": "2026-04-21T03:21:37.459Z"
   },
   "leagueStandings": [
     {
@@ -1053,25 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "롯데",
-    "date": "2026-04-18",
-    "wins": 2,
+    "opponent": "LG",
+    "date": "2026-04-21",
+    "wins": 0,
     "losses": 0,
-    "games": [
-      {
-        "date": "2026-04-18",
-        "result": "win",
-        "score": "5-0"
-      },
-      {
-        "date": "2026-04-19",
-        "result": "win",
-        "score": "9-1"
-      }
-    ]
+    "games": []
   },
   "nextSeries": {
-    "opponent": "LG",
-    "date": "2026-04-21"
+    "opponent": "NC",
+    "date": "2026-04-24"
   }
 }
