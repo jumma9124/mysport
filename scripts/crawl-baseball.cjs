@@ -981,54 +981,195 @@ async function crawlSeries() {
   }
 }
 
-function updateDailyRank(currentRank) {
+async function crawlKBODailyRank(currentRank) {
   const dailyRankPath = path.join(DATA_DIR, 'baseball-daily-rank.json');
+  const currentSeason = String(SEASON_CODE);
   const today = new Date();
   const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-  const currentSeason = String(SEASON_CODE);
 
+  // Get season start from config
+  let seasonStartStr = `${currentSeason}-03-22`;
+  try {
+    const configPath = path.join(__dirname, '../public/data/season-config.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      if (config.baseball && config.baseball.start) {
+        seasonStartStr = config.baseball.start;
+      }
+    }
+  } catch (e) {}
+
+  // Read existing data
   let rankData = {
     team: TEAM_NAME,
     season: currentSeason,
     dailyRanks: [],
-    bestRank: currentRank,
-    worstRank: currentRank,
-    currentRank,
+    bestRank: currentRank || 5,
+    worstRank: currentRank || 5,
+    currentRank: currentRank || 5,
     lastUpdated: new Date().toISOString(),
   };
 
   if (fs.existsSync(dailyRankPath)) {
     try {
       const existing = JSON.parse(fs.readFileSync(dailyRankPath, 'utf8'));
-      // 시즌이 바뀌면 초기화
-      if (existing.season !== currentSeason) {
-        console.log(`📅 New season detected (${existing.season} → ${currentSeason}), resetting daily rank data`);
-      } else {
+      if (existing.season === currentSeason) {
         rankData = existing;
+      } else {
+        console.log(`📅 New season detected (${existing.season} → ${currentSeason}), resetting daily rank data`);
       }
     } catch (e) {
       console.warn('Failed to read daily rank file, resetting:', e.message);
     }
   }
 
-  // 오늘 날짜 데이터가 이미 있으면 업데이트, 없으면 추가
-  const existingIdx = rankData.dailyRanks.findIndex(r => r.date === todayStr);
-  if (existingIdx >= 0) {
-    rankData.dailyRanks[existingIdx].rank = currentRank;
-  } else {
-    rankData.dailyRanks.push({ date: todayStr, rank: currentRank });
-    rankData.dailyRanks.sort((a, b) => a.date.localeCompare(b.date));
+  const existingDates = new Set(rankData.dailyRanks.map(r => r.date));
+
+  // Find all missing dates from season start to today
+  const seasonStart = new Date(seasonStartStr);
+  const missingDates = new Set();
+  for (let d = new Date(seasonStart); d <= today; d.setDate(d.getDate() + 1)) {
+    const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    if (!existingDates.has(ds)) missingDates.add(ds);
   }
 
-  const ranks = rankData.dailyRanks.map(r => r.rank);
-  rankData.bestRank = Math.min(...ranks);
-  rankData.worstRank = Math.max(...ranks);
-  rankData.currentRank = currentRank;
-  rankData.season = currentSeason;
-  rankData.lastUpdated = new Date().toISOString();
+  const saveFallback = () => {
+    if (currentRank) {
+      const idx = rankData.dailyRanks.findIndex(r => r.date === todayStr);
+      if (idx >= 0) rankData.dailyRanks[idx].rank = currentRank;
+      else rankData.dailyRanks.push({ date: todayStr, rank: currentRank });
+      rankData.dailyRanks.sort((a, b) => a.date.localeCompare(b.date));
+      const ranks = rankData.dailyRanks.map(r => r.rank);
+      rankData.bestRank = Math.min(...ranks);
+      rankData.worstRank = Math.max(...ranks);
+      rankData.currentRank = currentRank;
+      rankData.season = currentSeason;
+      rankData.lastUpdated = new Date().toISOString();
+      fs.writeFileSync(dailyRankPath, JSON.stringify(rankData, null, 2), 'utf8');
+      console.log(`✓ Daily rank updated (fallback): ${todayStr} → ${currentRank}위`);
+    }
+  };
 
-  fs.writeFileSync(dailyRankPath, JSON.stringify(rankData, null, 2), 'utf8');
-  console.log(`✓ Daily rank updated: ${todayStr} → ${currentRank}위`);
+  if (missingDates.size === 0) {
+    console.log('✓ KBO daily rank data is already up to date');
+    saveFallback();
+    return;
+  }
+
+  console.log(`📅 Collecting KBO daily rank for ${missingDates.size} missing dates (from ${seasonStartStr})...`);
+
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      headless: true,
+      args: PUPPETEER_ARGS,
+      timeout: 60000,
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+
+    await page.goto('https://www.koreabaseball.com/Record/TeamRank/TeamRankDaily.aspx', {
+      waitUntil: 'networkidle0',
+      timeout: 30000,
+    });
+
+    const getPageDate = async () => {
+      try {
+        const text = await page.$eval(
+          '[id$="lblSearchDateTitle"]',
+          el => el.textContent.trim()
+        );
+        const m = text.match(/(\d{4})\.(\d{2})\.(\d{2})/);
+        return m ? `${m[1]}-${m[2]}-${m[3]}` : null;
+      } catch (e) { return null; }
+    };
+
+    const getHanwhaRank = async () => {
+      try {
+        return await page.evaluate(() => {
+          const rows = document.querySelectorAll('table.tData tbody tr');
+          for (const row of rows) {
+            const cells = row.querySelectorAll('td');
+            if (cells.length < 2) continue;
+            if (cells[1].textContent.includes('한화')) {
+              return parseInt(cells[0].textContent.trim()) || null;
+            }
+          }
+          return null;
+        });
+      } catch (e) { return null; }
+    };
+
+    const collectedRanks = new Map();
+
+    // Collect today's data
+    let pageDate = await getPageDate();
+    if (pageDate && missingDates.has(pageDate)) {
+      const rank = await getHanwhaRank();
+      if (rank) {
+        collectedRanks.set(pageDate, rank);
+        console.log(`  ✓ ${pageDate}: ${rank}위`);
+      }
+    }
+
+    // Navigate backwards from today to season start
+    const maxBack = 90;
+    for (let i = 0; i < maxBack; i++) {
+      try {
+        await page.click('[id$="btnPreDate"]');
+        await new Promise(r => setTimeout(r, 1500));
+      } catch (e) {
+        console.warn('Failed to click prev date button:', e.message);
+        break;
+      }
+
+      pageDate = await getPageDate();
+      if (!pageDate) break;
+      if (new Date(pageDate) < seasonStart) break;
+
+      if (missingDates.has(pageDate)) {
+        const rank = await getHanwhaRank();
+        if (rank) {
+          collectedRanks.set(pageDate, rank);
+          console.log(`  ✓ ${pageDate}: ${rank}위`);
+        } else {
+          console.log(`  - ${pageDate}: no data (rest day)`);
+        }
+      }
+    }
+
+    // Merge collected ranks
+    for (const [date, rank] of collectedRanks) {
+      const idx = rankData.dailyRanks.findIndex(r => r.date === date);
+      if (idx >= 0) rankData.dailyRanks[idx].rank = rank;
+      else rankData.dailyRanks.push({ date, rank });
+    }
+
+    // Always update today's rank from standings (most accurate)
+    if (currentRank) {
+      const idx = rankData.dailyRanks.findIndex(r => r.date === todayStr);
+      if (idx >= 0) rankData.dailyRanks[idx].rank = currentRank;
+      else rankData.dailyRanks.push({ date: todayStr, rank: currentRank });
+    }
+
+    rankData.dailyRanks.sort((a, b) => a.date.localeCompare(b.date));
+    const ranks = rankData.dailyRanks.map(r => r.rank);
+    rankData.bestRank = Math.min(...ranks);
+    rankData.worstRank = Math.max(...ranks);
+    rankData.currentRank = currentRank || rankData.dailyRanks[rankData.dailyRanks.length - 1]?.rank;
+    rankData.season = currentSeason;
+    rankData.lastUpdated = new Date().toISOString();
+
+    fs.writeFileSync(dailyRankPath, JSON.stringify(rankData, null, 2), 'utf8');
+    console.log(`✓ KBO daily rank updated: ${collectedRanks.size} new entries collected`);
+
+  } catch (error) {
+    console.error('⚠ KBO daily rank crawl error:', error.message);
+    saveFallback();
+  } finally {
+    if (browser) await browser.close();
+  }
 }
 
 function getFallbackData() {
@@ -1239,10 +1380,8 @@ async function crawlBaseballData() {
       'utf8'
     );
 
-    // 일별 순위 업데이트
-    if (currentTeam) {
-      updateDailyRank(currentTeam.rank);
-    }
+    // 일별 순위 업데이트 (KBO 공식 사이트에서 시즌 전체 데이터 수집)
+    await crawlKBODailyRank(currentTeam ? currentTeam.rank : null);
 
     if (failedCrawls.length > 0) {
       console.log(`⚠ Baseball data updated with partial failures: ${failedCrawls.join(', ')}`);
