@@ -41,6 +41,7 @@ jobs:
           path: |
             public/data/baseball-detail.json
             public/data/sports.json
+            public/data/baseball-daily-rank.json
           retention-days: 1
 
   commit:
@@ -69,6 +70,7 @@ jobs:
           # 크롤링한 파일을 임시 저장
           cp public/data/baseball-detail.json /tmp/baseball-detail.json 2>/dev/null || true
           cp public/data/sports.json /tmp/sports.json 2>/dev/null || true
+          cp public/data/baseball-daily-rank.json /tmp/baseball-daily-rank.json 2>/dev/null || true
 
           # 리모트 최신 상태로 리셋 (충돌 방지)
           git fetch origin main
@@ -82,6 +84,10 @@ jobs:
           if [ -f /tmp/sports.json ]; then
             cp /tmp/sports.json public/data/sports.json
             git add public/data/sports.json
+          fi
+          if [ -f /tmp/baseball-daily-rank.json ]; then
+            cp /tmp/baseball-daily-rank.json public/data/baseball-daily-rank.json
+            git add public/data/baseball-daily-rank.json
           fi
 
           if ! git diff --staged --quiet; then
