@@ -846,8 +846,8 @@ async function crawlSeries() {
     const todayStr = toDateStr(today);
     const allGames = [];
 
-    // 오늘 기준 -5일 ~ +10일 범위 스캔
-    for (let offset = -5; offset <= 10; offset++) {
+    // 오늘 기준 -5일 ~ +21일 범위 스캔
+    for (let offset = -5; offset <= 21; offset++) {
       const date = new Date(today);
       date.setDate(date.getDate() + offset);
       const dateStr = toDateStr(date);
