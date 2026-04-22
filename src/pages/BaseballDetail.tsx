@@ -489,6 +489,8 @@ const BaseballDetail = () => {
                                     <tr className="border-b border-white/10">
                                       <th className="p-2 text-left text-white/70 text-xs">팀</th>
                                       <th className="p-2 text-center text-white/70 text-xs">안타</th>
+                                      <th className="p-2 text-center text-white/70 text-xs">2루타</th>
+                                      <th className="p-2 text-center text-white/70 text-xs">3루타</th>
                                       <th className="p-2 text-center text-white/70 text-xs">홈런</th>
                                       <th className="p-2 text-center text-white/70 text-xs">실책</th>
                                     </tr>
@@ -498,6 +500,8 @@ const BaseballDetail = () => {
                                       <tr className="border-b border-white/5">
                                         <td className="p-2 text-white text-[13px] font-semibold">{data.team}</td>
                                         <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.hits}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.doubles ?? '-'}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.triples ?? '-'}</td>
                                         <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.homeRuns}</td>
                                         <td className="p-2 text-center text-white text-[13px]">{game.ourTeamStats.errors}</td>
                                       </tr>
@@ -506,12 +510,41 @@ const BaseballDetail = () => {
                                       <tr>
                                         <td className="p-2 text-white text-[13px] font-semibold">{data.currentSeries?.opponent}</td>
                                         <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.hits}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.doubles ?? '-'}</td>
+                                        <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.triples ?? '-'}</td>
                                         <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.homeRuns}</td>
                                         <td className="p-2 text-center text-white text-[13px]">{game.opponentStats.errors}</td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </table>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* 투수 기록 */}
+                          {game.pitchers && (game.pitchers.winner || game.pitchers.loser) && (
+                            <div className="mt-3">
+                              <h4 className="text-sm font-semibold text-white mb-2">투수 기록</h4>
+                              <div className="flex gap-4 text-sm">
+                                {game.pitchers.winner && (
+                                  <div>
+                                    <span className="text-gray-400">승 </span>
+                                    <span className="text-accent-green font-semibold">{game.pitchers.winner}</span>
+                                  </div>
+                                )}
+                                {game.pitchers.loser && (
+                                  <div>
+                                    <span className="text-gray-400">패 </span>
+                                    <span className="text-red-400 font-semibold">{game.pitchers.loser}</span>
+                                  </div>
+                                )}
+                                {game.pitchers.save && (
+                                  <div>
+                                    <span className="text-gray-400">세 </span>
+                                    <span className="text-blue-400 font-semibold">{game.pitchers.save}</span>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           )}

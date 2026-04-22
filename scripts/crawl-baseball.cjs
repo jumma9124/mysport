@@ -827,6 +827,109 @@ async function crawlLastSeries() {
   }
 }
 
+async function crawlGameDetail(page, gameUrl, isHanwhaAway) {
+  const empty = { innings: [], ourTeamStats: null, opponentStats: null, pitchers: null };
+  try {
+    console.log(`  Fetching game detail: ${gameUrl}`);
+    await page.goto(gameUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+    await new Promise(r => setTimeout(r, 3000));
+
+    return await page.evaluate((isHanwhaAway) => {
+      const result = {
+        innings: [],
+        ourTeamStats: null,
+        opponentStats: null,
+        pitchers: { winner: null, loser: null, save: null }
+      };
+
+      // ===== Score Board =====
+      // Find table with ~12+ columns (team, 1~9 innings, R, H, E)
+      const tables = Array.from(document.querySelectorAll('table'));
+      let scoreTable = null;
+      for (const t of tables) {
+        const headerRow = t.querySelector('tr');
+        if (!headerRow) continue;
+        const colCount = headerRow.querySelectorAll('th, td').length;
+        if (colCount >= 11) { scoreTable = t; break; }
+      }
+
+      if (scoreTable) {
+        const dataRows = Array.from(scoreTable.querySelectorAll('tr')).filter(r => r.querySelectorAll('td').length >= 10);
+        if (dataRows.length >= 2) {
+          const row0Name = dataRows[0].querySelector('td')?.textContent.trim() || '';
+          const row1Name = dataRows[1].querySelector('td')?.textContent.trim() || '';
+          const hanwhaIdx = row0Name.includes('한화') ? 0 : (row1Name.includes('한화') ? 1 : (isHanwhaAway ? 0 : 1));
+          const ourRow = dataRows[hanwhaIdx];
+          const oppRow = dataRows[hanwhaIdx === 0 ? 1 : 0];
+
+          const getCells = (row) => Array.from(row.querySelectorAll('td')).map(c => c.textContent.trim().replace(/[^0-9]/g, '') || '0');
+          const ourCells = getCells(ourRow);
+          const oppCells = getCells(oppRow);
+          const len = ourCells.length;
+
+          if (len >= 4) {
+            // [0]=team(skip), [1..len-4]=innings, [len-3]=R, [len-2]=H, [len-1]=E
+            for (let i = 1; i <= len - 4; i++) {
+              result.innings.push({
+                inning: String(i),
+                ourScore: parseInt(ourCells[i]) || 0,
+                opponentScore: parseInt(oppCells[i]) || 0
+              });
+            }
+            result.ourTeamStats = { hits: parseInt(ourCells[len - 2]) || 0, homeRuns: 0, doubles: 0, triples: 0, errors: parseInt(ourCells[len - 1]) || 0 };
+            result.opponentStats = { hits: parseInt(oppCells[len - 2]) || 0, homeRuns: 0, doubles: 0, triples: 0, errors: parseInt(oppCells[len - 1]) || 0 };
+          }
+        }
+      }
+
+      // ===== Team Stats (HR, 2B, 3B) =====
+      // Look for a secondary stats table (안타, 홈런, 2루타, 3루타, ...)
+      const statsTables = Array.from(document.querySelectorAll('table'));
+      for (const t of statsTables) {
+        if (t === scoreTable) continue;
+        const headerText = t.querySelector('tr')?.textContent || '';
+        if (headerText.includes('홈런') || headerText.includes('2루타')) {
+          const dataRows = Array.from(t.querySelectorAll('tbody tr, tr')).filter(r => r.querySelectorAll('td').length >= 3);
+          const headers = Array.from(t.querySelectorAll('th')).map(h => h.textContent.trim());
+          const hrIdx = headers.findIndex(h => h.includes('홈런'));
+          const dbIdx = headers.findIndex(h => h.includes('2루타'));
+          const tbIdx = headers.findIndex(h => h.includes('3루타'));
+
+          for (const row of dataRows) {
+            const cells = Array.from(row.querySelectorAll('td')).map(c => c.textContent.trim());
+            const teamName = cells[0] || '';
+            const isOurs = teamName.includes('한화');
+            const stats = isOurs ? result.ourTeamStats : result.opponentStats;
+            if (!stats) continue;
+            if (hrIdx >= 0) stats.homeRuns = parseInt(cells[hrIdx]) || 0;
+            if (dbIdx >= 0) stats.doubles = parseInt(cells[dbIdx]) || 0;
+            if (tbIdx >= 0) stats.triples = parseInt(cells[tbIdx]) || 0;
+          }
+          break;
+        }
+      }
+
+      // ===== Pitchers =====
+      const pageText = document.body.innerText;
+      const winMatch = pageText.match(/승리투수\s*\n?\s*([가-힣A-Za-z·\s]{2,10}?)(?:\n|패전|세이브|$)/m)
+                    || pageText.match(/승\s*[:：]\s*([가-힣A-Za-z·]{2,10})/);
+      const loseMatch = pageText.match(/패전투수\s*\n?\s*([가-힣A-Za-z·\s]{2,10}?)(?:\n|승리|세이브|$)/m)
+                     || pageText.match(/패\s*[:：]\s*([가-힣A-Za-z·]{2,10})/);
+      const saveMatch = pageText.match(/세이브\s*\n?\s*([가-힣A-Za-z·\s]{2,10}?)(?:\n|승리|패전|$)/m)
+                     || pageText.match(/세\s*[:：]\s*([가-힣A-Za-z·]{2,10})/);
+
+      if (winMatch) result.pitchers.winner = winMatch[1].trim();
+      if (loseMatch) result.pitchers.loser = loseMatch[1].trim();
+      if (saveMatch) result.pitchers.save = saveMatch[1].trim();
+
+      return result;
+    }, isHanwhaAway);
+  } catch (e) {
+    console.warn(`  Game detail error: ${e.message}`);
+    return empty;
+  }
+}
+
 async function crawlSeries() {
   let browser;
   try {
@@ -898,7 +1001,13 @@ async function crawlSeries() {
             score = `${ours}-${theirs}`;
           }
 
-          results.push({ date: dateStr, opponent, isCompleted, result, score });
+          // 경기 상세 URL 추출 (game center 링크)
+          const gameUrl = item.href ||
+            item.closest('a')?.href ||
+            item.querySelector('a[href*="game"]')?.href ||
+            item.querySelector('a')?.href || null;
+
+          results.push({ date: dateStr, opponent, isCompleted, result, score, isHanwhaAway: isHanwha1, gameUrl });
         }
         return results;
       }, dateStr);
@@ -906,9 +1015,8 @@ async function crawlSeries() {
       allGames.push(...dayGames);
     }
 
-    await browser.close();
-
     if (allGames.length === 0) {
+      await browser.close();
       console.log('No Hanwha games found in range');
       return { currentSeries: null, nextSeries: null };
     }
@@ -959,12 +1067,24 @@ async function crawlSeries() {
     if (currentSeriesIdx >= 0) {
       const s = seriesGroups[currentSeriesIdx];
       const completed = s.filter(g => g.isCompleted);
+
+      // 완료된 경기 상세 데이터 크롤링 (이닝, 투수, 팀기록)
+      const gamesWithDetails = [];
+      for (const g of completed) {
+        const gameData = { date: g.date, result: g.result, score: g.score };
+        if (g.gameUrl) {
+          const details = await crawlGameDetail(page, g.gameUrl, g.isHanwhaAway);
+          Object.assign(gameData, details);
+        }
+        gamesWithDetails.push(gameData);
+      }
+
       currentSeries = {
         opponent: s[0].opponent,
         date: s[0].date,
         wins: completed.filter(g => g.result === 'win').length,
         losses: completed.filter(g => g.result === 'loss').length,
-        games: completed.map(g => ({ date: g.date, result: g.result, score: g.score }))
+        games: gamesWithDetails
       };
     }
 
@@ -973,6 +1093,7 @@ async function crawlSeries() {
       nextSeries = { opponent: s[0].opponent, date: s[0].date };
     }
 
+    await browser.close();
     console.log(`✓ Series: current=${currentSeries ? `vs ${currentSeries.opponent} (${currentSeries.wins}W-${currentSeries.losses}L)` : 'none'}, next=${nextSeries ? `vs ${nextSeries.opponent} on ${nextSeries.date}` : 'none'}`);
     return { currentSeries, nextSeries };
 

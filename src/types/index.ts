@@ -60,11 +60,20 @@ export interface BaseballSeries {
       hits: number;
       errors: number;
       homeRuns: number;
+      doubles?: number;
+      triples?: number;
     };
     opponentStats?: {
       hits: number;
       errors: number;
       homeRuns: number;
+      doubles?: number;
+      triples?: number;
+    };
+    pitchers?: {
+      winner: string | null;
+      loser: string | null;
+      save: string | null;
     };
   }>;
 }
