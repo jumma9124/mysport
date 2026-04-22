@@ -834,6 +834,31 @@ async function crawlGameDetail(page, gameUrl, isHanwhaAway) {
     await page.goto(gameUrl, { waitUntil: 'networkidle2', timeout: 30000 });
     await new Promise(r => setTimeout(r, 3000));
 
+    // 페이지 구조 디버그
+    const debugInfo = await page.evaluate(() => {
+      const tables = Array.from(document.querySelectorAll('table'));
+      const scoreboardEl = document.querySelector('[class*="ScoreBoard"], [class*="scoreboard"], [class*="score_board"]');
+      const pitcherEl = document.querySelector('[class*="Pitcher"], [class*="pitcher"]');
+      const pageText = document.body.innerText;
+      const winIdx = pageText.indexOf('승리투수');
+      const loseIdx = pageText.indexOf('패전투수');
+      const saveIdx = pageText.indexOf('세이브');
+      return {
+        url: location.href,
+        tableCount: tables.length,
+        tableColCounts: tables.slice(0, 5).map(t => t.querySelector('tr')?.querySelectorAll('th,td').length || 0),
+        scoreboardFound: !!scoreboardEl,
+        scoreboardClass: scoreboardEl?.className?.substring(0, 60) || null,
+        pitcherFound: !!pitcherEl,
+        pitcherClass: pitcherEl?.className?.substring(0, 60) || null,
+        winnerContext: winIdx >= 0 ? pageText.substring(winIdx, winIdx + 30) : null,
+        loserContext: loseIdx >= 0 ? pageText.substring(loseIdx, loseIdx + 30) : null,
+        saveContext: saveIdx >= 0 ? pageText.substring(saveIdx, saveIdx + 30) : null,
+        topClasses: Array.from(new Set(Array.from(document.querySelectorAll('[class]')).map(el => el.className.split(' ').find(c => c.length > 5 && !c.startsWith('css-')) || ''))).filter(Boolean).slice(0, 20)
+      };
+    });
+    console.log('  Game page debug:', JSON.stringify(debugInfo, null, 2));
+
     return await page.evaluate((isHanwhaAway) => {
       const result = {
         innings: [],
