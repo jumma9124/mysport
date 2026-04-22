@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-04-22T14:15:29.314Z",
+  "lastUpdate": "2026-04-22T14:32:45.154Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-22T14:15:29.314Z"
+    "lastSuccessfulCrawl": "2026-04-22T14:32:45.154Z"
   },
   "leagueStandings": [
     {
@@ -1065,11 +1065,7 @@
         "innings": [],
         "ourTeamStats": null,
         "opponentStats": null,
-        "pitchers": {
-          "winner": null,
-          "loser": null,
-          "save": "를 챙겨준다"
-        }
+        "pitchers": null
       },
       {
         "date": "2026-04-22",
@@ -1078,11 +1074,7 @@
         "innings": [],
         "ourTeamStats": null,
         "opponentStats": null,
-        "pitchers": {
-          "winner": null,
-          "loser": null,
-          "save": "기록을 돕는다"
-        }
+        "pitchers": null
       }
     ]
   },
