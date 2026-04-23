@@ -85,10 +85,14 @@
     {
       "date": "2026-04-22",
       "rank": 7
+    },
+    {
+      "date": "2026-04-23",
+      "rank": 7
     }
   ],
   "bestRank": 1,
   "worstRank": 7,
   "currentRank": 7,
-  "lastUpdated": "2026-04-22T15:12:46.147Z"
+  "lastUpdated": "2026-04-23T04:16:21.737Z"
 }
