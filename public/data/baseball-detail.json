@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-04-23T15:51:39.305Z",
+  "lastUpdate": "2026-04-24T04:20:10.887Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-23T15:51:39.305Z"
+    "lastSuccessfulCrawl": "2026-04-24T04:20:10.887Z"
   },
   "leagueStandings": [
     {
@@ -1053,42 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "LG",
-    "date": "2026-04-21",
-    "wins": 1,
-    "losses": 2,
-    "games": [
-      {
-        "date": "2026-04-21",
-        "result": "loss",
-        "score": "5-6",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-04-22",
-        "result": "loss",
-        "score": "0-3",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-04-23",
-        "result": "win",
-        "score": "8-4",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "opponent": "NC",
+    "date": "2026-04-24",
+    "wins": 0,
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "NC",
-    "date": "2026-04-24"
+    "opponent": "SSG",
+    "date": "2026-04-28"
   }
 }
