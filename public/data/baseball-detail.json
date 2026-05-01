@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-04-30T15:51:02.693Z",
+  "lastUpdate": "2026-05-01T04:49:34.560Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-04-30T15:51:02.693Z"
+    "lastSuccessfulCrawl": "2026-05-01T04:49:34.561Z"
   },
   "leagueStandings": [
     {
@@ -1053,42 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "SSG",
-    "date": "2026-04-28",
-    "wins": 1,
-    "losses": 2,
-    "games": [
-      {
-        "date": "2026-04-28",
-        "result": "win",
-        "score": "7-6",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-04-29",
-        "result": "loss",
-        "score": "1-6",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-04-30",
-        "result": "loss",
-        "score": "3-14",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "opponent": "삼성",
+    "date": "2026-05-01",
+    "wins": 0,
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "삼성",
-    "date": "2026-05-01"
+    "opponent": "KIA",
+    "date": "2026-05-05"
   }
 }
