@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-05-14T16:12:35.321Z",
+  "lastUpdate": "2026-05-15T04:49:51.832Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-05-14T16:12:35.322Z"
+    "lastSuccessfulCrawl": "2026-05-15T04:49:51.832Z"
   },
   "leagueStandings": [
     {
@@ -1053,42 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "키움",
-    "date": "2026-05-12",
-    "wins": 2,
-    "losses": 1,
-    "games": [
-      {
-        "date": "2026-05-12",
-        "result": "win",
-        "score": "11-5",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-05-13",
-        "result": "loss",
-        "score": "2-3",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-05-14",
-        "result": "win",
-        "score": "10-1",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "opponent": "KT",
+    "date": "2026-05-15",
+    "wins": 0,
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "KT",
-    "date": "2026-05-15"
+    "opponent": "롯데",
+    "date": "2026-05-19"
   }
 }
