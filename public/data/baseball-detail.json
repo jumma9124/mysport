@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-05-22T16:22:45.328Z",
+  "lastUpdate": "2026-05-23T04:39:37.762Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-05-22T16:22:45.328Z"
+    "lastSuccessfulCrawl": "2026-05-23T04:39:37.762Z"
   },
   "leagueStandings": [
     {
@@ -268,9 +268,18 @@
       "rbi": 19
     },
     {
+      "name": "힐리어드",
+      "team": "KT",
+      "rank": 21,
+      "avg": 0.285,
+      "hits": 51,
+      "hr": 3,
+      "rbi": 38
+    },
+    {
       "name": "김선빈",
       "team": "KIA",
-      "rank": 21,
+      "rank": 22,
       "avg": 0.283,
       "hits": 45,
       "hr": 3,
@@ -279,7 +288,7 @@
     {
       "name": "천성호",
       "team": "LG",
-      "rank": 22,
+      "rank": 23,
       "avg": 0.283,
       "hits": 39,
       "hr": 3,
@@ -288,20 +297,11 @@
     {
       "name": "김현수",
       "team": "KT",
-      "rank": 23,
+      "rank": 24,
       "avg": 0.282,
       "hits": 53,
       "hr": 3,
       "rbi": 32
-    },
-    {
-      "name": "힐리어드",
-      "team": "KT",
-      "rank": 24,
-      "avg": 0.279,
-      "hits": 50,
-      "hr": 3,
-      "rbi": 38
     },
     {
       "name": "김지찬",
