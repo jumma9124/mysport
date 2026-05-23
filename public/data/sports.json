@@ -13,12 +13,12 @@
   },
   "baseball": {
     "team": "한화 이글스",
-    "currentRank": 7,
+    "currentRank": 5,
     "record": {
-      "wins": 21,
+      "wins": 22,
       "losses": 24,
       "draws": 0,
-      "winRate": 0.467
+      "winRate": 0.478
     }
   },
   "winterOlympics": {
