@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-06-04T16:51:55.938Z",
+  "lastUpdate": "2026-06-05T05:16:22.895Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-06-04T16:51:55.938Z"
+    "lastSuccessfulCrawl": "2026-06-05T05:16:22.895Z"
   },
   "leagueStandings": [
     {
@@ -1053,42 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "두산",
-    "date": "2026-06-02",
+    "opponent": "롯데",
+    "date": "2026-06-05",
     "wins": 0,
-    "losses": 2,
-    "games": [
-      {
-        "date": "2026-06-02",
-        "result": "loss",
-        "score": "3-5",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-06-03",
-        "result": "draw",
-        "score": "3-3",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-06-04",
-        "result": "loss",
-        "score": "1-3",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "롯데",
-    "date": "2026-06-05"
+    "opponent": "KIA",
+    "date": "2026-06-09"
   }
 }
