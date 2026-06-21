@@ -321,10 +321,14 @@
     {
       "date": "2026-06-20",
       "rank": 6
+    },
+    {
+      "date": "2026-06-21",
+      "rank": 6
     }
   ],
   "bestRank": 1,
   "worstRank": 9,
   "currentRank": 6,
-  "lastUpdated": "2026-06-20T15:37:07.459Z"
+  "lastUpdated": "2026-06-21T06:01:41.786Z"
 }
