@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-06-22T18:15:56.832Z",
+  "lastUpdate": "2026-06-23T05:00:43.036Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-06-22T18:15:56.833Z"
+    "lastSuccessfulCrawl": "2026-06-23T05:00:43.037Z"
   },
   "leagueStandings": [
     {
@@ -1053,42 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "삼성",
-    "date": "2026-06-19",
-    "wins": 1,
-    "losses": 1,
-    "games": [
-      {
-        "date": "2026-06-19",
-        "result": "draw",
-        "score": "3-3",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-06-20",
-        "result": "win",
-        "score": "10-4",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-06-21",
-        "result": "loss",
-        "score": "1-3",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "opponent": "두산",
+    "date": "2026-06-23",
+    "wins": 0,
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "두산",
-    "date": "2026-06-23"
+    "opponent": "SSG",
+    "date": "2026-06-26"
   }
 }
