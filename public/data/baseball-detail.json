@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-07-12T14:53:56.058Z",
+  "lastUpdate": "2026-07-13T04:29:44.356Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-07-12T14:53:56.058Z"
+    "lastSuccessfulCrawl": "2026-07-13T04:29:44.356Z"
   },
   "leagueStandings": [
     {
@@ -1054,19 +1054,10 @@
   },
   "currentSeries": {
     "opponent": "NC",
-    "date": "2026-07-07",
+    "date": "2026-07-09",
     "wins": 1,
-    "losses": 1,
+    "losses": 0,
     "games": [
-      {
-        "date": "2026-07-07",
-        "result": "loss",
-        "score": "6-9",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
       {
         "date": "2026-07-09",
         "result": "win",
