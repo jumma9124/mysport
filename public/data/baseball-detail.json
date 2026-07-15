@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-07-14T15:22:55.975Z",
+  "lastUpdate": "2026-07-15T03:58:07.972Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-07-14T15:22:55.975Z"
+    "lastSuccessfulCrawl": "2026-07-15T03:58:07.972Z"
   },
   "leagueStandings": [
     {
@@ -1052,23 +1052,7 @@
     "result": "loss",
     "score": "1-4"
   },
-  "currentSeries": {
-    "opponent": "NC",
-    "date": "2026-07-09",
-    "wins": 1,
-    "losses": 0,
-    "games": [
-      {
-        "date": "2026-07-09",
-        "result": "win",
-        "score": "6-4",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
-  },
+  "currentSeries": null,
   "nextSeries": {
     "opponent": "키움",
     "date": "2026-07-16"
