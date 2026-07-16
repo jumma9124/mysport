@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-07-15T15:24:44.531Z",
+  "lastUpdate": "2026-07-16T04:01:57.767Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-07-15T15:24:44.531Z"
+    "lastSuccessfulCrawl": "2026-07-16T04:01:57.767Z"
   },
   "leagueStandings": [
     {
@@ -1052,9 +1052,15 @@
     "result": "loss",
     "score": "1-4"
   },
-  "currentSeries": null,
-  "nextSeries": {
+  "currentSeries": {
     "opponent": "키움",
-    "date": "2026-07-16"
+    "date": "2026-07-16",
+    "wins": 0,
+    "losses": 0,
+    "games": []
+  },
+  "nextSeries": {
+    "opponent": "KIA",
+    "date": "2026-07-21"
   }
 }
