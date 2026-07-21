@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-07-20T15:51:11.608Z",
+  "lastUpdate": "2026-07-21T04:15:52.295Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-07-20T15:51:11.608Z"
+    "lastSuccessfulCrawl": "2026-07-21T04:15:52.295Z"
   },
   "leagueStandings": [
     {
@@ -1053,51 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "키움",
-    "date": "2026-07-16",
+    "opponent": "KIA",
+    "date": "2026-07-21",
     "wins": 0,
-    "losses": 3,
-    "games": [
-      {
-        "date": "2026-07-16",
-        "result": "loss",
-        "score": "5-14",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-07-17",
-        "result": "loss",
-        "score": "6-7",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-07-18",
-        "result": "loss",
-        "score": "2-4",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      },
-      {
-        "date": "2026-07-19",
-        "result": "draw",
-        "score": "9-9",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "KIA",
-    "date": "2026-07-21"
+    "opponent": "LG",
+    "date": "2026-07-24"
   }
 }
