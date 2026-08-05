@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-08-04T16:14:32.504Z",
+  "lastUpdate": "2026-08-05T03:59:40.049Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-08-04T16:14:32.504Z"
+    "lastSuccessfulCrawl": "2026-08-05T03:59:40.049Z"
   },
   "leagueStandings": [
     {
@@ -999,7 +999,7 @@
     },
     {
       "opponent": "삼성(승-패-무)",
-      "wins": 3,
+      "wins": 2,
       "losses": 6,
       "draws": 1
     },
