@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-08-14T14:50:22.737Z",
+  "lastUpdate": "2026-08-15T02:14:28.870Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-08-14T14:50:22.737Z"
+    "lastSuccessfulCrawl": "2026-08-15T02:14:28.870Z"
   },
   "leagueStandings": [
     {
@@ -262,7 +262,7 @@
       "name": "디아즈",
       "team": "삼성",
       "rank": 20,
-      "avg": 0.292,
+      "avg": 0.293,
       "hits": 117,
       "hr": 3,
       "rbi": 87
