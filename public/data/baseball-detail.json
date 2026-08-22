@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-08-21T14:31:01.885Z",
+  "lastUpdate": "2026-08-22T02:15:23.258Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-08-21T14:31:01.885Z"
+    "lastSuccessfulCrawl": "2026-08-22T02:15:23.258Z"
   },
   "leagueStandings": [
     {
@@ -1011,7 +1011,7 @@
     },
     {
       "opponent": "LG(승-패-무)",
-      "wins": 7,
+      "wins": 6,
       "losses": 5,
       "draws": 0
     },
