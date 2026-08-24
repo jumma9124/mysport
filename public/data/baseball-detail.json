@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-08-24T02:31:39.764Z",
+  "lastUpdate": "2026-08-24T14:38:19.486Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-08-24T02:31:39.764Z"
+    "lastSuccessfulCrawl": "2026-08-24T14:38:19.486Z"
   },
   "leagueStandings": [
     {
@@ -630,18 +630,9 @@
       "so": 99
     },
     {
-      "name": "잭로그",
-      "team": "두산",
-      "rank": 11,
-      "era": 3.91,
-      "wins": 6,
-      "losses": 6,
-      "so": 102
-    },
-    {
       "name": "나균안",
       "team": "롯데",
-      "rank": 12,
+      "rank": 11,
       "era": 4,
       "wins": 6,
       "losses": 9,
@@ -650,11 +641,20 @@
     {
       "name": "류현진",
       "team": "한화",
-      "rank": 13,
+      "rank": 12,
       "era": 4.02,
       "wins": 8,
       "losses": 4,
       "so": 89
+    },
+    {
+      "name": "잭로그",
+      "team": "두산",
+      "rank": 13,
+      "era": 4.06,
+      "wins": 6,
+      "losses": 6,
+      "so": 102
     },
     {
       "name": "임찬규",
