@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-08-27T23:29:15.767Z",
+  "lastUpdate": "2026-08-28T12:29:52.472Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-08-27T23:29:15.767Z"
+    "lastSuccessfulCrawl": "2026-08-28T12:29:52.472Z"
   },
   "leagueStandings": [
     {
@@ -1089,6 +1089,6 @@
   },
   "nextSeries": {
     "opponent": "NC",
-    "date": "2026-08-28"
+    "date": "2026-08-29"
   }
 }
