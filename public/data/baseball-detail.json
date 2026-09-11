@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-09-10T17:29:43.019Z",
+  "lastUpdate": "2026-09-11T05:32:59.425Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-09-10T17:29:43.019Z"
+    "lastSuccessfulCrawl": "2026-09-11T05:32:59.426Z"
   },
   "leagueStandings": [
     {
@@ -1053,24 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "SSG",
-    "date": "2026-09-10",
+    "opponent": "NC",
+    "date": "2026-09-11",
     "wins": 0,
-    "losses": 1,
-    "games": [
-      {
-        "date": "2026-09-10",
-        "result": "loss",
-        "score": "3-4",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "NC",
-    "date": "2026-09-11"
+    "opponent": "KIA",
+    "date": "2026-09-13"
   }
 }
