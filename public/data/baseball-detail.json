@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-09-12T16:45:12.852Z",
+  "lastUpdate": "2026-09-13T05:36:34.058Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-09-12T16:45:12.852Z"
+    "lastSuccessfulCrawl": "2026-09-13T05:36:34.058Z"
   },
   "leagueStandings": [
     {
@@ -1053,24 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "NC",
-    "date": "2026-09-11",
+    "opponent": "KIA",
+    "date": "2026-09-13",
     "wins": 0,
-    "losses": 1,
-    "games": [
-      {
-        "date": "2026-09-11",
-        "result": "loss",
-        "score": "7-9",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "KIA",
-    "date": "2026-09-13"
+    "opponent": "KT",
+    "date": "2026-09-15"
   }
 }
