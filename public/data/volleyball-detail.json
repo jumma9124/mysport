@@ -144,5 +144,10 @@
     }
   ],
   "recentMatches": [],
-  "upcomingMatch": null
+  "upcomingMatch": {
+    "date": "2026-10-19",
+    "time": "13:00",
+    "opponent": "OK저축은행",
+    "venue": "원정"
+  }
 }
