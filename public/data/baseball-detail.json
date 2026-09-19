@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-09-18T17:28:18.960Z",
+  "lastUpdate": "2026-09-19T05:24:55.732Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-09-18T17:28:18.960Z"
+    "lastSuccessfulCrawl": "2026-09-19T05:24:55.732Z"
   },
   "leagueStandings": [
     {
@@ -1053,24 +1053,14 @@
     "score": "1-4"
   },
   "currentSeries": {
-    "opponent": "삼성",
-    "date": "2026-09-18",
+    "opponent": "LG",
+    "date": "2026-09-19",
     "wins": 0,
-    "losses": 1,
-    "games": [
-      {
-        "date": "2026-09-18",
-        "result": "loss",
-        "score": "4-10",
-        "innings": [],
-        "ourTeamStats": null,
-        "opponentStats": null,
-        "pitchers": null
-      }
-    ]
+    "losses": 0,
+    "games": []
   },
   "nextSeries": {
-    "opponent": "LG",
-    "date": "2026-09-19"
+    "opponent": "롯데",
+    "date": "2026-09-22"
   }
 }
