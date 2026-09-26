@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-09-25T18:14:51.724Z",
+  "lastUpdate": "2026-09-26T05:48:14.805Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-09-25T18:14:51.724Z"
+    "lastSuccessfulCrawl": "2026-09-26T05:48:14.805Z"
   },
   "leagueStandings": [
     {
@@ -493,22 +493,22 @@
       "rbi": 33
     },
     {
+      "name": "오지환",
+      "team": "LG",
+      "rank": 46,
+      "avg": 0.243,
+      "hits": 90,
+      "hr": 3,
+      "rbi": 58
+    },
+    {
       "name": "최지훈",
       "team": "SSG",
-      "rank": 46,
+      "rank": 47,
       "avg": 0.242,
       "hits": 117,
       "hr": 3,
       "rbi": 57
-    },
-    {
-      "name": "오지환",
-      "team": "LG",
-      "rank": 47,
-      "avg": 0.241,
-      "hits": 89,
-      "hr": 3,
-      "rbi": 58
     },
     {
       "name": "김재환",
