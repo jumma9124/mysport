@@ -733,10 +733,14 @@
     {
       "date": "2026-09-30",
       "rank": 9
+    },
+    {
+      "date": "2026-10-01",
+      "rank": 9
     }
   ],
   "bestRank": 1,
   "worstRank": 9,
   "currentRank": 9,
-  "lastUpdated": "2026-09-30T18:52:36.163Z"
+  "lastUpdated": "2026-10-01T06:50:15.972Z"
 }
