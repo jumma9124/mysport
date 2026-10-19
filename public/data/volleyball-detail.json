@@ -143,7 +143,16 @@
       "points": 26
     }
   ],
-  "recentMatches": [],
+  "recentMatches": [
+    {
+      "date": "2026-10-19",
+      "opponent": "OK저축은행",
+      "venue": "천안유관순체육관",
+      "result": "win",
+      "score": "3-2",
+      "sets": []
+    }
+  ],
   "upcomingMatch": {
     "date": "2026-10-20",
     "time": "19:00",
