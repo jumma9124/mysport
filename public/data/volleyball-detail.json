@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-10-31",
+      "opponent": "대한항공",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "0-3",
+      "sets": []
+    },
+    {
       "date": "2026-10-25",
       "opponent": "대한항공",
       "venue": "천안유관순체육관",
@@ -159,20 +167,12 @@
       "result": "win",
       "score": "3-1",
       "sets": []
-    },
-    {
-      "date": "2026-10-22",
-      "opponent": "대한항공",
-      "venue": "천안유관순체육관",
-      "result": "loss",
-      "score": "0-3",
-      "sets": []
     }
   ],
   "upcomingMatch": {
-    "date": "2026-10-31",
-    "time": "14:00",
-    "opponent": "대한항공",
+    "date": "2026-11-05",
+    "time": "19:00",
+    "opponent": "삼성화재",
     "venue": "원정"
   }
 }
