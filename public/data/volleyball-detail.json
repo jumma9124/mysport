@@ -73,74 +73,24 @@
   ],
   "leagueStandingsWomen": [
     {
-      "name": "한국도로공사",
-      "wins": 24,
-      "losses": 12,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.474,
-      "rank": 1,
-      "points": 69
-    },
-    {
-      "name": "현대건설",
-      "wins": 22,
-      "losses": 14,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.254,
-      "rank": 2,
-      "points": 65
-    },
-    {
       "name": "GS칼텍스",
-      "wins": 19,
-      "losses": 17,
+      "wins": 1,
+      "losses": 0,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.106,
-      "rank": 3,
-      "points": 57
+      "setRate": 0,
+      "rank": 1,
+      "points": 3
     },
     {
-      "name": "흥국생명",
-      "wins": 19,
-      "losses": 17,
+      "name": "한국도로공사",
+      "wins": 0,
+      "losses": 1,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.072,
-      "rank": 4,
-      "points": 57
-    },
-    {
-      "name": "IBK기업은행",
-      "wins": 18,
-      "losses": 18,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.121,
-      "rank": 5,
-      "points": 57
-    },
-    {
-      "name": "페퍼저축은행",
-      "wins": 16,
-      "losses": 20,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.813,
-      "rank": 6,
-      "points": 47
-    },
-    {
-      "name": "정관장",
-      "wins": 8,
-      "losses": 28,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.462,
-      "rank": 7,
-      "points": 26
+      "setRate": 0,
+      "rank": 2,
+      "points": 0
     }
   ],
   "recentMatches": [
