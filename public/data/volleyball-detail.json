@@ -73,17 +73,17 @@
   ],
   "leagueStandingsWomen": [
     {
-      "name": "GS칼텍스",
-      "wins": 1,
+      "name": "흥국생명",
+      "wins": 2,
       "losses": 0,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 0,
       "rank": 1,
-      "points": 3
+      "points": 6
     },
     {
-      "name": "흥국생명",
+      "name": "GS칼텍스",
       "wins": 1,
       "losses": 0,
       "setWins": 0,
@@ -113,7 +113,7 @@
       "points": 0
     },
     {
-      "name": "SOOP",
+      "name": "정관장",
       "wins": 0,
       "losses": 1,
       "setWins": 0,
@@ -123,13 +123,23 @@
       "points": 0
     },
     {
-      "name": "한국도로공사",
+      "name": "SOOP",
       "wins": 0,
       "losses": 1,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 0,
       "rank": 6,
+      "points": 0
+    },
+    {
+      "name": "한국도로공사",
+      "wins": 0,
+      "losses": 1,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 0,
+      "rank": 7,
       "points": 0
     }
   ],
