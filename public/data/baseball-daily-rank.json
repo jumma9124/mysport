@@ -877,10 +877,14 @@
     {
       "date": "2026-11-05",
       "rank": 9
+    },
+    {
+      "date": "2026-11-06",
+      "rank": 9
     }
   ],
   "bestRank": 1,
   "worstRank": 9,
   "currentRank": 9,
-  "lastUpdated": "2026-11-05T07:36:51.286Z"
+  "lastUpdated": "2026-11-06T07:36:20.416Z"
 }
