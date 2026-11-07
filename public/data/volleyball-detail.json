@@ -103,7 +103,7 @@
       "points": 3
     },
     {
-      "name": "한국도로공사",
+      "name": "정관장",
       "wins": 1,
       "losses": 1,
       "setWins": 0,
@@ -113,32 +113,32 @@
       "points": 3
     },
     {
+      "name": "한국도로공사",
+      "wins": 1,
+      "losses": 1,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 0.75,
+      "rank": 5,
+      "points": 3
+    },
+    {
+      "name": "현대건설",
+      "wins": 0,
+      "losses": 2,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 0.167,
+      "rank": 6,
+      "points": 0
+    },
+    {
       "name": "SOOP",
       "wins": 0,
       "losses": 2,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 0.167,
-      "rank": 5,
-      "points": 0
-    },
-    {
-      "name": "현대건설",
-      "wins": 0,
-      "losses": 1,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0,
-      "rank": 6,
-      "points": 0
-    },
-    {
-      "name": "정관장",
-      "wins": 0,
-      "losses": 1,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0,
       "rank": 7,
       "points": 0
     }
