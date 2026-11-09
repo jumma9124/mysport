@@ -1,24 +1,24 @@
 {
-  "lastUpdate": "2026-11-08T06:53:03.527Z",
+  "lastUpdate": "2026-11-09T07:27:02.526Z",
   "crawlStatus": {
     "status": "success",
-    "lastSuccessfulCrawl": "2026-11-08T06:53:03.527Z"
+    "lastSuccessfulCrawl": "2026-11-09T07:27:02.526Z"
   },
   "leagueStandings": [
-    {
-      "name": "KT",
-      "wins": 90,
-      "losses": 49,
-      "draws": 5,
-      "winRate": 0.647,
-      "rank": 1
-    },
     {
       "name": "삼성",
       "wins": 83,
       "losses": 58,
       "draws": 3,
       "winRate": 0.589,
+      "rank": 1
+    },
+    {
+      "name": "KT",
+      "wins": 90,
+      "losses": 49,
+      "draws": 5,
+      "winRate": 0.647,
       "rank": 2
     },
     {
@@ -992,13 +992,13 @@
   ],
   "headToHead": [
     {
-      "opponent": "KT(승-패-무)",
+      "opponent": "삼성(승-패-무)",
       "wins": 3,
       "losses": 12,
       "draws": 1
     },
     {
-      "opponent": "삼성(승-패-무)",
+      "opponent": "KT(승-패-무)",
       "wins": 3,
       "losses": 12,
       "draws": 1
