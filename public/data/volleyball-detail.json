@@ -74,13 +74,13 @@
   "leagueStandingsWomen": [
     {
       "name": "IBK기업은행",
-      "wins": 2,
+      "wins": 3,
       "losses": 0,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 6,
+      "setRate": 4.5,
       "rank": 1,
-      "points": 6
+      "points": 9
     },
     {
       "name": "흥국생명",
@@ -123,17 +123,17 @@
       "points": 3
     },
     {
-      "name": "현대건설",
+      "name": "SOOP",
       "wins": 0,
-      "losses": 2,
+      "losses": 3,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.167,
+      "setRate": 0.222,
       "rank": 6,
       "points": 0
     },
     {
-      "name": "SOOP",
+      "name": "현대건설",
       "wins": 0,
       "losses": 2,
       "setWins": 0,
