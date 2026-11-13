@@ -74,13 +74,13 @@
   "leagueStandingsWomen": [
     {
       "name": "IBK기업은행",
-      "wins": 3,
+      "wins": 4,
       "losses": 0,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 4.5,
+      "setRate": 6,
       "rank": 1,
-      "points": 9
+      "points": 12
     },
     {
       "name": "한국도로공사",
@@ -105,10 +105,10 @@
     {
       "name": "흥국생명",
       "wins": 2,
-      "losses": 1,
+      "losses": 2,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 2.333,
+      "setRate": 1.167,
       "rank": 4,
       "points": 6
     },
