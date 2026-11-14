@@ -83,24 +83,24 @@
       "points": 12
     },
     {
+      "name": "GS칼텍스",
+      "wins": 3,
+      "losses": 1,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 3.333,
+      "rank": 2,
+      "points": 9
+    },
+    {
       "name": "한국도로공사",
       "wins": 3,
       "losses": 1,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 1.8,
-      "rank": 2,
-      "points": 9
-    },
-    {
-      "name": "GS칼텍스",
-      "wins": 2,
-      "losses": 1,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 2.333,
       "rank": 3,
-      "points": 6
+      "points": 9
     },
     {
       "name": "흥국생명",
@@ -125,10 +125,10 @@
     {
       "name": "SOOP",
       "wins": 0,
-      "losses": 3,
+      "losses": 4,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.222,
+      "setRate": 0.167,
       "rank": 6,
       "points": 0
     },
