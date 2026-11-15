@@ -83,22 +83,22 @@
       "points": 12
     },
     {
+      "name": "한국도로공사",
+      "wins": 4,
+      "losses": 1,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 2.4,
+      "rank": 2,
+      "points": 12
+    },
+    {
       "name": "GS칼텍스",
       "wins": 3,
       "losses": 1,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 3.333,
-      "rank": 2,
-      "points": 9
-    },
-    {
-      "name": "한국도로공사",
-      "wins": 3,
-      "losses": 1,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 1.8,
       "rank": 3,
       "points": 9
     },
@@ -135,10 +135,10 @@
     {
       "name": "현대건설",
       "wins": 0,
-      "losses": 3,
+      "losses": 4,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.111,
+      "setRate": 0.083,
       "rank": 7,
       "points": 0
     }
