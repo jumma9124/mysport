@@ -123,22 +123,22 @@
       "points": 6
     },
     {
-      "name": "SOOP",
-      "wins": 0,
+      "name": "현대건설",
+      "wins": 1,
       "losses": 4,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.167,
+      "setRate": 0.308,
       "rank": 6,
-      "points": 0
+      "points": 3
     },
     {
-      "name": "현대건설",
+      "name": "SOOP",
       "wins": 0,
-      "losses": 4,
+      "losses": 5,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.083,
+      "setRate": 0.2,
       "rank": 7,
       "points": 0
     }
@@ -170,9 +170,9 @@
     }
   ],
   "upcomingMatch": {
-    "date": "2026-11-25",
+    "date": "2026-11-20",
     "time": "19:00",
     "opponent": "한국전력",
-    "venue": "원정"
+    "venue": "천안유관순체육관"
   }
 }
