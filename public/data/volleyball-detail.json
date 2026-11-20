@@ -73,32 +73,32 @@
   ],
   "leagueStandingsWomen": [
     {
+      "name": "한국도로공사",
+      "wins": 5,
+      "losses": 1,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 2.5,
+      "rank": 1,
+      "points": 15
+    },
+    {
       "name": "GS칼텍스",
       "wins": 4,
       "losses": 1,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 3.25,
-      "rank": 1,
+      "rank": 2,
       "points": 12
     },
     {
       "name": "IBK기업은행",
       "wins": 4,
-      "losses": 1,
+      "losses": 2,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 2.6,
-      "rank": 2,
-      "points": 12
-    },
-    {
-      "name": "한국도로공사",
-      "wins": 4,
-      "losses": 1,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 2.4,
+      "setRate": 1.75,
       "rank": 3,
       "points": 12
     },
@@ -145,6 +145,14 @@
   ],
   "recentMatches": [
     {
+      "date": "2026-11-20",
+      "opponent": "한국전력",
+      "venue": "천안유관순체육관",
+      "result": "loss",
+      "score": "1-3",
+      "sets": []
+    },
+    {
       "date": "2026-11-15",
       "opponent": "우리카드",
       "venue": "천안유관순체육관",
@@ -155,14 +163,6 @@
     {
       "date": "2026-11-12",
       "opponent": "OK저축은행",
-      "venue": "천안유관순체육관",
-      "result": "win",
-      "score": "3-1",
-      "sets": []
-    },
-    {
-      "date": "2026-11-08",
-      "opponent": "KB손해보험",
       "venue": "천안유관순체육관",
       "result": "win",
       "score": "3-1",
