@@ -115,22 +115,22 @@
     {
       "name": "흥국생명",
       "wins": 2,
-      "losses": 3,
+      "losses": 4,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.889,
+      "setRate": 0.667,
       "rank": 5,
       "points": 6
     },
     {
       "name": "현대건설",
-      "wins": 1,
+      "wins": 2,
       "losses": 4,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.308,
+      "setRate": 0.538,
       "rank": 6,
-      "points": 3
+      "points": 6
     },
     {
       "name": "SOOP",
