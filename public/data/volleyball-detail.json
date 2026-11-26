@@ -103,13 +103,23 @@
       "points": 12
     },
     {
+      "name": "현대건설",
+      "wins": 3,
+      "losses": 4,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 0.714,
+      "rank": 4,
+      "points": 9
+    },
+    {
       "name": "정관장",
       "wins": 3,
       "losses": 3,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 0.769,
-      "rank": 4,
+      "rank": 5,
       "points": 8
     },
     {
@@ -119,26 +129,16 @@
       "setWins": 0,
       "setLosses": 0,
       "setRate": 0.667,
-      "rank": 5,
-      "points": 6
-    },
-    {
-      "name": "현대건설",
-      "wins": 2,
-      "losses": 4,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 0.538,
       "rank": 6,
       "points": 6
     },
     {
       "name": "SOOP",
       "wins": 0,
-      "losses": 6,
+      "losses": 7,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.278,
+      "setRate": 0.286,
       "rank": 7,
       "points": 1
     }
