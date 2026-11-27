@@ -73,24 +73,24 @@
   ],
   "leagueStandingsWomen": [
     {
+      "name": "GS칼텍스",
+      "wins": 6,
+      "losses": 1,
+      "setWins": 0,
+      "setLosses": 0,
+      "setRate": 3.8,
+      "rank": 1,
+      "points": 18
+    },
+    {
       "name": "한국도로공사",
       "wins": 6,
       "losses": 1,
       "setWins": 0,
       "setLosses": 0,
       "setRate": 3,
-      "rank": 1,
-      "points": 18
-    },
-    {
-      "name": "GS칼텍스",
-      "wins": 5,
-      "losses": 1,
-      "setWins": 0,
-      "setLosses": 0,
-      "setRate": 3.2,
       "rank": 2,
-      "points": 15
+      "points": 18
     },
     {
       "name": "IBK기업은행",
@@ -125,10 +125,10 @@
     {
       "name": "흥국생명",
       "wins": 2,
-      "losses": 4,
+      "losses": 5,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.667,
+      "setRate": 0.533,
       "rank": 6,
       "points": 6
     },
