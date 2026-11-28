@@ -94,13 +94,13 @@
     },
     {
       "name": "IBK기업은행",
-      "wins": 4,
+      "wins": 5,
       "losses": 3,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 1.273,
+      "setRate": 1.545,
       "rank": 3,
-      "points": 12
+      "points": 15
     },
     {
       "name": "현대건설",
@@ -115,10 +115,10 @@
     {
       "name": "정관장",
       "wins": 3,
-      "losses": 3,
+      "losses": 4,
       "setWins": 0,
       "setLosses": 0,
-      "setRate": 0.769,
+      "setRate": 0.625,
       "rank": 5,
       "points": 8
     },
